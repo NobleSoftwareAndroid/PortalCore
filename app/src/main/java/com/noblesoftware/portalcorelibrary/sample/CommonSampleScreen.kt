@@ -13,10 +13,8 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -27,13 +25,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.noblesoftware.portalcore.R
-import com.noblesoftware.portalcore.theme.LocalDimen
-import com.noblesoftware.portalcore.component.compose.DefaultEmptyState
 import com.noblesoftware.portalcore.component.compose.BottomSheetType
 import com.noblesoftware.portalcore.component.compose.ButtonSize
 import com.noblesoftware.portalcore.component.compose.ButtonType
@@ -41,11 +35,11 @@ import com.noblesoftware.portalcore.component.compose.ButtonVariant
 import com.noblesoftware.portalcore.component.compose.DefaultBottomSheet
 import com.noblesoftware.portalcore.component.compose.DefaultBottomSheetSessionExpired
 import com.noblesoftware.portalcore.component.compose.DefaultButton
-import com.noblesoftware.portalcore.component.compose.DefaultDialog
 import com.noblesoftware.portalcore.component.compose.DefaultProgressDialog
 import com.noblesoftware.portalcore.component.compose.DefaultSpacer
 import com.noblesoftware.portalcore.component.compose.DefaultTextInput
 import com.noblesoftware.portalcore.component.compose.DefaultTopAppBar
+import com.noblesoftware.portalcore.theme.LocalDimen
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -593,6 +587,15 @@ fun CommonSampleScreen(
                     value = text.value,
                     onValueChange = { text.value = it })
                 DefaultSpacer(LocalDimen.current.regular)
+                DefaultTextInput(
+                    label = "Address",
+                    placeholder = "Please input address",
+                    required = true,
+                    singleLine = false,
+                    value = text.value,
+                    minLines = 4,
+                    onValueChange = { text.value = it })
+                DefaultSpacer(LocalDimen.current.regular)
                 Text(text = "input helper")
                 DefaultSpacer()
 
@@ -614,6 +617,16 @@ fun CommonSampleScreen(
                     helperText = "Password must be at least 8 characters",
                     onValueChange = { text.value = it })
                 DefaultSpacer(LocalDimen.current.regular)
+                DefaultTextInput(
+                    label = "Address",
+                    placeholder = "Please input address",
+                    required = true,
+                    singleLine = false,
+                    value = text.value,
+                    minLines = 4,
+                    helperText = "Helper Text",
+                    onValueChange = { text.value = it })
+                DefaultSpacer(LocalDimen.current.regular)
                 Text(text = "input  error")
                 DefaultSpacer()
 
@@ -633,6 +646,16 @@ fun CommonSampleScreen(
                     inputType = KeyboardType.Password,
                     value = text.value,
                     errorText = "Invalid email or password",
+                    onValueChange = { text.value = it })
+                DefaultSpacer(LocalDimen.current.regular)
+                DefaultTextInput(
+                    label = "Address",
+                    placeholder = "Please input address",
+                    required = true,
+                    singleLine = false,
+                    value = text.value,
+                    minLines = 4,
+                    errorText = "Invalid address",
                     onValueChange = { text.value = it })
 
                 DefaultSpacer(height = LocalDimen.current.extraLarge)

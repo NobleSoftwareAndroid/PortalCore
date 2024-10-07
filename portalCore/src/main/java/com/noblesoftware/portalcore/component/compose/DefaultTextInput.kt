@@ -51,10 +51,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.noblesoftware.portalcore.theme.PortalCoreTheme
 import com.noblesoftware.portalcore.R
 import com.noblesoftware.portalcore.theme.LocalDimen
 import com.noblesoftware.portalcore.theme.LocalShapes
-import com.noblesoftware.portalcore.theme.PortalCoreTheme
 import com.noblesoftware.portalcore.util.extension.isFalse
 
 @Preview(showBackground = true, showSystemUi = true)
@@ -149,7 +149,9 @@ fun DefaultTextInput(
             ) {
                 Text(
                     text = label,
-                    style = MaterialTheme.typography.labelSmall.copy(colorResource(id = R.color.text_primary))
+                    style = MaterialTheme.typography.labelSmall.copy(
+                        colorResource(id = R.color.text_primary),
+                    )
                 )
                 if (required) {
                     Text(
@@ -170,7 +172,7 @@ fun DefaultTextInput(
             value = value,
             enabled = enabled,
             singleLine = singleLine,
-            maxLines = maxLines,
+            maxLines = if (minLines > 1 && maxLines == 1) minLines else maxLines,
             minLines = minLines,
             textStyle = MaterialTheme.typography.bodyMedium.copy(
                 color = if (isInputError.value.isFalse()) colorResource(id = R.color.text_primary) else colorResource(
@@ -200,7 +202,13 @@ fun DefaultTextInput(
                 Box(
                     Modifier
                         .clip(shape)
-                        .height(height)
+                        .then(
+                            if (minLines <= 1) {
+                                Modifier.height(height)
+                            } else {
+                                Modifier
+                            }
+                        )
                         .background(
                             if (isFocused.value) background.copy(alpha = .10f) else background.copy(
                                 alpha = .5f
@@ -226,7 +234,7 @@ fun DefaultTextInput(
                                     shape = RoundedCornerShape(10.dp)
                                 )
                             }
-                        ),
+                        )
                 ) {
                     Row(
                         Modifier
@@ -274,7 +282,9 @@ fun DefaultTextInput(
                                 .align(alignment = Alignment.CenterVertically)
                                 .padding(
                                     start = if (leadingIcon == null) 15.dp else 0.dp,
-                                    end = 0.dp
+                                    end = if (trailingIcon == null && minLines > 1) 15.dp else 0.dp,
+                                    top = if (minLines > 1) LocalDimen.current.regular else LocalDimen.current.zero,
+                                    bottom = if (minLines > 1) LocalDimen.current.regular else LocalDimen.current.zero,
                                 )
                         ) {
                             if (value.isEmpty()) {
@@ -355,7 +365,9 @@ fun DefaultTextInput(
                     modifier = Modifier.padding(start = 5.dp, top = 1.dp),
                     text = errorText,
                     color = colorResource(id = R.color.danger_outlined_color),
-                    style = MaterialTheme.typography.bodySmall.copy(colorResource(id = R.color.text_primary))
+                    style = MaterialTheme.typography.bodySmall.copy(
+                        colorResource(id = R.color.text_primary),
+                    )
                 )
             }
         }
@@ -381,14 +393,15 @@ fun DefaultTextInput(
                     modifier = Modifier.padding(start = 5.dp, top = 1.dp),
                     text = helperText,
                     color = colorResource(id = R.color.text_secondary),
-                    style = MaterialTheme.typography.bodySmall.copy(colorResource(id = R.color.text_primary))
+                    style = MaterialTheme.typography.bodySmall.copy(
+                        colorResource(id = R.color.text_primary),
+                    )
                 )
             }
         }
 
     }
 }
-
 
 
 @Composable
