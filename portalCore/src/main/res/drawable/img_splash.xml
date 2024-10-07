@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:width="165.8dp"
+        android:height="71.8dp"
+        android:top="120dp"
+        android:left="55dp"
+        android:drawable="@drawable/img_portal_kampus_logo" />
+</layer-list>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/background_body">
+
+        <com.google.android.material.divider.MaterialDivider
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxHeight="1dp"
+            app:dividerColor="@color/divider"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_cancel"
+            style="@style/DefaultButton"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/button_large_height"
+            android:layout_marginStart="@dimen/regular"
+            android:layout_marginTop="@dimen/regular"
+            android:layout_marginBottom="@dimen/regular"
+            android:backgroundTint="@color/background_body"
+            android:text="@string/cancel"
+            android:textAllCaps="false"
+            android:textColor="@color/neutral_outlined_color"
+            android:textSize="14sp"
+            app:rippleColor="@color/background_level1"
+            app:cornerRadius="@dimen/radius_medium"
+            app:fontFamily="@font/intersemibold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/btn_save"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/divider"
+            app:strokeColor="@color/neutral_outlined_border"
+            app:strokeWidth="1dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_save"
+            style="@style/DefaultButton"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/button_large_height"
+            android:layout_marginStart="@dimen/medium"
+            android:layout_marginTop="@dimen/regular"
+            android:layout_marginEnd="@dimen/regular"
+            android:layout_marginBottom="@dimen/regular"
+            android:backgroundTint="@color/primary_solid_bg"
+            android:text="@string/save"
+            android:textAllCaps="false"
+            android:textColor="@color/primary_solid_color"
+            android:textSize="14sp"
+            app:rippleColor="@color/primary_solid_hover_bg"
+            app:cornerRadius="@dimen/radius_medium"
+            app:fontFamily="@font/intersemibold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/btn_cancel"
+            app:layout_constraintTop_toBottomOf="@id/divider" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

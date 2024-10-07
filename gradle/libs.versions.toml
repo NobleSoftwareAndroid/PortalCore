@@ -1,0 +1,78 @@
+[versions]
+agp = "8.1.3"
+org-jetbrains-kotlin-android = "1.8.10"
+core-ktx = "1.13.1"
+junit = "4.13.2"
+androidx-test-ext-junit = "1.2.1"
+espresso-core = "3.6.1"
+lifecycle-runtime-ktx = "2.8.6"
+activity-compose = "1.9.2"
+compose-bom = "2024.09.02"
+compose-material = "1.2.0-beta02"
+compose-navigation = "2.8.1"
+compose-constraintlayout = "1.1.0-alpha13"
+appcompat = "1.7.0"
+fragment = "1.7.0"
+material = "1.12.0"
+ksp = "1.8.10-1.0.9"
+hilt = "2.48"
+hiltNavCompose = "1.2.0"
+kotlinPlugin = "1.8.10"
+dokka = "1.9.20"
+dokka-android = "0.9.17"
+serialization = "1.9.23"
+kotlinx-serialization = "1.6.2"
+datastore = "1.1.1"
+gson = "2.10.1"
+okhttp = "4.10.0"
+timber = "5.0.1"
+paging = "3.3.2"
+
+[libraries]
+core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
+junit = { group = "junit", name = "junit", version.ref = "junit" }
+androidx-test-ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "androidx-test-ext-junit" }
+espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espresso-core" }
+lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycle-runtime-ktx" }
+activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activity-compose" }
+compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "compose-bom" }
+compose-material = { group = "androidx.compose.material3", name = "material3-android", version.ref = "compose-material" }
+compose-navigation = { group = "androidx.navigation", name = "navigation-compose", version.ref = "compose-navigation" }
+compose-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout-compose", version.ref = "compose-constraintlayout" }
+ui = { group = "androidx.compose.ui", name = "ui" }
+ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
+ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
+ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
+ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
+ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
+material3 = { group = "androidx.compose.material3", name = "material3" }
+appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+fragment = { group = "androidx.fragment", name = "fragment-ktx", version.ref = "fragment" }
+material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
+hilt-compiler = { group = "com.google.dagger", name = "hilt-compiler", version.ref = "hilt" }
+kotlinx-serialization-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-core", version.ref = "kotlinx-serialization" }
+kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinx-serialization" }
+hilt-navigation-compose = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "hiltNavCompose" }
+kotlin-dokka = { module = "org.jetbrains.dokka:dokka-base", version.ref = "dokka" }
+kotlin-dokka-gradle = { module = "org.jetbrains.dokka:dokka-gradle-plugin", version.ref = "dokka" }
+kotlin-dokka-gradle-android = { module = "org.jetbrains.dokka:dokka-android-gradle-plugin", version.ref = "dokka-android" }
+datastore = { module = "androidx.datastore:datastore-preferences", version.ref = "datastore" }
+gson = { group = "com.google.code.gson", name = "gson", version.ref = "gson" }
+okhttp = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okhttp" }
+timber = { group = "com.jakewharton.timber", name = "timber", version.ref = "timber" }
+paging = {group = "androidx.paging", name = "paging-compose", version.ref = "paging"}
+
+[plugins]
+com-android-application = { id = "com.android.application", version.ref = "agp" }
+org-jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "org-jetbrains-kotlin-android" }
+org-jetbrains-kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "org-jetbrains-kotlin-android" }
+com-android-library = { id = "com.android.library", version.ref = "agp" }
+hilt-android = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
+devtools-ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+kotlin-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "kotlinPlugin" }
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "serialization" }
+org-jetbrains-dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
+
+[bundles]
+
