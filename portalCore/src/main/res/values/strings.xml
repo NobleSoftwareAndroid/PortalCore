@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="empty_string" translatable="false" />
+    <string name="empty_white_space" translatable="false">" "</string>
+    <string name="strip" translatable="false" >-</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+    <string name="okay">Okay</string>
+    <string name="close">Close</string>
+    <string name="reset">Reset</string>
+    <string name="bullet" translatable="false">&#8226;</string>
+    <string name="session_expired">Session Expired</string>
+    <string name="session_expired_desc">Your session has expired. For security reason please login again.</string>
+    <string name="login">Login</string>
+    <string name="back">Back</string>
+    <string name="tap_to_upload">Tap to upload</string>
+    <string name="JPG_JPEG_PNG_PDF_Maximum_size_5_MB">(JPG, JPEG, PNG &amp; PDF. Maximum size: 5 MB)</string>
+    <string name="pdf_docx_jpg_jpeg_png_maximum_size_5_mb">(PDF, DOCX, JPG, JPEG, PNG. Maximum size: 5 MB)</string>
+    <string name="see_more">… See more</string>
+    <string name="see_less">&#160;See less</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="sunday">Sunday</string>
+    <string name="monday">Monday</string>
+    <string name="tuesday">Tuesday</string>
+    <string name="wednesday">Wednesday</string>
+    <string name="thursday">Thursday</string>
+    <string name="friday">Friday</string>
+    <string name="saturday">Saturday</string>
+</resources>

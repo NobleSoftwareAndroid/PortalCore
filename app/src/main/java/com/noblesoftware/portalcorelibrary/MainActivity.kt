@@ -1,46 +1,38 @@
 package com.noblesoftware.portalcorelibrary
 
 import android.os.Bundle
-import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
+import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Scaffold
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.noblesoftware.portalcorelibrary.ui.theme.PortalCoreLibraryTheme
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import com.noblesoftware.portalcore.theme.PortalCoreTheme
+import com.noblesoftware.portalcorelibrary.sample.BottomSheetSampleScreen
+import com.noblesoftware.portalcorelibrary.sample.CommonSampleScreen
+import com.noblesoftware.portalcorelibrary.sample.ContainerSampleScreen
+import com.noblesoftware.portalcorelibrary.sample.SnackBarSampleScreen
+import dagger.hilt.android.AndroidEntryPoint
 
-class MainActivity : ComponentActivity() {
+@AndroidEntryPoint
+class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            PortalCoreLibraryTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
-                ) {
-                    Greeting("Android")
+            PortalCoreTheme {
+                val navController = rememberNavController()
+                Scaffold {
+                    NavHost(navController, startDestination = MainRoute, Modifier.padding(it)) {
+                        composable<MainRoute> { MainScreen(navHostController = navController) }
+                        composable<CommonRoute> { CommonSampleScreen(navHostController = navController) }
+                        composable<SnackBarRoute> { SnackBarSampleScreen(navHostController = navController) }
+                        composable<BottomSheetRoute> { BottomSheetSampleScreen(navHostController = navController) }
+                        composable<ContainerRoute> { ContainerSampleScreen(navHostController = navController) }
+                    }
                 }
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    PortalCoreLibraryTheme {
-        Greeting("Android")
     }
 }
