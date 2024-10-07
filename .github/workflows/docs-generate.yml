@@ -21,4 +21,4 @@ jobs:
         uses: peaceiris/actions-gh-pages@v4
         with:
           personal_token: ${{ secrets.ACCESS_TOKEN }}
-          publish_dir: portalCore/build/dokka/html+
+          publish_dir: portalCore/build/dokka/html
