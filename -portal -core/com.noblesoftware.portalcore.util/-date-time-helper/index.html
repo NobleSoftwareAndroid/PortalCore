@@ -1,0 +1,1310 @@
+<!DOCTYPE html>
+<html class="no-js">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>DateTimeHelper</title>
+    <link href="../../../images/logo-icon.svg" rel="icon" type="image/svg">
+    <script>var pathToRoot = "../../../";</script>
+    <script>document.documentElement.classList.replace("no-js","js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async="async"></script>
+<link href="../../../styles/style.css" rel="Stylesheet">
+<link href="../../../styles/main.css" rel="Stylesheet">
+<link href="../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../../styles/font-jb-sans-auto.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../scripts/clipboard.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/navigation-loader.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/platform-content-handler.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/main.js" defer="defer"></script>
+<script type="text/javascript" src="../../../scripts/prism.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/symbol-parameters-wrapper_deferred.js" defer="defer"></script>
+<link href="../../../images/logo.png">
+<link href="../../../styles/styles.css" rel="Stylesheet">
+</head>
+<body>
+    <div class="root">
+<nav class="navigation" id="navigation-wrapper">
+    <div class="navigation--inner">
+        <div class="navigation-title">
+            <button class="menu-toggle" id="menu-toggle" type="button">toggle menu</button>
+            <div class="library-name">
+                    <a class="library-name--link" href="../../../index.html">
+                            Portal Core
+                    </a>
+            </div>
+            <div class="library-version">
+            </div>
+        </div>
+        <div class="filter-section" id="filter-section">
+                <button class="platform-tag platform-selector jvm-like" data-active="" data-filter=":portalCore:dokkaHtml/release">androidJvm</button>
+        </div>
+    </div>
+    <div class="navigation-controls">
+        <button class="navigation-controls--btn navigation-controls--theme" id="theme-toggle-button" type="button">switch theme</button>
+        <div class="navigation-controls--btn navigation-controls--search" id="searchBar" role="button">search in API</div>
+    </div>
+</nav>
+        <div id="container">
+            <div class="sidebar" id="leftColumn">
+                <div class="sidebar--inner" id="sideMenu"></div>
+            </div>
+            <div id="main">
+<div class="main-content" data-page-type="classlike" id="content" pageIds="Portal Core::com.noblesoftware.portalcore.util/DateTimeHelper///PointingToDeclaration//-1426141027">
+  <div class="breadcrumbs"><a href="../../../index.html">Portal Core</a><span class="delimiter">/</span><a href="../index.html">com.noblesoftware.portalcore.util</a><span class="delimiter">/</span><span class="current">DateTimeHelper</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span>Date</span><wbr></wbr><span>Time</span><wbr></wbr><span><span>Helper</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":portalCore:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">object </span><a href="index.html">DateTimeHelper</a></div><p class="paragraph">Created by fizhu on 05,June,2020 Hvyz.anbiya@gmail.com</p></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="PROPERTY">
+        <h2 class="">Properties</h2>
+        <div class="table"><a data-name="1223592303%2FProperties%2F-1426141027" anchor-label="daysAgo" id="1223592303%2FProperties%2F-1426141027" data-filterable-set=":portalCore:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":portalCore:dokkaHtml/release" data-filterable-set=":portalCore:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="days-ago.html"><span>days</span><wbr></wbr><span><span>Ago</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1223592303%2FProperties%2F-1426141027"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":portalCore:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">val </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">.</span><a href="days-ago.html">daysAgo</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/util/Date.html">Date</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="67040364%2FProperties%2F-1426141027" anchor-label="FORMAT_DATE_DAY" id="67040364%2FProperties%2F-1426141027" data-filterable-set=":portalCore:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":portalCore:dokkaHtml/release" data-filterable-set=":portalCore:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-f-o-r-m-a-t_-d-a-t-e_-d-a-y.html"><span><span>FORMAT_DATE_DAY</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="67040364%2FProperties%2F-1426141027"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":portalCore:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-f-o-r-m-a-t_-d-a-t-e_-d-a-y.html">FORMAT_DATE_DAY</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-761187511%2FProperties%2F-1426141027" anchor-label="FORMAT_DATE_DM_SHORT_MONTH_NO_SEPARATOR" id="-761187511%2FProperties%2F-1426141027" data-filterable-set=":portalCore:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":portalCore:dokkaHtml/release" data-filterable-set=":portalCore:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-f-o-r-m-a-t_-d-a-t-e_-d-m_-s-h-o-r-t_-m-o-n-t-h_-n-o_-s-e-p-a-r-a-t-o-r.html"><span><span>FORMAT_DATE_DM_SHORT_MONTH_NO_SEPARATOR</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-761187511%2FProperties%2F-1426141027"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":portalCore:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-f-o-r-m-a-t_-d-a-t-e_-d-m_-s-h-o-r-t_-m-o-n-t-h_-n-o_-s-e-p-a-r-a-t-o-r.html">FORMAT_DATE_DM_SHORT_MONTH_NO_SEPARATOR</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1278493320%2FProperties%2F-1426141027" anchor-label="FORMAT_DATE_DMY" id="-1278493320%2FProperties%2F-1426141027" data-filterable-set=":portalCore:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":portalCore:dokkaHtml/release" data-filterable-set=":portalCore:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-f-o-r-m-a-t_-d-a-t-e_-d-m-y.html"><span><span>FORMAT_DATE_DMY</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1278493320%2FProperties%2F-1426141027"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":portalCore:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-f-o-r-m-a-t_-d-a-t-e_-d-m-y.html">FORMAT_DATE_DMY</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1091690806%2FProperties%2F-1426141027" anchor-label="FORMAT_DATE_DMY_LONG_DAY" id="-1091690806%2FProperties%2F-1426141027" data-filterable-set=":portalCore:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":portalCore:dokkaHtml/release" data-filterable-set=":portalCore:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-f-o-r-m-a-t_-d-a-t-e_-d-m-y_-l-o-n-g_-d-a-y.html"><span><span>FORMAT_DATE_DMY_LONG_DAY</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1091690806%2FProperties%2F-1426141027"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":portalCore:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-f-o-r-m-a-t_-d-a-t-e_-d-m-y_-l-o-n-g_-d-a-y.html">FORMAT_DATE_DMY_LONG_DAY</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="376022566%2FProperties%2F-1426141027" anchor-label="FORMAT_DATE_DMY_LONG_MONTH" id="376022566%2FProperties%2F-1426141027" data-filterable-set=":portalCore:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":portalCore:dokkaHtml/release" data-filterable-set=":portalCore:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-f-o-r-m-a-t_-d-a-t-e_-d-m-y_-l-o-n-g_-m-o-n-t-h.html"><span><span>FORMAT_DATE_DMY_LONG_MONTH</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="376022566%2FProperties%2F-1426141027"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":portalCore:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-f-o-r-m-a-t_-d-a-t-e_-d-m-y_-l-o-n-g_-m-o-n-t-h.html">FORMAT_DATE_DMY_LONG_MONTH</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1245509390%2FProperties%2F-1426141027" anchor-label="FORMAT_DATE_DMY_LONG_MONTH_NO_SEPARATOR" id="1245509390%2FProperties%2F-1426141027" data-filterable-set=":portalCore:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":portalCore:dokkaHtml/release" data-filterable-set=":portalCore:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-f-o-r-m-a-t_-d-a-t-e_-d-m-y_-l-o-n-g_-m-o-n-t-h_-n-o_-s-e-p-a-r-a-t-o-r.html"><span><span>FORMAT_DATE_DMY_LONG_MONTH_NO_SEPARATOR</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1245509390%2FProperties%2F-1426141027"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":portalCore:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-f-o-r-m-a-t_-d-a-t-e_-d-m-y_-l-o-n-g_-m-o-n-t-h_-n-o_-s-e-p-a-r-a-t-o-r.html">FORMAT_DATE_DMY_LONG_MONTH_NO_SEPARATOR</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1967413754%2FProperties%2F-1426141027" anchor-label="FORMAT_DATE_DMY_SHORT_MONTH_NO_SEPARATOR" id="1967413754%2FProperties%2F-1426141027" data-filterable-set=":portalCore:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":portalCore:dokkaHtml/release" data-filterable-set=":portalCore:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-f-o-r-m-a-t_-d-a-t-e_-d-m-y_-s-h-o-r-t_-m-o-n-t-h_-n-o_-s-e-p-a-r-a-t-o-r.html"><span><span>FORMAT_DATE_DMY_SHORT_MONTH_NO_SEPARATOR</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1967413754%2FProperties%2F-1426141027"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":portalCore:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-f-o-r-m-a-t_-d-a-t-e_-d-m-y_-s-h-o-r-t_-m-o-n-t-h_-n-o_-s-e-p-a-r-a-t-o-r.html">FORMAT_DATE_DMY_SHORT_MONTH_NO_SEPARATOR</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1389503651%2FProperties%2F-1426141027" anchor-label="FORMAT_DATE_DMY_SHORT_SLASH" id="-1389503651%2FProperties%2F-1426141027" data-filterable-set=":portalCore:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":portalCore:dokkaHtml/release" data-filterable-set=":portalCore:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-f-o-r-m-a-t_-d-a-t-e_-d-m-y_-s-h-o-r-t_-s-l-a-s-h.html"><span><span>FORMAT_DATE_DMY_SHORT_SLASH</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1389503651%2FProperties%2F-1426141027"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":portalCore:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-f-o-r-m-a-t_-d-a-t-e_-d-m-y_-s-h-o-r-t_-s-l-a-s-h.html">FORMAT_DATE_DMY_SHORT_SLASH</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="173194906%2FProperties%2F-1426141027" anchor-label="FORMAT_DATE_DMY_SLASH" id="173194906%2FProperties%2F-1426141027" data-filterable-set=":portalCore:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":portalCore:dokkaHtml/release" data-filterable-set=":portalCore:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-f-o-r-m-a-t_-d-a-t-e_-d-m-y_-s-l-a-s-h.html"><span><span>FORMAT_DATE_DMY_SLASH</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="173194906%2FProperties%2F-1426141027"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":portalCore:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-f-o-r-m-a-t_-d-a-t-e_-d-m-y_-s-l-a-s-h.html">FORMAT_DATE_DMY_SLASH</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1269370541%2FProperties%2F-1426141027" anchor-label="FORMAT_DATE_DMYHM" id="-1269370541%2FProperties%2F-1426141027" data-filterable-set=":portalCore:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":portalCore:dokkaHtml/release" data-filterable-set=":portalCore:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-f-o-r-m-a-t_-d-a-t-e_-d-m-y-h-m.html"><span><span>FORMAT_DATE_DMYHM</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1269370541%2FProperties%2F-1426141027"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":portalCore:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-f-o-r-m-a-t_-d-a-t-e_-d-m-y-h-m.html">FORMAT_DATE_DMYHM</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1709653892%2FProperties%2F-1426141027" anchor-label="FORMAT_DATE_DMYHM_WITH_SLASH" id="1709653892%2FProperties%2F-1426141027" data-filterable-set=":portalCore:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":portalCore:dokkaHtml/release" data-filterable-set=":portalCore:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-f-o-r-m-a-t_-d-a-t-e_-d-m-y-h-m_-w-i-t-h_-s-l-a-s-h.html"><span><span>FORMAT_DATE_DMYHM_WITH_SLASH</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1709653892%2FProperties%2F-1426141027"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":portalCore:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-f-o-r-m-a-t_-d-a-t-e_-d-m-y-h-m_-w-i-t-h_-s-l-a-s-h.html">FORMAT_DATE_DMYHM_WITH_SLASH</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-122160140%2FProperties%2F-1426141027" anchor-label="FORMAT_DATE_DMYHMS" id="-122160140%2FProperties%2F-1426141027" data-filterable-set=":portalCore:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":portalCore:dokkaHtml/release" data-filterable-set=":portalCore:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-f-o-r-m-a-t_-d-a-t-e_-d-m-y-h-m-s.html"><span><span>FORMAT_DATE_DMYHMS</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-122160140%2FProperties%2F-1426141027"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":portalCore:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-f-o-r-m-a-t_-d-a-t-e_-d-m-y-h-m-s.html">FORMAT_DATE_DMYHMS</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="97410039%2FProperties%2F-1426141027" anchor-label="FORMAT_DATE_EDMY_LONG_MONTH" id="97410039%2FProperties%2F-1426141027" data-filterable-set=":portalCore:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":portalCore:dokkaHtml/release" data-filterable-set=":portalCore:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-f-o-r-m-a-t_-d-a-t-e_-e-d-m-y_-l-o-n-g_-m-o-n-t-h.html"><span><span>FORMAT_DATE_EDMY_LONG_MONTH</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="97410039%2FProperties%2F-1426141027"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":portalCore:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-f-o-r-m-a-t_-d-a-t-e_-e-d-m-y_-l-o-n-g_-m-o-n-t-h.html">FORMAT_DATE_EDMY_LONG_MONTH</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1775110135%2FProperties%2F-1426141027" anchor-label="FORMAT_DATE_EDMY_SHORT_MONTH" id="-1775110135%2FProperties%2F-1426141027" data-filterable-set=":portalCore:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":portalCore:dokkaHtml/release" data-filterable-set=":portalCore:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-f-o-r-m-a-t_-d-a-t-e_-e-d-m-y_-s-h-o-r-t_-m-o-n-t-h.html"><span><span>FORMAT_DATE_EDMY_SHORT_MONTH</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1775110135%2FProperties%2F-1426141027"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":portalCore:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-f-o-r-m-a-t_-d-a-t-e_-e-d-m-y_-s-h-o-r-t_-m-o-n-t-h.html">FORMAT_DATE_EDMY_SHORT_MONTH</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-2097704708%2FProperties%2F-1426141027" anchor-label="FORMAT_DATE_EDMYHM_LONG_MONTH" id="-2097704708%2FProperties%2F-1426141027" data-filterable-set=":portalCore:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":portalCore:dokkaHtml/release" data-filterable-set=":portalCore:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-f-o-r-m-a-t_-d-a-t-e_-e-d-m-y-h-m_-l-o-n-g_-m-o-n-t-h.html"><span><span>FORMAT_DATE_EDMYHM_LONG_MONTH</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2097704708%2FProperties%2F-1426141027"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":portalCore:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-f-o-r-m-a-t_-d-a-t-e_-e-d-m-y-h-m_-l-o-n-g_-m-o-n-t-h.html">FORMAT_DATE_EDMYHM_LONG_MONTH</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-19337543%2FProperties%2F-1426141027" anchor-label="FORMAT_DATE_EDMYHMS_LONG_MONTH" id="-19337543%2FProperties%2F-1426141027" data-filterable-set=":portalCore:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":portalCore:dokkaHtml/release" data-filterable-set=":portalCore:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-f-o-r-m-a-t_-d-a-t-e_-e-d-m-y-h-m-s_-l-o-n-g_-m-o-n-t-h.html"><span><span>FORMAT_DATE_EDMYHMS_LONG_MONTH</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-19337543%2FProperties%2F-1426141027"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":portalCore:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-f-o-r-m-a-t_-d-a-t-e_-e-d-m-y-h-m-s_-l-o-n-g_-m-o-n-t-h.html">FORMAT_DATE_EDMYHMS_LONG_MONTH</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1009055832%2FProperties%2F-1426141027" anchor-label="FORMAT_DATE_MDY_SLASH" id="-1009055832%2FProperties%2F-1426141027" data-filterable-set=":portalCore:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":portalCore:dokkaHtml/release" data-filterable-set=":portalCore:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-f-o-r-m-a-t_-d-a-t-e_-m-d-y_-s-l-a-s-h.html"><span><span>FORMAT_DATE_MDY_SLASH</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1009055832%2FProperties%2F-1426141027"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":portalCore:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-f-o-r-m-a-t_-d-a-t-e_-m-d-y_-s-l-a-s-h.html">FORMAT_DATE_MDY_SLASH</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1696240315%2FProperties%2F-1426141027" anchor-label="FORMAT_DATE_ONLY_MONTH" id="-1696240315%2FProperties%2F-1426141027" data-filterable-set=":portalCore:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":portalCore:dokkaHtml/release" data-filterable-set=":portalCore:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-f-o-r-m-a-t_-d-a-t-e_-o-n-l-y_-m-o-n-t-h.html"><span><span>FORMAT_DATE_ONLY_MONTH</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1696240315%2FProperties%2F-1426141027"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":portalCore:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-f-o-r-m-a-t_-d-a-t-e_-o-n-l-y_-m-o-n-t-h.html">FORMAT_DATE_ONLY_MONTH</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="332457496%2FProperties%2F-1426141027" anchor-label="FORMAT_DATE_TIME_DMY_SHORT_MONTH_WITH_SPACE" id="332457496%2FProperties%2F-1426141027" data-filterable-set=":portalCore:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":portalCore:dokkaHtml/release" data-filterable-set=":portalCore:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-f-o-r-m-a-t_-d-a-t-e_-t-i-m-e_-d-m-y_-s-h-o-r-t_-m-o-n-t-h_-w-i-t-h_-s-p-a-c-e.html"><span><span>FORMAT_DATE_TIME_DMY_SHORT_MONTH_WITH_SPACE</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="332457496%2FProperties%2F-1426141027"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":portalCore:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-f-o-r-m-a-t_-d-a-t-e_-t-i-m-e_-d-m-y_-s-h-o-r-t_-m-o-n-t-h_-w-i-t-h_-s-p-a-c-e.html">FORMAT_DATE_TIME_DMY_SHORT_MONTH_WITH_SPACE</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-661339345%2FProperties%2F-1426141027" anchor-label="FORMAT_DATE_TIME_DMYHM_LONG_MONTH" id="-661339345%2FProperties%2F-1426141027" data-filterable-set=":portalCore:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":portalCore:dokkaHtml/release" data-filterable-set=":portalCore:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-f-o-r-m-a-t_-d-a-t-e_-t-i-m-e_-d-m-y-h-m_-l-o-n-g_-m-o-n-t-h.html"><span><span>FORMAT_DATE_TIME_DMYHM_LONG_MONTH</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-661339345%2FProperties%2F-1426141027"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":portalCore:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-f-o-r-m-a-t_-d-a-t-e_-t-i-m-e_-d-m-y-h-m_-l-o-n-g_-m-o-n-t-h.html">FORMAT_DATE_TIME_DMYHM_LONG_MONTH</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1231744859%2FProperties%2F-1426141027" anchor-label="FORMAT_DATE_TIME_DMYHM_LONG_MONTH_NO_SEPARATOR" id="-1231744859%2FProperties%2F-1426141027" data-filterable-set=":portalCore:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":portalCore:dokkaHtml/release" data-filterable-set=":portalCore:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-f-o-r-m-a-t_-d-a-t-e_-t-i-m-e_-d-m-y-h-m_-l-o-n-g_-m-o-n-t-h_-n-o_-s-e-p-a-r-a-t-o-r.html"><span><span>FORMAT_DATE_TIME_DMYHM_LONG_MONTH_NO_SEPARATOR</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1231744859%2FProperties%2F-1426141027"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":portalCore:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-f-o-r-m-a-t_-d-a-t-e_-t-i-m-e_-d-m-y-h-m_-l-o-n-g_-m-o-n-t-h_-n-o_-s-e-p-a-r-a-t-o-r.html">FORMAT_DATE_TIME_DMYHM_LONG_MONTH_NO_SEPARATOR</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="513787976%2FProperties%2F-1426141027" anchor-label="FORMAT_DATE_TIME_DMYHM_LONG_MONTH_NO_SEPARATOR_BUT_WITH_DOT" id="513787976%2FProperties%2F-1426141027" data-filterable-set=":portalCore:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":portalCore:dokkaHtml/release" data-filterable-set=":portalCore:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-f-o-r-m-a-t_-d-a-t-e_-t-i-m-e_-d-m-y-h-m_-l-o-n-g_-m-o-n-t-h_-n-o_-s-e-p-a-r-a-t-o-r_-b-u-t_-w-i-t-h_-d-o-t.html"><span><span>FORMAT_DATE_TIME_DMYHM_LONG_MONTH_NO_SEPARATOR_BUT_WITH_DOT</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="513787976%2FProperties%2F-1426141027"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":portalCore:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-f-o-r-m-a-t_-d-a-t-e_-t-i-m-e_-d-m-y-h-m_-l-o-n-g_-m-o-n-t-h_-n-o_-s-e-p-a-r-a-t-o-r_-b-u-t_-w-i-t-h_-d-o-t.html">FORMAT_DATE_TIME_DMYHM_LONG_MONTH_NO_SEPARATOR_BUT_WITH_DOT</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="513500108%2FProperties%2F-1426141027" anchor-label="FORMAT_DATE_TIME_DMYHM_LONG_WITH_STRIP" id="513500108%2FProperties%2F-1426141027" data-filterable-set=":portalCore:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":portalCore:dokkaHtml/release" data-filterable-set=":portalCore:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-f-o-r-m-a-t_-d-a-t-e_-t-i-m-e_-d-m-y-h-m_-l-o-n-g_-w-i-t-h_-s-t-r-i-p.html"><span><span>FORMAT_DATE_TIME_DMYHM_LONG_WITH_STRIP</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="513500108%2FProperties%2F-1426141027"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":portalCore:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-f-o-r-m-a-t_-d-a-t-e_-t-i-m-e_-d-m-y-h-m_-l-o-n-g_-w-i-t-h_-s-t-r-i-p.html">FORMAT_DATE_TIME_DMYHM_LONG_WITH_STRIP</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="327090158%2FProperties%2F-1426141027" anchor-label="FORMAT_DATE_TIME_DMYHM_SHORT_MONTH_WITH_COMMA" id="327090158%2FProperties%2F-1426141027" data-filterable-set=":portalCore:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":portalCore:dokkaHtml/release" data-filterable-set=":portalCore:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-f-o-r-m-a-t_-d-a-t-e_-t-i-m-e_-d-m-y-h-m_-s-h-o-r-t_-m-o-n-t-h_-w-i-t-h_-c-o-m-m-a.html"><span><span>FORMAT_DATE_TIME_DMYHM_SHORT_MONTH_WITH_COMMA</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="327090158%2FProperties%2F-1426141027"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":portalCore:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-f-o-r-m-a-t_-d-a-t-e_-t-i-m-e_-d-m-y-h-m_-s-h-o-r-t_-m-o-n-t-h_-w-i-t-h_-c-o-m-m-a.html">FORMAT_DATE_TIME_DMYHM_SHORT_MONTH_WITH_COMMA</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="869745731%2FProperties%2F-1426141027" anchor-label="FORMAT_DATE_TIME_DMYHM_SHORT_MONTH_WITH_LINE" id="869745731%2FProperties%2F-1426141027" data-filterable-set=":portalCore:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":portalCore:dokkaHtml/release" data-filterable-set=":portalCore:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-f-o-r-m-a-t_-d-a-t-e_-t-i-m-e_-d-m-y-h-m_-s-h-o-r-t_-m-o-n-t-h_-w-i-t-h_-l-i-n-e.html"><span><span>FORMAT_DATE_TIME_DMYHM_SHORT_MONTH_WITH_LINE</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="869745731%2FProperties%2F-1426141027"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":portalCore:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-f-o-r-m-a-t_-d-a-t-e_-t-i-m-e_-d-m-y-h-m_-s-h-o-r-t_-m-o-n-t-h_-w-i-t-h_-l-i-n-e.html">FORMAT_DATE_TIME_DMYHM_SHORT_MONTH_WITH_LINE</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1119226975%2FProperties%2F-1426141027" anchor-label="FORMAT_DATE_TIME_DMYHM_SHORT_MONTH_WITH_LINE_LONG_DAY" id="1119226975%2FProperties%2F-1426141027" data-filterable-set=":portalCore:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":portalCore:dokkaHtml/release" data-filterable-set=":portalCore:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-f-o-r-m-a-t_-d-a-t-e_-t-i-m-e_-d-m-y-h-m_-s-h-o-r-t_-m-o-n-t-h_-w-i-t-h_-l-i-n-e_-l-o-n-g_-d-a-y.html"><span><span>FORMAT_DATE_TIME_DMYHM_SHORT_MONTH_WITH_LINE_LONG_DAY</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1119226975%2FProperties%2F-1426141027"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":portalCore:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-f-o-r-m-a-t_-d-a-t-e_-t-i-m-e_-d-m-y-h-m_-s-h-o-r-t_-m-o-n-t-h_-w-i-t-h_-l-i-n-e_-l-o-n-g_-d-a-y.html">FORMAT_DATE_TIME_DMYHM_SHORT_MONTH_WITH_LINE_LONG_DAY</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1250911525%2FProperties%2F-1426141027" anchor-label="FORMAT_DATE_TIME_DMYHMS_SHORT_MONTH_WITH_COMMA" id="1250911525%2FProperties%2F-1426141027" data-filterable-set=":portalCore:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":portalCore:dokkaHtml/release" data-filterable-set=":portalCore:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-f-o-r-m-a-t_-d-a-t-e_-t-i-m-e_-d-m-y-h-m-s_-s-h-o-r-t_-m-o-n-t-h_-w-i-t-h_-c-o-m-m-a.html"><span><span>FORMAT_DATE_TIME_DMYHMS_SHORT_MONTH_WITH_COMMA</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1250911525%2FProperties%2F-1426141027"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":portalCore:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-f-o-r-m-a-t_-d-a-t-e_-t-i-m-e_-d-m-y-h-m-s_-s-h-o-r-t_-m-o-n-t-h_-w-i-t-h_-c-o-m-m-a.html">FORMAT_DATE_TIME_DMYHMS_SHORT_MONTH_WITH_COMMA</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-188867894%2FProperties%2F-1426141027" anchor-label="FORMAT_DATE_TIME_MDY_SHORT_MONTH_WITH_SPACE" id="-188867894%2FProperties%2F-1426141027" data-filterable-set=":portalCore:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":portalCore:dokkaHtml/release" data-filterable-set=":portalCore:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-f-o-r-m-a-t_-d-a-t-e_-t-i-m-e_-m-d-y_-s-h-o-r-t_-m-o-n-t-h_-w-i-t-h_-s-p-a-c-e.html"><span><span>FORMAT_DATE_TIME_MDY_SHORT_MONTH_WITH_SPACE</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-188867894%2FProperties%2F-1426141027"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":portalCore:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-f-o-r-m-a-t_-d-a-t-e_-t-i-m-e_-m-d-y_-s-h-o-r-t_-m-o-n-t-h_-w-i-t-h_-s-p-a-c-e.html">FORMAT_DATE_TIME_MDY_SHORT_MONTH_WITH_SPACE</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1939512707%2FProperties%2F-1426141027" anchor-label="FORMAT_DATE_TIME_WITH_DAY_NAME" id="-1939512707%2FProperties%2F-1426141027" data-filterable-set=":portalCore:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":portalCore:dokkaHtml/release" data-filterable-set=":portalCore:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-f-o-r-m-a-t_-d-a-t-e_-t-i-m-e_-w-i-t-h_-d-a-y_-n-a-m-e.html"><span><span>FORMAT_DATE_TIME_WITH_DAY_NAME</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1939512707%2FProperties%2F-1426141027"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":portalCore:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-f-o-r-m-a-t_-d-a-t-e_-t-i-m-e_-w-i-t-h_-d-a-y_-n-a-m-e.html">FORMAT_DATE_TIME_WITH_DAY_NAME</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="502027081%2FProperties%2F-1426141027" anchor-label="FORMAT_DATE_TIME_WITH_DAY_NAME_AND_MONTH_SHORT_NAME" id="502027081%2FProperties%2F-1426141027" data-filterable-set=":portalCore:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":portalCore:dokkaHtml/release" data-filterable-set=":portalCore:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-f-o-r-m-a-t_-d-a-t-e_-t-i-m-e_-w-i-t-h_-d-a-y_-n-a-m-e_-a-n-d_-m-o-n-t-h_-s-h-o-r-t_-n-a-m-e.html"><span><span>FORMAT_DATE_TIME_WITH_DAY_NAME_AND_MONTH_SHORT_NAME</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="502027081%2FProperties%2F-1426141027"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":portalCore:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-f-o-r-m-a-t_-d-a-t-e_-t-i-m-e_-w-i-t-h_-d-a-y_-n-a-m-e_-a-n-d_-m-o-n-t-h_-s-h-o-r-t_-n-a-m-e.html">FORMAT_DATE_TIME_WITH_DAY_NAME_AND_MONTH_SHORT_NAME</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-329980593%2FProperties%2F-1426141027" anchor-label="FORMAT_DATE_TIME_YMDHM" id="-329980593%2FProperties%2F-1426141027" data-filterable-set=":portalCore:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":portalCore:dokkaHtml/release" data-filterable-set=":portalCore:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-f-o-r-m-a-t_-d-a-t-e_-t-i-m-e_-y-m-d-h-m.html"><span><span>FORMAT_DATE_TIME_YMDHM</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-329980593%2FProperties%2F-1426141027"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":portalCore:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-f-o-r-m-a-t_-d-a-t-e_-t-i-m-e_-y-m-d-h-m.html">FORMAT_DATE_TIME_YMDHM</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1065842824%2FProperties%2F-1426141027" anchor-label="FORMAT_DATE_TIME_YMDHMS" id="-1065842824%2FProperties%2F-1426141027" data-filterable-set=":portalCore:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":portalCore:dokkaHtml/release" data-filterable-set=":portalCore:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-f-o-r-m-a-t_-d-a-t-e_-t-i-m-e_-y-m-d-h-m-s.html"><span><span>FORMAT_DATE_TIME_YMDHMS</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1065842824%2FProperties%2F-1426141027"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":portalCore:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-f-o-r-m-a-t_-d-a-t-e_-t-i-m-e_-y-m-d-h-m-s.html">FORMAT_DATE_TIME_YMDHMS</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="774785788%2FProperties%2F-1426141027" anchor-label="FORMAT_DATE_TIME_YMDHMS_NO_SEPARATOR" id="774785788%2FProperties%2F-1426141027" data-filterable-set=":portalCore:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":portalCore:dokkaHtml/release" data-filterable-set=":portalCore:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-f-o-r-m-a-t_-d-a-t-e_-t-i-m-e_-y-m-d-h-m-s_-n-o_-s-e-p-a-r-a-t-o-r.html"><span><span>FORMAT_DATE_TIME_YMDHMS_NO_SEPARATOR</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="774785788%2FProperties%2F-1426141027"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":portalCore:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-f-o-r-m-a-t_-d-a-t-e_-t-i-m-e_-y-m-d-h-m-s_-n-o_-s-e-p-a-r-a-t-o-r.html">FORMAT_DATE_TIME_YMDHMS_NO_SEPARATOR</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1310557880%2FProperties%2F-1426141027" anchor-label="FORMAT_DATE_YMD" id="1310557880%2FProperties%2F-1426141027" data-filterable-set=":portalCore:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":portalCore:dokkaHtml/release" data-filterable-set=":portalCore:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-f-o-r-m-a-t_-d-a-t-e_-y-m-d.html"><span><span>FORMAT_DATE_YMD</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1310557880%2FProperties%2F-1426141027"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":portalCore:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-f-o-r-m-a-t_-d-a-t-e_-y-m-d.html">FORMAT_DATE_YMD</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1314001852%2FProperties%2F-1426141027" anchor-label="FORMAT_DATE_YMD_NO_SEPARATOR" id="1314001852%2FProperties%2F-1426141027" data-filterable-set=":portalCore:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":portalCore:dokkaHtml/release" data-filterable-set=":portalCore:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-f-o-r-m-a-t_-d-a-t-e_-y-m-d_-n-o_-s-e-p-a-r-a-t-o-r.html"><span><span>FORMAT_DATE_YMD_NO_SEPARATOR</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1314001852%2FProperties%2F-1426141027"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":portalCore:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-f-o-r-m-a-t_-d-a-t-e_-y-m-d_-n-o_-s-e-p-a-r-a-t-o-r.html">FORMAT_DATE_YMD_NO_SEPARATOR</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-260703297%2FProperties%2F-1426141027" anchor-label="FORMAT_DATE_YMD_NO_SEPARATOR_SHORT" id="-260703297%2FProperties%2F-1426141027" data-filterable-set=":portalCore:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":portalCore:dokkaHtml/release" data-filterable-set=":portalCore:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-f-o-r-m-a-t_-d-a-t-e_-y-m-d_-n-o_-s-e-p-a-r-a-t-o-r_-s-h-o-r-t.html"><span><span>FORMAT_DATE_YMD_NO_SEPARATOR_SHORT</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-260703297%2FProperties%2F-1426141027"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":portalCore:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-f-o-r-m-a-t_-d-a-t-e_-y-m-d_-n-o_-s-e-p-a-r-a-t-o-r_-s-h-o-r-t.html">FORMAT_DATE_YMD_NO_SEPARATOR_SHORT</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="600159858%2FProperties%2F-1426141027" anchor-label="FORMAT_DATE_YMD_SEPARATOR" id="600159858%2FProperties%2F-1426141027" data-filterable-set=":portalCore:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":portalCore:dokkaHtml/release" data-filterable-set=":portalCore:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-f-o-r-m-a-t_-d-a-t-e_-y-m-d_-s-e-p-a-r-a-t-o-r.html"><span><span>FORMAT_DATE_YMD_SEPARATOR</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="600159858%2FProperties%2F-1426141027"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":portalCore:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-f-o-r-m-a-t_-d-a-t-e_-y-m-d_-s-e-p-a-r-a-t-o-r.html">FORMAT_DATE_YMD_SEPARATOR</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-503801894%2FProperties%2F-1426141027" anchor-label="FORMAT_DATE_YMD_SLASH" id="-503801894%2FProperties%2F-1426141027" data-filterable-set=":portalCore:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":portalCore:dokkaHtml/release" data-filterable-set=":portalCore:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-f-o-r-m-a-t_-d-a-t-e_-y-m-d_-s-l-a-s-h.html"><span><span>FORMAT_DATE_YMD_SLASH</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-503801894%2FProperties%2F-1426141027"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":portalCore:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-f-o-r-m-a-t_-d-a-t-e_-y-m-d_-s-l-a-s-h.html">FORMAT_DATE_YMD_SLASH</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2061718821%2FProperties%2F-1426141027" anchor-label="FORMAT_MMM_YYYY" id="2061718821%2FProperties%2F-1426141027" data-filterable-set=":portalCore:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":portalCore:dokkaHtml/release" data-filterable-set=":portalCore:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-f-o-r-m-a-t_-m-m-m_-y-y-y-y.html"><span><span>FORMAT_MMM_YYYY</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2061718821%2FProperties%2F-1426141027"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":portalCore:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-f-o-r-m-a-t_-m-m-m_-y-y-y-y.html">FORMAT_MMM_YYYY</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1703020988%2FProperties%2F-1426141027" anchor-label="FORMAT_MMMM_YYYY" id="-1703020988%2FProperties%2F-1426141027" data-filterable-set=":portalCore:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":portalCore:dokkaHtml/release" data-filterable-set=":portalCore:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-f-o-r-m-a-t_-m-m-m-m_-y-y-y-y.html"><span><span>FORMAT_MMMM_YYYY</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1703020988%2FProperties%2F-1426141027"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":portalCore:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-f-o-r-m-a-t_-m-m-m-m_-y-y-y-y.html">FORMAT_MMMM_YYYY</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="947319532%2FProperties%2F-1426141027" anchor-label="FORMAT_TIME_HM" id="947319532%2FProperties%2F-1426141027" data-filterable-set=":portalCore:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":portalCore:dokkaHtml/release" data-filterable-set=":portalCore:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-f-o-r-m-a-t_-t-i-m-e_-h-m.html"><span><span>FORMAT_TIME_HM</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="947319532%2FProperties%2F-1426141027"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":portalCore:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-f-o-r-m-a-t_-t-i-m-e_-h-m.html">FORMAT_TIME_HM</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="783621128%2FProperties%2F-1426141027" anchor-label="FORMAT_TIME_HM_NO_SEPARATOR" id="783621128%2FProperties%2F-1426141027" data-filterable-set=":portalCore:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":portalCore:dokkaHtml/release" data-filterable-set=":portalCore:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-f-o-r-m-a-t_-t-i-m-e_-h-m_-n-o_-s-e-p-a-r-a-t-o-r.html"><span><span>FORMAT_TIME_HM_NO_SEPARATOR</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="783621128%2FProperties%2F-1426141027"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":portalCore:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-f-o-r-m-a-t_-t-i-m-e_-h-m_-n-o_-s-e-p-a-r-a-t-o-r.html">FORMAT_TIME_HM_NO_SEPARATOR</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-124244613%2FProperties%2F-1426141027" anchor-label="FORMAT_TIME_HMS" id="-124244613%2FProperties%2F-1426141027" data-filterable-set=":portalCore:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":portalCore:dokkaHtml/release" data-filterable-set=":portalCore:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-f-o-r-m-a-t_-t-i-m-e_-h-m-s.html"><span><span>FORMAT_TIME_HMS</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-124244613%2FProperties%2F-1426141027"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":portalCore:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-f-o-r-m-a-t_-t-i-m-e_-h-m-s.html">FORMAT_TIME_HMS</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1646541163%2FProperties%2F-1426141027" anchor-label="FORMAT_TIME_MS" id="1646541163%2FProperties%2F-1426141027" data-filterable-set=":portalCore:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":portalCore:dokkaHtml/release" data-filterable-set=":portalCore:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-f-o-r-m-a-t_-t-i-m-e_-m-s.html"><span><span>FORMAT_TIME_MS</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1646541163%2FProperties%2F-1426141027"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":portalCore:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-f-o-r-m-a-t_-t-i-m-e_-m-s.html">FORMAT_TIME_MS</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-85729996%2FProperties%2F-1426141027" anchor-label="FORMAT_yyyy_MM_dd_T_HHmmssSSSXXX" id="-85729996%2FProperties%2F-1426141027" data-filterable-set=":portalCore:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":portalCore:dokkaHtml/release" data-filterable-set=":portalCore:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-f-o-r-m-a-t_yyyy_-m-m_dd_-t_-h-hmmss-s-s-s-x-x-x.html"><span>FORMAT_yyyy_MM_dd_T_HHmmss</span><wbr></wbr><span><span>SSSXXX</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-85729996%2FProperties%2F-1426141027"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":portalCore:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-f-o-r-m-a-t_yyyy_-m-m_dd_-t_-h-hmmss-s-s-s-x-x-x.html">FORMAT_yyyy_MM_dd_T_HHmmssSSSXXX</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-11476942%2FProperties%2F-1426141027" anchor-label="FORMAT_yyyy_MM_dd_T_HHmmssSSSZ" id="-11476942%2FProperties%2F-1426141027" data-filterable-set=":portalCore:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":portalCore:dokkaHtml/release" data-filterable-set=":portalCore:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-f-o-r-m-a-t_yyyy_-m-m_dd_-t_-h-hmmss-s-s-s-z.html"><span>FORMAT_yyyy_MM_dd_T_HHmmss</span><wbr></wbr><span><span>SSSZ</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-11476942%2FProperties%2F-1426141027"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":portalCore:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-f-o-r-m-a-t_yyyy_-m-m_dd_-t_-h-hmmss-s-s-s-z.html">FORMAT_yyyy_MM_dd_T_HHmmssSSSZ</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1135596354%2FProperties%2F-1426141027" anchor-label="FORMAT_yyyy_MM_dd_T_HHmmssSSSZ_07" id="1135596354%2FProperties%2F-1426141027" data-filterable-set=":portalCore:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":portalCore:dokkaHtml/release" data-filterable-set=":portalCore:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-f-o-r-m-a-t_yyyy_-m-m_dd_-t_-h-hmmss-s-s-s-z_07.html"><span>FORMAT_yyyy_MM_dd_T_HHmmss</span><wbr></wbr><span><span>SSSZ_07</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1135596354%2FProperties%2F-1426141027"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":portalCore:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-f-o-r-m-a-t_yyyy_-m-m_dd_-t_-h-hmmss-s-s-s-z_07.html">FORMAT_yyyy_MM_dd_T_HHmmssSSSZ_07</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="61377161%2FProperties%2F-1426141027" anchor-label="FORMAT_yyyy_MM_dd_T_HHmmssXXX" id="61377161%2FProperties%2F-1426141027" data-filterable-set=":portalCore:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":portalCore:dokkaHtml/release" data-filterable-set=":portalCore:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-f-o-r-m-a-t_yyyy_-m-m_dd_-t_-h-hmmss-x-x-x.html"><span>FORMAT_yyyy_MM_dd_T_HHmmss</span><wbr></wbr><span><span>XXX</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="61377161%2FProperties%2F-1426141027"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":portalCore:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-f-o-r-m-a-t_yyyy_-m-m_dd_-t_-h-hmmss-x-x-x.html">FORMAT_yyyy_MM_dd_T_HHmmssXXX</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1298473273%2FProperties%2F-1426141027" anchor-label="FORMAT_yyyy_MM_dd_T_HHmmssZ" id="-1298473273%2FProperties%2F-1426141027" data-filterable-set=":portalCore:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":portalCore:dokkaHtml/release" data-filterable-set=":portalCore:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-f-o-r-m-a-t_yyyy_-m-m_dd_-t_-h-hmmss-z.html"><span>FORMAT_yyyy_MM_dd_T_HHmmss</span><wbr></wbr><span><span>Z</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1298473273%2FProperties%2F-1426141027"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":portalCore:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-f-o-r-m-a-t_yyyy_-m-m_dd_-t_-h-hmmss-z.html">FORMAT_yyyy_MM_dd_T_HHmmssZ</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1400950925%2FProperties%2F-1426141027" anchor-label="FORMAT_yyyy_MM_dd_T_HHmmssZ_07" id="1400950925%2FProperties%2F-1426141027" data-filterable-set=":portalCore:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":portalCore:dokkaHtml/release" data-filterable-set=":portalCore:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-f-o-r-m-a-t_yyyy_-m-m_dd_-t_-h-hmmss-z_07.html"><span>FORMAT_yyyy_MM_dd_T_HHmmss</span><wbr></wbr><span><span>Z_07</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1400950925%2FProperties%2F-1426141027"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":portalCore:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-f-o-r-m-a-t_yyyy_-m-m_dd_-t_-h-hmmss-z_07.html">FORMAT_yyyy_MM_dd_T_HHmmssZ_07</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1420644270%2FProperties%2F-1426141027" anchor-label="MAX_DATE" id="-1420644270%2FProperties%2F-1426141027" data-filterable-set=":portalCore:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":portalCore:dokkaHtml/release" data-filterable-set=":portalCore:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-m-a-x_-d-a-t-e.html"><span><span>MAX_DATE</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1420644270%2FProperties%2F-1426141027"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":portalCore:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">var </span><a href="-m-a-x_-d-a-t-e.html">MAX_DATE</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/util/Date.html">Date</a></div><div class="brief "><p class="paragraph">The maximum date possible.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1537726859%2FProperties%2F-1426141027" anchor-label="monthsAgo" id="1537726859%2FProperties%2F-1426141027" data-filterable-set=":portalCore:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":portalCore:dokkaHtml/release" data-filterable-set=":portalCore:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="months-ago.html"><span>months</span><wbr></wbr><span><span>Ago</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1537726859%2FProperties%2F-1426141027"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":portalCore:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">val </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">.</span><a href="months-ago.html">monthsAgo</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/util/Date.html">Date</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="FUNCTION">
+        <h2 class="">Functions</h2>
+        <div class="table"><a data-name="1090761260%2FFunctions%2F-1426141027" anchor-label="clearTime" id="1090761260%2FFunctions%2F-1426141027" data-filterable-set=":portalCore:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":portalCore:dokkaHtml/release" data-filterable-set=":portalCore:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="clear-time.html"><span>clear</span><wbr></wbr><span><span>Time</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1090761260%2FFunctions%2F-1426141027"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":portalCore:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">fun </span><a href="clear-time.html"><span class="token function">clearTime</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">date<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/util/Date.html">Date</a><span class="token operator">?</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/util/Date.html">Date</a><span class="token operator">?</span></div><div class="brief "><p class="paragraph">Returns the given date with the time values cleared.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-565851327%2FFunctions%2F-1426141027" anchor-label="convertDate" id="-565851327%2FFunctions%2F-1426141027" data-filterable-set=":portalCore:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":portalCore:dokkaHtml/release" data-filterable-set=":portalCore:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="convert-date.html"><span>convert</span><wbr></wbr><span><span>Date</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-565851327%2FFunctions%2F-1426141027"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":portalCore:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">fun </span><a href="convert-date.html"><span class="token function">convertDate</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">date<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token punctuation">, </span></span><span class="parameter ">format<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-784645856%2FFunctions%2F-1426141027" anchor-label="convertTime" id="-784645856%2FFunctions%2F-1426141027" data-filterable-set=":portalCore:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":portalCore:dokkaHtml/release" data-filterable-set=":portalCore:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="convert-time.html"><span>convert</span><wbr></wbr><span><span>Time</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-784645856%2FFunctions%2F-1426141027"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":portalCore:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">fun </span><a href="convert-time.html"><span class="token function">convertTime</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">dateValue<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token punctuation">, </span></span><span class="parameter ">format<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2051848089%2FFunctions%2F-1426141027" anchor-label="currentTime" id="2051848089%2FFunctions%2F-1426141027" data-filterable-set=":portalCore:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":portalCore:dokkaHtml/release" data-filterable-set=":portalCore:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="current-time.html"><span>current</span><wbr></wbr><span><span>Time</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2051848089%2FFunctions%2F-1426141027"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":portalCore:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">fun </span><a href="current-time.html"><span class="token function">currentTime</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1320093961%2FFunctions%2F-1426141027" anchor-label="diffDate" id="-1320093961%2FFunctions%2F-1426141027" data-filterable-set=":portalCore:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":portalCore:dokkaHtml/release" data-filterable-set=":portalCore:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="diff-date.html"><span>diff</span><wbr></wbr><span><span>Date</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1320093961%2FFunctions%2F-1426141027"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":portalCore:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">fun </span><a href="diff-date.html"><span class="token function">diffDate</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">date_start<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/util/Date.html">Date</a><span class="token punctuation">, </span></span><span class="parameter ">date_end<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/util/Date.html">Date</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html">Long</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-2146686154%2FFunctions%2F-1426141027" anchor-label="diffHourMinutes" id="-2146686154%2FFunctions%2F-1426141027" data-filterable-set=":portalCore:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":portalCore:dokkaHtml/release" data-filterable-set=":portalCore:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="diff-hour-minutes.html"><span>diff</span><wbr></wbr><span>Hour</span><wbr></wbr><span><span>Minutes</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2146686154%2FFunctions%2F-1426141027"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":portalCore:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">fun </span><a href="diff-hour-minutes.html"><span class="token function">diffHourMinutes</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">date_start<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/util/Date.html">Date</a><span class="token punctuation">, </span></span><span class="parameter ">date_end<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/util/Date.html">Date</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-349148358%2FFunctions%2F-1426141027" anchor-label="diffMinutes" id="-349148358%2FFunctions%2F-1426141027" data-filterable-set=":portalCore:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":portalCore:dokkaHtml/release" data-filterable-set=":portalCore:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="diff-minutes.html"><span>diff</span><wbr></wbr><span><span>Minutes</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-349148358%2FFunctions%2F-1426141027"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":portalCore:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">fun </span><a href="diff-minutes.html"><span class="token function">diffMinutes</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">date_start<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/util/Date.html">Date</a><span class="token punctuation">, </span></span><span class="parameter ">date_end<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/util/Date.html">Date</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html">Long</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1269407101%2FFunctions%2F-1426141027" anchor-label="format" id="-1269407101%2FFunctions%2F-1426141027" data-filterable-set=":portalCore:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":portalCore:dokkaHtml/release" data-filterable-set=":portalCore:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="format.html"><span><span>format</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1269407101%2FFunctions%2F-1426141027"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":portalCore:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">fun </span><a href="format.html"><span class="token function">format</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">date<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/util/Date.html">Date</a><span class="token operator">?</span><span class="token punctuation">, </span></span><span class="parameter ">format<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div><div class="symbol monospace"><span class="token keyword">fun </span><a href="format.html"><span class="token function">format</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">date<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">frm_format<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/util/Date.html">Date</a><span class="token operator">?</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-327799966%2FFunctions%2F-1426141027" anchor-label="formatDateUTC" id="-327799966%2FFunctions%2F-1426141027" data-filterable-set=":portalCore:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":portalCore:dokkaHtml/release" data-filterable-set=":portalCore:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="format-date-u-t-c.html"><span>format</span><wbr></wbr><span>Date</span><wbr></wbr><span><span>UTC</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-327799966%2FFunctions%2F-1426141027"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":portalCore:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">fun </span><a href="format-date-u-t-c.html"><span class="token function">formatDateUTC</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">date<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">frm_format<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/util/Date.html">Date</a><span class="token operator">?</span></div><div class="symbol monospace"><span class="token keyword">fun </span><a href="format-date-u-t-c.html"><span class="token function">formatDateUTC</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">date<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">frm_format<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">to_format<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1786453090%2FFunctions%2F-1426141027" anchor-label="formatDefault" id="1786453090%2FFunctions%2F-1426141027" data-filterable-set=":portalCore:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":portalCore:dokkaHtml/release" data-filterable-set=":portalCore:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="format-default.html"><span>format</span><wbr></wbr><span><span>Default</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1786453090%2FFunctions%2F-1426141027"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":portalCore:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">fun </span><a href="format-default.html"><span class="token function">formatDefault</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">date<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/util/Date.html">Date</a><span class="token operator">?</span><span class="token punctuation">, </span></span><span class="parameter ">format<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-87780773%2FFunctions%2F-1426141027" anchor-label="getEnd" id="-87780773%2FFunctions%2F-1426141027" data-filterable-set=":portalCore:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":portalCore:dokkaHtml/release" data-filterable-set=":portalCore:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-end.html"><span>get</span><wbr></wbr><span><span>End</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-87780773%2FFunctions%2F-1426141027"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":portalCore:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">fun </span><a href="get-end.html"><span class="token function">getEnd</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">date<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/util/Date.html">Date</a><span class="token operator">?</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/util/Date.html">Date</a><span class="token operator">?</span></div><div class="brief "><p class="paragraph">Returns the given date with time set to the end of the day</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-212964029%2FFunctions%2F-1426141027" anchor-label="getLastMidnight" id="-212964029%2FFunctions%2F-1426141027" data-filterable-set=":portalCore:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":portalCore:dokkaHtml/release" data-filterable-set=":portalCore:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-last-midnight.html"><span>get</span><wbr></wbr><span>Last</span><wbr></wbr><span><span>Midnight</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-212964029%2FFunctions%2F-1426141027"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":portalCore:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">fun </span><a href="get-last-midnight.html"><span class="token function">getLastMidnight</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/util/Date.html">Date</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1073240034%2FFunctions%2F-1426141027" anchor-label="getStart" id="1073240034%2FFunctions%2F-1426141027" data-filterable-set=":portalCore:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":portalCore:dokkaHtml/release" data-filterable-set=":portalCore:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-start.html"><span>get</span><wbr></wbr><span><span>Start</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1073240034%2FFunctions%2F-1426141027"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":portalCore:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">fun </span><a href="get-start.html"><span class="token function">getStart</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">date<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/util/Date.html">Date</a><span class="token operator">?</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/util/Date.html">Date</a><span class="token operator">?</span></div><div class="brief "><p class="paragraph">Returns the given date with the time set to the start of the day.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1905621383%2FFunctions%2F-1426141027" anchor-label="hasTime" id="-1905621383%2FFunctions%2F-1426141027" data-filterable-set=":portalCore:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":portalCore:dokkaHtml/release" data-filterable-set=":portalCore:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="has-time.html"><span>has</span><wbr></wbr><span><span>Time</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1905621383%2FFunctions%2F-1426141027"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":portalCore:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">fun </span><a href="has-time.html"><span class="token function">hasTime</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">date<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/util/Date.html">Date</a><span class="token operator">?</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a></div><div class="brief "><p class="paragraph">Determines whether or not a date has any time values.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="126865726%2FFunctions%2F-1426141027" anchor-label="isAfterDay" id="126865726%2FFunctions%2F-1426141027" data-filterable-set=":portalCore:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":portalCore:dokkaHtml/release" data-filterable-set=":portalCore:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="is-after-day.html"><span>is</span><wbr></wbr><span>After</span><wbr></wbr><span><span>Day</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="126865726%2FFunctions%2F-1426141027"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":portalCore:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">fun </span><a href="https://developer.android.com/reference/kotlin/java/util/Calendar.html">Calendar</a><span class="token operator">?</span><span class="token punctuation">.</span><a href="is-after-day.html"><span class="token function">isAfterDay</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">cal<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/util/Calendar.html">Calendar</a><span class="token operator">?</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a></div><div class="brief "><p class="paragraph">Checks if the first calendar date is after the second calendar date ignoring time.</p></div><div class="symbol monospace"><span class="token keyword">fun </span><a href="https://developer.android.com/reference/kotlin/java/util/Date.html">Date</a><span class="token operator">?</span><span class="token punctuation">.</span><a href="is-after-day.html"><span class="token function">isAfterDay</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">date<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/util/Date.html">Date</a><span class="token operator">?</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a></div><div class="brief "><p class="paragraph">Checks if the first date is after the second date ignoring time.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1616061420%2FFunctions%2F-1426141027" anchor-label="isBeforeDay" id="1616061420%2FFunctions%2F-1426141027" data-filterable-set=":portalCore:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":portalCore:dokkaHtml/release" data-filterable-set=":portalCore:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="is-before-day.html"><span>is</span><wbr></wbr><span>Before</span><wbr></wbr><span><span>Day</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1616061420%2FFunctions%2F-1426141027"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":portalCore:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">fun </span><a href="https://developer.android.com/reference/kotlin/java/util/Calendar.html">Calendar</a><span class="token operator">?</span><span class="token punctuation">.</span><a href="is-before-day.html"><span class="token function">isBeforeDay</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">cal<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/util/Calendar.html">Calendar</a><span class="token operator">?</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a></div><div class="brief "><p class="paragraph">Checks if the first calendar date is before the second calendar date ignoring time.</p></div><div class="symbol monospace"><span class="token keyword">fun </span><a href="https://developer.android.com/reference/kotlin/java/util/Date.html">Date</a><span class="token operator">?</span><span class="token punctuation">.</span><a href="is-before-day.html"><span class="token function">isBeforeDay</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">date<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/util/Date.html">Date</a><span class="token operator">?</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a></div><div class="brief "><p class="paragraph">Checks if the first date is before the second date ignoring time.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1578635916%2FFunctions%2F-1426141027" anchor-label="isSameDay" id="-1578635916%2FFunctions%2F-1426141027" data-filterable-set=":portalCore:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":portalCore:dokkaHtml/release" data-filterable-set=":portalCore:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="is-same-day.html"><span>is</span><wbr></wbr><span>Same</span><wbr></wbr><span><span>Day</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1578635916%2FFunctions%2F-1426141027"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":portalCore:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">fun </span><a href="is-same-day.html"><span class="token function">isSameDay</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">cal1<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/util/Calendar.html">Calendar</a><span class="token operator">?</span><span class="token punctuation">, </span></span><span class="parameter ">cal2<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/util/Calendar.html">Calendar</a><span class="token operator">?</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a></div><div class="brief "><p class="paragraph">Checks if two calendars represent the same day ignoring time.</p></div><div class="symbol monospace"><span class="token keyword">fun </span><a href="is-same-day.html"><span class="token function">isSameDay</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">date1<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/util/Date.html">Date</a><span class="token operator">?</span><span class="token punctuation">, </span></span><span class="parameter ">date2<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/util/Date.html">Date</a><span class="token operator">?</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a></div><div class="brief "><p class="paragraph">Checks if two dates are on the same day ignoring time.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1201797782%2FFunctions%2F-1426141027" anchor-label="isToday" id="1201797782%2FFunctions%2F-1426141027" data-filterable-set=":portalCore:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":portalCore:dokkaHtml/release" data-filterable-set=":portalCore:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="is-today.html"><span>is</span><wbr></wbr><span><span>Today</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1201797782%2FFunctions%2F-1426141027"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":portalCore:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">fun </span><a href="is-today.html"><span class="token function">isToday</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">cal<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/util/Calendar.html">Calendar</a><span class="token operator">?</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a></div><div class="brief "><p class="paragraph">Checks if a calendar date is today.</p></div><div class="symbol monospace"><span class="token keyword">fun </span><a href="is-today.html"><span class="token function">isToday</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">date<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/util/Date.html">Date</a><span class="token operator">?</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a></div><div class="brief "><p class="paragraph">Checks if a date is today.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2079554132%2FFunctions%2F-1426141027" anchor-label="isWithinDaysFuture" id="2079554132%2FFunctions%2F-1426141027" data-filterable-set=":portalCore:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":portalCore:dokkaHtml/release" data-filterable-set=":portalCore:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="is-within-days-future.html"><span>is</span><wbr></wbr><span>Within</span><wbr></wbr><span>Days</span><wbr></wbr><span><span>Future</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2079554132%2FFunctions%2F-1426141027"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":portalCore:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">fun </span><a href="is-within-days-future.html"><span class="token function">isWithinDaysFuture</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">cal<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/util/Calendar.html">Calendar</a><span class="token operator">?</span><span class="token punctuation">, </span></span><span class="parameter ">days<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a></div><div class="brief "><p class="paragraph">Checks if a calendar date is after today and within a number of days in the future.</p></div><div class="symbol monospace"><span class="token keyword">fun </span><a href="is-within-days-future.html"><span class="token function">isWithinDaysFuture</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">date<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/util/Date.html">Date</a><span class="token operator">?</span><span class="token punctuation">, </span></span><span class="parameter ">days<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a></div><div class="brief "><p class="paragraph">Checks if a date is after today and within a number of days in the future.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-173745784%2FFunctions%2F-1426141027" anchor-label="max" id="-173745784%2FFunctions%2F-1426141027" data-filterable-set=":portalCore:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":portalCore:dokkaHtml/release" data-filterable-set=":portalCore:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="max.html"><span><span>max</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-173745784%2FFunctions%2F-1426141027"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":portalCore:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">fun </span><a href="max.html"><span class="token function">max</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">d1<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/util/Date.html">Date</a><span class="token operator">?</span><span class="token punctuation">, </span></span><span class="parameter ">d2<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/util/Date.html">Date</a><span class="token operator">?</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/util/Date.html">Date</a><span class="token operator">?</span></div><div class="brief "><p class="paragraph">Returns the maximum of two dates. A null date is treated as being less than any non-null date.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1548217164%2FFunctions%2F-1426141027" anchor-label="milliToDateFormat" id="1548217164%2FFunctions%2F-1426141027" data-filterable-set=":portalCore:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":portalCore:dokkaHtml/release" data-filterable-set=":portalCore:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="milli-to-date-format.html"><span>milli</span><wbr></wbr><span>To</span><wbr></wbr><span>Date</span><wbr></wbr><span><span>Format</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1548217164%2FFunctions%2F-1426141027"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":portalCore:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">fun </span><a href="milli-to-date-format.html"><span class="token function">milliToDateFormat</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">millis<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html">Long</a><span class="token punctuation">, </span></span><span class="parameter ">format<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2017052574%2FFunctions%2F-1426141027" anchor-label="milliToTimeMinsFormattedWithNoSec" id="2017052574%2FFunctions%2F-1426141027" data-filterable-set=":portalCore:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":portalCore:dokkaHtml/release" data-filterable-set=":portalCore:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="milli-to-time-mins-formatted-with-no-sec.html"><span>milli</span><wbr></wbr><span>To</span><wbr></wbr><span>Time</span><wbr></wbr><span>Mins</span><wbr></wbr><span>Formatted</span><wbr></wbr><span>With</span><wbr></wbr><span>No</span><wbr></wbr><span><span>Sec</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2017052574%2FFunctions%2F-1426141027"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":portalCore:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">fun </span><a href="milli-to-time-mins-formatted-with-no-sec.html"><span class="token function">milliToTimeMinsFormattedWithNoSec</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">millis<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html">Long</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-94912257%2FFunctions%2F-1426141027" anchor-label="milliToTimeMinsFOrmattedWithSec" id="-94912257%2FFunctions%2F-1426141027" data-filterable-set=":portalCore:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":portalCore:dokkaHtml/release" data-filterable-set=":portalCore:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="milli-to-time-mins-f-ormatted-with-sec.html"><span>milli</span><wbr></wbr><span>To</span><wbr></wbr><span>Time</span><wbr></wbr><span>Mins</span><wbr></wbr><span>FOrmatted</span><wbr></wbr><span>With</span><wbr></wbr><span><span>Sec</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-94912257%2FFunctions%2F-1426141027"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":portalCore:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">fun </span><a href="milli-to-time-mins-f-ormatted-with-sec.html"><span class="token function">milliToTimeMinsFOrmattedWithSec</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">millis<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html">Long</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-448448394%2FFunctions%2F-1426141027" anchor-label="min" id="-448448394%2FFunctions%2F-1426141027" data-filterable-set=":portalCore:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":portalCore:dokkaHtml/release" data-filterable-set=":portalCore:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="min.html"><span><span>min</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-448448394%2FFunctions%2F-1426141027"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":portalCore:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">fun </span><a href="min.html"><span class="token function">min</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">d1<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/util/Date.html">Date</a><span class="token operator">?</span><span class="token punctuation">, </span></span><span class="parameter ">d2<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/util/Date.html">Date</a><span class="token operator">?</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/util/Date.html">Date</a><span class="token operator">?</span></div><div class="brief "><p class="paragraph">Returns the minimum of two dates. A null date is treated as being greater than any non-null date.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1507281128%2FFunctions%2F-1426141027" anchor-label="parse" id="-1507281128%2FFunctions%2F-1426141027" data-filterable-set=":portalCore:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":portalCore:dokkaHtml/release" data-filterable-set=":portalCore:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="parse.html"><span><span>parse</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1507281128%2FFunctions%2F-1426141027"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":portalCore:dokkaHtml/release"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.jvm/-jvm-overloads/index.html"><span class="token annotation builtin">JvmOverloads</span></a></div></div><span class="token keyword">fun </span><a href="parse.html"><span class="token function">parse</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">date<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token punctuation">, </span></span><span class="parameter ">format<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token punctuation">, </span></span><span class="parameter ">def<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/util/Date.html">Date</a><span class="token operator"> = </span>Date()</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/util/Date.html">Date</a></div><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.jvm/-jvm-overloads/index.html"><span class="token annotation builtin">JvmOverloads</span></a></div></div><span class="token keyword">fun </span><a href="parse.html"><span class="token function">parse</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">date<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token punctuation">, </span></span><span class="parameter ">format_awal<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token punctuation">, </span></span><span class="parameter ">format_akhir<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token punctuation">, </span></span><span class="parameter ">def<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/util/Date.html">Date</a><span class="token operator"> = </span>Date()</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1225324868%2FFunctions%2F-1426141027" anchor-label="parseUTC" id="-1225324868%2FFunctions%2F-1426141027" data-filterable-set=":portalCore:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":portalCore:dokkaHtml/release" data-filterable-set=":portalCore:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="parse-u-t-c.html"><span>parse</span><wbr></wbr><span><span>UTC</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1225324868%2FFunctions%2F-1426141027"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":portalCore:dokkaHtml/release"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.jvm/-jvm-overloads/index.html"><span class="token annotation builtin">JvmOverloads</span></a></div></div><span class="token keyword">fun </span><a href="parse-u-t-c.html"><span class="token function">parseUTC</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">date<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token punctuation">, </span></span><span class="parameter ">format<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token punctuation">, </span></span><span class="parameter ">def<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/util/Date.html">Date</a><span class="token operator"> = </span>Date()</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/util/Date.html">Date</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="911261644%2FFunctions%2F-1426141027" anchor-label="toTimeAgo" id="911261644%2FFunctions%2F-1426141027" data-filterable-set=":portalCore:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":portalCore:dokkaHtml/release" data-filterable-set=":portalCore:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="to-time-ago.html"><span>to</span><wbr></wbr><span>Time</span><wbr></wbr><span><span>Ago</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="911261644%2FFunctions%2F-1426141027"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":portalCore:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">fun </span><a href="https://developer.android.com/reference/kotlin/java/util/Date.html">Date</a><span class="token punctuation">.</span><a href="to-time-ago.html"><span class="token function">toTimeAgo</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1393532677%2FFunctions%2F-1426141027" anchor-label="toTimeAgoAnnouncement" id="1393532677%2FFunctions%2F-1426141027" data-filterable-set=":portalCore:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":portalCore:dokkaHtml/release" data-filterable-set=":portalCore:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="to-time-ago-announcement.html"><span>to</span><wbr></wbr><span>Time</span><wbr></wbr><span>Ago</span><wbr></wbr><span><span>Announcement</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1393532677%2FFunctions%2F-1426141027"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":portalCore:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">fun </span><a href="https://developer.android.com/reference/kotlin/java/util/Date.html">Date</a><span class="token punctuation">.</span><a href="to-time-ago-announcement.html"><span class="token function">toTimeAgoAnnouncement</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      <div class="footer">
+        <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2024 VPN Android Team</span><span
+                class="pull-right"><span>Generated by </span><a
+                href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
+      </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
