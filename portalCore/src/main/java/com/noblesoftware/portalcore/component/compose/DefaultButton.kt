@@ -2,6 +2,7 @@ package com.noblesoftware.portalcore.component.compose
 
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -46,7 +47,7 @@ import com.noblesoftware.portalcore.theme.LocalDimen
  * @param shape An optional shape (e.g., rounded corners) for the button. Defaults to null (no specific shape).
  * @param onClick A lambda function to execute when the button is clicked.
  *
- * @sample com.noblesoftware.portalcore.component.compose.ExampleDefaultButton
+ * @sample ExampleDefaultButton
  *
  * @author VPN Android Team
  * @since 2024
@@ -66,6 +67,7 @@ fun DefaultButton(
     enabled: Boolean = true,
     loading: Boolean = false,
     shape: Shape? = null,
+    contentPadding: PaddingValues = ButtonDefaults.ContentPadding,
     onClick: () -> Unit
 ) {
     val currentFocus = LocalFocusManager.current
@@ -88,17 +90,22 @@ fun DefaultButton(
         colors = ButtonColors(
             containerColor = backgroundColor,
             contentColor = contentColor,
-            disabledContainerColor = colorResource(id = R.color.primary_solid_disabled_bg),
+            disabledContainerColor = if (buttonType == ButtonType.Plain) Color.Transparent else colorResource(
+                id = R.color.primary_solid_disabled_bg
+            ),
             disabledContentColor = colorResource(id = R.color.primary_solid_disabled_color)
         ),
         border = BorderStroke(
             1.dp,
-            if (enabled) borderColor else colorResource(id = R.color.primary_solid_disabled_bg)
+            if (enabled) borderColor else if (buttonType == ButtonType.Plain) Color.Transparent else colorResource(
+                id = R.color.primary_solid_disabled_bg
+            )
         ),
         onClick = {
             currentFocus.clearFocus()
             onClick()
-        }
+        },
+        contentPadding = contentPadding
     ) {
         if (startIcon != null) {
             Icon(
@@ -120,7 +127,7 @@ fun DefaultButton(
         } else {
             Text(
                 text = textValue,
-                style = MaterialTheme.typography.labelMedium.copy(colorResource(id = R.color.text_primary)),
+                style = MaterialTheme.typography.labelMedium,
                 color = if (enabled) contentColor else colorResource(id = R.color.primary_solid_disabled_color),
                 modifier = Modifier.padding(horizontal = LocalDimen.current.default),
                 overflow = TextOverflow.Ellipsis,
