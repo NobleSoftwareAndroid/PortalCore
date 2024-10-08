@@ -58,5 +58,13 @@ fun MainScreen(
         ) {
             navHostController.navigate(route = ContainerRoute)
         }
+        DefaultSpacer()
+        DefaultButton(
+            modifier = Modifier.fillMaxWidth(),
+            text = "Full Edge",
+            buttonVariant = ButtonVariant.Neutral
+        ) {
+            navHostController.navigate(route = FullEdgeRoute)
+        }
     }
 }
