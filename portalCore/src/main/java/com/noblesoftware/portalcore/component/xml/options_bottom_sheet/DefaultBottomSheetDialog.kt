@@ -24,12 +24,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.material3.Checkbox
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.LocalMinimumInteractiveComponentEnforcement
 import androidx.compose.material3.LocalMinimumInteractiveComponentSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -43,6 +40,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.compose.ui.platform.rememberNestedScrollInteropConnection
@@ -69,6 +67,7 @@ import com.noblesoftware.portalcore.model.SelectOption
 import com.noblesoftware.portalcore.theme.LocalDimen
 import com.noblesoftware.portalcore.theme.LocalShapes
 import com.noblesoftware.portalcore.theme.PortalCoreTheme
+import com.noblesoftware.portalcore.util.extension.isTrue
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -82,6 +81,9 @@ open class DefaultBottomSheetDialog : BottomSheetDialogFragment() {
     @StringRes
     private var title: Int = R.string.empty_string
     private var isResetEnable: Boolean = false
+
+    /** if [isStatusBarTransparent] = true -> set this activity and PortalCoreTheme statusBar to transparent */
+    private var isStatusBarTransparent: Boolean = false
     private var searchHint = ""
     private var options: List<SelectOption> = listOf()
     private var onSelected: (List<SelectOption>) -> Unit = {}
@@ -102,6 +104,7 @@ open class DefaultBottomSheetDialog : BottomSheetDialogFragment() {
             )
         binding.lifecycleOwner = viewLifecycleOwner
         val view = binding.root
+
         binding.composeView.apply {
             setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
             setContent {
@@ -113,7 +116,10 @@ open class DefaultBottomSheetDialog : BottomSheetDialogFragment() {
                     label = ""
                 )
 
-                PortalCoreTheme(window = requireActivity().window) {
+                PortalCoreTheme(
+                    window = requireActivity().window,
+                    isStatusBarTransparent = isStatusBarTransparent
+                ) {
                     Surface(
                         modifier = Modifier
                             .fillMaxWidth()
@@ -326,9 +332,15 @@ open class DefaultBottomSheetDialog : BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.onEvent(BottomSheetEvent.InitSelectOptions(options))
+
+        if (isStatusBarTransparent.isTrue()) {
+            val window = requireActivity().window
+            window.statusBarColor = androidx.compose.ui.graphics.Color.Transparent.toArgb()
+        }
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+
         if (bottomSheetType != BottomSheetType.MULTIPLE_SELECTION && bottomSheetType != BottomSheetType.MULTIPLE_SELECTION_WITH_SEARCH) {
             return super.onCreateDialog(savedInstanceState)
         }
@@ -379,6 +391,7 @@ open class DefaultBottomSheetDialog : BottomSheetDialogFragment() {
             @StringRes title: Int = R.string.empty_string,
             searchHint: String = "",
             isResetEnable: Boolean = false,
+            isStatusBarTransparent: Boolean = false,
             options: List<SelectOption> = listOf(),
             onSelected: (List<SelectOption>) -> Unit = {}
         ) {
@@ -386,6 +399,7 @@ open class DefaultBottomSheetDialog : BottomSheetDialogFragment() {
                 this.bottomSheetType = bottomSheetType
                 this.title = title
                 this.isResetEnable = isResetEnable
+                this.isStatusBarTransparent = isStatusBarTransparent
                 this.searchHint = searchHint
                 this.options = options
                 this.onSelected = onSelected

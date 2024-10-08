@@ -12,10 +12,12 @@ import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.colorResource
 import androidx.core.view.WindowCompat
 import com.noblesoftware.portalcore.R
+import com.noblesoftware.portalcore.util.extension.isFalse
 
 @Composable
 fun PortalCoreTheme(
     window: Window? = null,
+    isStatusBarTransparent: Boolean = false,
     content: @Composable () -> Unit,
 ) {
 
@@ -26,7 +28,9 @@ fun PortalCoreTheme(
         SideEffect {
             val mWindow = window ?: (view.context as Activity).window
 
-            mWindow.statusBarColor = white.toArgb()
+            if (isStatusBarTransparent.isFalse()) {
+                mWindow.statusBarColor = white.toArgb()
+            }
             mWindow.navigationBarColor = white.toArgb()
             WindowCompat.getInsetsController(mWindow, view).isAppearanceLightStatusBars = true
             WindowCompat.getInsetsController(mWindow, view).isAppearanceLightNavigationBars = true

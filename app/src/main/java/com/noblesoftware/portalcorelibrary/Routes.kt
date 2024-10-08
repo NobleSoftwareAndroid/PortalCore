@@ -7,3 +7,4 @@ import kotlinx.serialization.Serializable
 @Serializable object SnackBarRoute
 @Serializable object BottomSheetRoute
 @Serializable object ContainerRoute
+@Serializable object FullEdgeRoute

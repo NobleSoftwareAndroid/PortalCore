@@ -13,6 +13,8 @@ import android.view.WindowManager
 import android.view.animation.AnimationUtils
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.widget.AppCompatTextView
+import androidx.compose.ui.graphics.toArgb
+import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
@@ -112,6 +114,28 @@ fun View.visibleWhen(isVisible: Boolean, animate: Boolean = false) {
             }
         }
     } else visibility = if (isVisible) View.VISIBLE else View.GONE
+}
+
+/** set full edge */
+fun View.setTransparentStatusBar(transparentStatusBar: Boolean) {
+    val white = androidx.compose.ui.graphics.Color(
+        ContextCompat.getColor(
+            this.context,
+            R.color.background_body
+        )
+    )
+    if (!this.isInEditMode) {
+        val window = (this.context as Activity).window
+        window.navigationBarColor = white.toArgb()
+        WindowCompat.getInsetsController(window, this).isAppearanceLightStatusBars = true
+        WindowCompat.getInsetsController(window, this).isAppearanceLightNavigationBars = true
+        WindowCompat.setDecorFitsSystemWindows(window, false)
+        if (!transparentStatusBar) {
+            window.statusBarColor = white.toArgb()
+        } else {
+            window.statusBarColor = androidx.compose.ui.graphics.Color.Transparent.toArgb()
+        }
+    }
 }
 
 ///** makes visible a view. */
