@@ -107,7 +107,7 @@ fun FullEdgeSampleScreen(
         Box(
             modifier = Modifier
                 .fillMaxSize()
-                .background(colorResource(id = com.noblesoftware.portalcore.R.color.background_body))
+                .background(colorResource(id = R.color.background_body))
                 .navigationBarsPadding()
         ) {
             LazyColumn(modifier = Modifier.fillMaxWidth()) {
@@ -145,7 +145,7 @@ fun FullEdgeSampleScreen(
                                     contentDescription = ""
                                 )
                             }
-                            DefaultSpacer(height = LocalDimen.current.medium)
+                            DefaultSpacer()
                         }
                     }
                 }
@@ -156,86 +156,90 @@ fun FullEdgeSampleScreen(
                             .height(200.dp)
                             .background(Color.Green),
                     )
-                    DefaultButton(
-                        modifier = Modifier.fillMaxWidth(),
-                        text = "Full Edge Bottom Sheet",
-                        buttonVariant = ButtonVariant.Neutral
-                    ) {
-                        DefaultBottomSheetDialog.showDialog(
-                            fragmentManager = (activity as AppCompatActivity).supportFragmentManager,
-                            bottomSheetType = BottomSheetType.SINGLE_SELECTION,
-                            isStatusBarTransparent = true,
-                            options = listOf(
-                                SelectOption(1, false, "Sample Option 1"),
-                                SelectOption(2, false, "Sample Option 2"),
-                                SelectOption(3, false, "Sample Option 3"),
-                                SelectOption(4, false, "Sample Option 4"),
-                                SelectOption(5, false, "Sample Option 5")
-                            ),
-                            onSelected = { options ->
-                                options.firstOrNull()?.let { option ->
-                                    snackbarState.value = SnackbarState(
-                                        message = "Selected ${option.name}",
-                                        isSuccess = true,
-                                    )
-                                }
-                            },
-                        )
-                    }
                     DefaultSpacer()
-                    DefaultButton(
-                        modifier = Modifier.fillMaxWidth(),
-                        text = "Option (Search) Bottom Sheet",
-                        buttonVariant = ButtonVariant.Neutral
-                    ) {
-                        DefaultBottomSheetDialog.showDialog(
-                            fragmentManager = (activity as AppCompatActivity).supportFragmentManager,
-                            bottomSheetType = BottomSheetType.SINGLE_SELECTION_WITH_SEARCH,
-                            searchHint = "Search",
-                            options = listOf(
-                                SelectOption(1, false, "Sample Option 1"),
-                                SelectOption(2, false, "Sample Option 2"),
-                                SelectOption(3, false, "Sample Option 3"),
-                                SelectOption(4, false, "Sample Option 4"),
-                                SelectOption(5, false, "Sample Option 5")
-                            ),
-                            onSelected = { options ->
-                                options.firstOrNull()?.let { option ->
-                                    snackbarState.value = SnackbarState(
-                                        message = "Selected ${option.name}",
-                                        isSuccess = true,
-                                    )
-                                }
-                            }
-                        )
-                    }
-                    DefaultSpacer()
-                    DefaultButton(
-                        modifier = Modifier.fillMaxWidth(),
-                        text = "Dynamic Bottom Sheet",
-                        buttonVariant = ButtonVariant.Neutral
-                    ) {
-                        DefaultDynamicBottomSheetDialog.showDialog(
-                            fragmentManager = (activity as AppCompatActivity).supportFragmentManager,
-                            buttonFirstText = R.string.close,
-                            buttonFirstType = BottomSheetActionType.NEUTRAL,
-                            buttonFirstOnClick = {
-
-                            },
-                            content = {
-                                Column {
-                                    Text(text = "This is compose component")
-                                }
-                            }
-                        )
-                    }
-                    DefaultSpacer()
-                    Box(
+                }
+                item {
+                    Column(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .height(1000.dp)
-                            .background(Color.Red),
-                    )
+                            .padding(horizontal = LocalDimen.current.regular)
+                    ) {
+                        DefaultButton(
+                            modifier = Modifier.fillMaxWidth(),
+                            text = "Full Edge Bottom Sheet",
+                            buttonVariant = ButtonVariant.Neutral
+                        ) {
+                            DefaultBottomSheetDialog.showDialog(
+                                fragmentManager = (activity as AppCompatActivity).supportFragmentManager,
+                                bottomSheetType = BottomSheetType.SINGLE_SELECTION,
+                                isStatusBarTransparent = true,
+                                options = listOf(
+                                    SelectOption(1, false, "Sample Option 1"),
+                                    SelectOption(2, false, "Sample Option 2"),
+                                    SelectOption(3, false, "Sample Option 3"),
+                                    SelectOption(4, false, "Sample Option 4"),
+                                    SelectOption(5, false, "Sample Option 5")
+                                ),
+                                onSelected = { options ->
+                                    options.firstOrNull()?.let { option ->
+                                        snackbarState.value = SnackbarState(
+                                            message = "Selected ${option.name}",
+                                            isSuccess = true,
+                                        )
+                                    }
+                                },
+                            )
+                        }
+                        DefaultSpacer()
+                        DefaultButton(
+                            modifier = Modifier.fillMaxWidth(),
+                            text = "Option (Search) Full Edge Bottom Sheet",
+                            buttonVariant = ButtonVariant.Neutral
+                        ) {
+                            DefaultBottomSheetDialog.showDialog(
+                                fragmentManager = (activity as AppCompatActivity).supportFragmentManager,
+                                bottomSheetType = BottomSheetType.SINGLE_SELECTION_WITH_SEARCH,
+                                isStatusBarTransparent = true,
+                                searchHint = "Search",
+                                options = listOf(
+                                    SelectOption(1, false, "Sample Option 1"),
+                                    SelectOption(2, false, "Sample Option 2"),
+                                    SelectOption(3, false, "Sample Option 3"),
+                                    SelectOption(4, false, "Sample Option 4"),
+                                    SelectOption(5, false, "Sample Option 5")
+                                ),
+                                onSelected = { options ->
+                                    options.firstOrNull()?.let { option ->
+                                        snackbarState.value = SnackbarState(
+                                            message = "Selected ${option.name}",
+                                            isSuccess = true,
+                                        )
+                                    }
+                                }
+                            )
+                        }
+                        DefaultSpacer()
+                        DefaultButton(
+                            modifier = Modifier.fillMaxWidth(),
+                            text = "Dynamic Bottom Sheet",
+                            buttonVariant = ButtonVariant.Neutral
+                        ) {
+                            DefaultDynamicBottomSheetDialog.showDialog(
+                                fragmentManager = (activity as AppCompatActivity).supportFragmentManager,
+                                buttonFirstText = R.string.close,
+                                buttonFirstType = BottomSheetActionType.NEUTRAL,
+                                buttonFirstOnClick = {
+
+                                },
+                                content = {
+                                    Column {
+                                        Text(text = "This is compose component")
+                                    }
+                                }
+                            )
+                        }
+                        DefaultSpacer(height = 1000.dp)
+                    }
                 }
             }
 
