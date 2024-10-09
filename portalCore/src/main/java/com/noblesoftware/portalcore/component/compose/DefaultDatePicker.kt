@@ -57,6 +57,10 @@ fun DefaultDatePicker(
     ) {
         DatePicker(
             state = datePickerState,
+            colors = DatePickerDefaults.colors(
+                containerColor = colorResource(id = R.color.background_body),
+                disabledDayContentColor = colorResource(id = R.color.neutral_solid_disabled_color)
+            )
         )
     }
 }

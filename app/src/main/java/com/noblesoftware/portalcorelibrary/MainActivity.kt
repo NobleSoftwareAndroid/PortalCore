@@ -10,6 +10,7 @@ import com.noblesoftware.portalcore.theme.PortalCoreTheme
 import com.noblesoftware.portalcorelibrary.sample.BottomSheetSampleScreen
 import com.noblesoftware.portalcorelibrary.sample.CommonSampleScreen
 import com.noblesoftware.portalcorelibrary.sample.ContainerSampleScreen
+import com.noblesoftware.portalcorelibrary.sample.DialogSampleScreen
 import com.noblesoftware.portalcorelibrary.sample.FullEdgeSampleScreen
 import com.noblesoftware.portalcorelibrary.sample.SnackBarSampleScreen
 import dagger.hilt.android.AndroidEntryPoint
@@ -28,6 +29,7 @@ class MainActivity : AppCompatActivity() {
                     composable<BottomSheetRoute> { BottomSheetSampleScreen(navHostController = navController) }
                     composable<ContainerRoute> { ContainerSampleScreen(navHostController = navController) }
                     composable<FullEdgeRoute> { FullEdgeSampleScreen(navHostController = navController) }
+                    composable<DialogRoute> { DialogSampleScreen(navHostController = navController) }
                 }
             }
         }

@@ -8,3 +8,4 @@ import kotlinx.serialization.Serializable
 @Serializable object BottomSheetRoute
 @Serializable object ContainerRoute
 @Serializable object FullEdgeRoute
+@Serializable object DialogRoute
