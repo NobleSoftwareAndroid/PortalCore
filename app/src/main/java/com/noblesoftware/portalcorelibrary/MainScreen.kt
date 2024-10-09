@@ -66,5 +66,13 @@ fun MainScreen(
         ) {
             navHostController.navigate(route = FullEdgeRoute)
         }
+        DefaultSpacer()
+        DefaultButton(
+            modifier = Modifier.fillMaxWidth(),
+            text = "Dialog",
+            buttonVariant = ButtonVariant.Neutral
+        ) {
+            navHostController.navigate(route = DialogRoute)
+        }
     }
 }

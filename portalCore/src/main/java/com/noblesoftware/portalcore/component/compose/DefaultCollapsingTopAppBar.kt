@@ -65,7 +65,9 @@ fun DefaultCollapsingTopAppBar(
     ) {
         TopAppBar(
             modifier = modifier.height(topBarHeight),
-            scrollBehavior = scrollBehavior,
+            scrollBehavior = if (scrollBehavior != null) {
+                if (scrollBehavior.state.heightOffset >= 0) scrollBehavior else null
+            } else null,
             title = {
                 Box(
                     modifier = Modifier
