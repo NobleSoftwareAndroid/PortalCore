@@ -63,7 +63,7 @@ object DateTimeHelper {
     const val FORMAT_yyyy_MM_dd_T_HHmmssSSSZ_07 = "yyyy-MM-dd'T'HH:mm:ss.SSS'+07:00'"
     const val FORMAT_yyyy_MM_dd_T_HHmmssZ_07 = "yyyy-MM-dd'T'HH:mm:ss'+07:00'"
     const val FORMAT_yyyy_MM_dd_T_HHmmssSSSXXX = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX"
-    const val FORMAT_yyyy_MM_dd_T_HHmmssSSSSSSX = "yyyy-MM-dd'T'HH:mm:ss.SSSSSSZ"
+    const val FORMAT_yyyy_MM_dd_T_HHmmssSSSSSSX = "yyyy-MM-dd'T'HH:mm:ss.SSSSSSX"
     const val FORMAT_yyyy_MM_dd_T_HHmmssXXX = "yyyy-MM-dd'T'HH:mm:ssXXX"
     const val FORMAT_MMM_YYYY = "MMM yyyy"
     const val FORMAT_MMMM_YYYY = "MMMM yyyy"
