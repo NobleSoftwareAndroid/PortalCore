@@ -6,18 +6,27 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.colorResource
 import androidx.navigation.NavHostController
 import com.noblesoftware.portalcore.component.compose.ButtonVariant
 import com.noblesoftware.portalcore.component.compose.DefaultButton
 import com.noblesoftware.portalcore.component.compose.DefaultSpacer
 import com.noblesoftware.portalcore.theme.LocalDimen
+import com.noblesoftware.portalcore.util.extension.setTransparentStatusBar
 
 @Composable
 fun MainScreen(
     navHostController: NavHostController
 ) {
+
+    val view = LocalView.current
+    LaunchedEffect(true) {
+        view.setTransparentStatusBar(transparentStatusBar = false)
+    }
+
     Column(
         modifier = Modifier
             .background(color = colorResource(id = com.noblesoftware.portalcore.R.color.background_body))
