@@ -129,7 +129,7 @@ fun View.setTransparentStatusBar(transparentStatusBar: Boolean) {
         window.navigationBarColor = white.toArgb()
         WindowCompat.getInsetsController(window, this).isAppearanceLightStatusBars = true
         WindowCompat.getInsetsController(window, this).isAppearanceLightNavigationBars = true
-        WindowCompat.setDecorFitsSystemWindows(window, false)
+        WindowCompat.setDecorFitsSystemWindows(window, !transparentStatusBar)
         if (!transparentStatusBar) {
             window.statusBarColor = white.toArgb()
         } else {
