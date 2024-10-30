@@ -35,7 +35,10 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.TextUnit
+import androidx.compose.ui.unit.TextUnitType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.SecureFlagPolicy
@@ -73,6 +76,7 @@ fun DefaultBottomSheet(
     properties: ModalBottomSheetProperties = ModalBottomSheetDefaults.properties(),
     title: String = stringResource(id = R.string.empty_string),
     message: String = stringResource(id = R.string.empty_string),
+    annotatedMessage: AnnotatedString? = null,
     positiveButtonText: String = stringResource(id = R.string.empty_string),
     onPositive: (() -> Unit)? = null,
     onNegative: (() -> Unit)? = null,
@@ -138,23 +142,42 @@ fun DefaultBottomSheet(
                             Image(
                                 modifier = Modifier.size(size = dimensionResource(id = R.dimen.default_bottom_sheet_dialog_icon_size)),
                                 painter = icon,
-                                contentDescription = "icon"
+                                contentDescription = stringResource(id = R.string.empty_string)
                             )
                         }
                     }
                     Text(
                         modifier = Modifier.fillMaxWidth(),
                         text = title,
-                        style = MaterialTheme.typography.labelLarge.copy(fontSize = 18.sp, color = colorResource(id = R.color.text_primary)),
+                        style = MaterialTheme.typography.labelLarge.copy(
+                            fontSize = 18.sp,
+                            color = colorResource(id = R.color.text_primary),
+                        ),
                         textAlign = TextAlign.Center
                     )
                     DefaultSpacer(height = LocalDimen.current.default)
-                    Text(
-                        modifier = Modifier.fillMaxWidth(),
-                        text = message,
-                        style = MaterialTheme.typography.bodyMedium.copy(colorResource(id = R.color.text_primary)),
-                        textAlign = TextAlign.Center
-                    )
+                    if (annotatedMessage != null) {
+                        Text(
+                            modifier = Modifier.fillMaxWidth(),
+                            text = annotatedMessage,
+                            style = MaterialTheme.typography.bodyMedium.copy(
+                                color = colorResource(
+                                    id = R.color.text_secondary
+                                )
+                            ),
+                            textAlign = TextAlign.Center,
+                            lineHeight = TextUnit(19f, TextUnitType.Sp)
+                        )
+                    } else {
+                        Text(
+                            modifier = Modifier.fillMaxWidth(),
+                            text = message,
+                            style = MaterialTheme.typography.bodyMedium.copy(
+                                colorResource(id = R.color.text_primary),
+                            ),
+                            textAlign = TextAlign.Center
+                        )
+                    }
                     DefaultSpacer(height = LocalDimen.current.extraRegular)
                 }
                 HorizontalDivider(color = colorResource(id = R.color.neutral_outlined_border))
@@ -254,4 +277,3 @@ value class BottomSheetType internal constructor(@Suppress("unused") private val
         val Content: BottomSheetType = BottomSheetType(2)
     }
 }
-

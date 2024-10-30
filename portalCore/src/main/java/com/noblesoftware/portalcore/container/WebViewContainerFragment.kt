@@ -2,7 +2,9 @@ package com.noblesoftware.portalcore.container
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
 import android.graphics.Bitmap
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -14,6 +16,7 @@ import android.webkit.WebResourceResponse
 import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -130,6 +133,7 @@ class WebViewContainerFragment : Fragment() {
         binding.webView.settings.useWideViewPort = true
         binding.webView.settings.loadWithOverviewMode = true
         binding.webView.settings.javaScriptEnabled = true
+        binding.webView.settings.domStorageEnabled = true
         binding.webView.settings.cacheMode = WebSettings.LOAD_NO_CACHE
         binding.webView.webChromeClient = WebChromeClient()
         binding.webView.webViewClient = object : WebViewClient() {
@@ -156,6 +160,11 @@ class WebViewContainerFragment : Fragment() {
                 if (viewModel.isOpenFile) {
                     view?.loadUrl(viewModel.url.orEmpty())
                     return true
+                } else {
+                    val url = request?.url.toString()
+                    if (url.isNotEmpty()) {
+                        startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(request?.url.toString())))
+                    }
                 }
                 return super.shouldOverrideUrlLoading(view, request)
             }
