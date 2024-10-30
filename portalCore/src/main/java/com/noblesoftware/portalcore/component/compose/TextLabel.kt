@@ -2,7 +2,7 @@ package com.noblesoftware.portalcore.component.compose
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -16,6 +16,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import com.noblesoftware.portalcore.R
 import com.noblesoftware.portalcore.theme.LocalDimen
+import com.noblesoftware.portalcore.theme.LocalShapes
 
 /**
  * Created by Hafizh Anbiya on 22 May 2024
@@ -26,15 +27,16 @@ fun TextLabel(
     modifier: Modifier = Modifier,
     label: String,
     backgroundColor: Color = colorResource(id = R.color.primary_soft_bg),
+    textColor: Color = colorResource(id = R.color.primary_soft_color),
     textStyle: TextStyle = MaterialTheme.typography.titleSmall.copy(
-        color = colorResource(id = R.color.primary_soft_color),
+        color = textColor,
         fontWeight = FontWeight.W500
     )
 ) {
     Text(
         text = label,
         modifier = modifier
-            .clip(RoundedCornerShape(LocalDimen.current.extraRegular))
+            .clip(LocalShapes.medium.copy(all = CornerSize(LocalDimen.current.extraRegular)))
             .background(backgroundColor)
             .padding(
                 horizontal = LocalDimen.current.default,
@@ -45,6 +47,7 @@ fun TextLabel(
         overflow = TextOverflow.Ellipsis
     )
 }
+
 
 @Preview
 @Composable

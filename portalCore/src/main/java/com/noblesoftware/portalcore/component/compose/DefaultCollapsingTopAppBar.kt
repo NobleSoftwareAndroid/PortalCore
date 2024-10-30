@@ -16,6 +16,7 @@ import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
@@ -23,6 +24,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.noblesoftware.portalcore.R
+import com.noblesoftware.portalcore.util.extension.orZero
 
 /**
  * The DefaultTopAppBar composable is used to create a top app bar (also known as a toolbar) with customizable properties. It provides consistent navigation and action controls aligned with Material Design principles.
@@ -38,7 +40,7 @@ import com.noblesoftware.portalcore.R
  * @param navigator An optional NavHostController for handling navigation actions.
  * @param actions An optional composable lambda that defines additional action icons or buttons to display in the app bar.
  *
- * @sample com.noblesoftware.portalcore.component.compose.ExampleDefaultTopAppBar
+ * @sample ExampleDefaultTopAppBar
  *
  * @author VPN Android Team
  * @since 2024
@@ -56,6 +58,8 @@ fun DefaultCollapsingTopAppBar(
     onCloseClick: () -> Any? = {},
     navigator: NavHostController? = null,
     scrollBehavior: TopAppBarScrollBehavior? = null,
+    containerColor: Color? = null,
+    titleTextColor: Color? = null,
     actions: @Composable () -> Unit? = {},
     tabs: @Composable () -> Unit? = {},
 ) {
@@ -65,9 +69,7 @@ fun DefaultCollapsingTopAppBar(
     ) {
         TopAppBar(
             modifier = modifier.height(topBarHeight),
-            scrollBehavior = if (scrollBehavior != null) {
-                if (scrollBehavior.state.heightOffset >= 0) scrollBehavior else null
-            } else null,
+            scrollBehavior = if (scrollBehavior?.state?.heightOffset.orZero() >= 0) scrollBehavior else null,
             title = {
                 Box(
                     modifier = Modifier
@@ -76,13 +78,15 @@ fun DefaultCollapsingTopAppBar(
                     Text(
                         modifier = Modifier.align(alignment = Alignment.Center),
                         text = title,
-                        color = colorResource(id = R.color.text_primary),
-                        style = MaterialTheme.typography.labelLarge.copy(colorResource(id = R.color.text_primary))
+                        color = titleTextColor ?: colorResource(id = R.color.text_primary),
+                        style = MaterialTheme.typography.labelLarge.copy(
+                            colorResource(id = R.color.text_primary),
+                        )
                     )
                 }
             },
             colors = TopAppBarColors(
-                containerColor = colorResource(id = R.color.neutral_solid_color),
+                containerColor = containerColor ?: colorResource(id = R.color.neutral_solid_color),
                 scrolledContainerColor = colorResource(id = R.color.neutral_solid_color),
                 titleContentColor = colorResource(id = R.color.text_primary),
                 navigationIconContentColor = colorResource(id = R.color.text_secondary),

@@ -111,7 +111,7 @@ fun FieldItem(
                     TextLabel(
                         label = statusModel.label.ifEmpty { stringResource(id = statusModel.labelId) },
                         backgroundColor = colorResource(id = statusModel.backgroundColor),
-                        textStyle = MaterialTheme.typography.labelMedium.copy(
+                        textStyle = MaterialTheme.typography.titleSmall.copy(
                             color = colorResource(id = statusModel.textColor),
                             fontWeight = FontWeight.W500,
                             fontSize = statusModel.fontSize
@@ -142,15 +142,15 @@ fun FieldItem(
         // if is File
         if (fieldType is FieldType.File) {
             DefaultSpacer(height = LocalDimen.current.default)
-            if (fieldType.url.isNotBlank()) {
-                DefaultFileButton(text = fieldType.fileName) {
-                    onFileClick.invoke(fieldType.url, fieldType.fileName)
-                }
-            } else {
+            if (fieldType.url.isBlank()) {
                 Text(
                     text = "-",
                     style = MaterialTheme.typography.bodyMedium.copy(colorResource(id = R.color.text_secondary))
                 )
+            } else {
+                DefaultFileButtonSmall(text = fieldType.fileName) {
+                    onFileClick.invoke(fieldType.url, fieldType.fileName)
+                }
             }
         }
         // if is Multiple Answer
