@@ -30,7 +30,9 @@ import com.google.android.material.button.MaterialButton
 import com.noblesoftware.portalcore.R
 import com.noblesoftware.portalcore.databinding.BottomSheetDialogDynamicBinding
 import com.noblesoftware.portalcore.enums.BottomSheetActionType
+import com.noblesoftware.portalcore.enums.BottomSheetType
 import com.noblesoftware.portalcore.theme.PortalCoreTheme
+import com.noblesoftware.portalcore.util.extension.isFalse
 import com.noblesoftware.portalcore.util.extension.visibleWhen
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -86,6 +88,10 @@ open class DefaultDynamicBottomSheetDialog : BottomSheetDialogFragment() {
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+
+        if (buttonFirstEnable.isFalse() && buttonSecondEnable.isFalse()) {
+            return super.onCreateDialog(savedInstanceState)
+        }
 
         val bottomSheetDialog = super.onCreateDialog(savedInstanceState) as BottomSheetDialog
         bottomSheetDialog.setOnShowListener {
