@@ -175,6 +175,23 @@ fun BottomSheetSampleScreen(
                 )
             }
             DefaultSpacer()
+            DefaultButton(
+                modifier = Modifier.fillMaxWidth(),
+                text = "Dynamic Bottom Sheet No Button",
+                buttonVariant = ButtonVariant.Neutral
+            ) {
+                DefaultDynamicBottomSheetDialog.showDialog(
+                    fragmentManager = (activity as AppCompatActivity).supportFragmentManager,
+                    buttonFirstEnable = false,
+                    buttonSecondEnable = false,
+                    content = {
+                        Column {
+                            Text(text = "This is compose component")
+                        }
+                    }
+                )
+            }
+            DefaultSpacer()
         }
     }
 }
