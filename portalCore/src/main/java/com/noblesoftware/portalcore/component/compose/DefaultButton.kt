@@ -67,7 +67,7 @@ fun DefaultButton(
     enabled: Boolean = true,
     loading: Boolean = false,
     shape: Shape? = null,
-    contentPadding: PaddingValues = ButtonDefaults.ContentPadding,
+    contentPadding: PaddingValues = ButtonDefaults.ContentPadding, // reset padding
     onClick: () -> Unit
 ) {
     val currentFocus = LocalFocusManager.current
