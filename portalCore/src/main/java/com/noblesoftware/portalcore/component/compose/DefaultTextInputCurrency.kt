@@ -41,33 +41,21 @@ import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.noblesoftware.portalcore.theme.PortalCoreTheme
 import com.noblesoftware.portalcore.R
 import com.noblesoftware.portalcore.theme.LocalDimen
 import com.noblesoftware.portalcore.theme.LocalShapes
 import com.noblesoftware.portalcore.util.extension.isFalse
-
-@Preview(showBackground = true, showSystemUi = true)
-@Composable
-fun GreetingPreview() {
-    PortalCoreTheme {
-        DefaultTextInput(
-            value = "",
-            label = "Email",
-            placeholder = "Type email here",
-            onValueChange = {})
-    }
-}
 
 /**
  * The DefaultTextInput composable is used to create a text input field with customizable properties. It allows users to enter and modify text.
@@ -105,7 +93,7 @@ fun GreetingPreview() {
  */
 
 @Composable
-fun DefaultTextInput(
+fun DefaultTextInputCurrency(
     modifier: Modifier = Modifier,
     value: String,
     label: String = stringResource(id = R.string.empty_string),
@@ -169,7 +157,10 @@ fun DefaultTextInput(
                     onFocusChange.invoke(it.isFocused)
                     isFocused.value = it.isFocused
                 },
-            value = value,
+            value = TextFieldValue(
+                text = value,
+                selection = TextRange(value.length)
+            ),
             enabled = enabled,
             singleLine = singleLine,
             maxLines = if (minLines > 1 && maxLines == 1) minLines else maxLines,
@@ -180,9 +171,9 @@ fun DefaultTextInput(
                 )
             ),
             onValueChange = {
-                if (it.length <= maxLength) {
+                if (it.text.length <= maxLength) {
                     isInputError.value = false
-                    onValueChange(it)
+                    onValueChange(it.text)
                 }
             },
             keyboardActions = keyboardActions ?: KeyboardActions(
@@ -290,9 +281,7 @@ fun DefaultTextInput(
                             if (value.isEmpty()) {
                                 Text(
                                     modifier = Modifier,
-                                    /** use \u00A0 because IntrinsicSize.Min on dropdown cant handle blank space text (bug?)
-                                     * the bug it will cause the placeholder ellipsized */
-                                    text = placeholder.replace(" ", "\u00A0"),
+                                    text = placeholder,
                                     color = colorResource(id = R.color.text_tertiary),
                                     fontSize = 14.sp,
                                     fontFamily = MaterialTheme.typography.bodyMedium.fontFamily,

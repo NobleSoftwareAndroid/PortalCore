@@ -130,6 +130,26 @@ fun BottomSheetSampleScreen(
             DefaultSpacer()
             DefaultButton(
                 modifier = Modifier.fillMaxWidth(),
+                text = "Option Bottom Sheet (Empty)",
+                buttonVariant = ButtonVariant.Neutral
+            ) {
+                DefaultBottomSheetDialog.showDialog(
+                    fragmentManager = (activity as AppCompatActivity).supportFragmentManager,
+                    bottomSheetType = BottomSheetType.SINGLE_SELECTION,
+                    options = listOf(),
+                    onSelected = { options ->
+                        options.firstOrNull()?.let { option ->
+                            snackbarState.value = SnackbarState(
+                                message = "Selected ${option.name}",
+                                isSuccess = true,
+                            )
+                        }
+                    },
+                )
+            }
+            DefaultSpacer()
+            DefaultButton(
+                modifier = Modifier.fillMaxWidth(),
                 text = "Option (Search) Bottom Sheet",
                 buttonVariant = ButtonVariant.Neutral
             ) {

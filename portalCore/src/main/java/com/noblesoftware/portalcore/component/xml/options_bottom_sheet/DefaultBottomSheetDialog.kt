@@ -33,6 +33,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.ripple
+import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.remember
@@ -58,6 +59,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.button.MaterialButton
 import com.noblesoftware.portalcore.R
+import com.noblesoftware.portalcore.component.compose.DefaultEmptyState
 import com.noblesoftware.portalcore.component.compose.DefaultSpacer
 import com.noblesoftware.portalcore.component.compose.DefaultTextInput
 import com.noblesoftware.portalcore.component.compose.DefaultTextInputIcon
@@ -67,6 +69,7 @@ import com.noblesoftware.portalcore.model.SelectOption
 import com.noblesoftware.portalcore.theme.LocalDimen
 import com.noblesoftware.portalcore.theme.LocalShapes
 import com.noblesoftware.portalcore.theme.PortalCoreTheme
+import com.noblesoftware.portalcore.util.extension.isFalse
 import com.noblesoftware.portalcore.util.extension.isTrue
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -85,6 +88,7 @@ open class DefaultBottomSheetDialog : BottomSheetDialogFragment() {
     /** if [isStatusBarTransparent] = true -> set this activity and PortalCoreTheme statusBar to transparent */
     private var isStatusBarTransparent: Boolean = false
     private var searchHint = ""
+    private var emptyState: @Composable () -> Unit = {}
     private var options: List<SelectOption> = listOf()
     private var onSelected: (List<SelectOption>) -> Unit = {}
 
@@ -190,9 +194,11 @@ open class DefaultBottomSheetDialog : BottomSheetDialogFragment() {
                                     },
                                     trailingIcon = if (state.keywords.isNotBlank()) {
                                         {
-                                            IconButton(onClick = {
-                                                onEvent(BottomSheetEvent.OnSearch(""))
-                                            }) {
+                                            IconButton(
+                                                onClick = {
+                                                    onEvent(BottomSheetEvent.OnSearch(""))
+                                                },
+                                            ) {
                                                 Icon(
                                                     painter = painterResource(id = R.drawable.ic_close),
                                                     tint = colorResource(id = R.color.text_icon),
@@ -223,103 +229,125 @@ open class DefaultBottomSheetDialog : BottomSheetDialogFragment() {
                                     ) LocalDimen.current.small else LocalDimen.current.zero
                                 )
                             ) {
-                                items(if (state.keywords.isEmpty()) state.selectOptions.size else state.filteredSelectOptions.size) {
-                                    val selectOption =
-                                        if (state.keywords.isEmpty()) state.selectOptions[it] else state.filteredSelectOptions[it]
-                                    if (bottomSheetType != BottomSheetType.MULTIPLE_SELECTION && bottomSheetType != BottomSheetType.MULTIPLE_SELECTION_WITH_SEARCH) {
-                                        Box(
-                                            modifier = Modifier
-                                                .clip(RoundedCornerShape(LocalDimen.current.small))
-                                                .fillMaxWidth()
-                                                .then(
-                                                    if (selectOption.isSelected) {
-                                                        Modifier.background(color = colorResource(id = R.color.primary_plain_active_bg))
-                                                    } else {
-                                                        Modifier
-                                                    }
-                                                )
-                                                .clickable(
-                                                    interactionSource = remember { MutableInteractionSource() },
-                                                    indication = ripple(
-                                                        color = colorResource(id = R.color.primary_plain_color),
-                                                    ),
-                                                    onClick = {
-                                                        onSelected.invoke(arrayListOf(selectOption))
-                                                        dismiss()
-                                                    },
-                                                )
-                                                .padding(
-                                                    horizontal = LocalDimen.current.default,
-                                                    vertical = LocalDimen.current.regular
-                                                )
-                                        ) {
-                                            Text(
-                                                text = if (selectOption.nameId != null) stringResource(
-                                                    id = selectOption.nameId
-                                                        ?: R.string.empty_string
-                                                ) else selectOption.name,
-                                                style = MaterialTheme.typography.bodyMedium.copy(
-                                                    color = colorResource(id = if (selectOption.isSelected) R.color.primary_plain_color else R.color.text_primary)
-                                                )
-                                            )
-                                        }
-                                    } else {
-                                        Row(
-                                            modifier = Modifier
-                                                .clip(RoundedCornerShape(LocalDimen.current.small))
-                                                .fillMaxWidth()
-                                                .then(
-                                                    if (selectOption.isSelected) {
-                                                        Modifier.background(color = colorResource(id = R.color.primary_plain_active_bg))
-                                                    } else {
-                                                        Modifier
-                                                    }
-                                                )
-                                                .clickable(
-                                                    interactionSource = remember { MutableInteractionSource() },
-                                                    indication = ripple(
-                                                        color = colorResource(id = R.color.primary_plain_color),
-                                                    ),
-                                                    onClick = {
-                                                        onEvent(
-                                                            BottomSheetEvent.OnSelect(
-                                                                selectOption
+                                val isEmpty =
+                                    if (state.keywords.isEmpty()) state.selectOptions.isEmpty() else state.filteredSelectOptions.isEmpty()
+
+                                if (isEmpty.isFalse()) {
+                                    items(if (state.keywords.isEmpty()) state.selectOptions.size else state.filteredSelectOptions.size) {
+                                        val selectOption =
+                                            if (state.keywords.isEmpty()) state.selectOptions[it] else state.filteredSelectOptions[it]
+                                        if (bottomSheetType != BottomSheetType.MULTIPLE_SELECTION && bottomSheetType != BottomSheetType.MULTIPLE_SELECTION_WITH_SEARCH) {
+                                            Box(
+                                                modifier = Modifier
+                                                    .clip(RoundedCornerShape(LocalDimen.current.small))
+                                                    .fillMaxWidth()
+                                                    .then(
+                                                        if (selectOption.isSelected) {
+                                                            Modifier.background(
+                                                                color = colorResource(
+                                                                    id = R.color.primary_plain_active_bg
+                                                                )
                                                             )
-                                                        )
-                                                    },
-                                                )
-                                                .padding(
-                                                    horizontal = LocalDimen.current.default,
-                                                    vertical = LocalDimen.current.regular
-                                                ),
-                                            verticalAlignment = Alignment.CenterVertically,
-                                        ) {
-                                            CompositionLocalProvider(
-                                                LocalMinimumInteractiveComponentSize provides Dp.Unspecified
+                                                        } else {
+                                                            Modifier
+                                                        }
+                                                    )
+                                                    .clickable(
+                                                        interactionSource = remember { MutableInteractionSource() },
+                                                        indication = ripple(
+                                                            color = colorResource(id = R.color.primary_plain_color),
+                                                        ),
+                                                        onClick = {
+                                                            onSelected.invoke(
+                                                                arrayListOf(
+                                                                    selectOption
+                                                                )
+                                                            )
+                                                            dismiss()
+                                                        },
+                                                    )
+                                                    .padding(
+                                                        horizontal = LocalDimen.current.default,
+                                                        vertical = LocalDimen.current.regular
+                                                    )
                                             ) {
-                                                Checkbox(
-                                                    checked = selectOption.isSelected,
-                                                    onCheckedChange = {
-                                                        onEvent(
-                                                            BottomSheetEvent.OnSelect(
-                                                                selectOption
-                                                            )
-                                                        )
-                                                    })
-                                            }
-                                            DefaultSpacer(width = 14.dp)
-                                            Text(
-                                                text = if (selectOption.nameId != null) stringResource(
-                                                    id = selectOption.nameId
-                                                        ?: R.string.empty_string
-                                                ) else selectOption.name,
-                                                style = MaterialTheme.typography.bodyMedium.copy(
-                                                    color = colorResource(id = if (selectOption.isSelected) R.color.primary_plain_color else R.color.text_primary)
+                                                Text(
+                                                    text = if (selectOption.nameId != null) stringResource(
+                                                        id = selectOption.nameId
+                                                            ?: R.string.empty_string
+                                                    ) else selectOption.name,
+                                                    style = MaterialTheme.typography.bodyMedium.copy(
+                                                        color = colorResource(id = if (selectOption.isSelected) R.color.primary_plain_color else R.color.text_primary)
+                                                    )
                                                 )
-                                            )
+                                            }
+                                        } else {
+                                            Row(
+                                                modifier = Modifier
+                                                    .clip(RoundedCornerShape(LocalDimen.current.small))
+                                                    .fillMaxWidth()
+                                                    .then(
+                                                        if (selectOption.isSelected) {
+                                                            Modifier.background(
+                                                                color = colorResource(
+                                                                    id = R.color.primary_plain_active_bg
+                                                                )
+                                                            )
+                                                        } else {
+                                                            Modifier
+                                                        }
+                                                    )
+                                                    .clickable(
+                                                        interactionSource = remember { MutableInteractionSource() },
+                                                        indication = ripple(
+                                                            color = colorResource(id = R.color.primary_plain_color),
+                                                        ),
+                                                        onClick = {
+                                                            onEvent(
+                                                                BottomSheetEvent.OnSelect(
+                                                                    selectOption
+                                                                )
+                                                            )
+                                                        },
+                                                    )
+                                                    .padding(
+                                                        horizontal = LocalDimen.current.default,
+                                                        vertical = LocalDimen.current.regular
+                                                    ),
+                                                verticalAlignment = Alignment.CenterVertically,
+                                            ) {
+                                                CompositionLocalProvider(
+                                                    LocalMinimumInteractiveComponentSize provides Dp.Unspecified
+                                                ) {
+                                                    Checkbox(
+                                                        checked = selectOption.isSelected,
+                                                        onCheckedChange = {
+                                                            onEvent(
+                                                                BottomSheetEvent.OnSelect(
+                                                                    selectOption
+                                                                )
+                                                            )
+                                                        })
+                                                }
+                                                DefaultSpacer(width = 14.dp)
+                                                Text(
+                                                    text = if (selectOption.nameId != null) stringResource(
+                                                        id = selectOption.nameId
+                                                            ?: R.string.empty_string
+                                                    ) else selectOption.name,
+                                                    style = MaterialTheme.typography.bodyMedium.copy(
+                                                        color = colorResource(id = if (selectOption.isSelected) R.color.primary_plain_color else R.color.text_primary)
+                                                    )
+                                                )
+                                            }
                                         }
                                     }
+                                } else {
+                                    item {
+                                        emptyState()
+                                    }
                                 }
+
                             }
                         }
                     }
@@ -392,6 +420,14 @@ open class DefaultBottomSheetDialog : BottomSheetDialogFragment() {
             searchHint: String = "",
             isResetEnable: Boolean = false,
             isStatusBarTransparent: Boolean = false,
+            emptyState: @Composable () -> Unit = {
+                DefaultEmptyState(
+                    modifier = Modifier.fillMaxWidth(),
+                    icon = painterResource(id = R.drawable.img_announcement_empty),
+                    title = stringResource(id = R.string.no_data_available),
+                    message = stringResource(id = R.string.data_related_will_be_shown_here)
+                )
+            },
             options: List<SelectOption> = listOf(),
             onSelected: (List<SelectOption>) -> Unit = {}
         ) {
@@ -401,6 +437,7 @@ open class DefaultBottomSheetDialog : BottomSheetDialogFragment() {
                 this.isResetEnable = isResetEnable
                 this.isStatusBarTransparent = isStatusBarTransparent
                 this.searchHint = searchHint
+                this.emptyState = emptyState
                 this.options = options
                 this.onSelected = onSelected
             }.show(fragmentManager, DefaultBottomSheetDialog::class.java.simpleName)

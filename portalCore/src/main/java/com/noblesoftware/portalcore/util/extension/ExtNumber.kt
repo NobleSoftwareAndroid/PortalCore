@@ -31,6 +31,15 @@ fun Long.toCommaFormat(locale: Locale = Locale("in", "ID")): String {
     return numberFormat.format(this).toString()
 }
 
+fun String.toCommaFormat(locale: Locale = Locale("in", "ID")): String {
+    return kotlin.runCatching {
+        val amountStr =
+            this.replace(".", "").replace(",", "").replace("-", "")
+                .replace(" ", "")
+        amountStr.toLong().toCommaFormat()
+    }.getOrElse { "" }
+}
+
 fun Int?.orZero(): Int = this ?: 0
 fun Double?.orZero(): Double = this ?: 0.0
 fun Float?.orZero(): Float = this ?: 0f
