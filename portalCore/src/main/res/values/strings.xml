@@ -2,7 +2,7 @@
 <resources>
     <string name="empty_string" translatable="false" />
     <string name="empty_white_space" translatable="false">" "</string>
-    <string name="strip" translatable="false" >-</string>
+    <string name="strip" translatable="false">-</string>
     <string name="save">Save</string>
     <string name="cancel">Cancel</string>
     <string name="okay">Okay</string>
@@ -27,4 +27,10 @@
     <string name="thursday">Thursday</string>
     <string name="friday">Friday</string>
     <string name="saturday">Saturday</string>
+    <string name="your_password_must_have">Your password must have:</string>
+    <string name="_8_or_more_characters">8 or more characters</string>
+    <string name="upper_lowercase_letters"><![CDATA[Upper & lowercase letters]]></string>
+    <string name="at_least_one_number">At least one number</string>
+    <string name="no_data_available">No data available</string>
+    <string name="data_related_will_be_shown_here">Data related will be shown here</string>
 </resources>

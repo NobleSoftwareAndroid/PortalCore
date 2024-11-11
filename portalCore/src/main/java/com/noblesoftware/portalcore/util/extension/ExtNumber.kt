@@ -25,10 +25,23 @@ fun Long.toRupiah(): String {
     return numberFormat.format(this).toString()
 }
 
+fun String.fromCommaFormat(): String {
+    return kotlin.runCatching {
+        this.replace(".", "").replace(",", "").replace("-", "")
+            .replace(" ", "")
+    }.getOrElse { "" }
+}
+
 fun Long.toCommaFormat(locale: Locale = Locale("in", "ID")): String {
     val numberFormat = NumberFormat.getInstance(locale)
     numberFormat.maximumFractionDigits = 0
     return numberFormat.format(this).toString()
+}
+
+fun String.toCommaFormat(locale: Locale = Locale("in", "ID")): String {
+    return kotlin.runCatching {
+        this.fromCommaFormat().toLong().toCommaFormat()
+    }.getOrElse { "" }
 }
 
 fun Int?.orZero(): Int = this ?: 0

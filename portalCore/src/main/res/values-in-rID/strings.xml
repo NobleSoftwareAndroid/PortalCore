@@ -23,4 +23,10 @@
     <string name="thursday">Kamis</string>
     <string name="friday">Jumat</string>
     <string name="saturday">Sabtu</string>
+    <string name="your_password_must_have">Kata sandi Anda harus memiliki:</string>
+    <string name="_8_or_more_characters">Minimal 8 karakter</string>
+    <string name="upper_lowercase_letters">Huruf besar dan kecil</string>
+    <string name="at_least_one_number">Minimal satu angka</string>
+    <string name="no_data_available">Tidak ada data tersedia</string>
+    <string name="data_related_will_be_shown_here">Data terkait akan tampil di sini</string>
 </resources>

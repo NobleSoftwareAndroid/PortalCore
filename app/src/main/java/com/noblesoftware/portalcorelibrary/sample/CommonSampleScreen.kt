@@ -4,6 +4,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
@@ -11,6 +12,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.rememberModalBottomSheetState
@@ -26,6 +28,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.style.TextAlign
 import androidx.navigation.NavHostController
 import com.noblesoftware.portalcore.R
 import com.noblesoftware.portalcore.component.compose.BottomSheetType
@@ -38,8 +41,11 @@ import com.noblesoftware.portalcore.component.compose.DefaultButton
 import com.noblesoftware.portalcore.component.compose.DefaultProgressDialog
 import com.noblesoftware.portalcore.component.compose.DefaultSpacer
 import com.noblesoftware.portalcore.component.compose.DefaultTextInput
+import com.noblesoftware.portalcore.component.compose.DefaultTextInputCurrency
+import com.noblesoftware.portalcore.component.compose.DefaultTextInputDropdown
 import com.noblesoftware.portalcore.component.compose.DefaultTopAppBar
 import com.noblesoftware.portalcore.theme.LocalDimen
+import com.noblesoftware.portalcore.util.extension.toCommaFormat
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -49,6 +55,7 @@ fun CommonSampleScreen(
     navHostController: NavHostController
 ) {
     val text = remember { mutableStateOf("") }
+    val payAmount = remember { mutableStateOf("") }
     val coroutineScope = rememberCoroutineScope()
     val showProgress = remember { mutableStateOf(false) }
     val bottomSheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)
@@ -578,7 +585,7 @@ fun CommonSampleScreen(
                     inputType = KeyboardType.Email,
                     value = text.value,
                     onValueChange = { text.value = it })
-                DefaultSpacer(LocalDimen.current.regular)
+                DefaultSpacer()
                 DefaultTextInput(
                     label = "Password",
                     placeholder = "Please input password",
@@ -586,7 +593,7 @@ fun CommonSampleScreen(
                     inputType = KeyboardType.Password,
                     value = text.value,
                     onValueChange = { text.value = it })
-                DefaultSpacer(LocalDimen.current.regular)
+                DefaultSpacer()
                 DefaultTextInput(
                     label = "Address",
                     placeholder = "Please input address",
@@ -595,7 +602,8 @@ fun CommonSampleScreen(
                     value = text.value,
                     minLines = 4,
                     onValueChange = { text.value = it })
-                DefaultSpacer(LocalDimen.current.regular)
+                DefaultSpacer()
+
                 Text(text = "input helper")
                 DefaultSpacer()
 
@@ -607,7 +615,7 @@ fun CommonSampleScreen(
                     value = text.value,
                     helperText = "Helper text",
                     onValueChange = { text.value = it })
-                DefaultSpacer(LocalDimen.current.regular)
+                DefaultSpacer()
                 DefaultTextInput(
                     label = "Password",
                     placeholder = "Please input password",
@@ -616,7 +624,7 @@ fun CommonSampleScreen(
                     value = text.value,
                     helperText = "Password must be at least 8 characters",
                     onValueChange = { text.value = it })
-                DefaultSpacer(LocalDimen.current.regular)
+                DefaultSpacer()
                 DefaultTextInput(
                     label = "Address",
                     placeholder = "Please input address",
@@ -626,8 +634,45 @@ fun CommonSampleScreen(
                     minLines = 4,
                     helperText = "Helper Text",
                     onValueChange = { text.value = it })
-                DefaultSpacer(LocalDimen.current.regular)
-                Text(text = "input  error")
+                DefaultSpacer()
+
+                Text(text = "input currency")
+                DefaultSpacer()
+
+                DefaultTextInputCurrency(
+                    label = "Payment Amount",
+                    placeholder = "0",
+                    required = true,
+                    value = payAmount.value,
+                    inputType = KeyboardType.Number,
+                    leadingIcon = {
+                        Row(
+                            modifier = Modifier
+                                .fillMaxHeight()
+                                .padding(
+                                    start = LocalDimen.current.regular,
+                                    end = LocalDimen.current.default
+                                ),
+                            horizontalArrangement = Arrangement.Center,
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Text(
+                                text = "Rp", style = MaterialTheme.typography.bodyMedium.copy(
+                                    color = colorResource(
+                                        id = R.color.text_secondary
+                                    )
+                                ),
+                                textAlign = TextAlign.Center
+                            )
+                        }
+                    },
+                    onValueChange = { value ->
+                        payAmount.value = value.toCommaFormat()
+                    },
+                )
+                DefaultSpacer()
+
+                Text(text = "input error")
                 DefaultSpacer()
 
                 DefaultTextInput(
@@ -638,7 +683,7 @@ fun CommonSampleScreen(
                     value = text.value,
                     errorText = "Invalid email or password",
                     onValueChange = { text.value = it })
-                DefaultSpacer(LocalDimen.current.regular)
+                DefaultSpacer()
                 DefaultTextInput(
                     label = "Password",
                     placeholder = "Please input password",
@@ -647,7 +692,7 @@ fun CommonSampleScreen(
                     value = text.value,
                     errorText = "Invalid email or password",
                     onValueChange = { text.value = it })
-                DefaultSpacer(LocalDimen.current.regular)
+                DefaultSpacer()
                 DefaultTextInput(
                     label = "Address",
                     placeholder = "Please input address",
@@ -657,6 +702,18 @@ fun CommonSampleScreen(
                     minLines = 4,
                     errorText = "Invalid address",
                     onValueChange = { text.value = it })
+                DefaultSpacer()
+
+                Text(text = "input placeholder wrap content")
+                DefaultSpacer()
+
+                DefaultTextInputDropdown(
+                    value = "",
+                    onClick = { },
+                    onValueChange = {},
+                    placeholder = "halo nama saya stanley",
+                    isWrapContent = true
+                )
 
                 DefaultSpacer(height = LocalDimen.current.extraLarge)
             }

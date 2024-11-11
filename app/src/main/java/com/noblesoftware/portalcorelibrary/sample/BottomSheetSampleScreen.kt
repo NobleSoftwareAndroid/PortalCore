@@ -130,12 +130,59 @@ fun BottomSheetSampleScreen(
             DefaultSpacer()
             DefaultButton(
                 modifier = Modifier.fillMaxWidth(),
+                text = "Option Bottom Sheet (Empty)",
+                buttonVariant = ButtonVariant.Neutral
+            ) {
+                DefaultBottomSheetDialog.showDialog(
+                    fragmentManager = (activity as AppCompatActivity).supportFragmentManager,
+                    bottomSheetType = BottomSheetType.SINGLE_SELECTION,
+                    options = listOf(),
+                    onSelected = { options ->
+                        options.firstOrNull()?.let { option ->
+                            snackbarState.value = SnackbarState(
+                                message = "Selected ${option.name}",
+                                isSuccess = true,
+                            )
+                        }
+                    },
+                )
+            }
+            DefaultSpacer()
+            DefaultButton(
+                modifier = Modifier.fillMaxWidth(),
                 text = "Option (Search) Bottom Sheet",
                 buttonVariant = ButtonVariant.Neutral
             ) {
                 DefaultBottomSheetDialog.showDialog(
                     fragmentManager = (activity as AppCompatActivity).supportFragmentManager,
                     bottomSheetType = BottomSheetType.SINGLE_SELECTION_WITH_SEARCH,
+                    searchHint = "Search",
+                    options = listOf(
+                        SelectOption(1, false, "Sample Option 1"),
+                        SelectOption(2, false, "Sample Option 2"),
+                        SelectOption(3, false, "Sample Option 3"),
+                        SelectOption(4, false, "Sample Option 4"),
+                        SelectOption(5, false, "Sample Option 5")
+                    ),
+                    onSelected = { options ->
+                        options.firstOrNull()?.let { option ->
+                            snackbarState.value = SnackbarState(
+                                message = "Selected ${option.name}",
+                                isSuccess = true,
+                            )
+                        }
+                    }
+                )
+            }
+            DefaultSpacer()
+            DefaultButton(
+                modifier = Modifier.fillMaxWidth(),
+                text = "Option (Search) Multiple Bottom Sheet",
+                buttonVariant = ButtonVariant.Neutral
+            ) {
+                DefaultBottomSheetDialog.showDialog(
+                    fragmentManager = (activity as AppCompatActivity).supportFragmentManager,
+                    bottomSheetType = BottomSheetType.MULTIPLE_SELECTION_WITH_SEARCH,
                     searchHint = "Search",
                     options = listOf(
                         SelectOption(1, false, "Sample Option 1"),
