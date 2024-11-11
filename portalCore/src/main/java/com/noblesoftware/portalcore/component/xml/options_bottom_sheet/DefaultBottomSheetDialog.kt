@@ -421,6 +421,9 @@ open class DefaultBottomSheetDialog : BottomSheetDialogFragment() {
             isResetEnable: Boolean = false,
             isStatusBarTransparent: Boolean = false,
             emptyState: @Composable () -> Unit = {
+                if (bottomSheetType == BottomSheetType.SINGLE_SELECTION_WITH_SEARCH || bottomSheetType == BottomSheetType.MULTIPLE_SELECTION_WITH_SEARCH) {
+                    DefaultSpacer(height = LocalDimen.current.extraRegular)
+                }
                 DefaultEmptyState(
                     modifier = Modifier.fillMaxWidth(),
                     icon = painterResource(id = R.drawable.img_announcement_empty),
