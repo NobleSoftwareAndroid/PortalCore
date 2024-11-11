@@ -25,6 +25,13 @@ fun Long.toRupiah(): String {
     return numberFormat.format(this).toString()
 }
 
+fun String.fromCommaFormat(): String {
+    return kotlin.runCatching {
+        this.replace(".", "").replace(",", "").replace("-", "")
+            .replace(" ", "")
+    }.getOrElse { "" }
+}
+
 fun Long.toCommaFormat(locale: Locale = Locale("in", "ID")): String {
     val numberFormat = NumberFormat.getInstance(locale)
     numberFormat.maximumFractionDigits = 0
@@ -33,10 +40,7 @@ fun Long.toCommaFormat(locale: Locale = Locale("in", "ID")): String {
 
 fun String.toCommaFormat(locale: Locale = Locale("in", "ID")): String {
     return kotlin.runCatching {
-        val amountStr =
-            this.replace(".", "").replace(",", "").replace("-", "")
-                .replace(" ", "")
-        amountStr.toLong().toCommaFormat()
+        this.fromCommaFormat().toLong().toCommaFormat()
     }.getOrElse { "" }
 }
 
