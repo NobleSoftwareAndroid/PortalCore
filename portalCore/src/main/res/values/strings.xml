@@ -33,4 +33,5 @@
     <string name="at_least_one_number">At least one number</string>
     <string name="no_data_available">No data available</string>
     <string name="data_related_will_be_shown_here">Data related will be shown here</string>
+    <string name="select_time">Select time</string>
 </resources>

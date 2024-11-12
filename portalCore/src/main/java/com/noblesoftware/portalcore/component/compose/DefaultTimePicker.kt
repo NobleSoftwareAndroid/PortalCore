@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TimePicker
@@ -17,6 +18,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import com.noblesoftware.portalcore.R
@@ -50,14 +52,20 @@ fun DefaultTimePicker(
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(
-                        top = LocalDimen.current.extraRegular,
-                        bottom = LocalDimen.current.regular,
-                        start = LocalDimen.current.regular,
-                        end = LocalDimen.current.regular
-                    ),
+                    .padding(LocalDimen.current.regular),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
+                Text(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(start = LocalDimen.current.default)
+                        .align(Alignment.Start),
+                    text = stringResource(id = R.string.select_time),
+                    style = MaterialTheme.typography.labelLarge.copy(
+                        colorResource(id = R.color.text_primary)
+                    )
+                )
+                DefaultSpacer(height = LocalDimen.current.extraRegular)
                 TimePicker(
                     state = timePickerState,
                 )
