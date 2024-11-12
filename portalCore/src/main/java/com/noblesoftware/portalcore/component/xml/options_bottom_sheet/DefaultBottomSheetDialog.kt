@@ -221,10 +221,10 @@ open class DefaultBottomSheetDialog : BottomSheetDialogFragment() {
                                 contentPadding = PaddingValues(
                                     start = LocalDimen.current.regular,
                                     end = LocalDimen.current.regular,
-                                    bottom = if (bottomSheetType == BottomSheetType.MULTIPLE_SELECTION || bottomSheetType == BottomSheetType.MULTIPLE_SELECTION_WITH_SEARCH) 180.dp else LocalDimen.current.extraLarge
+                                    bottom = if ((bottomSheetType == BottomSheetType.MULTIPLE_SELECTION && state.selectOptions.isNotEmpty()) || bottomSheetType == BottomSheetType.MULTIPLE_SELECTION_WITH_SEARCH) 180.dp else LocalDimen.current.extraLarge
                                 ),
                                 verticalArrangement = Arrangement.spacedBy(
-                                    if (bottomSheetType == BottomSheetType.SINGLE_SELECTION_WITH_SEARCH ||
+                                    if (bottomSheetType == BottomSheetType.MULTIPLE_SELECTION ||
                                         bottomSheetType == BottomSheetType.MULTIPLE_SELECTION_WITH_SEARCH
                                     ) LocalDimen.current.small else LocalDimen.current.zero
                                 )
@@ -368,8 +368,11 @@ open class DefaultBottomSheetDialog : BottomSheetDialogFragment() {
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-
         if (bottomSheetType != BottomSheetType.MULTIPLE_SELECTION && bottomSheetType != BottomSheetType.MULTIPLE_SELECTION_WITH_SEARCH) {
+            return super.onCreateDialog(savedInstanceState)
+        }
+
+        if (bottomSheetType == BottomSheetType.MULTIPLE_SELECTION && this.options.isEmpty()) {
             return super.onCreateDialog(savedInstanceState)
         }
 
