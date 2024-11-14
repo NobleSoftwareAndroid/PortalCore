@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import androidx.annotation.StringRes
+import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Surface
@@ -23,6 +24,7 @@ import androidx.compose.ui.unit.dp
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -37,7 +39,7 @@ import com.noblesoftware.portalcore.util.extension.visibleWhen
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-open class DefaultDynamicBottomSheetDialog : BottomSheetDialogFragment() {
+class DefaultDynamicBottomSheetDialog : BottomSheetDialogFragment() {
 
     private lateinit var binding: BottomSheetDialogDynamicBinding
 
@@ -147,6 +149,7 @@ open class DefaultDynamicBottomSheetDialog : BottomSheetDialogFragment() {
             @StringRes buttonSecondText: Int = R.string.okay,
             buttonFirstType: BottomSheetActionType = BottomSheetActionType.NEUTRAL,
             buttonSecondType: BottomSheetActionType = BottomSheetActionType.PRIMARY_SOLID,
+            tag: String = DefaultDynamicBottomSheetDialog::class.java.simpleName,
             buttonFirstOnClick: () -> Unit = {},
             buttonSecondOnClick: () -> Unit = {},
             content: @Composable () -> Unit
@@ -161,7 +164,11 @@ open class DefaultDynamicBottomSheetDialog : BottomSheetDialogFragment() {
                 this.buttonFirstOnClick = buttonFirstOnClick
                 this.buttonSecondOnClick = buttonSecondOnClick
                 this.content = content
-            }.show(fragmentManager, DefaultDynamicBottomSheetDialog::class.java.simpleName)
+            }.show(fragmentManager, tag)
+        }
+
+        fun AppCompatActivity.dismiss(tag: String = DefaultDynamicBottomSheetDialog::class.java.simpleName) {
+            (this.supportFragmentManager.findFragmentByTag(tag) as? DialogFragment)?.dismiss()
         }
     }
 }
