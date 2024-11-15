@@ -30,6 +30,7 @@ import com.noblesoftware.portalcore.component.compose.DefaultSpacer
 import com.noblesoftware.portalcore.component.compose.DefaultTopAppBar
 import com.noblesoftware.portalcore.component.compose.showDefaultSnackbar
 import com.noblesoftware.portalcore.component.xml.dynamic_bottom_sheet.DefaultDynamicBottomSheetDialog
+import com.noblesoftware.portalcore.component.xml.dynamic_bottom_sheet.DefaultDynamicBottomSheetDialog.Companion.dismiss
 import com.noblesoftware.portalcore.component.xml.options_bottom_sheet.DefaultBottomSheetDialog
 import com.noblesoftware.portalcore.enums.BottomSheetActionType
 import com.noblesoftware.portalcore.enums.BottomSheetType
@@ -278,7 +279,19 @@ fun BottomSheetSampleScreen(
                     buttonFirstEnable = false,
                     buttonSecondEnable = false,
                     content = {
-                        Column {
+                        Column(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(LocalDimen.current.regular)
+                        ) {
+                            DefaultButton(
+                                modifier = Modifier.fillMaxWidth(),
+                                text = "Dismiss from outside",
+                                buttonVariant = ButtonVariant.Primary
+                            ) {
+                                activity.dismiss()
+                            }
+                            DefaultSpacer()
                             Text(text = "This is compose component")
                         }
                     }
