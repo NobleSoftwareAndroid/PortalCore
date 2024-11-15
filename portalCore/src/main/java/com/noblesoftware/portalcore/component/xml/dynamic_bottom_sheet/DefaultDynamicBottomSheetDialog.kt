@@ -39,7 +39,7 @@ import com.noblesoftware.portalcore.util.extension.visibleWhen
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class DefaultDynamicBottomSheetDialog : BottomSheetDialogFragment() {
+open class DefaultDynamicBottomSheetDialog : BottomSheetDialogFragment() {
 
     private lateinit var binding: BottomSheetDialogDynamicBinding
 
