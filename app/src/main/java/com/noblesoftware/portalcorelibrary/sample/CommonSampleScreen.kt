@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -44,6 +45,7 @@ import com.noblesoftware.portalcore.component.compose.DefaultTextInput
 import com.noblesoftware.portalcore.component.compose.DefaultTextInputCurrency
 import com.noblesoftware.portalcore.component.compose.DefaultTextInputDropdown
 import com.noblesoftware.portalcore.component.compose.DefaultTopAppBar
+import com.noblesoftware.portalcore.component.compose.DefaultTopAppBarMultiLine
 import com.noblesoftware.portalcore.theme.LocalDimen
 import com.noblesoftware.portalcore.util.extension.toCommaFormat
 import kotlinx.coroutines.delay
@@ -73,735 +75,800 @@ fun CommonSampleScreen(
             )
         }
     ) {
-        Column(
+        LazyColumn(
             modifier = Modifier
                 .background(color = colorResource(id = R.color.background_body))
                 .padding(paddingValues = it)
-                .verticalScroll(rememberScrollState())
                 .then(
                     Modifier.padding(LocalDimen.current.regular)
                 ),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             // button
-            Column {
-                Text(text = "variant (solid)")
-                DefaultButton(
-                    modifier = Modifier.fillMaxWidth(),
-                    text = "Login",
-                    buttonVariant = ButtonVariant.Primary,
-                ) {
+            item {
+                Column {
+                    Text(text = "variant (solid)")
+                    DefaultButton(
+                        modifier = Modifier.fillMaxWidth(),
+                        text = "Login",
+                        buttonVariant = ButtonVariant.Primary,
+                    ) {
 
+                    }
+                    DefaultSpacer()
+                    DefaultButton(
+                        modifier = Modifier.fillMaxWidth(),
+                        text = "Login",
+                        buttonVariant = ButtonVariant.Primary,
+                        buttonSize = ButtonSize.Large,
+                        buttonType = ButtonType.Solid
+                    ) {
+
+                    }
+                    DefaultSpacer()
+                    DefaultButton(
+                        modifier = Modifier.fillMaxWidth(),
+                        text = "Login",
+                        buttonVariant = ButtonVariant.Primary,
+                        buttonSize = ButtonSize.Small,
+                        buttonType = ButtonType.Solid
+                    ) {
+
+                    }
+                    DefaultSpacer()
+                    DefaultSpacer()
+                    DefaultButton(
+                        modifier = Modifier.fillMaxWidth(),
+                        text = "Login",
+                        buttonVariant = ButtonVariant.Danger,
+                        buttonSize = ButtonSize.Medium,
+                        buttonType = ButtonType.Solid
+                    ) {
+
+                    }
+                    DefaultSpacer()
+                    DefaultButton(
+                        modifier = Modifier.fillMaxWidth(),
+                        text = "Login",
+                        buttonVariant = ButtonVariant.Danger,
+                        buttonSize = ButtonSize.Large,
+                        buttonType = ButtonType.Solid
+                    ) {
+
+                    }
+                    DefaultSpacer()
+                    DefaultButton(
+                        modifier = Modifier.fillMaxWidth(),
+                        text = "Login",
+                        buttonVariant = ButtonVariant.Danger,
+                        buttonSize = ButtonSize.Small,
+                        buttonType = ButtonType.Solid
+                    ) {
+
+                    }
+
+
+                    DefaultSpacer()
+                    DefaultSpacer()
+                    DefaultButton(
+                        modifier = Modifier.fillMaxWidth(),
+                        text = "Login",
+                        buttonVariant = ButtonVariant.Neutral,
+                        buttonSize = ButtonSize.Medium,
+                        buttonType = ButtonType.Solid
+                    ) {
+
+                    }
+                    DefaultSpacer()
+                    DefaultButton(
+                        modifier = Modifier.fillMaxWidth(),
+                        text = "Login",
+                        buttonVariant = ButtonVariant.Neutral,
+                        buttonSize = ButtonSize.Large,
+                        buttonType = ButtonType.Solid
+                    ) {
+
+                    }
+                    DefaultSpacer()
+                    DefaultButton(
+                        modifier = Modifier.fillMaxWidth(),
+                        text = "Login",
+                        buttonVariant = ButtonVariant.Neutral,
+                        buttonSize = ButtonSize.Small,
+                        buttonType = ButtonType.Solid
+                    ) {
+
+                    }
+
+                    DefaultSpacer()
+                    DefaultSpacer()
+                    DefaultButton(
+                        modifier = Modifier.fillMaxWidth(),
+                        text = "Login",
+                        buttonVariant = ButtonVariant.Success,
+                        buttonSize = ButtonSize.Medium,
+                        buttonType = ButtonType.Solid
+                    ) {
+
+                    }
+                    DefaultSpacer()
+                    DefaultButton(
+                        modifier = Modifier.fillMaxWidth(),
+                        text = "Login",
+                        buttonVariant = ButtonVariant.Success,
+                        buttonSize = ButtonSize.Large,
+                        buttonType = ButtonType.Solid
+                    ) {
+
+                    }
+                    DefaultSpacer()
+                    DefaultButton(
+                        modifier = Modifier.fillMaxWidth(),
+                        text = "Login",
+                        buttonVariant = ButtonVariant.Success,
+                        buttonSize = ButtonSize.Small,
+                        buttonType = ButtonType.Solid
+                    ) {
+
+                    }
+
+                    DefaultSpacer()
+                    DefaultSpacer()
+                    DefaultButton(
+                        modifier = Modifier.fillMaxWidth(),
+                        text = "Login",
+                        buttonVariant = ButtonVariant.Warning,
+                        buttonSize = ButtonSize.Medium,
+                        buttonType = ButtonType.Solid
+                    ) {
+
+                    }
+                    DefaultSpacer()
+                    DefaultButton(
+                        modifier = Modifier.fillMaxWidth(),
+                        text = "Login",
+                        buttonVariant = ButtonVariant.Warning,
+                        buttonSize = ButtonSize.Large,
+                        buttonType = ButtonType.Solid
+                    ) {
+
+                    }
+                    DefaultSpacer()
+                    DefaultButton(
+                        modifier = Modifier.fillMaxWidth(),
+                        text = "Login",
+                        buttonVariant = ButtonVariant.Warning,
+                        buttonSize = ButtonSize.Small,
+                        buttonType = ButtonType.Solid
+                    ) {
+
+                    }
+
+                    DefaultSpacer(LocalDimen.current.extraLarge)
                 }
-                DefaultSpacer()
-                DefaultButton(
-                    modifier = Modifier.fillMaxWidth(),
-                    text = "Login",
-                    buttonVariant = ButtonVariant.Primary,
-                    buttonSize = ButtonSize.Large,
-                    buttonType = ButtonType.Solid
-                ) {
-
-                }
-                DefaultSpacer()
-                DefaultButton(
-                    modifier = Modifier.fillMaxWidth(),
-                    text = "Login",
-                    buttonVariant = ButtonVariant.Primary,
-                    buttonSize = ButtonSize.Small,
-                    buttonType = ButtonType.Solid
-                ) {
-
-                }
-                DefaultSpacer()
-                DefaultSpacer()
-                DefaultButton(
-                    modifier = Modifier.fillMaxWidth(),
-                    text = "Login",
-                    buttonVariant = ButtonVariant.Danger,
-                    buttonSize = ButtonSize.Medium,
-                    buttonType = ButtonType.Solid
-                ) {
-
-                }
-                DefaultSpacer()
-                DefaultButton(
-                    modifier = Modifier.fillMaxWidth(),
-                    text = "Login",
-                    buttonVariant = ButtonVariant.Danger,
-                    buttonSize = ButtonSize.Large,
-                    buttonType = ButtonType.Solid
-                ) {
-
-                }
-                DefaultSpacer()
-                DefaultButton(
-                    modifier = Modifier.fillMaxWidth(),
-                    text = "Login",
-                    buttonVariant = ButtonVariant.Danger,
-                    buttonSize = ButtonSize.Small,
-                    buttonType = ButtonType.Solid
-                ) {
-
-                }
-
-
-                DefaultSpacer()
-                DefaultSpacer()
-                DefaultButton(
-                    modifier = Modifier.fillMaxWidth(),
-                    text = "Login",
-                    buttonVariant = ButtonVariant.Neutral,
-                    buttonSize = ButtonSize.Medium,
-                    buttonType = ButtonType.Solid
-                ) {
-
-                }
-                DefaultSpacer()
-                DefaultButton(
-                    modifier = Modifier.fillMaxWidth(),
-                    text = "Login",
-                    buttonVariant = ButtonVariant.Neutral,
-                    buttonSize = ButtonSize.Large,
-                    buttonType = ButtonType.Solid
-                ) {
-
-                }
-                DefaultSpacer()
-                DefaultButton(
-                    modifier = Modifier.fillMaxWidth(),
-                    text = "Login",
-                    buttonVariant = ButtonVariant.Neutral,
-                    buttonSize = ButtonSize.Small,
-                    buttonType = ButtonType.Solid
-                ) {
-
-                }
-
-                DefaultSpacer()
-                DefaultSpacer()
-                DefaultButton(
-                    modifier = Modifier.fillMaxWidth(),
-                    text = "Login",
-                    buttonVariant = ButtonVariant.Success,
-                    buttonSize = ButtonSize.Medium,
-                    buttonType = ButtonType.Solid
-                ) {
-
-                }
-                DefaultSpacer()
-                DefaultButton(
-                    modifier = Modifier.fillMaxWidth(),
-                    text = "Login",
-                    buttonVariant = ButtonVariant.Success,
-                    buttonSize = ButtonSize.Large,
-                    buttonType = ButtonType.Solid
-                ) {
-
-                }
-                DefaultSpacer()
-                DefaultButton(
-                    modifier = Modifier.fillMaxWidth(),
-                    text = "Login",
-                    buttonVariant = ButtonVariant.Success,
-                    buttonSize = ButtonSize.Small,
-                    buttonType = ButtonType.Solid
-                ) {
-
-                }
-
-                DefaultSpacer()
-                DefaultSpacer()
-                DefaultButton(
-                    modifier = Modifier.fillMaxWidth(),
-                    text = "Login",
-                    buttonVariant = ButtonVariant.Warning,
-                    buttonSize = ButtonSize.Medium,
-                    buttonType = ButtonType.Solid
-                ) {
-
-                }
-                DefaultSpacer()
-                DefaultButton(
-                    modifier = Modifier.fillMaxWidth(),
-                    text = "Login",
-                    buttonVariant = ButtonVariant.Warning,
-                    buttonSize = ButtonSize.Large,
-                    buttonType = ButtonType.Solid
-                ) {
-
-                }
-                DefaultSpacer()
-                DefaultButton(
-                    modifier = Modifier.fillMaxWidth(),
-                    text = "Login",
-                    buttonVariant = ButtonVariant.Warning,
-                    buttonSize = ButtonSize.Small,
-                    buttonType = ButtonType.Solid
-                ) {
-
-                }
-
-                DefaultSpacer(LocalDimen.current.extraLarge)
             }
-            Column {
-                Text(text = "variant (outlined)")
-                DefaultButton(
-                    modifier = Modifier.fillMaxWidth(),
-                    text = "Login",
-                    buttonVariant = ButtonVariant.Primary,
-                    buttonSize = ButtonSize.Medium,
-                    buttonType = ButtonType.Outlined
-                ) {
+            item {
+                Column {
+                    Text(text = "variant (outlined)")
+                    DefaultButton(
+                        modifier = Modifier.fillMaxWidth(),
+                        text = "Login",
+                        buttonVariant = ButtonVariant.Primary,
+                        buttonSize = ButtonSize.Medium,
+                        buttonType = ButtonType.Outlined
+                    ) {
 
+                    }
+                    DefaultSpacer()
+                    DefaultButton(
+                        modifier = Modifier.fillMaxWidth(),
+                        text = "Login",
+                        buttonVariant = ButtonVariant.Primary,
+                        buttonSize = ButtonSize.Large,
+                        buttonType = ButtonType.Outlined
+                    ) {
+
+                    }
+                    DefaultSpacer()
+                    DefaultButton(
+                        modifier = Modifier.fillMaxWidth(),
+                        text = "Login",
+                        buttonVariant = ButtonVariant.Primary,
+                        buttonSize = ButtonSize.Small,
+                        buttonType = ButtonType.Outlined
+                    ) {
+
+                    }
+                    DefaultSpacer()
+                    DefaultSpacer()
+                    DefaultButton(
+                        modifier = Modifier.fillMaxWidth(),
+                        text = "Login",
+                        buttonVariant = ButtonVariant.Danger,
+                        buttonSize = ButtonSize.Medium,
+                        buttonType = ButtonType.Outlined
+                    ) {
+
+                    }
+                    DefaultSpacer()
+                    DefaultButton(
+                        modifier = Modifier.fillMaxWidth(),
+                        text = "Login",
+                        buttonVariant = ButtonVariant.Danger,
+                        buttonSize = ButtonSize.Large,
+                        buttonType = ButtonType.Outlined
+                    ) {
+
+                    }
+                    DefaultSpacer()
+                    DefaultButton(
+                        modifier = Modifier.fillMaxWidth(),
+                        text = "Login",
+                        buttonVariant = ButtonVariant.Danger,
+                        buttonSize = ButtonSize.Small,
+                        buttonType = ButtonType.Outlined
+                    ) {
+
+                    }
+
+
+                    DefaultSpacer()
+                    DefaultSpacer()
+                    DefaultButton(
+                        modifier = Modifier.fillMaxWidth(),
+                        text = "Login",
+                        buttonVariant = ButtonVariant.Neutral,
+                        buttonSize = ButtonSize.Medium,
+                        buttonType = ButtonType.Outlined
+                    ) {
+
+                    }
+                    DefaultSpacer()
+                    DefaultButton(
+                        modifier = Modifier.fillMaxWidth(),
+                        text = "Login",
+                        buttonVariant = ButtonVariant.Neutral,
+                        buttonSize = ButtonSize.Large,
+                        buttonType = ButtonType.Outlined
+                    ) {
+
+                    }
+                    DefaultSpacer()
+                    DefaultButton(
+                        modifier = Modifier.fillMaxWidth(),
+                        text = "Login",
+                        buttonVariant = ButtonVariant.Neutral,
+                        buttonSize = ButtonSize.Small,
+                        buttonType = ButtonType.Outlined
+                    ) {
+
+                    }
+
+                    DefaultSpacer()
+                    DefaultSpacer()
+                    DefaultButton(
+                        modifier = Modifier.fillMaxWidth(),
+                        text = "Login",
+                        buttonVariant = ButtonVariant.Success,
+                        buttonSize = ButtonSize.Medium,
+                        buttonType = ButtonType.Outlined
+                    ) {
+
+                    }
+                    DefaultSpacer()
+                    DefaultButton(
+                        modifier = Modifier.fillMaxWidth(),
+                        text = "Login",
+                        buttonVariant = ButtonVariant.Success,
+                        buttonSize = ButtonSize.Large,
+                        buttonType = ButtonType.Outlined
+                    ) {
+
+                    }
+                    DefaultSpacer()
+                    DefaultButton(
+                        modifier = Modifier.fillMaxWidth(),
+                        text = "Login",
+                        buttonVariant = ButtonVariant.Success,
+                        buttonSize = ButtonSize.Small,
+                        buttonType = ButtonType.Outlined
+                    ) {
+
+                    }
+
+                    DefaultSpacer()
+                    DefaultSpacer()
+                    DefaultButton(
+                        modifier = Modifier.fillMaxWidth(),
+                        text = "Login",
+                        buttonVariant = ButtonVariant.Warning,
+                        buttonSize = ButtonSize.Medium,
+                        buttonType = ButtonType.Outlined
+                    ) {
+
+                    }
+                    DefaultSpacer()
+                    DefaultButton(
+                        modifier = Modifier.fillMaxWidth(),
+                        text = "Login",
+                        buttonVariant = ButtonVariant.Warning,
+                        buttonSize = ButtonSize.Large,
+                        buttonType = ButtonType.Outlined
+                    ) {
+
+                    }
+                    DefaultSpacer()
+                    DefaultButton(
+                        modifier = Modifier.fillMaxWidth(),
+                        text = "Login",
+                        buttonVariant = ButtonVariant.Warning,
+                        buttonSize = ButtonSize.Small,
+                        buttonType = ButtonType.Outlined
+                    ) {
+
+                    }
+
+                    DefaultSpacer(LocalDimen.current.extraLarge)
                 }
-                DefaultSpacer()
-                DefaultButton(
-                    modifier = Modifier.fillMaxWidth(),
-                    text = "Login",
-                    buttonVariant = ButtonVariant.Primary,
-                    buttonSize = ButtonSize.Large,
-                    buttonType = ButtonType.Outlined
-                ) {
-
-                }
-                DefaultSpacer()
-                DefaultButton(
-                    modifier = Modifier.fillMaxWidth(),
-                    text = "Login",
-                    buttonVariant = ButtonVariant.Primary,
-                    buttonSize = ButtonSize.Small,
-                    buttonType = ButtonType.Outlined
-                ) {
-
-                }
-                DefaultSpacer()
-                DefaultSpacer()
-                DefaultButton(
-                    modifier = Modifier.fillMaxWidth(),
-                    text = "Login",
-                    buttonVariant = ButtonVariant.Danger,
-                    buttonSize = ButtonSize.Medium,
-                    buttonType = ButtonType.Outlined
-                ) {
-
-                }
-                DefaultSpacer()
-                DefaultButton(
-                    modifier = Modifier.fillMaxWidth(),
-                    text = "Login",
-                    buttonVariant = ButtonVariant.Danger,
-                    buttonSize = ButtonSize.Large,
-                    buttonType = ButtonType.Outlined
-                ) {
-
-                }
-                DefaultSpacer()
-                DefaultButton(
-                    modifier = Modifier.fillMaxWidth(),
-                    text = "Login",
-                    buttonVariant = ButtonVariant.Danger,
-                    buttonSize = ButtonSize.Small,
-                    buttonType = ButtonType.Outlined
-                ) {
-
-                }
-
-
-                DefaultSpacer()
-                DefaultSpacer()
-                DefaultButton(
-                    modifier = Modifier.fillMaxWidth(),
-                    text = "Login",
-                    buttonVariant = ButtonVariant.Neutral,
-                    buttonSize = ButtonSize.Medium,
-                    buttonType = ButtonType.Outlined
-                ) {
-
-                }
-                DefaultSpacer()
-                DefaultButton(
-                    modifier = Modifier.fillMaxWidth(),
-                    text = "Login",
-                    buttonVariant = ButtonVariant.Neutral,
-                    buttonSize = ButtonSize.Large,
-                    buttonType = ButtonType.Outlined
-                ) {
-
-                }
-                DefaultSpacer()
-                DefaultButton(
-                    modifier = Modifier.fillMaxWidth(),
-                    text = "Login",
-                    buttonVariant = ButtonVariant.Neutral,
-                    buttonSize = ButtonSize.Small,
-                    buttonType = ButtonType.Outlined
-                ) {
-
-                }
-
-                DefaultSpacer()
-                DefaultSpacer()
-                DefaultButton(
-                    modifier = Modifier.fillMaxWidth(),
-                    text = "Login",
-                    buttonVariant = ButtonVariant.Success,
-                    buttonSize = ButtonSize.Medium,
-                    buttonType = ButtonType.Outlined
-                ) {
-
-                }
-                DefaultSpacer()
-                DefaultButton(
-                    modifier = Modifier.fillMaxWidth(),
-                    text = "Login",
-                    buttonVariant = ButtonVariant.Success,
-                    buttonSize = ButtonSize.Large,
-                    buttonType = ButtonType.Outlined
-                ) {
-
-                }
-                DefaultSpacer()
-                DefaultButton(
-                    modifier = Modifier.fillMaxWidth(),
-                    text = "Login",
-                    buttonVariant = ButtonVariant.Success,
-                    buttonSize = ButtonSize.Small,
-                    buttonType = ButtonType.Outlined
-                ) {
-
-                }
-
-                DefaultSpacer()
-                DefaultSpacer()
-                DefaultButton(
-                    modifier = Modifier.fillMaxWidth(),
-                    text = "Login",
-                    buttonVariant = ButtonVariant.Warning,
-                    buttonSize = ButtonSize.Medium,
-                    buttonType = ButtonType.Outlined
-                ) {
-
-                }
-                DefaultSpacer()
-                DefaultButton(
-                    modifier = Modifier.fillMaxWidth(),
-                    text = "Login",
-                    buttonVariant = ButtonVariant.Warning,
-                    buttonSize = ButtonSize.Large,
-                    buttonType = ButtonType.Outlined
-                ) {
-
-                }
-                DefaultSpacer()
-                DefaultButton(
-                    modifier = Modifier.fillMaxWidth(),
-                    text = "Login",
-                    buttonVariant = ButtonVariant.Warning,
-                    buttonSize = ButtonSize.Small,
-                    buttonType = ButtonType.Outlined
-                ) {
-
-                }
-
-                DefaultSpacer(LocalDimen.current.extraLarge)
             }
-            Column {
-                Text(text = "variant (solid) icon")
-                DefaultButton(
-                    modifier = Modifier.fillMaxWidth(),
-                    text = "Check In Now",
-                    buttonVariant = ButtonVariant.Primary,
-                    buttonSize = ButtonSize.Medium,
-                    buttonType = ButtonType.Solid,
-                    startIcon = com.noblesoftware.portalcore.R.drawable.ic_check_in
-                ) {
+            item {
+                Column {
+                    Text(text = "variant (solid) icon")
+                    DefaultButton(
+                        modifier = Modifier.fillMaxWidth(),
+                        text = "Check In Now",
+                        buttonVariant = ButtonVariant.Primary,
+                        buttonSize = ButtonSize.Medium,
+                        buttonType = ButtonType.Solid,
+                        startIcon = com.noblesoftware.portalcore.R.drawable.ic_check_in
+                    ) {
 
+                    }
+                    DefaultSpacer()
+                    DefaultButton(
+                        modifier = Modifier.fillMaxWidth(),
+                        text = "Check Out Now",
+                        buttonVariant = ButtonVariant.Danger,
+                        buttonSize = ButtonSize.Medium,
+                        buttonType = ButtonType.Solid,
+                        startIcon = com.noblesoftware.portalcore.R.drawable.ic_check_out
+                    ) {
+
+                    }
+                    DefaultSpacer()
+                    DefaultButton(
+                        modifier = Modifier.fillMaxWidth(),
+                        text = "Get Help & Support",
+                        buttonVariant = ButtonVariant.Neutral,
+                        buttonSize = ButtonSize.Medium,
+                        buttonType = ButtonType.Solid,
+                        startIcon = com.noblesoftware.portalcore.R.drawable.ic_help
+                    ) {
+
+                    }
+                    DefaultSpacer()
+                    DefaultSpacer()
+                    DefaultButton(
+                        modifier = Modifier.fillMaxWidth(),
+                        text = "Check In Now",
+                        buttonVariant = ButtonVariant.Primary,
+                        buttonSize = ButtonSize.Medium,
+                        buttonType = ButtonType.Outlined,
+                        startIcon = com.noblesoftware.portalcore.R.drawable.ic_check_in
+                    ) {
+
+                    }
+                    DefaultSpacer()
+                    DefaultButton(
+                        modifier = Modifier.fillMaxWidth(),
+                        text = "Check Out Now",
+                        buttonVariant = ButtonVariant.Danger,
+                        buttonSize = ButtonSize.Medium,
+                        buttonType = ButtonType.Outlined,
+                        startIcon = com.noblesoftware.portalcore.R.drawable.ic_check_out
+                    ) {
+
+                    }
+                    DefaultSpacer()
+                    DefaultButton(
+                        modifier = Modifier.fillMaxWidth(),
+                        text = "Get Help & Support",
+                        buttonVariant = ButtonVariant.Neutral,
+                        buttonSize = ButtonSize.Medium,
+                        buttonType = ButtonType.Outlined,
+                        startIcon = com.noblesoftware.portalcore.R.drawable.ic_help
+                    ) {
+
+                    }
+
+                    DefaultSpacer()
+                    DefaultSpacer()
+                    DefaultButton(
+                        modifier = Modifier.fillMaxWidth(),
+                        text = "Check In Now",
+                        buttonVariant = ButtonVariant.Primary,
+                        buttonSize = ButtonSize.Medium,
+                        buttonType = ButtonType.Solid,
+                        endIcon = com.noblesoftware.portalcore.R.drawable.ic_check_in
+                    ) {
+
+                    }
+                    DefaultSpacer()
+                    DefaultButton(
+                        modifier = Modifier.fillMaxWidth(),
+                        text = "Check Out Now",
+                        buttonVariant = ButtonVariant.Danger,
+                        buttonSize = ButtonSize.Medium,
+                        buttonType = ButtonType.Solid,
+                        endIcon = com.noblesoftware.portalcore.R.drawable.ic_check_out
+                    ) {
+
+                    }
+                    DefaultSpacer()
+                    DefaultButton(
+                        modifier = Modifier.fillMaxWidth(),
+                        text = "Get Help & Support",
+                        buttonVariant = ButtonVariant.Neutral,
+                        buttonSize = ButtonSize.Medium,
+                        buttonType = ButtonType.Solid,
+                        endIcon = com.noblesoftware.portalcore.R.drawable.ic_help
+                    ) {
+
+                    }
+                    DefaultSpacer()
+                    DefaultSpacer()
+                    DefaultButton(
+                        modifier = Modifier.fillMaxWidth(),
+                        text = "Check In Now",
+                        buttonVariant = ButtonVariant.Primary,
+                        buttonSize = ButtonSize.Medium,
+                        buttonType = ButtonType.Outlined,
+                        endIcon = com.noblesoftware.portalcore.R.drawable.ic_check_in
+                    ) {
+
+                    }
+                    DefaultSpacer()
+                    DefaultButton(
+                        modifier = Modifier.fillMaxWidth(),
+                        text = "Check Out Now",
+                        buttonVariant = ButtonVariant.Danger,
+                        buttonSize = ButtonSize.Medium,
+                        buttonType = ButtonType.Outlined,
+                        endIcon = com.noblesoftware.portalcore.R.drawable.ic_check_out
+                    ) {
+
+                    }
+                    DefaultSpacer()
+                    DefaultButton(
+                        modifier = Modifier.fillMaxWidth(),
+                        text = "Get Help & Support",
+                        buttonVariant = ButtonVariant.Neutral,
+                        buttonSize = ButtonSize.Medium,
+                        buttonType = ButtonType.Outlined,
+                        endIcon = com.noblesoftware.portalcore.R.drawable.ic_help
+                    ) {
+
+                    }
+                    DefaultSpacer()
+                    DefaultButton(
+                        modifier = Modifier.fillMaxWidth(),
+                        text = "Login",
+                        buttonVariant = ButtonVariant.Primary,
+                        enabled = false
+                    ) {
+
+                    }
+                    DefaultSpacer()
+                    DefaultButton(
+                        modifier = Modifier.fillMaxWidth(),
+                        text = "Login",
+                        buttonVariant = ButtonVariant.Danger,
+                        enabled = false
+                    ) {
+
+                    }
+                    DefaultSpacer()
+                    DefaultButton(
+                        modifier = Modifier.fillMaxWidth(),
+                        text = "Login",
+                        buttonVariant = ButtonVariant.Neutral,
+                        enabled = false
+                    ) {
+
+                    }
+                    DefaultSpacer(LocalDimen.current.extraLarge)
                 }
-                DefaultSpacer()
-                DefaultButton(
-                    modifier = Modifier.fillMaxWidth(),
-                    text = "Check Out Now",
-                    buttonVariant = ButtonVariant.Danger,
-                    buttonSize = ButtonSize.Medium,
-                    buttonType = ButtonType.Solid,
-                    startIcon = com.noblesoftware.portalcore.R.drawable.ic_check_out
-                ) {
-
-                }
-                DefaultSpacer()
-                DefaultButton(
-                    modifier = Modifier.fillMaxWidth(),
-                    text = "Get Help & Support",
-                    buttonVariant = ButtonVariant.Neutral,
-                    buttonSize = ButtonSize.Medium,
-                    buttonType = ButtonType.Solid,
-                    startIcon = com.noblesoftware.portalcore.R.drawable.ic_help
-                ) {
-
-                }
-                DefaultSpacer()
-                DefaultSpacer()
-                DefaultButton(
-                    modifier = Modifier.fillMaxWidth(),
-                    text = "Check In Now",
-                    buttonVariant = ButtonVariant.Primary,
-                    buttonSize = ButtonSize.Medium,
-                    buttonType = ButtonType.Outlined,
-                    startIcon = com.noblesoftware.portalcore.R.drawable.ic_check_in
-                ) {
-
-                }
-                DefaultSpacer()
-                DefaultButton(
-                    modifier = Modifier.fillMaxWidth(),
-                    text = "Check Out Now",
-                    buttonVariant = ButtonVariant.Danger,
-                    buttonSize = ButtonSize.Medium,
-                    buttonType = ButtonType.Outlined,
-                    startIcon = com.noblesoftware.portalcore.R.drawable.ic_check_out
-                ) {
-
-                }
-                DefaultSpacer()
-                DefaultButton(
-                    modifier = Modifier.fillMaxWidth(),
-                    text = "Get Help & Support",
-                    buttonVariant = ButtonVariant.Neutral,
-                    buttonSize = ButtonSize.Medium,
-                    buttonType = ButtonType.Outlined,
-                    startIcon = com.noblesoftware.portalcore.R.drawable.ic_help
-                ) {
-
-                }
-
-                DefaultSpacer()
-                DefaultSpacer()
-                DefaultButton(
-                    modifier = Modifier.fillMaxWidth(),
-                    text = "Check In Now",
-                    buttonVariant = ButtonVariant.Primary,
-                    buttonSize = ButtonSize.Medium,
-                    buttonType = ButtonType.Solid,
-                    endIcon = com.noblesoftware.portalcore.R.drawable.ic_check_in
-                ) {
-
-                }
-                DefaultSpacer()
-                DefaultButton(
-                    modifier = Modifier.fillMaxWidth(),
-                    text = "Check Out Now",
-                    buttonVariant = ButtonVariant.Danger,
-                    buttonSize = ButtonSize.Medium,
-                    buttonType = ButtonType.Solid,
-                    endIcon = com.noblesoftware.portalcore.R.drawable.ic_check_out
-                ) {
-
-                }
-                DefaultSpacer()
-                DefaultButton(
-                    modifier = Modifier.fillMaxWidth(),
-                    text = "Get Help & Support",
-                    buttonVariant = ButtonVariant.Neutral,
-                    buttonSize = ButtonSize.Medium,
-                    buttonType = ButtonType.Solid,
-                    endIcon = com.noblesoftware.portalcore.R.drawable.ic_help
-                ) {
-
-                }
-                DefaultSpacer()
-                DefaultSpacer()
-                DefaultButton(
-                    modifier = Modifier.fillMaxWidth(),
-                    text = "Check In Now",
-                    buttonVariant = ButtonVariant.Primary,
-                    buttonSize = ButtonSize.Medium,
-                    buttonType = ButtonType.Outlined,
-                    endIcon = com.noblesoftware.portalcore.R.drawable.ic_check_in
-                ) {
-
-                }
-                DefaultSpacer()
-                DefaultButton(
-                    modifier = Modifier.fillMaxWidth(),
-                    text = "Check Out Now",
-                    buttonVariant = ButtonVariant.Danger,
-                    buttonSize = ButtonSize.Medium,
-                    buttonType = ButtonType.Outlined,
-                    endIcon = com.noblesoftware.portalcore.R.drawable.ic_check_out
-                ) {
-
-                }
-                DefaultSpacer()
-                DefaultButton(
-                    modifier = Modifier.fillMaxWidth(),
-                    text = "Get Help & Support",
-                    buttonVariant = ButtonVariant.Neutral,
-                    buttonSize = ButtonSize.Medium,
-                    buttonType = ButtonType.Outlined,
-                    endIcon = com.noblesoftware.portalcore.R.drawable.ic_help
-                ) {
-
-                }
-                DefaultSpacer()
-                DefaultButton(
-                    modifier = Modifier.fillMaxWidth(),
-                    text = "Login",
-                    buttonVariant = ButtonVariant.Primary,
-                    enabled = false
-                ) {
-
-                }
-                DefaultSpacer()
-                DefaultButton(
-                    modifier = Modifier.fillMaxWidth(),
-                    text = "Login",
-                    buttonVariant = ButtonVariant.Danger,
-                    enabled = false
-                ) {
-
-                }
-                DefaultSpacer()
-                DefaultButton(
-                    modifier = Modifier.fillMaxWidth(),
-                    text = "Login",
-                    buttonVariant = ButtonVariant.Neutral,
-                    enabled = false
-                ) {
-
-                }
-                DefaultSpacer(LocalDimen.current.extraLarge)
             }
 
             // input
-            Column {
-                Text(text = "input default")
-                DefaultSpacer()
+            item {
+                Column {
+                    Text(text = "input default")
+                    DefaultSpacer()
 
-                DefaultTextInput(
-                    label = "Email",
-                    placeholder = "Please input email",
-                    required = true,
-                    inputType = KeyboardType.Email,
-                    value = text.value,
-                    onValueChange = { text.value = it })
-                DefaultSpacer()
-                DefaultTextInput(
-                    label = "Password",
-                    placeholder = "Please input password",
-                    required = true,
-                    inputType = KeyboardType.Password,
-                    value = text.value,
-                    onValueChange = { text.value = it })
-                DefaultSpacer()
-                DefaultTextInput(
-                    label = "Address",
-                    placeholder = "Please input address",
-                    required = true,
-                    singleLine = false,
-                    value = text.value,
-                    minLines = 4,
-                    onValueChange = { text.value = it })
-                DefaultSpacer()
+                    DefaultTextInput(
+                        label = "Email",
+                        placeholder = "Please input email",
+                        required = true,
+                        inputType = KeyboardType.Email,
+                        value = text.value,
+                        onValueChange = { text.value = it })
+                    DefaultSpacer()
+                    DefaultTextInput(
+                        label = "Password",
+                        placeholder = "Please input password",
+                        required = true,
+                        inputType = KeyboardType.Password,
+                        value = text.value,
+                        onValueChange = { text.value = it })
+                    DefaultSpacer()
+                    DefaultTextInput(
+                        label = "Address",
+                        placeholder = "Please input address",
+                        required = true,
+                        singleLine = false,
+                        value = text.value,
+                        minLines = 4,
+                        onValueChange = { text.value = it })
+                    DefaultSpacer()
 
-                Text(text = "input helper")
-                DefaultSpacer()
+                    Text(text = "input helper")
+                    DefaultSpacer()
 
-                DefaultTextInput(
-                    label = "Email",
-                    placeholder = "Please input email",
-                    required = true,
-                    inputType = KeyboardType.Email,
-                    value = text.value,
-                    helperText = "Helper text",
-                    onValueChange = { text.value = it })
-                DefaultSpacer()
-                DefaultTextInput(
-                    label = "Password",
-                    placeholder = "Please input password",
-                    required = true,
-                    inputType = KeyboardType.Password,
-                    value = text.value,
-                    helperText = "Password must be at least 8 characters",
-                    onValueChange = { text.value = it })
-                DefaultSpacer()
-                DefaultTextInput(
-                    label = "Address",
-                    placeholder = "Please input address",
-                    required = true,
-                    singleLine = false,
-                    value = text.value,
-                    minLines = 4,
-                    helperText = "Helper Text",
-                    onValueChange = { text.value = it })
-                DefaultSpacer()
+                    DefaultTextInput(
+                        label = "Email",
+                        placeholder = "Please input email",
+                        required = true,
+                        inputType = KeyboardType.Email,
+                        value = text.value,
+                        helperText = "Helper text",
+                        onValueChange = { text.value = it })
+                    DefaultSpacer()
+                    DefaultTextInput(
+                        label = "Password",
+                        placeholder = "Please input password",
+                        required = true,
+                        inputType = KeyboardType.Password,
+                        value = text.value,
+                        helperText = "Password must be at least 8 characters",
+                        onValueChange = { text.value = it })
+                    DefaultSpacer()
+                    DefaultTextInput(
+                        label = "Address",
+                        placeholder = "Please input address",
+                        required = true,
+                        singleLine = false,
+                        value = text.value,
+                        minLines = 4,
+                        helperText = "Helper Text",
+                        onValueChange = { text.value = it })
+                    DefaultSpacer()
 
-                Text(text = "input currency")
-                DefaultSpacer()
+                    Text(text = "input currency")
+                    DefaultSpacer()
 
-                DefaultTextInputCurrency(
-                    label = "Payment Amount",
-                    placeholder = "0",
-                    required = true,
-                    value = payAmount.value,
-                    inputType = KeyboardType.Number,
-                    leadingIcon = {
-                        Row(
-                            modifier = Modifier
-                                .fillMaxHeight()
-                                .padding(
-                                    start = LocalDimen.current.regular,
-                                    end = LocalDimen.current.default
-                                ),
-                            horizontalArrangement = Arrangement.Center,
-                            verticalAlignment = Alignment.CenterVertically
-                        ) {
-                            Text(
-                                text = "Rp", style = MaterialTheme.typography.bodyMedium.copy(
-                                    color = colorResource(
-                                        id = R.color.text_secondary
-                                    )
-                                ),
-                                textAlign = TextAlign.Center
-                            )
-                        }
-                    },
-                    onValueChange = { value ->
-                        payAmount.value = value.toCommaFormat()
-                    },
-                )
-                DefaultSpacer()
-
-                Text(text = "input error")
-                DefaultSpacer()
-
-                DefaultTextInput(
-                    label = "Email",
-                    placeholder = "Please input email",
-                    required = true,
-                    inputType = KeyboardType.Email,
-                    value = text.value,
-                    errorText = "Invalid email or password",
-                    onValueChange = { text.value = it })
-                DefaultSpacer()
-                DefaultTextInput(
-                    label = "Password",
-                    placeholder = "Please input password",
-                    required = true,
-                    inputType = KeyboardType.Password,
-                    value = text.value,
-                    errorText = "Invalid email or password",
-                    onValueChange = { text.value = it })
-                DefaultSpacer()
-                DefaultTextInput(
-                    label = "Address",
-                    placeholder = "Please input address",
-                    required = true,
-                    singleLine = false,
-                    value = text.value,
-                    minLines = 4,
-                    errorText = "Invalid address",
-                    onValueChange = { text.value = it })
-                DefaultSpacer()
-
-                Text(text = "input placeholder wrap content")
-                DefaultSpacer()
-
-                DefaultTextInputDropdown(
-                    value = "",
-                    onClick = { },
-                    onValueChange = {},
-                    placeholder = "halo nama saya stanley",
-                    isWrapContent = true
-                )
-
-                DefaultSpacer(height = LocalDimen.current.extraLarge)
-            }
-
-            // top app bar
-            Column {
-                Text(text = "top bar default")
-                DefaultSpacer()
-                DefaultTopAppBar(modifier = Modifier.fillMaxWidth(), title = "Sample Top Bar")
-                DefaultSpacer()
-                DefaultTopAppBar(
-                    modifier = Modifier.fillMaxWidth(),
-                    title = "Sample Top Bar",
-                    canBack = true
-                )
-                DefaultSpacer()
-                DefaultTopAppBar(
-                    modifier = Modifier.fillMaxWidth(),
-                    title = "Sample Top Bar",
-                    canClose = true
-                )
-                DefaultSpacer()
-                DefaultTopAppBar(
-                    modifier = Modifier.fillMaxWidth(),
-                    title = "Sample Plain Top Bar",
-                    plain = true,
-                    canBack = true,
-                    actions = {
-                        Row {
-                            IconButton(onClick = { }) {
-                                Icon(
-                                    painter = painterResource(id = R.drawable.ic_help),
-                                    contentDescription = "Help",
-                                    tint = colorResource(id = R.color.text_secondary)
+                    DefaultTextInputCurrency(
+                        label = "Payment Amount",
+                        placeholder = "0",
+                        required = true,
+                        value = payAmount.value,
+                        inputType = KeyboardType.Number,
+                        leadingIcon = {
+                            Row(
+                                modifier = Modifier
+                                    .fillMaxHeight()
+                                    .padding(
+                                        start = LocalDimen.current.regular,
+                                        end = LocalDimen.current.default
+                                    ),
+                                horizontalArrangement = Arrangement.Center,
+                                verticalAlignment = Alignment.CenterVertically
+                            ) {
+                                Text(
+                                    text = "Rp", style = MaterialTheme.typography.bodyMedium.copy(
+                                        color = colorResource(
+                                            id = R.color.text_secondary
+                                        )
+                                    ),
+                                    textAlign = TextAlign.Center
                                 )
                             }
-                            IconButton(onClick = { }) {
-                                Icon(
-                                    painter = painterResource(id = R.drawable.ic_profile),
-                                    contentDescription = "User",
-                                    tint = colorResource(id = R.color.text_secondary)
-                                )
-                            }
-                        }
-                    }
-                )
-                DefaultSpacer(height = LocalDimen.current.extraLarge)
-            }
+                        },
+                        onValueChange = { value ->
+                            payAmount.value = value.toCommaFormat()
+                        },
+                    )
+                    DefaultSpacer()
 
-            // top app bar
-            Column {
-                Text(text = "progress dialog")
-                DefaultSpacer()
-                DefaultButton(
-                    modifier = Modifier.fillMaxWidth(),
-                    text = "Show Progress",
-                    buttonVariant = ButtonVariant.Primary
-                ) {
-                    showProgress.value = true
-                    coroutineScope.launch {
-                        delay(3000)
-                        showProgress.value = false
-                    }
+                    Text(text = "input error")
+                    DefaultSpacer()
+
+                    DefaultTextInput(
+                        label = "Email",
+                        placeholder = "Please input email",
+                        required = true,
+                        inputType = KeyboardType.Email,
+                        value = text.value,
+                        errorText = "Invalid email or password",
+                        onValueChange = { text.value = it })
+                    DefaultSpacer()
+                    DefaultTextInput(
+                        label = "Password",
+                        placeholder = "Please input password",
+                        required = true,
+                        inputType = KeyboardType.Password,
+                        value = text.value,
+                        errorText = "Invalid email or password",
+                        onValueChange = { text.value = it })
+                    DefaultSpacer()
+                    DefaultTextInput(
+                        label = "Address",
+                        placeholder = "Please input address",
+                        required = true,
+                        singleLine = false,
+                        value = text.value,
+                        minLines = 4,
+                        errorText = "Invalid address",
+                        onValueChange = { text.value = it })
+                    DefaultSpacer()
+
+                    Text(text = "input placeholder wrap content")
+                    DefaultSpacer()
+
+                    DefaultTextInputDropdown(
+                        value = "",
+                        onClick = { },
+                        onValueChange = {},
+                        placeholder = "halo nama saya stanley",
+                        isWrapContent = true
+                    )
+
+                    DefaultSpacer(height = LocalDimen.current.extraLarge)
                 }
-                DefaultProgressDialog(show = showProgress.value)
             }
 
-            if (openBottomSheet) {
-                DefaultBottomSheetSessionExpired(
-                    sheetState = bottomSheetState,
-                    onPositive = { openBottomSheet2 = true },
-                    onDismissRequest = { openBottomSheet = false }
-                )
+            // top app bar
+            item {
+                Column {
+                    Text(text = "top bar default")
+                    DefaultSpacer()
+                    DefaultTopAppBar(modifier = Modifier.fillMaxWidth(), title = "Sample Top Bar")
+                    DefaultSpacer()
+                    DefaultTopAppBar(
+                        modifier = Modifier.fillMaxWidth(),
+                        title = "Sample Top Bar",
+                        canBack = true
+                    )
+                    DefaultSpacer()
+                    DefaultTopAppBar(
+                        modifier = Modifier.fillMaxWidth(),
+                        title = "Sample Top Bar",
+                        canClose = true
+                    )
+                    DefaultSpacer()
+                    DefaultTopAppBar(
+                        modifier = Modifier.fillMaxWidth(),
+                        title = "Sample Plain Top Bar",
+                        canBack = true,
+                        actions = {
+                            Row {
+                                IconButton(onClick = { }) {
+                                    Icon(
+                                        painter = painterResource(id = R.drawable.ic_help),
+                                        contentDescription = "Help",
+                                        tint = colorResource(id = R.color.text_secondary)
+                                    )
+                                }
+                                IconButton(onClick = { }) {
+                                    Icon(
+                                        painter = painterResource(id = R.drawable.ic_profile),
+                                        contentDescription = "User",
+                                        tint = colorResource(id = R.color.text_secondary)
+                                    )
+                                }
+                            }
+                        }
+                    )
+                    DefaultTopAppBarMultiLine(
+                        modifier = Modifier.fillMaxWidth(),
+                        title = "Multi Line Top Bar - Lorem ipsum dolor sit amet, consectetuer adipiscin",
+                        canBack = true,
+                    )
+                    DefaultSpacer()
+                    DefaultTopAppBarMultiLine(
+                        modifier = Modifier.fillMaxWidth(),
+                        title = "Multi Line Top Bar (With Action) - Lorem ipsum dolor sit amet, consectetuer adipiscin",
+                        canBack = true,
+                        actions = {
+                            Row {
+                                IconButton(onClick = { }) {
+                                    Icon(
+                                        painter = painterResource(id = R.drawable.ic_help),
+                                        contentDescription = "Help",
+                                        tint = colorResource(id = R.color.text_secondary)
+                                    )
+                                }
+                                IconButton(onClick = { }) {
+                                    Icon(
+                                        painter = painterResource(id = R.drawable.ic_profile),
+                                        contentDescription = "User",
+                                        tint = colorResource(id = R.color.text_secondary)
+                                    )
+                                }
+                            }
+                        }
+                    )
+                    DefaultTopAppBarMultiLine(
+                        modifier = Modifier.fillMaxWidth(),
+                        title = "Multi Line Top Bar (With Action & MaxLines 3) - Lorem ipsum dolor sit amet, consectetuer adipiscin",
+                        canBack = true,
+                        maxLines = 3,
+                        actions = {
+                            Row {
+                                IconButton(onClick = { }) {
+                                    Icon(
+                                        painter = painterResource(id = R.drawable.ic_help),
+                                        contentDescription = "Help",
+                                        tint = colorResource(id = R.color.text_secondary)
+                                    )
+                                }
+                                IconButton(onClick = { }) {
+                                    Icon(
+                                        painter = painterResource(id = R.drawable.ic_profile),
+                                        contentDescription = "User",
+                                        tint = colorResource(id = R.color.text_secondary)
+                                    )
+                                }
+                            }
+                        }
+                    )
+                    DefaultSpacer()
+                    DefaultSpacer(height = LocalDimen.current.extraLarge)
+                }
             }
-            if (openBottomSheet2) {
-                DefaultBottomSheet(
-                    sheetState = bottomSheetState2,
-                    bottomSheetType = BottomSheetType.Content,
-                    onPositive = { },
-                    onDismissRequest = { openBottomSheet2 = false }
-                ) {
-                    Column(
-                        modifier = Modifier
-                            .padding(horizontal = LocalDimen.current.regular),
-                        verticalArrangement = Arrangement.SpaceBetween
+
+            // progress
+            item {
+                Column {
+                    Text(text = "progress dialog")
+                    DefaultSpacer()
+                    DefaultButton(
+                        modifier = Modifier.fillMaxWidth(),
+                        text = "Show Progress",
+                        buttonVariant = ButtonVariant.Primary
                     ) {
-                        // content with column scope
+                        showProgress.value = true
+                        coroutineScope.launch {
+                            delay(3000)
+                            showProgress.value = false
+                        }
                     }
+                    DefaultProgressDialog(show = showProgress.value)
+                }
+            }
+        }
+
+        if (openBottomSheet) {
+            DefaultBottomSheetSessionExpired(
+                sheetState = bottomSheetState,
+                onPositive = { openBottomSheet2 = true },
+                onDismissRequest = { openBottomSheet = false }
+            )
+        }
+
+        if (openBottomSheet2) {
+            DefaultBottomSheet(
+                sheetState = bottomSheetState2,
+                bottomSheetType = BottomSheetType.Content,
+                onPositive = { },
+                onDismissRequest = { openBottomSheet2 = false }
+            ) {
+                Column(
+                    modifier = Modifier
+                        .padding(horizontal = LocalDimen.current.regular),
+                    verticalArrangement = Arrangement.SpaceBetween
+                ) {
+                    // content with column scope
                 }
             }
         }
