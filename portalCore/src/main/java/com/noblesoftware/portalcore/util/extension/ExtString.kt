@@ -66,11 +66,11 @@ val String.graph: String
     get() = this + "_graph"
 
 fun String.addArgument(argument: String, nullable: Boolean? = false): String {
-    return if (nullable == true) if (this.contains("?")) "${this}$argument&={$argument}" else "${this}$argument?={$argument}" else "${this}/{$argument}"
+    return if (nullable == true) if (this.contains("?")) "${this}&$argument={$argument}" else "${this}?$argument={$argument}" else "${this}/{$argument}"
 }
 
 fun String.addArgumentValue(argument: String, value: String, nullable: Boolean? = false): String {
-    return if (nullable == true) if (this.contains("?")) "${this}$argument&=$value" else "${this}?$argument=$value" else "${this}/$value"
+    return if (nullable == true) if (this.contains("?")) "${this}&$argument=$value" else "${this}?$argument=$value" else "${this}/$value"
 }
 
 fun String.toHtmlFormat(): String {
