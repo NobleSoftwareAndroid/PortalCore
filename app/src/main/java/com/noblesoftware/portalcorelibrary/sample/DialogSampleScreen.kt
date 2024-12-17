@@ -102,6 +102,8 @@ fun DialogSampleScreen(
                     showAlertDialog.value = false
                     null
                 },
+//                dismissOnBackPress = false,
+//                dismissOnClickOutside = false
             )
         }
 

@@ -49,7 +49,7 @@ import com.noblesoftware.portalcore.theme.LocalShapes
  * @param onDismissRequest A callback when the dialog is dismissed (optional).
  *
  * @sample com.noblesoftware.portalcore.component.compose.ExampleDefaultDialog
- * 
+ *
  * @author VPN Android Team
  * @since 2024
  **/
@@ -63,8 +63,10 @@ fun DefaultDialog(
     messageAnnotated: AnnotatedString? = null,
     dialogType: DialogType = DialogType.Default,
     positiveButtonText: String,
-    onPositive: () -> Unit,
     negativeButtonText: String = stringResource(id = R.string.empty_string),
+    dismissOnBackPress: Boolean = true,
+    dismissOnClickOutside: Boolean = true,
+    onPositive: () -> Unit,
     onNegative: () -> Unit? = {},
     onDismissRequest: () -> Unit? = {}
 ) {
@@ -74,7 +76,9 @@ fun DefaultDialog(
             onDismissRequest = { onDismissRequest.invoke() },
             properties = DialogProperties(
                 usePlatformDefaultWidth = false,
-                decorFitsSystemWindows = true
+                decorFitsSystemWindows = true,
+                dismissOnBackPress = dismissOnBackPress,
+                dismissOnClickOutside = dismissOnClickOutside,
             ),
         ) {
             Card(
@@ -160,7 +164,10 @@ private fun DialogContent(
         Text(
             modifier = Modifier.fillMaxWidth(),
             text = title,
-            style = MaterialTheme.typography.labelLarge.copy(fontSize = 18.sp, color = colorResource(id = R.color.text_primary)),
+            style = MaterialTheme.typography.labelLarge.copy(
+                fontSize = 18.sp,
+                color = colorResource(id = R.color.text_primary)
+            ),
             textAlign = TextAlign.Center
         )
         message?.let {
