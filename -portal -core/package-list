@@ -428,6 +428,7 @@ $dokka.location:com.noblesoftware.portalcore.util.extension//getWindowWidth/#/Po
 $dokka.location:com.noblesoftware.portalcore.util.extension//getYYYYMMDD/java.util.Date?#/PointingToDeclaration/-portal -core/com.noblesoftware.portalcore.util.extension/get-y-y-y-y-m-m-d-d.html
 $dokka.location:com.noblesoftware.portalcore.util.extension//gone/android.view.View#/PointingToDeclaration/-portal -core/com.noblesoftware.portalcore.util.extension/gone.html
 $dokka.location:com.noblesoftware.portalcore.util.extension//graph/kotlin.String#/PointingToDeclaration/-portal -core/com.noblesoftware.portalcore.util.extension/graph.html
+$dokka.location:com.noblesoftware.portalcore.util.extension//handleSafeScaffoldPadding/androidx.compose.ui.Modifier#/PointingToDeclaration/-portal -core/com.noblesoftware.portalcore.util.extension/handle-safe-scaffold-padding.html
 $dokka.location:com.noblesoftware.portalcore.util.extension//hasPermissions/#android.content.Context#kotlin.Array[kotlin.String]/PointingToDeclaration/-portal -core/com.noblesoftware.portalcore.util.extension/has-permissions.html
 $dokka.location:com.noblesoftware.portalcore.util.extension//hideKeyboard/#android.app.Activity#android.os.IBinder?/PointingToDeclaration/-portal -core/com.noblesoftware.portalcore.util.extension/hide-keyboard.html
 $dokka.location:com.noblesoftware.portalcore.util.extension//htmlToString/kotlin.String#/PointingToDeclaration/-portal -core/com.noblesoftware.portalcore.util.extension/html-to-string.html
