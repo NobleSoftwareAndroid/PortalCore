@@ -5,12 +5,10 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.safeDrawingPadding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.colorResource
 import androidx.navigation.NavHostController
@@ -33,7 +31,7 @@ fun MainScreen(
         view.setTransparentStatusBar(transparentStatusBar = false)
     }
     Scaffold(
-        modifier = Modifier.safeDrawingPadding(),
+        modifier = Modifier.handleSafeScaffoldPadding(),
         topBar = {
             DefaultTopAppBar(
                 modifier = Modifier,
@@ -51,7 +49,6 @@ fun MainScreen(
                     horizontal = LocalDimen.current.regular,
                     vertical = LocalDimen.current.extraLarge
                 )
-                .handleSafeScaffoldPadding()
         ) {
             DefaultButton(
                 modifier = Modifier.fillMaxWidth(),
