@@ -38,6 +38,7 @@ import com.noblesoftware.portalcore.model.SelectOption
 import com.noblesoftware.portalcore.model.SnackbarState
 import com.noblesoftware.portalcore.theme.LocalDimen
 import com.noblesoftware.portalcore.util.extension.findActivity
+import com.noblesoftware.portalcore.util.extension.handleSafeScaffoldPadding
 
 @Composable
 fun BottomSheetSampleScreen(
@@ -79,6 +80,7 @@ fun BottomSheetSampleScreen(
     }
 
     Scaffold(
+        modifier = Modifier.handleSafeScaffoldPadding(),
         topBar = {
             DefaultTopAppBar(
                 modifier = Modifier,
