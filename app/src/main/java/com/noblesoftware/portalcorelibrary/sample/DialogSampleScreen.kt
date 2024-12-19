@@ -29,6 +29,7 @@ import com.noblesoftware.portalcore.component.compose.DefaultTopAppBar
 import com.noblesoftware.portalcore.component.compose.DialogType
 import com.noblesoftware.portalcore.theme.LocalDimen
 import com.noblesoftware.portalcore.util.DateTimeHelper
+import com.noblesoftware.portalcore.util.extension.handleSafeScaffoldPadding
 import java.util.Date
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -47,6 +48,7 @@ fun DialogSampleScreen(
     }
 
     Scaffold(
+        modifier = Modifier.handleSafeScaffoldPadding(),
         topBar = {
             DefaultTopAppBar(
                 modifier = Modifier,

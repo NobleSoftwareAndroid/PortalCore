@@ -32,6 +32,7 @@ import com.noblesoftware.portalcore.component.compose.showDefaultSnackbar
 import com.noblesoftware.portalcore.model.SnackbarState
 import com.noblesoftware.portalcore.model.SnackbarType
 import com.noblesoftware.portalcore.theme.LocalDimen
+import com.noblesoftware.portalcore.util.extension.handleSafeScaffoldPadding
 
 @Composable
 fun SnackBarSampleScreen(
@@ -72,6 +73,7 @@ fun SnackBarSampleScreen(
     }
 
     Scaffold(
+        modifier = Modifier.handleSafeScaffoldPadding(),
         topBar = {
             DefaultTopAppBar(
                 modifier = Modifier,

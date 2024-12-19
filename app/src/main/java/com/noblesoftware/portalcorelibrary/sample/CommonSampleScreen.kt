@@ -8,8 +8,6 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -47,6 +45,7 @@ import com.noblesoftware.portalcore.component.compose.DefaultTextInputDropdown
 import com.noblesoftware.portalcore.component.compose.DefaultTopAppBar
 import com.noblesoftware.portalcore.component.compose.DefaultTopAppBarMultiLine
 import com.noblesoftware.portalcore.theme.LocalDimen
+import com.noblesoftware.portalcore.util.extension.handleSafeScaffoldPadding
 import com.noblesoftware.portalcore.util.extension.toCommaFormat
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -66,6 +65,7 @@ fun CommonSampleScreen(
     var openBottomSheet2 by rememberSaveable { mutableStateOf(false) }
 
     Scaffold(
+        modifier = Modifier.handleSafeScaffoldPadding(),
         topBar = {
             DefaultTopAppBar(
                 modifier = Modifier,

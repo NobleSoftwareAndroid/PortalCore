@@ -23,6 +23,7 @@ import com.noblesoftware.portalcore.container.FragmentContainerActivity
 import com.noblesoftware.portalcore.container.WebViewContainerFragment
 import com.noblesoftware.portalcore.theme.LocalDimen
 import com.noblesoftware.portalcore.util.extension.findActivity
+import com.noblesoftware.portalcore.util.extension.handleSafeScaffoldPadding
 import com.noblesoftware.portalcorelibrary.sample.fragment.SampleBlankFragment
 
 @Composable
@@ -33,6 +34,7 @@ fun ContainerSampleScreen(
     val activity = context.findActivity()
 
     Scaffold(
+        modifier = Modifier.handleSafeScaffoldPadding(),
         topBar = {
             DefaultTopAppBar(
                 modifier = Modifier,

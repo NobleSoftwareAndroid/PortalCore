@@ -5,16 +5,20 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.colorResource
 import androidx.navigation.NavHostController
+import com.noblesoftware.portalcore.R
 import com.noblesoftware.portalcore.component.compose.ButtonVariant
 import com.noblesoftware.portalcore.component.compose.DefaultButton
 import com.noblesoftware.portalcore.component.compose.DefaultSpacer
+import com.noblesoftware.portalcore.component.compose.DefaultTopAppBar
 import com.noblesoftware.portalcore.theme.LocalDimen
+import com.noblesoftware.portalcore.util.extension.handleSafeScaffoldPadding
 import com.noblesoftware.portalcore.util.extension.setTransparentStatusBar
 
 @Composable
@@ -26,62 +30,73 @@ fun MainScreen(
     LaunchedEffect(true) {
         view.setTransparentStatusBar(transparentStatusBar = false)
     }
-
-    Column(
-        modifier = Modifier
-            .background(color = colorResource(id = com.noblesoftware.portalcore.R.color.background_body))
-            .fillMaxSize()
-            .padding(
-                horizontal = LocalDimen.current.regular,
-                vertical = LocalDimen.current.extraLarge
+    Scaffold(
+        modifier = Modifier.handleSafeScaffoldPadding(),
+        topBar = {
+            DefaultTopAppBar(
+                modifier = Modifier,
+                title = "Portal Core Example",
+                navigator = navHostController
             )
+        },
     ) {
-        DefaultButton(
-            modifier = Modifier.fillMaxWidth(),
-            text = "Common Components",
-            buttonVariant = ButtonVariant.Neutral
+        Column(
+            modifier = Modifier
+                .background(color = colorResource(id = R.color.background_body))
+                .fillMaxSize()
+                .padding(it)
+                .padding(
+                    horizontal = LocalDimen.current.regular,
+                    vertical = LocalDimen.current.extraLarge
+                )
         ) {
-            navHostController.navigate(route = CommonRoute)
-        }
-        DefaultSpacer()
-        DefaultButton(
-            modifier = Modifier.fillMaxWidth(),
-            text = "Snackbar",
-            buttonVariant = ButtonVariant.Neutral
-        ) {
-            navHostController.navigate(route = SnackBarRoute)
-        }
-        DefaultSpacer()
-        DefaultButton(
-            modifier = Modifier.fillMaxWidth(),
-            text = "Bottom Sheet",
-            buttonVariant = ButtonVariant.Neutral
-        ) {
-            navHostController.navigate(route = BottomSheetRoute)
-        }
-        DefaultSpacer()
-        DefaultButton(
-            modifier = Modifier.fillMaxWidth(),
-            text = "Container",
-            buttonVariant = ButtonVariant.Neutral
-        ) {
-            navHostController.navigate(route = ContainerRoute)
-        }
-        DefaultSpacer()
-        DefaultButton(
-            modifier = Modifier.fillMaxWidth(),
-            text = "Full Edge",
-            buttonVariant = ButtonVariant.Neutral
-        ) {
-            navHostController.navigate(route = FullEdgeRoute)
-        }
-        DefaultSpacer()
-        DefaultButton(
-            modifier = Modifier.fillMaxWidth(),
-            text = "Dialog",
-            buttonVariant = ButtonVariant.Neutral
-        ) {
-            navHostController.navigate(route = DialogRoute)
+            DefaultButton(
+                modifier = Modifier.fillMaxWidth(),
+                text = "Common Components",
+                buttonVariant = ButtonVariant.Neutral
+            ) {
+                navHostController.navigate(route = CommonRoute)
+            }
+            DefaultSpacer()
+            DefaultButton(
+                modifier = Modifier.fillMaxWidth(),
+                text = "Snackbar",
+                buttonVariant = ButtonVariant.Neutral
+            ) {
+                navHostController.navigate(route = SnackBarRoute)
+            }
+            DefaultSpacer()
+            DefaultButton(
+                modifier = Modifier.fillMaxWidth(),
+                text = "Bottom Sheet",
+                buttonVariant = ButtonVariant.Neutral
+            ) {
+                navHostController.navigate(route = BottomSheetRoute)
+            }
+            DefaultSpacer()
+            DefaultButton(
+                modifier = Modifier.fillMaxWidth(),
+                text = "Container",
+                buttonVariant = ButtonVariant.Neutral
+            ) {
+                navHostController.navigate(route = ContainerRoute)
+            }
+            DefaultSpacer()
+            DefaultButton(
+                modifier = Modifier.fillMaxWidth(),
+                text = "Full Edge",
+                buttonVariant = ButtonVariant.Neutral
+            ) {
+                navHostController.navigate(route = FullEdgeRoute)
+            }
+            DefaultSpacer()
+            DefaultButton(
+                modifier = Modifier.fillMaxWidth(),
+                text = "Dialog",
+                buttonVariant = ButtonVariant.Neutral
+            ) {
+                navHostController.navigate(route = DialogRoute)
+            }
         }
     }
 }

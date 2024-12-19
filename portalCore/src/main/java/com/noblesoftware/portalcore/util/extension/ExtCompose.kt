@@ -1,8 +1,8 @@
 package com.noblesoftware.portalcore.util.extension
 
-import android.content.res.Configuration
 import android.content.res.Resources
-import androidx.annotation.StringRes
+import androidx.compose.foundation.layout.navigationBarsPadding
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
@@ -22,7 +22,6 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import java.util.Locale
 
 
 @Composable
@@ -79,3 +78,7 @@ fun Modifier.fadingEdge(brush: Brush) = this
         drawContent()
         drawRect(brush = brush, blendMode = BlendMode.DstIn)
     }
+
+fun Modifier.handleSafeScaffoldPadding() = this
+    .statusBarsPadding()
+    .navigationBarsPadding()
