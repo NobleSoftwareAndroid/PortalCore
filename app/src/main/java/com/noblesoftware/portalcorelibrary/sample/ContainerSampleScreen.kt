@@ -67,7 +67,7 @@ fun ContainerSampleScreen(
             DefaultSpacer()
             DefaultButton(
                 modifier = Modifier.fillMaxWidth(),
-                text = "Dynamic Fragment Containet",
+                text = "Dynamic Fragment Container",
                 buttonVariant = ButtonVariant.Neutral
             ) {
                 FragmentContainerActivity().FragmentTransitionBuilder(context).show(
