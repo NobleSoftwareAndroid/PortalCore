@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -62,6 +63,18 @@ fun ContainerSampleScreen(
             ) {
                 FragmentContainerActivity().FragmentTransitionBuilder(context)
                     .setFragment(SampleBlankFragment()).show()
+            }
+            DefaultSpacer()
+            DefaultButton(
+                modifier = Modifier.fillMaxWidth(),
+                text = "Dynamic Fragment Containet",
+                buttonVariant = ButtonVariant.Neutral
+            ) {
+                FragmentContainerActivity().FragmentTransitionBuilder(context).show(
+                    content = {
+                        Text(text = "Dynamic Fragment Container example")
+                    }
+                )
             }
             DefaultSpacer()
             DefaultButton(

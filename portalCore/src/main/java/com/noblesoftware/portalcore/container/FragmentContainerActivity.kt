@@ -2,11 +2,12 @@ package com.noblesoftware.portalcore.container
 
 import android.content.Context
 import android.content.Intent
-import android.content.res.Resources
 import android.os.Bundle
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.runtime.Composable
+import androidx.core.os.bundleOf
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.databinding.DataBindingUtil
@@ -67,6 +68,16 @@ class FragmentContainerActivity : AppCompatActivity() {
             } else {
                 context.startActivity(Intent(context, FragmentContainerActivity::class.java))
             }
+        }
+
+        fun show(
+            content: @Composable () -> Unit,
+            arguments: Bundle = bundleOf(),
+            getResult: ActivityResultLauncher<Intent>? = null
+        ) {
+            setFragment(DynamicFragment.newInstance(content).apply {
+                setArguments(arguments)
+            }).show(getResult)
         }
     }
 
