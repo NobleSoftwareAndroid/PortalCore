@@ -12,9 +12,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonColors
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
-import androidx.compose.material3.LocalMinimumInteractiveComponentEnforcement
+import androidx.compose.material3.LocalMinimumInteractiveComponentSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -26,12 +25,13 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.noblesoftware.portalcore.R
 import com.noblesoftware.portalcore.theme.LocalDimen
 import com.noblesoftware.portalcore.theme.LocalShapes
+import com.noblesoftware.portalcore.util.extension.isFalse
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DefaultFileButton(
     modifier: Modifier = Modifier,
@@ -44,9 +44,10 @@ fun DefaultFileButton(
     borderColor: Color = colorResource(id = R.color.divider),
     rippleColor: Color = colorResource(id = R.color.primary_plain_color),
     buttonType: ButtonType = ButtonType.Outlined,
+    isWrapContent: Boolean = false,
     onClick: () -> Unit,
 ) {
-    CompositionLocalProvider(LocalMinimumInteractiveComponentEnforcement provides false) {
+    CompositionLocalProvider(LocalMinimumInteractiveComponentSize provides Dp.Unspecified) {
         Button(
             modifier = modifier,
             contentPadding = PaddingValues(LocalDimen.current.zero),
@@ -65,7 +66,9 @@ fun DefaultFileButton(
         ) {
             Row(
                 modifier = Modifier
-                    .fillMaxWidth()
+                    .then(
+                        if (isWrapContent.isFalse()) Modifier.fillMaxWidth() else Modifier
+                    )
                     .padding(
                         start = LocalDimen.current.small,
                         top = LocalDimen.current.small,
