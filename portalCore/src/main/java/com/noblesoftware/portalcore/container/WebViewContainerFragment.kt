@@ -5,7 +5,6 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.net.Uri
-import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -16,18 +15,16 @@ import android.webkit.WebResourceResponse
 import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient
-import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.noblesoftware.portalcore.R
-import com.noblesoftware.portalcore.util.extension.fileExtension
+import com.noblesoftware.portalcore.databinding.ActivityWebviewContainerBinding
 import com.noblesoftware.portalcore.util.extension.gone
 import com.noblesoftware.portalcore.util.extension.isTrue
 import com.noblesoftware.portalcore.util.extension.orFalse
 import com.noblesoftware.portalcore.util.extension.visible
-import com.noblesoftware.portalcore.databinding.ActivityWebviewContainerBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -37,6 +34,7 @@ import kotlinx.coroutines.launch
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.Response
+import java.net.URLEncoder
 
 
 @AndroidEntryPoint
@@ -53,7 +51,12 @@ class WebViewContainerFragment : Fragment() {
         const val IS_OPEN_FILE_URL = "open_file_url"
         const val IS_OPEN_PREVIEW_RESUME = "preview_resume"
         const val TOKEN = "token"
-        fun newInstance(title: String?, url: String?, token: String? = null, isOpenFileUrl: Boolean = false): WebViewContainerFragment {
+        fun newInstance(
+            title: String?,
+            url: String?,
+            token: String? = null,
+            isOpenFileUrl: Boolean = false
+        ): WebViewContainerFragment {
             return WebViewContainerFragment().apply {
                 arguments = bundleOf(
                     TOKEN to token,
@@ -116,7 +119,8 @@ class WebViewContainerFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = DataBindingUtil.inflate(inflater, R.layout.activity_webview_container, container, false)
+        binding =
+            DataBindingUtil.inflate(inflater, R.layout.activity_webview_container, container, false)
         return binding.root
     }
 
@@ -163,7 +167,12 @@ class WebViewContainerFragment : Fragment() {
                 } else {
                     val url = request?.url.toString()
                     if (url.isNotEmpty()) {
-                        startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(request?.url.toString())))
+                        startActivity(
+                            Intent(
+                                Intent.ACTION_VIEW,
+                                Uri.parse(request?.url.toString())
+                            )
+                        )
                     }
                 }
                 return super.shouldOverrideUrlLoading(view, request)
@@ -184,7 +193,10 @@ class WebViewContainerFragment : Fragment() {
                     val httpClient = OkHttpClient()
                     val request: Request = Request.Builder()
                         .url(urlRequest)
-                        .addHeader("Authorization", "Bearer ${arguments?.getString(TOKEN).orEmpty()}")
+                        .addHeader(
+                            "Authorization",
+                            "Bearer ${arguments?.getString(TOKEN).orEmpty()}"
+                        )
                         .build()
                     val response: Response = httpClient.newCall(request).execute()
                     WebResourceResponse(
@@ -198,18 +210,14 @@ class WebViewContainerFragment : Fragment() {
             }
         }
         if (viewModel.isOpenFile.isTrue()) {
-            val fileExtension = viewModel.url?.fileExtension
-            when (fileExtension?.uppercase()) {
-                FileType.PDF.toString(), FileType.DOC.toString(), FileType.DOCX.toString(), FileType.TXT.toString(), FileType.RTF.toString() -> {
-                    val baseUrl = "https://docs.google.com/gview?embedded=true&url=${viewModel.url}"
-                    viewModel.url = baseUrl
-                    binding.webView.loadUrl(baseUrl)
-                }
-
-                else -> {
-                    binding.webView.loadUrl("${viewModel.url}")
-                }
-            }
+            binding.webView.loadUrl(
+                "https://docs.google.com/gview?embedded=true&url=${
+                    URLEncoder.encode(
+                        viewModel.url,
+                        "UTF-8"
+                    )
+                }"
+            )
         } else if (viewModel.isOpenPreviewResume.isTrue()) {
             val authHeader = "Bearer ${arguments?.getString(TOKEN).orEmpty()}"
             val headers: MutableMap<String, String> = HashMap()
@@ -218,17 +226,6 @@ class WebViewContainerFragment : Fragment() {
         } else {
             binding.webView.loadUrl(viewModel.url ?: "")
         }
-    }
-
-    enum class FileType {
-        JPEG,
-        JPG,
-        PNG,
-        DOC,
-        DOCX,
-        TXT,
-        RTF,
-        PDF,
     }
 
 }
