@@ -89,7 +89,17 @@ fun ContainerSampleScreen(
                 )
             }
             DefaultSpacer()
-
+            DefaultButton(
+                modifier = Modifier.fillMaxWidth(),
+                text = "Web View Container Open File",
+                buttonVariant = ButtonVariant.Neutral
+            ) {
+                WebViewContainerFragment.openFileUrl(
+                    context = context,
+                    title = "Web view Sample",
+                    url = "https://pdfobject.com/pdf/sample.pdf"
+                )
+            }
         }
     }
 }
