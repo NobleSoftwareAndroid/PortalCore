@@ -9,6 +9,7 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -29,6 +30,8 @@ fun DefaultBorderCard(
     modifier: Modifier = Modifier,
     horizontalPadding: Dp = LocalDimen.current.regular,
     verticalPadding: Dp = LocalDimen.current.medium,
+    containerColor: Color = colorResource(id = R.color.background_body),
+    borderColor: Color = colorResource(id = R.color.neutral_outlined_border),
     content: @Composable ColumnScope.() -> Unit
 ) {
     Card(
@@ -36,9 +39,9 @@ fun DefaultBorderCard(
         shape = LocalShapes.medium,
         border = BorderStroke(
             width = 1.dp,
-            color = colorResource(id = R.color.neutral_outlined_border)
+            color = borderColor
         ),
-        colors = CardDefaults.cardColors(containerColor = colorResource(id = R.color.background_body))
+        colors = CardDefaults.cardColors(containerColor = containerColor)
     ) {
         Column(
             modifier = Modifier
