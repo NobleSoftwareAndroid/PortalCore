@@ -24,9 +24,9 @@
     <color name="neutral_outlined_color">#141B25</color>
     <color name="neutral_outlined_border">#D3D5D8</color>
     <color name="neutral_outlined_active_bg">#9FA6AD</color>
-    <color name="neutral_main_channel">#636b7499</color>
-    <color name="neutral_light_channel">#dde7ee99</color>
-    <color name="neutral_dark_channel">#32383e99</color>
+    <color name="neutral_main_channel">#99636b74</color>
+    <color name="neutral_light_channel">#99dde7ee</color>
+    <color name="neutral_dark_channel">#9932383e</color>
 
     <color name="background_backdrop_overlay">#00000080</color>
     <color name="background_tooltip">#222D3E</color>
