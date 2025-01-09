@@ -11,4 +11,5 @@ data class SelectOption(
     var booleanExtras2: Boolean? = null,
     var intExtras: Int? = null,
     var intExtras2: Int? = null,
+    var enabled: Boolean = true,
 )
