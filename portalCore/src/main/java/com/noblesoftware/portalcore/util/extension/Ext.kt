@@ -197,6 +197,8 @@ fun Activity.openAppSettings() {
     ).also(::startActivity)
 }
 
+fun Activity.openLocationSettings() =
+    Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS).also(::startActivity)
 
 fun hasPermissions(context: Context, permissions: Array<String>): Boolean =
     permissions.all {
