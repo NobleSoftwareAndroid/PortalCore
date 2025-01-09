@@ -1,6 +1,7 @@
 package com.noblesoftware.portalcore.component.xml.options_bottom_sheet
 
 import android.app.Dialog
+import android.content.DialogInterface
 import android.os.Bundle
 import android.view.Gravity
 import android.view.LayoutInflater
@@ -91,6 +92,7 @@ open class DefaultBottomSheetDialog : BottomSheetDialogFragment() {
     private var emptyState: @Composable () -> Unit = {}
     private var options: List<SelectOption> = listOf()
     private var onSelected: (List<SelectOption>) -> Unit = {}
+    private var onDismiss: () -> Unit = {}
 
     override fun getTheme(): Int = R.style.ModalBottomSheetDialog
 
@@ -252,19 +254,23 @@ open class DefaultBottomSheetDialog : BottomSheetDialogFragment() {
                                                             Modifier
                                                         }
                                                     )
-                                                    .clickable(
-                                                        interactionSource = remember { MutableInteractionSource() },
-                                                        indication = ripple(
-                                                            color = colorResource(id = R.color.primary_plain_color),
-                                                        ),
-                                                        onClick = {
-                                                            onSelected.invoke(
-                                                                arrayListOf(
-                                                                    selectOption
-                                                                )
+                                                    .then(
+                                                        if (selectOption.enabled) {
+                                                            Modifier.clickable(
+                                                                interactionSource = remember { MutableInteractionSource() },
+                                                                indication = ripple(
+                                                                    color = colorResource(id = R.color.primary_plain_color),
+                                                                ),
+                                                                onClick = {
+                                                                    onSelected.invoke(
+                                                                        arrayListOf(
+                                                                            selectOption
+                                                                        )
+                                                                    )
+                                                                    dismiss()
+                                                                },
                                                             )
-                                                            dismiss()
-                                                        },
+                                                        } else Modifier
                                                     )
                                                     .padding(
                                                         horizontal = LocalDimen.current.default,
@@ -277,7 +283,7 @@ open class DefaultBottomSheetDialog : BottomSheetDialogFragment() {
                                                             ?: R.string.empty_string
                                                     ) else selectOption.name,
                                                     style = MaterialTheme.typography.bodyMedium.copy(
-                                                        color = colorResource(id = if (selectOption.isSelected) R.color.primary_plain_color else R.color.text_primary)
+                                                        color = colorResource(id = if (selectOption.isSelected) R.color.primary_plain_color else if (selectOption.enabled.isFalse()) R.color.primary_plain_disabled_color else R.color.text_primary)
                                                     )
                                                 )
                                             }
@@ -297,18 +303,23 @@ open class DefaultBottomSheetDialog : BottomSheetDialogFragment() {
                                                             Modifier
                                                         }
                                                     )
-                                                    .clickable(
-                                                        interactionSource = remember { MutableInteractionSource() },
-                                                        indication = ripple(
-                                                            color = colorResource(id = R.color.primary_plain_color),
-                                                        ),
-                                                        onClick = {
-                                                            onEvent(
-                                                                BottomSheetEvent.OnSelect(
-                                                                    selectOption
-                                                                )
+                                                    .then(
+                                                        if (selectOption.enabled) {
+                                                            Modifier.clickable(
+                                                                interactionSource = remember { MutableInteractionSource() },
+                                                                indication = ripple(
+                                                                    color = colorResource(id = R.color.primary_plain_color),
+                                                                ),
+                                                                onClick = {
+                                                                    onSelected.invoke(
+                                                                        arrayListOf(
+                                                                            selectOption
+                                                                        )
+                                                                    )
+                                                                    dismiss()
+                                                                },
                                                             )
-                                                        },
+                                                        } else Modifier
                                                     )
                                                     .padding(
                                                         horizontal = LocalDimen.current.default,
@@ -320,6 +331,7 @@ open class DefaultBottomSheetDialog : BottomSheetDialogFragment() {
                                                     LocalMinimumInteractiveComponentSize provides Dp.Unspecified
                                                 ) {
                                                     Checkbox(
+                                                        enabled = selectOption.enabled,
                                                         checked = selectOption.isSelected,
                                                         onCheckedChange = {
                                                             onEvent(
@@ -336,7 +348,7 @@ open class DefaultBottomSheetDialog : BottomSheetDialogFragment() {
                                                             ?: R.string.empty_string
                                                     ) else selectOption.name,
                                                     style = MaterialTheme.typography.bodyMedium.copy(
-                                                        color = colorResource(id = if (selectOption.isSelected) R.color.primary_plain_color else R.color.text_primary)
+                                                        color = colorResource(id = if (selectOption.isSelected) R.color.primary_plain_color else if (selectOption.enabled.isFalse()) R.color.primary_plain_disabled_color else R.color.text_primary)
                                                     )
                                                 )
                                             }
@@ -415,6 +427,11 @@ open class DefaultBottomSheetDialog : BottomSheetDialogFragment() {
         super.onDestroy()
     }
 
+    override fun onDismiss(dialog: DialogInterface) {
+        super.onDismiss(dialog)
+        onDismiss.invoke()
+    }
+
     companion object {
         fun showDialog(
             fragmentManager: FragmentManager,
@@ -435,6 +452,7 @@ open class DefaultBottomSheetDialog : BottomSheetDialogFragment() {
                 )
             },
             options: List<SelectOption> = listOf(),
+            onDismiss: () -> Unit = {},
             onSelected: (List<SelectOption>) -> Unit = {}
         ) {
             DefaultBottomSheetDialog().apply {
@@ -445,6 +463,7 @@ open class DefaultBottomSheetDialog : BottomSheetDialogFragment() {
                 this.searchHint = searchHint
                 this.emptyState = emptyState
                 this.options = options
+                this.onDismiss = onDismiss
                 this.onSelected = onSelected
             }.show(fragmentManager, DefaultBottomSheetDialog::class.java.simpleName)
         }

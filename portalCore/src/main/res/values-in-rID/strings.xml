@@ -30,4 +30,6 @@
     <string name="no_data_available">Tidak ada data tersedia</string>
     <string name="data_related_will_be_shown_here">Data terkait akan tampil di sini</string>
     <string name="select_time">Pilih waktu</string>
+    <string name="hours">jam</string>
+    <string name="mins">mnt</string>
 </resources>

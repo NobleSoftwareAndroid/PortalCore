@@ -192,6 +192,13 @@ fun getWindowHeight(): Int = Resources.getSystem().displayMetrics.heightPixels
 
 fun getWindowWidth(): Int = Resources.getSystem().displayMetrics.widthPixels
 
+fun View.setStatusBarLight(isLight: Boolean) {
+    if (!this.isInEditMode) {
+        val window = (this.context as Activity).window
+        WindowCompat.getInsetsController(window, this).isAppearanceLightStatusBars = isLight
+    }
+}
+
 //fun ShimmerFrameLayout.startAndShow(animate: Boolean = false) {
 //    this.startShimmer()
 //    if (animate) {

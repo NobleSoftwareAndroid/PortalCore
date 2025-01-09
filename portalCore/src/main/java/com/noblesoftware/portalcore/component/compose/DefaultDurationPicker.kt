@@ -46,8 +46,8 @@ import kotlinx.coroutines.flow.update
 fun DefaultDurationPicker(
     durationPickerState: DurationPickerState,
     title: String = stringResource(id = R.string.empty_string),
-    hoursText: String = stringResource(id = R.string.empty_string),
-    minsText: String = stringResource(id = R.string.empty_string),
+    hoursText: String = stringResource(id = R.string.hours),
+    minsText: String = stringResource(id = R.string.mins),
     confirmText: String,
     dismissText: String,
     onConfirm: () -> Unit,
