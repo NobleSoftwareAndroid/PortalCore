@@ -23,6 +23,9 @@ fun String?.ifNull(execute: () -> String): String {
     return this ?: execute.invoke()
 }
 
+inline fun String?.ifNotNullOrEmpty(execute: (String) -> String) =
+    if (!this.isNullOrBlank()) execute.invoke(this) else this
+
 inline fun String?.ifNullOrEmpty(execute: () -> String) =
     if (this.isNullOrBlank()) execute.invoke() else this
 
