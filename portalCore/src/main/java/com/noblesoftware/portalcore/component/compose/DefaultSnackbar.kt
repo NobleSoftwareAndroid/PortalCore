@@ -2,7 +2,7 @@ package com.noblesoftware.portalcore.component.compose
 
 import android.content.Context
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
@@ -25,6 +25,7 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.rememberTextMeasurer
 import androidx.compose.ui.unit.dp
 import com.noblesoftware.portalcore.R
 import com.noblesoftware.portalcore.model.SnackbarState
@@ -116,12 +117,16 @@ fun DefaultSnackbar(
             dismissAction = dismissActionComposable,
             shape = LocalShapes.small,
         ) {
-            Row {
+            BoxWithConstraints {
+                val textMeasurer = rememberTextMeasurer()
+                val measuredLayoutResult = textMeasurer.measure(
+                    constraints = constraints, text = snackbarData.message
+                )
                 Text(
+                    modifier = Modifier.padding(bottom = if (measuredLayoutResult.lineCount > 1) LocalDimen.current.medium else LocalDimen.current.zero),
                     text = snackbarData.message,
                     style = MaterialTheme.typography.bodyMedium.copy(
-                        fontWeight = FontWeight.Medium,
-                        color = colorResource(id = contentColor)
+                        fontWeight = FontWeight.Medium, color = colorResource(id = contentColor)
                     )
                 )
             }

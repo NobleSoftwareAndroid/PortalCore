@@ -178,6 +178,33 @@ fun SnackBarSampleScreen(
                     isSuccess = false,
                 )
             }
+            DefaultSpacer()
+            HorizontalDivider()
+            DefaultSpacer()
+            DefaultButton(
+                modifier = Modifier.fillMaxWidth(),
+                text = "Multiple line",
+                buttonVariant = ButtonVariant.Neutral,
+                buttonType = ButtonType.Outlined,
+            ) {
+                snackbarState.value = SnackbarState(
+                    message = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
+                    isSuccess = true,
+                )
+            }
+            DefaultSpacer()
+            DefaultButton(
+                modifier = Modifier.fillMaxWidth(),
+                text = "Two line",
+                buttonVariant = ButtonVariant.Neutral,
+                buttonType = ButtonType.Outlined,
+            ) {
+                snackbarState.value = SnackbarState(
+                    message = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+                    isSuccess = true,
+                )
+            }
+
         }
     }
 }
