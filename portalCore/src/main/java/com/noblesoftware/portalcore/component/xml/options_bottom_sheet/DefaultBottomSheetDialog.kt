@@ -1,7 +1,9 @@
 package com.noblesoftware.portalcore.component.xml.options_bottom_sheet
 
+import android.annotation.SuppressLint
 import android.app.Dialog
 import android.content.DialogInterface
+import android.os.Build
 import android.os.Bundle
 import android.view.Gravity
 import android.view.LayoutInflater
@@ -73,6 +75,7 @@ import com.noblesoftware.portalcore.theme.PortalCoreTheme
 import com.noblesoftware.portalcore.util.extension.isFalse
 import com.noblesoftware.portalcore.util.extension.isTrue
 import dagger.hilt.android.AndroidEntryPoint
+
 
 @AndroidEntryPoint
 open class DefaultBottomSheetDialog : BottomSheetDialogFragment() {
@@ -311,12 +314,11 @@ open class DefaultBottomSheetDialog : BottomSheetDialogFragment() {
                                                                     color = colorResource(id = R.color.primary_plain_color),
                                                                 ),
                                                                 onClick = {
-                                                                    onSelected.invoke(
-                                                                        arrayListOf(
+                                                                    onEvent(
+                                                                        BottomSheetEvent.OnSelect(
                                                                             selectOption
                                                                         )
                                                                     )
-                                                                    dismiss()
                                                                 },
                                                             )
                                                         } else Modifier
@@ -418,6 +420,17 @@ open class DefaultBottomSheetDialog : BottomSheetDialogFragment() {
             ).apply {
                 gravity = Gravity.BOTTOM
             }
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.VANILLA_ICE_CREAM) {
+                @SuppressLint("InternalInsetResource", "DiscouragedApi")
+                val resourceId =
+                    resources.getIdentifier("navigation_bar_height", "dimen", "android")
+                buttons.setPadding(
+                    0, 0, 0,
+                    resources.getDimensionPixelSize(resourceId)
+                )
+            }
+
             containerLayout?.addView(buttons)
         }
         return bottomSheetDialog
