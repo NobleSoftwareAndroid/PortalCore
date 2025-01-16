@@ -1,8 +1,10 @@
 package com.noblesoftware.portalcore.component.xml.dynamic_bottom_sheet
 
+import android.annotation.SuppressLint
 import android.app.Dialog
 import android.content.Context
 import android.content.res.ColorStateList
+import android.os.Build
 import android.os.Bundle
 import android.view.Gravity
 import android.view.LayoutInflater
@@ -138,6 +140,17 @@ open class DefaultDynamicBottomSheetDialog : BottomSheetDialogFragment() {
             ).apply {
                 gravity = Gravity.BOTTOM
             }
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.VANILLA_ICE_CREAM) {
+                @SuppressLint("InternalInsetResource", "DiscouragedApi")
+                val resourceId =
+                    resources.getIdentifier("navigation_bar_height", "dimen", "android")
+                buttons.setPadding(
+                    0, 0, 0,
+                    resources.getDimensionPixelSize(resourceId)
+                )
+            }
+
             containerLayout?.addView(buttons)
         }
         return bottomSheetDialog
