@@ -226,6 +226,7 @@ fun FullEdgeSampleScreen(
                         ) {
                             DefaultDynamicBottomSheetDialog.showDialog(
                                 fragmentManager = (activity as AppCompatActivity).supportFragmentManager,
+                                isStatusBarTransparent = true,
                                 buttonFirstText = R.string.close,
                                 buttonFirstType = BottomSheetActionType.NEUTRAL,
                                 buttonFirstOnClick = {
