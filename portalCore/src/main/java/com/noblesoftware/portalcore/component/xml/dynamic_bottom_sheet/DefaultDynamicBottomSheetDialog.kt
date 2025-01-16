@@ -16,6 +16,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.compose.ui.platform.rememberNestedScrollInteropConnection
@@ -32,9 +33,9 @@ import com.google.android.material.button.MaterialButton
 import com.noblesoftware.portalcore.R
 import com.noblesoftware.portalcore.databinding.BottomSheetDialogDynamicBinding
 import com.noblesoftware.portalcore.enums.BottomSheetActionType
-import com.noblesoftware.portalcore.enums.BottomSheetType
 import com.noblesoftware.portalcore.theme.PortalCoreTheme
 import com.noblesoftware.portalcore.util.extension.isFalse
+import com.noblesoftware.portalcore.util.extension.isTrue
 import com.noblesoftware.portalcore.util.extension.visibleWhen
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -44,6 +45,9 @@ open class DefaultDynamicBottomSheetDialog : BottomSheetDialogFragment() {
     private lateinit var binding: BottomSheetDialogDynamicBinding
 
     private var content: @Composable () -> Unit = {}
+
+    /** if [isStatusBarTransparent] = true -> set this activity and PortalCoreTheme statusBar to transparent */
+    private var isStatusBarTransparent: Boolean = false
 
     private var buttonFirstEnable: Boolean = true
     private var buttonFirstText: Int = R.string.close
@@ -73,7 +77,10 @@ open class DefaultDynamicBottomSheetDialog : BottomSheetDialogFragment() {
         binding.composeView.apply {
             setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
             setContent {
-                PortalCoreTheme(window = requireActivity().window) {
+                PortalCoreTheme(
+                    window = requireActivity().window,
+                    isStatusBarTransparent = isStatusBarTransparent
+                ) {
                     Surface(
                         modifier = Modifier
                             .fillMaxWidth()
@@ -136,6 +143,15 @@ open class DefaultDynamicBottomSheetDialog : BottomSheetDialogFragment() {
         return bottomSheetDialog
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        if (isStatusBarTransparent.isTrue()) {
+            val window = requireActivity().window
+            window.statusBarColor = androidx.compose.ui.graphics.Color.Transparent.toArgb()
+        }
+    }
+
     override fun onDestroy() {
         super.onDestroy()
     }
@@ -143,6 +159,7 @@ open class DefaultDynamicBottomSheetDialog : BottomSheetDialogFragment() {
     companion object {
         fun showDialog(
             fragmentManager: FragmentManager,
+            isStatusBarTransparent: Boolean = false,
             buttonFirstEnable: Boolean = true,
             buttonSecondEnable: Boolean = false,
             @StringRes buttonFirstText: Int = R.string.close,
@@ -155,6 +172,7 @@ open class DefaultDynamicBottomSheetDialog : BottomSheetDialogFragment() {
             content: @Composable () -> Unit
         ) {
             DefaultDynamicBottomSheetDialog().apply {
+                this.isStatusBarTransparent = isStatusBarTransparent
                 this.buttonFirstEnable = buttonFirstEnable
                 this.buttonSecondEnable = buttonSecondEnable
                 this.buttonFirstText = buttonFirstText
