@@ -22,7 +22,7 @@ fun BoxWithSwipeRefresh(
     isRefreshing: Boolean,
     content: @Composable BoxScope.() -> Unit
 ) {
-    PullToRefreshBox(isRefreshing = isRefreshing, onRefresh = { onSwipe() }) {
+    PullToRefreshBox(modifier = Modifier, isRefreshing = isRefreshing, onRefresh = { onSwipe() }) {
         content()
     }
 }
