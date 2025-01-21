@@ -8,22 +8,21 @@
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/app_bar"
-            android:background="@color/background_body"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fitsSystemWindows="true"
-            app:layout_constraintTop_toTopOf="parent"
+            android:background="@color/background_body"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
+            app:layout_constraintTop_toTopOf="parent">
 
             <com.google.android.material.appbar.MaterialToolbar
                 android:id="@+id/toolbar"
                 style="@style/ThemeOverlay.App.Toolbar"
-                app:titleTextColor="@color/text_primary"
-                app:titleTextAppearance="@style/TitleTextStyle"
-                app:navigationIcon="@drawable/ic_close"
                 android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize" />
+                android:layout_height="?attr/actionBarSize"
+                app:navigationIcon="@drawable/ic_close"
+                app:titleTextAppearance="@style/TitleTextStyle"
+                app:titleTextColor="@color/text_primary" />
 
         </com.google.android.material.appbar.AppBarLayout>
 
@@ -43,9 +42,9 @@
                 android:id="@+id/progress_bar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:indeterminate="true"
                 app:indicatorColor="@color/primary_solid_bg"
-                app:trackColor="@color/primary_soft_active_bg"
-                android:indeterminate="true" />
+                app:trackColor="@color/primary_soft_active_bg" />
         </RelativeLayout>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

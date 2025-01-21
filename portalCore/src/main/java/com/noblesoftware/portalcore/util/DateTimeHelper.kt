@@ -1,5 +1,6 @@
 package com.noblesoftware.portalcore.util
 
+import com.noblesoftware.portalcore.util.extension.orZero
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -68,6 +69,11 @@ object DateTimeHelper {
     const val FORMAT_yyyy_MM_dd_T_HHmmssXXX = "yyyy-MM-dd'T'HH:mm:ssXXX"
     const val FORMAT_MMM_YYYY = "MMM yyyy"
     const val FORMAT_MMMM_YYYY = "MMMM yyyy"
+    const val FORMAT_TIME_HMS_SSS = "HH:mm:ss.SSS"
+    const val FORMAT_MM = "MM"
+    const val FORMAT_YYYY = "yyyy"
+    const val FORMAT_DATE_DMYHM_WITH_STRIP = "dd/MM/yyyy - HH:mm"
+    const val FORMAT_DATE_E = "EEEE"
     private const val CURRENT_TIME_ZONE =
         "Asia/Jakarta" // if you want to reset it, just change it to UTC
 
@@ -622,5 +628,87 @@ object DateTimeHelper {
             it.printStackTrace()
         }
         return convTime
+    }
+
+    fun formatEn(date: Date?, format: String?): String {
+        val frm = SimpleDateFormat(format, Locale.ENGLISH)
+        kotlin.runCatching {
+            frm.timeZone = TimeZone.getTimeZone(CURRENT_TIME_ZONE)
+            return frm.format(date)
+        }.getOrElse {
+            return frm.format(Date(System.currentTimeMillis()))
+        }
+    }
+
+    @JvmOverloads
+    fun parseEn(date: String?, format: String?, def: Date = Date()): Date {
+        val frm = SimpleDateFormat(format, Locale.ENGLISH)
+        frm.timeZone = TimeZone.getTimeZone(CURRENT_TIME_ZONE)
+        return try {
+            frm.parse(date)
+        } catch (e: ParseException) {
+            def
+        }
+    }
+
+    @JvmOverloads
+    fun parseEn(
+        date: String?,
+        format_awal: String?,
+        format_akhir: String?,
+        def: Date = Date()
+    ): String {
+        val _date = parseEn(date, format_awal, def)
+        return formatEn(_date, format_akhir)
+    }
+
+    /**
+     * check hour is less than minutes
+     * [startWorkHour] must be hh:mm:ss
+     */
+    fun isMinuteBefore(startWorkHour: String, minute: Int? = 60): Boolean {
+        return try {
+            if (startWorkHour.isBlank()) return false
+            val format = SimpleDateFormat(FORMAT_DATE_TIME_YMDHMS, Locale.getDefault())
+            val currentDate = format.parse(currentTime())
+            val startWorkDate = format.parse(
+                "${
+                    convertDate(
+                        currentTime(),
+                        FORMAT_DATE_YMD
+                    )
+                } $startWorkHour"
+            )
+            val isOneHourBeforeWork = diffMinutes(currentDate, startWorkDate)
+            isOneHourBeforeWork <= minute.orZero()
+        } catch (e: ParseException) {
+            false
+        }
+    }
+
+    /**
+     * check current time is before compare time
+     * [compareHour] must be hh:mm:ss
+     */
+    fun isCurrentTimeBefore(compareHour: String): Boolean {
+        return try {
+            if (compareHour.isBlank()) return false
+            val format = SimpleDateFormat(FORMAT_DATE_TIME_YMDHMS, Locale.getDefault())
+            val currentDate = format.parse(currentTime())
+            val compareDate = format.parse(
+                "${
+                    convertDate(
+                        currentTime(),
+                        FORMAT_DATE_YMD
+                    )
+                } $compareHour"
+            )
+
+            if (currentDate != null && compareDate != null) {
+                diffMinutes(currentDate, compareDate) >= 0
+            } else false
+        } catch (e: ParseException) {
+            false
+        }
     }
 }
