@@ -56,7 +56,6 @@
         <item name="colorPrimaryDark">@color/primary_solid_color</item>
         <item name="colorAccent">@color/primary_solid_bg</item>
         <item name="android:statusBarColor">@color/primary_solid_color</item>
-        <item name="statusBarBackground">@color/primary_solid_color</item>
         <item name="android:navigationBarColor">@color/primary_solid_color</item>
         <item name="android:windowLightStatusBar">true</item>
     </style>

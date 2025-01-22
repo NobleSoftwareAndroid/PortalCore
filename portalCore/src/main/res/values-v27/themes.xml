@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.PortalCoreActivityComponent" parent="Theme.PortalCore">
+        <item name="colorPrimary">@color/primary_solid_color</item>
+        <item name="colorPrimaryDark">@color/primary_solid_color</item>
+        <item name="colorAccent">@color/primary_solid_bg</item>
+        <item name="android:statusBarColor">@color/primary_solid_color</item>
+        <item name="android:navigationBarColor">@color/primary_solid_color</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowLightNavigationBar">true</item>
+    </style>
+</resources>
