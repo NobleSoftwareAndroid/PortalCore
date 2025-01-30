@@ -1,9 +1,12 @@
 package com.noblesoftware.portalcorelibrary.sample
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -17,6 +20,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavHostController
 import com.noblesoftware.portalcore.R
@@ -27,6 +31,8 @@ import com.noblesoftware.portalcore.component.compose.DefaultDialog
 import com.noblesoftware.portalcore.component.compose.DefaultSpacer
 import com.noblesoftware.portalcore.component.compose.DefaultTopAppBar
 import com.noblesoftware.portalcore.component.compose.DialogType
+import com.noblesoftware.portalcore.component.compose.TextLabel
+import com.noblesoftware.portalcore.component.compose.TopAppBarTitle
 import com.noblesoftware.portalcore.theme.LocalDimen
 import com.noblesoftware.portalcore.util.DateTimeHelper
 import com.noblesoftware.portalcore.util.extension.handleSafeScaffoldPadding
@@ -52,9 +58,24 @@ fun DialogSampleScreen(
         topBar = {
             DefaultTopAppBar(
                 modifier = Modifier,
-                title = "Dialog",
                 canBack = true,
-                navigator = navHostController
+                navigator = navHostController,
+                titleComposable = {
+                    Box(
+                        modifier = Modifier
+                            .height(dimensionResource(id = R.dimen.top_bar_height))
+                    ) {
+                        Row(
+                            modifier = Modifier.align(alignment = Alignment.Center),
+                        ) {
+                            TopAppBarTitle(
+                                title = "Dialog"
+                            )
+                            DefaultSpacer(width = LocalDimen.current.default)
+                            TextLabel(label = "Example")
+                        }
+                    }
+                }
             )
         },
     ) {
