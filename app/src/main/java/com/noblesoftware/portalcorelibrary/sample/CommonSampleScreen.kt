@@ -2,10 +2,12 @@ package com.noblesoftware.portalcorelibrary.sample
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -25,6 +27,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
@@ -44,6 +47,8 @@ import com.noblesoftware.portalcore.component.compose.DefaultTextInputCurrency
 import com.noblesoftware.portalcore.component.compose.DefaultTextInputDropdown
 import com.noblesoftware.portalcore.component.compose.DefaultTopAppBar
 import com.noblesoftware.portalcore.component.compose.DefaultTopAppBarMultiLine
+import com.noblesoftware.portalcore.component.compose.TextLabel
+import com.noblesoftware.portalcore.component.compose.TopAppBarTitle
 import com.noblesoftware.portalcore.theme.LocalDimen
 import com.noblesoftware.portalcore.util.extension.handleSafeScaffoldPadding
 import com.noblesoftware.portalcore.util.extension.toCommaFormat
@@ -822,6 +827,39 @@ fun CommonSampleScreen(
                             }
                         }
                     )
+                    Text(text = "top bar default (title composable)")
+                    DefaultSpacer()
+                    DefaultTopAppBar(modifier = Modifier.fillMaxWidth(), titleComposable = {
+                        Box(
+                            modifier = Modifier
+                                .height(dimensionResource(id = R.dimen.top_bar_height))
+                        ) {
+                            TopAppBarTitle(
+                                modifier = Modifier.Companion.align(alignment = Alignment.Center),
+                                title = "Top bar title composable"
+                            )
+                        }
+                    })
+                    DefaultSpacer()
+                    DefaultTopAppBar(
+                        modifier = Modifier.fillMaxWidth(),
+                        canBack = true,
+                        titleComposable = {
+                            Box(
+                                modifier = Modifier
+                                    .height(dimensionResource(id = R.dimen.top_bar_height))
+                            ) {
+                                Row(
+                                    modifier = Modifier.Companion.align(alignment = Alignment.Center),
+                                ) {
+                                    TopAppBarTitle(
+                                        title = "Top bar title"
+                                    )
+                                    DefaultSpacer(width = LocalDimen.current.default)
+                                    TextLabel(label = "Label")
+                                }
+                            }
+                        })
                     DefaultSpacer()
                     DefaultSpacer(height = LocalDimen.current.extraLarge)
                 }

@@ -1,6 +1,7 @@
 package com.noblesoftware.portalcore.component.compose
 
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -58,7 +59,8 @@ fun DefaultTopAppBarPreview() {
 @Composable
 fun DefaultTopAppBar(
     modifier: Modifier,
-    title: String,
+    title: String? = stringResource(id = R.string.empty_string),
+    titleComposable: @Composable (() -> Unit)? = null,
     plain: Boolean? = false,
     canBack: Boolean? = false,
     canClose: Boolean? = false,
@@ -76,16 +78,20 @@ fun DefaultTopAppBar(
             modifier = modifier
                 .height(topBarHeight),
             title = {
-                Box(
-                    modifier = Modifier
-                        .height(topBarHeight)
-                ) {
-                    Text(
-                        modifier = Modifier.align(alignment = Alignment.Center),
-                        text = title,
-                        color = colorResource(id = R.color.text_primary),
-                        style = MaterialTheme.typography.labelLarge.copy(colorResource(id = R.color.text_primary))
-                    )
+                if (titleComposable != null) {
+                    titleComposable.invoke()
+                } else {
+                    title?.let {
+                        Box(
+                            modifier = Modifier
+                                .height(topBarHeight)
+                        ) {
+                            TopAppBarTitle(
+                                modifier = Modifier.Companion.align(alignment = Alignment.Center),
+                                title = title
+                            )
+                        }
+                    }
                 }
             },
             colors = TopAppBarColors(
@@ -137,6 +143,16 @@ fun DefaultTopAppBar(
             HorizontalDivider(thickness = 1.dp, color = colorResource(id = R.color.divider))
         }
     }
+}
+
+@Composable
+fun TopAppBarTitle(modifier: Modifier = Modifier, title: String) {
+    Text(
+        modifier = modifier,
+        text = title,
+        color = colorResource(id = R.color.text_primary),
+        style = MaterialTheme.typography.labelLarge.copy(colorResource(id = R.color.text_primary))
+    )
 }
 
 
