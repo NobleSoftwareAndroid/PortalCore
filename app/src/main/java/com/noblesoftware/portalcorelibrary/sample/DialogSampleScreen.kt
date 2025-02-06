@@ -21,7 +21,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.noblesoftware.portalcore.R
 import com.noblesoftware.portalcore.component.compose.ButtonVariant
@@ -44,6 +46,14 @@ fun DialogSampleScreen(
     navHostController: NavHostController
 ) {
     val context = LocalContext.current
+
+    val showDefaultDialog = remember {
+        mutableStateOf(false)
+    }
+
+    val showDefaultIconLargeDialog = remember {
+        mutableStateOf(false)
+    }
 
     val showAlertDialog = remember {
         mutableStateOf(false)
@@ -92,6 +102,22 @@ fun DialogSampleScreen(
         ) {
             DefaultButton(
                 modifier = Modifier.fillMaxWidth(),
+                text = "Default Dialog",
+                buttonVariant = ButtonVariant.Neutral
+            ) {
+                showDefaultDialog.value = true
+            }
+            DefaultSpacer()
+            DefaultButton(
+                modifier = Modifier.fillMaxWidth(),
+                text = "Default Dialog (Icon Large)",
+                buttonVariant = ButtonVariant.Neutral
+            ) {
+                showDefaultIconLargeDialog.value = true
+            }
+            DefaultSpacer()
+            DefaultButton(
+                modifier = Modifier.fillMaxWidth(),
                 text = "Alert Dialog",
                 buttonVariant = ButtonVariant.Danger
             ) {
@@ -127,6 +153,51 @@ fun DialogSampleScreen(
                 },
 //                dismissOnBackPress = false,
 //                dismissOnClickOutside = false
+            )
+        }
+
+        if (showDefaultDialog.value) {
+            DefaultDialog(
+                title = "Default Dialog",
+                message = "Default Dialog Message",
+                icon = painterResource(id = R.drawable.img_shield),
+                dialogType = DialogType.Default,
+                positiveButtonText = "Okay",
+                negativeButtonText = stringResource(id = R.string.cancel),
+                onPositive = {
+                    showDefaultDialog.value = false
+                },
+                onNegative = {
+                    showDefaultDialog.value = false
+                    null
+                },
+                onDismissRequest = {
+                    showDefaultDialog.value = false
+                    null
+                },
+            )
+        }
+
+        if (showDefaultIconLargeDialog.value) {
+            DefaultDialog(
+                title = "Default Dialog (Icon Large)",
+                message = "Default Dialog Message (Icon Large)",
+                icon = painterResource(id = R.drawable.img_shield),
+                iconSize = 160.dp,
+                dialogType = DialogType.Default,
+                positiveButtonText = "Okay",
+                negativeButtonText = stringResource(id = R.string.cancel),
+                onPositive = {
+                    showDefaultIconLargeDialog.value = false
+                },
+                onNegative = {
+                    showDefaultIconLargeDialog.value = false
+                    null
+                },
+                onDismissRequest = {
+                    showDefaultIconLargeDialog.value = false
+                    null
+                },
             )
         }
 

@@ -18,6 +18,7 @@ import androidx.compose.runtime.Stable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.dimensionResource
@@ -25,6 +26,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
@@ -39,6 +41,7 @@ import com.noblesoftware.portalcore.theme.LocalShapes
  *
  * @param modifier A modifier for styling the dialog.
  * @param icon An optional icon (Painter) to display in the dialog.
+ * @param iconSize An optional iconSize (Dp) to set size icon in the dialog.
  * @param title The title of the dialog.
  * @param message An optional message to display in the dialog (blank will be hide message).
  * @param dialogType The type of dialog ([DialogType]) (e.g., default, alert, full-screen).
@@ -66,6 +69,7 @@ fun DefaultDialog(
     negativeButtonText: String = stringResource(id = R.string.empty_string),
     dismissOnBackPress: Boolean = true,
     dismissOnClickOutside: Boolean = true,
+    iconSize: Dp = dimensionResource(id = if (dialogType == DialogType.Default || dialogType == DialogType.Alert) R.dimen.default_dialog_icon_size else R.dimen.default_dialog_icon_size_small),
     onPositive: () -> Unit,
     onNegative: () -> Unit? = {},
     onDismissRequest: () -> Unit? = {}
@@ -92,6 +96,7 @@ fun DefaultDialog(
                 DialogContent(
                     modifier = modifier,
                     icon = icon,
+                    iconSize = iconSize,
                     title = title,
                     message = message,
                     messageAnnotated = messageAnnotated,
@@ -114,6 +119,7 @@ fun DefaultDialog(
             DialogContent(
                 modifier = modifier,
                 icon = icon,
+                iconSize = iconSize,
                 title = title,
                 message = message,
                 messageAnnotated = messageAnnotated,
@@ -131,6 +137,7 @@ fun DefaultDialog(
 private fun DialogContent(
     modifier: Modifier,
     icon: Painter?,
+    iconSize: Dp,
     title: String,
     message: String?,
     messageAnnotated: AnnotatedString?,
@@ -154,7 +161,7 @@ private fun DialogContent(
                 Image(
                     modifier = Modifier
                         .size(
-                            size = dimensionResource(id = if (dialogType == DialogType.Default || dialogType == DialogType.Alert) R.dimen.default_dialog_icon_size else R.dimen.default_dialog_icon_size_small),
+                            size = iconSize,
                         ),
                     painter = icon,
                     contentDescription = "dialog-icon"
