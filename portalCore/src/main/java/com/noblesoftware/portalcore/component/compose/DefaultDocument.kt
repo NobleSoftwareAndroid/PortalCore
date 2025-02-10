@@ -1,5 +1,6 @@
 package com.noblesoftware.portalcore.component.compose
 
+import androidx.annotation.DrawableRes
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
@@ -27,6 +28,7 @@ import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
@@ -50,31 +52,38 @@ fun DefaultDocument(
     errorText: String = stringResource(id = R.string.empty_string),
     placeholder: String = stringResource(R.string.tap_to_upload),
     subPlaceholder: String = stringResource(R.string.pdf_docx_jpg_jpeg_png_maximum_size_5_mb),
+    labelStyle: TextStyle = MaterialTheme.typography.labelSmall,
+    placeholderStyle: TextStyle = MaterialTheme.typography.titleSmall,
+    subPlaceholderStyle: TextStyle = MaterialTheme.typography.bodySmall,
+    @DrawableRes iconDocument: Int = R.drawable.ic_paperclip,
+    @DrawableRes iconDocumentEdit: Int = R.drawable.ic_file,
     onClick: () -> Unit,
     onClose: () -> Unit
 ) {
     val localDimen = LocalDimen.current
     val outlineColor =
         colorResource(id = if (error) R.color.danger_solid_bg else R.color.primary_solid_bg)
-    Row(
-        modifier = Modifier.padding(
-            bottom = LocalDimen.current.default, start = LocalDimen.current.extraSmall
-        )
-    ) {
-        Text(
-            text = label,
-            style = MaterialTheme.typography.labelSmall.copy(colorResource(id = R.color.text_primary))
-        )
-        if (required) {
-            Text(
-                modifier = Modifier.padding(start = LocalDimen.current.extraSmall),
-                text = "*",
-                style = MaterialTheme.typography.labelSmall.copy(color = colorResource(id = R.color.danger_outlined_color))
+    if (label.isNotBlank()) {
+        Row(
+            modifier = Modifier.padding(
+                bottom = LocalDimen.current.default, start = LocalDimen.current.extraSmall
             )
+        ) {
+            Text(
+                text = label,
+                style = labelStyle.copy(colorResource(id = R.color.text_primary))
+            )
+            if (required) {
+                Text(
+                    modifier = Modifier.padding(start = LocalDimen.current.extraSmall),
+                    text = "*",
+                    style = MaterialTheme.typography.labelSmall.copy(color = colorResource(id = R.color.danger_outlined_color))
+                )
+            }
         }
     }
     if (readOnly) {
-        DefaultFileButton(text = value.orEmpty()) {
+        DefaultFileButton(text = value.orEmpty(), icon = iconDocument) {
             onClick.invoke()
         }
     } else {
@@ -100,7 +109,7 @@ fun DefaultDocument(
                         .clip(CircleShape)
                         .background(colorResource(id = R.color.primary_soft_bg))
                         .padding(LocalDimen.current.default),
-                    painter = painterResource(id = R.drawable.ic_file),
+                    painter = painterResource(id = iconDocumentEdit),
                     contentDescription = "file",
                     colorFilter = ColorFilter.tint(colorResource(id = R.color.primary_plain_color))
                 )
@@ -113,7 +122,7 @@ fun DefaultDocument(
                         width = Dimension.fillToConstraints
                     },
                     text = value,
-                    style = MaterialTheme.typography.titleMedium.copy(color = colorResource(id = R.color.primary_solid_bg)),
+                    style = MaterialTheme.typography.labelMedium.copy(color = colorResource(id = R.color.primary_solid_bg)),
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis
                 )
@@ -158,13 +167,13 @@ fun DefaultDocument(
                     Text(
                         modifier = Modifier.fillMaxWidth(),
                         text = placeholder,
-                        style = MaterialTheme.typography.titleSmall.copy(color = colorResource(id = if (error) R.color.danger_solid_bg else R.color.text_primary)),
+                        style = placeholderStyle.copy(color = colorResource(id = if (error) R.color.danger_solid_bg else R.color.text_primary)),
                     )
                     DefaultSpacer(LocalDimen.current.small)
                     Text(
                         modifier = Modifier.fillMaxWidth(),
                         text = subPlaceholder,
-                        style = MaterialTheme.typography.bodySmall.copy(color = colorResource(id = if (error) R.color.danger_soft_active_bg else R.color.text_tertiary)),
+                        style = subPlaceholderStyle.copy(color = colorResource(id = if (error) R.color.danger_soft_active_bg else R.color.text_tertiary)),
                     )
                 }
 

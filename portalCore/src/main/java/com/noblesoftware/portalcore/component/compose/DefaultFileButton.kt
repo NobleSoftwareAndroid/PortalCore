@@ -70,10 +70,10 @@ fun DefaultFileButton(
                         if (isWrapContent.isFalse()) Modifier.fillMaxWidth() else Modifier
                     )
                     .padding(
-                        start = LocalDimen.current.small,
-                        top = LocalDimen.current.small,
+                        start = LocalDimen.current.default,
+                        top = LocalDimen.current.default,
                         end = LocalDimen.current.default,
-                        bottom = LocalDimen.current.small,
+                        bottom = LocalDimen.current.default,
                     ),
                 horizontalArrangement = Arrangement.Start,
                 verticalAlignment = Alignment.CenterVertically
