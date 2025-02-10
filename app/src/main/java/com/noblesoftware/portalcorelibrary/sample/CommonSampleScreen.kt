@@ -40,6 +40,8 @@ import com.noblesoftware.portalcore.component.compose.ButtonVariant
 import com.noblesoftware.portalcore.component.compose.DefaultBottomSheet
 import com.noblesoftware.portalcore.component.compose.DefaultBottomSheetSessionExpired
 import com.noblesoftware.portalcore.component.compose.DefaultButton
+import com.noblesoftware.portalcore.component.compose.DefaultDocument
+import com.noblesoftware.portalcore.component.compose.DefaultFileButton
 import com.noblesoftware.portalcore.component.compose.DefaultProgressDialog
 import com.noblesoftware.portalcore.component.compose.DefaultSpacer
 import com.noblesoftware.portalcore.component.compose.DefaultTextInput
@@ -579,6 +581,94 @@ fun CommonSampleScreen(
                         buttonVariant = ButtonVariant.Neutral,
                         enabled = false
                     ) {
+
+                    }
+                    DefaultSpacer(LocalDimen.current.extraLarge)
+                }
+            }
+
+            // document
+            item {
+                Column {
+                    Text(text = "document")
+                    DefaultSpacer()
+                    DefaultDocument(
+                        value = "myFile.pdf",
+                        iconDocument = R.drawable.ic_file,
+                        readOnly = true,
+                        onClick = { },
+                    ) {
+
+                    }
+                    DefaultSpacer()
+                    DefaultDocument(
+                        value = "myFile.pdf",
+                        label = "Upload Document :",
+                        placeholder = "Tap and Upload File",
+                        subPlaceholder = "File : .jpg, .png, .pdf",
+                        errorText = "This file is not supported",
+                        error = false,
+                        readOnly = true,
+                        onClick = { },
+                    ) {
+
+                    }
+                    DefaultSpacer()
+                    DefaultDocument(
+                        value = "myFile.pdf",
+                        label = "Upload Document :",
+                        placeholder = "Tap and Upload File",
+                        subPlaceholder = "File : .jpg, .png, .pdf",
+                        errorText = "This file is not supported",
+                        error = false,
+                        onClick = { },
+                    ) {
+
+                    }
+                    DefaultSpacer()
+                    DefaultDocument(
+                        value = "myFile.pdf",
+                        label = "Upload Document :",
+                        placeholder = "Tap and Upload File",
+                        subPlaceholder = "File : .jpg, .png, .pdf",
+                        errorText = "This file is not supported",
+                        error = false,
+                        iconDocumentEdit = R.drawable.ic_paperclip,
+                        onClick = { },
+                    ) {
+
+                    }
+                    DefaultSpacer()
+                    DefaultDocument(
+                        value = null,
+                        label = "Upload Document :",
+                        placeholder = "Tap and Upload File",
+                        subPlaceholder = "File : .jpg, .png, .pdf",
+                        errorText = "This file is not supported",
+                        labelStyle = MaterialTheme.typography.labelMedium,
+                        placeholderStyle = MaterialTheme.typography.labelMedium,
+                        error = false,
+                        onClick = { },
+                    ) {
+
+                    }
+                    DefaultSpacer()
+                    DefaultDocument(
+                        value = null,
+                        label = "Upload Document :",
+                        placeholder = "Tap and Upload File",
+                        subPlaceholder = "File : .jpg, .png, .pdf",
+                        errorText = "This file is not supported",
+                        error = true,
+                        onClick = { },
+                    ) {
+
+                    }
+                    DefaultSpacer(LocalDimen.current.extraLarge)
+
+                    Text(text = "document wrap content")
+                    DefaultSpacer()
+                    DefaultFileButton(text = "wrap_content.pdf", isWrapContent = true) {
 
                     }
                     DefaultSpacer(LocalDimen.current.extraLarge)
