@@ -32,6 +32,7 @@ import com.noblesoftware.portalcore.model.SnackbarState
 import com.noblesoftware.portalcore.model.SnackbarType
 import com.noblesoftware.portalcore.theme.LocalDimen
 import com.noblesoftware.portalcore.theme.LocalShapes
+import com.noblesoftware.portalcore.util.extension.formatErrorMessage
 import com.noblesoftware.portalcore.util.extension.ifNullOrEmpty
 import com.noblesoftware.portalcore.util.extension.orResourceStringEmpty
 
@@ -120,11 +121,12 @@ fun DefaultSnackbar(
             BoxWithConstraints {
                 val textMeasurer = rememberTextMeasurer()
                 val measuredLayoutResult = textMeasurer.measure(
-                    constraints = constraints, text = snackbarData.message
+                    constraints = constraints,
+                    text = snackbarData.message.formatErrorMessage(context)
                 )
                 Text(
                     modifier = Modifier.padding(bottom = if (measuredLayoutResult.lineCount > 1) LocalDimen.current.medium else LocalDimen.current.zero),
-                    text = snackbarData.message,
+                    text = snackbarData.message.formatErrorMessage(context),
                     style = MaterialTheme.typography.bodyMedium.copy(
                         fontWeight = FontWeight.Medium, color = colorResource(id = contentColor)
                     )

@@ -179,6 +179,18 @@ fun SnackBarSampleScreen(
                 )
             }
             DefaultSpacer()
+            DefaultButton(
+                modifier = Modifier.fillMaxWidth(),
+                text = "formatted error message",
+                buttonVariant = ButtonVariant.Danger,
+                buttonType = ButtonType.Outlined,
+            ) {
+                snackbarState.value = SnackbarState(
+                    message = "failed to connect to backend.example.id/103.34.436.22 (port 432) after 5555 ms",
+                    isSuccess = false,
+                )
+            }
+            DefaultSpacer()
             HorizontalDivider()
             DefaultSpacer()
             DefaultButton(
