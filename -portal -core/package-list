@@ -413,6 +413,7 @@ $dokka.location:com.noblesoftware.portalcore.util.extension//fileNameWithOutExte
 $dokka.location:com.noblesoftware.portalcore.util.extension//findActivity/android.content.Context#/PointingToDeclaration/-portal -core/com.noblesoftware.portalcore.util.extension/find-activity.html
 $dokka.location:com.noblesoftware.portalcore.util.extension//formatDefault/java.util.Date#/PointingToDeclaration/-portal -core/com.noblesoftware.portalcore.util.extension/format-default.html
 $dokka.location:com.noblesoftware.portalcore.util.extension//formatDisplay/java.util.Date#/PointingToDeclaration/-portal -core/com.noblesoftware.portalcore.util.extension/format-display.html
+$dokka.location:com.noblesoftware.portalcore.util.extension//formatErrorMessage/kotlin.String?#android.content.Context/PointingToDeclaration/-portal -core/com.noblesoftware.portalcore.util.extension/format-error-message.html
 $dokka.location:com.noblesoftware.portalcore.util.extension//fromCommaFormat/kotlin.String#/PointingToDeclaration/-portal -core/com.noblesoftware.portalcore.util.extension/from-comma-format.html
 $dokka.location:com.noblesoftware.portalcore.util.extension//getAttrDimension/android.content.Context#kotlin.Int/PointingToDeclaration/-portal -core/com.noblesoftware.portalcore.util.extension/get-attr-dimension.html
 $dokka.location:com.noblesoftware.portalcore.util.extension//getColorCompat/android.content.Context#kotlin.Int/PointingToDeclaration/-portal -core/com.noblesoftware.portalcore.util.extension/get-color-compat.html
@@ -430,6 +431,7 @@ $dokka.location:com.noblesoftware.portalcore.util.extension//handleSafeScaffoldP
 $dokka.location:com.noblesoftware.portalcore.util.extension//hasPermissions/#android.content.Context#kotlin.Array[kotlin.String]/PointingToDeclaration/-portal -core/com.noblesoftware.portalcore.util.extension/has-permissions.html
 $dokka.location:com.noblesoftware.portalcore.util.extension//hideKeyboard/#android.app.Activity#android.os.IBinder?/PointingToDeclaration/-portal -core/com.noblesoftware.portalcore.util.extension/hide-keyboard.html
 $dokka.location:com.noblesoftware.portalcore.util.extension//htmlToString/kotlin.String#/PointingToDeclaration/-portal -core/com.noblesoftware.portalcore.util.extension/html-to-string.html
+$dokka.location:com.noblesoftware.portalcore.util.extension//httpErrors/#/PointingToDeclaration/-portal -core/com.noblesoftware.portalcore.util.extension/http-errors.html
 $dokka.location:com.noblesoftware.portalcore.util.extension//ifNotNullOrEmpty/kotlin.String?#kotlin.Function1[kotlin.String,kotlin.String]/PointingToDeclaration/-portal -core/com.noblesoftware.portalcore.util.extension/if-not-null-or-empty.html
 $dokka.location:com.noblesoftware.portalcore.util.extension//ifNull/kotlin.Int?#kotlin.Function0[kotlin.Int]/PointingToDeclaration/-portal -core/com.noblesoftware.portalcore.util.extension/if-null.html
 $dokka.location:com.noblesoftware.portalcore.util.extension//ifNull/kotlin.String?#kotlin.Function0[kotlin.String]/PointingToDeclaration/-portal -core/com.noblesoftware.portalcore.util.extension/if-null.html
