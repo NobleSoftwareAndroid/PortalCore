@@ -32,4 +32,5 @@
     <string name="select_time">Pilih waktu</string>
     <string name="hours">jam</string>
     <string name="mins">mnt</string>
+    <string name="something_went_wrong">Terjadi kesalahan</string>
 </resources>

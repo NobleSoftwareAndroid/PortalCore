@@ -35,13 +35,8 @@ import androidx.compose.ui.unit.IntSize
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.ColorUtils
-import androidx.datastore.core.DataStore
-import androidx.datastore.preferences.core.Preferences
-import androidx.datastore.preferences.preferencesDataStore
 import com.google.gson.GsonBuilder
 import com.noblesoftware.portalcore.R
-import kotlinx.coroutines.*
-import java.util.*
 
 /**
  * Created by fizhu on 22,May,2020
@@ -246,3 +241,31 @@ fun String.toDayResId(): Int = when (this) {
     "Saturday" -> R.string.saturday
     else -> R.string.strip
 }
+
+fun String?.formatErrorMessage(context: Context): String {
+    this?.let {
+        if (httpErrors.any { error -> it.trim().lowercase().contains(error, true) }) {
+            return context.getString(R.string.something_went_wrong)
+        } else {
+            return it
+        }
+    }
+    return context.getString(R.string.something_went_wrong)
+}
+
+val httpErrors = listOf(
+    "http",
+    "https",
+    "exception",
+    "null",
+    "port",
+    "backend",
+    "400",
+    "401",
+    "402",
+    "403",
+    "404",
+    "443",
+    "500",
+    "501",
+)
