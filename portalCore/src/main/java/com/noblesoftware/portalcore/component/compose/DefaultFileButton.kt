@@ -1,6 +1,8 @@
 package com.noblesoftware.portalcore.component.compose
 
 import androidx.annotation.DrawableRes
+import androidx.compose.animation.AnimatedContent
+import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -45,6 +47,8 @@ fun DefaultFileButton(
     rippleColor: Color = colorResource(id = R.color.primary_plain_color),
     buttonType: ButtonType = ButtonType.Outlined,
     isWrapContent: Boolean = false,
+    isLoading: Boolean = false,
+    isClickable: Boolean = true,
     onClick: () -> Unit,
 ) {
     CompositionLocalProvider(LocalMinimumInteractiveComponentSize provides Dp.Unspecified) {
@@ -62,7 +66,9 @@ fun DefaultFileButton(
                 disabledContainerColor = colorResource(id = R.color.primary_solid_disabled_bg),
                 disabledContentColor = colorResource(id = R.color.primary_solid_disabled_color)
             ),
-            onClick = onClick,
+            onClick = if (isClickable) onClick else {
+                {}
+            },
         ) {
             Row(
                 modifier = Modifier
@@ -83,12 +89,19 @@ fun DefaultFileButton(
                         .clip(RoundedCornerShape(LocalDimen.current.small))
                         .background(iconBackgroundColor)
                         .padding(LocalDimen.current.small)
+                        .animateContentSize()
                 ) {
-                    Icon(
-                        painter = painterResource(id = icon),
-                        tint = iconTint,
-                        contentDescription = ""
-                    )
+                    AnimatedContent(targetState = isLoading) {
+                        if (it.isFalse()) {
+                            Icon(
+                                painter = painterResource(id = icon),
+                                tint = iconTint,
+                                contentDescription = ""
+                            )
+                        } else {
+                            DefaultProgress(size = LocalDimen.current.extraRegular)
+                        }
+                    }
                 }
                 DefaultSpacer(width = LocalDimen.current.default)
                 Text(

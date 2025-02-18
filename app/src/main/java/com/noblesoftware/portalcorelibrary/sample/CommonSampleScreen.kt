@@ -70,6 +70,7 @@ fun CommonSampleScreen(
     val bottomSheetState2 = rememberModalBottomSheetState()
     var openBottomSheet by rememberSaveable { mutableStateOf(false) }
     var openBottomSheet2 by rememberSaveable { mutableStateOf(false) }
+    val isDocumentLoading = remember { mutableStateOf(false) }
 
     Scaffold(
         modifier = Modifier.handleSafeScaffoldPadding(),
@@ -661,6 +662,33 @@ fun CommonSampleScreen(
                         errorText = "This file is not supported",
                         error = true,
                         onClick = { },
+                    ) {
+
+                    }
+                    DefaultSpacer()
+                    DefaultDocument(
+                        value = null,
+                        label = "Upload Document loading :",
+                        placeholder = "Tap and Upload File",
+                        subPlaceholder = "File : .jpg, .png, .pdf",
+                        isLoading = isDocumentLoading.value,
+                        isClickable = true,
+                        onClick = {
+                            isDocumentLoading.value = !isDocumentLoading.value
+                        },
+                    ) {
+
+                    }
+                    DefaultSpacer()
+                    DefaultDocument(
+                        value = "myFile.pdf",
+                        label = "Upload Document loading :",
+                        readOnly = true,
+                        isLoading = isDocumentLoading.value,
+                        isClickable = isDocumentLoading.value,
+                        onClick = {
+                            isDocumentLoading.value = !isDocumentLoading.value
+                        },
                     ) {
 
                     }

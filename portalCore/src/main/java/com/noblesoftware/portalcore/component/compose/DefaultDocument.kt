@@ -1,7 +1,9 @@
 package com.noblesoftware.portalcore.component.compose
 
 import androidx.annotation.DrawableRes
+import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.slideInVertically
@@ -10,6 +12,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -37,6 +40,7 @@ import com.noblesoftware.portalcore.R
 import com.noblesoftware.portalcore.theme.LocalDimen
 import com.noblesoftware.portalcore.theme.LocalShapes
 import com.noblesoftware.portalcore.util.extension.dashedBorder
+import com.noblesoftware.portalcore.util.extension.isFalse
 
 /**
  * Created by Hafizh Anbiya on 29 May 2024
@@ -49,6 +53,8 @@ fun DefaultDocument(
     value: String?,
     error: Boolean = false,
     readOnly: Boolean = false,
+    isLoading: Boolean = false,
+    isClickable: Boolean = true,
     errorText: String = stringResource(id = R.string.empty_string),
     placeholder: String = stringResource(R.string.tap_to_upload),
     subPlaceholder: String = stringResource(R.string.pdf_docx_jpg_jpeg_png_maximum_size_5_mb),
@@ -83,7 +89,12 @@ fun DefaultDocument(
         }
     }
     if (readOnly) {
-        DefaultFileButton(text = value.orEmpty(), icon = iconDocument) {
+        DefaultFileButton(
+            text = value.orEmpty(),
+            icon = iconDocument,
+            isLoading = isLoading,
+            isClickable = isClickable,
+        ) {
             onClick.invoke()
         }
     } else {
@@ -144,39 +155,60 @@ fun DefaultDocument(
                     .fillMaxWidth()
                     .clip(LocalShapes.medium)
                     .background(colorResource(id = if (error) R.color.red_soft else R.color.primary_plain_active_bg))
-                    .clickable { onClick.invoke() }
+                    .then(
+                        if (isClickable) {
+                            Modifier.clickable { onClick.invoke() }
+                        } else Modifier
+                    )
                     .dashedBorder(
                         strokeWidth = 2.dp,
                         color = outlineColor,
                         cornerRadiusDp = LocalDimen.current.default
                     )
-                    .padding(LocalDimen.current.regular),
-                verticalAlignment = Alignment.CenterVertically
+                    .padding(LocalDimen.current.regular)
+                    .animateContentSize(),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.Center
             ) {
-                Icon(
-                    modifier = Modifier
-                        .clip(CircleShape)
-                        .background(colorResource(id = if (error) R.color.danger_soft_bg else R.color.primary_soft_bg))
-                        .padding(LocalDimen.current.default),
-                    painter = painterResource(id = R.drawable.ic_upload),
-                    contentDescription = "file",
-                    tint = outlineColor
-                )
-                DefaultSpacer()
-                Column(Modifier.weight(1f)) {
-                    Text(
-                        modifier = Modifier.fillMaxWidth(),
-                        text = placeholder,
-                        style = placeholderStyle.copy(color = colorResource(id = if (error) R.color.danger_solid_bg else R.color.text_primary)),
-                    )
-                    DefaultSpacer(LocalDimen.current.small)
-                    Text(
-                        modifier = Modifier.fillMaxWidth(),
-                        text = subPlaceholder,
-                        style = subPlaceholderStyle.copy(color = colorResource(id = if (error) R.color.danger_soft_active_bg else R.color.text_tertiary)),
-                    )
+                AnimatedContent(targetState = isLoading) {
+                    if (it.isFalse()) {
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            verticalAlignment = Alignment.CenterVertically,
+                            horizontalArrangement = Arrangement.Center
+                        ) {
+                            Icon(
+                                modifier = Modifier
+                                    .clip(CircleShape)
+                                    .background(colorResource(id = if (error) R.color.danger_soft_bg else R.color.primary_soft_bg))
+                                    .padding(LocalDimen.current.default),
+                                painter = painterResource(id = R.drawable.ic_upload),
+                                contentDescription = "file",
+                                tint = outlineColor
+                            )
+                            DefaultSpacer()
+                            Column(Modifier.weight(1f)) {
+                                Text(
+                                    modifier = Modifier.fillMaxWidth(),
+                                    text = placeholder,
+                                    style = placeholderStyle.copy(color = colorResource(id = if (error) R.color.danger_solid_bg else R.color.text_primary)),
+                                )
+                                DefaultSpacer(LocalDimen.current.small)
+                                Text(
+                                    modifier = Modifier.fillMaxWidth(),
+                                    text = subPlaceholder,
+                                    style = subPlaceholderStyle.copy(color = colorResource(id = if (error) R.color.danger_soft_active_bg else R.color.text_tertiary)),
+                                )
+                            }
+                        }
+                    } else {
+                        DefaultProgress(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(LocalDimen.current.default)
+                        )
+                    }
                 }
-
             }
             AnimatedVisibility(
                 visible = error,
