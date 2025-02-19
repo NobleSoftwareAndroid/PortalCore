@@ -83,8 +83,10 @@ fun SnackBarSampleScreen(
             )
         },
         snackbarHost = {
-            SnackbarHost(hostState = snackbarHostState,
-                snackbar = { DefaultSnackbar(data = it, state = snackbarState.value) })
+            SnackbarHost(
+                hostState = snackbarHostState,
+                snackbar = { DefaultSnackbar(data = it, state = snackbarState.value) },
+            )
         }
     ) {
         Column(

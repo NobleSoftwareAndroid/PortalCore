@@ -7,6 +7,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.noblesoftware.portalcore.R
 
@@ -16,13 +17,13 @@ import com.noblesoftware.portalcore.R
  * @param modifier The modifier to apply to the progress indicator.
  */
 @Composable
-fun DefaultProgress(modifier: Modifier = Modifier) {
+fun DefaultProgress(modifier: Modifier = Modifier, size: Dp = 36.dp) {
     Box(
         modifier = modifier
     ) {
         CircularProgressIndicator(
             modifier = Modifier
-                .size(36.dp)
+                .size(size)
                 .align(alignment = Alignment.Center),
             color = colorResource(id = R.color.primary_solid_bg),
             trackColor = colorResource(id = R.color.primary_outlined_hover_bg),
