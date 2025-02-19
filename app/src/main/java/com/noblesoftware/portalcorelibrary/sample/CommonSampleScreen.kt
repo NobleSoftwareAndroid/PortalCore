@@ -685,7 +685,7 @@ fun CommonSampleScreen(
                         label = "Upload Document loading :",
                         readOnly = true,
                         isLoading = isDocumentLoading.value,
-                        isClickable = isDocumentLoading.value,
+                        isClickable = true,
                         onClick = {
                             isDocumentLoading.value = !isDocumentLoading.value
                         },
