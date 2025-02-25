@@ -33,4 +33,7 @@
     <string name="hours">jam</string>
     <string name="mins">mnt</string>
     <string name="something_went_wrong">Terjadi kesalahan</string>
+    <string name="type_answer_here">Ketik jawaban di sini</string>
+    <string name="max_file_5mb">Ukuran file maksimal adalah 5 MB</string>
+    <string name="file_not_supported">Gagal mengunggah, tipe file tidak didukung</string>
 </resources>

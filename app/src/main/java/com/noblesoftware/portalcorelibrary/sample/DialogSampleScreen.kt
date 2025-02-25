@@ -1,5 +1,6 @@
 package com.noblesoftware.portalcorelibrary.sample
 
+import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -10,14 +11,18 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
 import androidx.compose.material3.rememberDatePickerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.dimensionResource
@@ -35,8 +40,12 @@ import com.noblesoftware.portalcore.component.compose.DefaultTopAppBar
 import com.noblesoftware.portalcore.component.compose.DialogType
 import com.noblesoftware.portalcore.component.compose.TextLabel
 import com.noblesoftware.portalcore.component.compose.TopAppBarTitle
+import com.noblesoftware.portalcore.component.xml.dynamic_dialog.DefaultDynamicDialog
+import com.noblesoftware.portalcore.component.xml.dynamic_dialog.DefaultDynamicDialog.Companion.dismissDialog
 import com.noblesoftware.portalcore.theme.LocalDimen
+import com.noblesoftware.portalcore.theme.LocalShapes
 import com.noblesoftware.portalcore.util.DateTimeHelper
+import com.noblesoftware.portalcore.util.extension.findActivity
 import com.noblesoftware.portalcore.util.extension.handleSafeScaffoldPadding
 import java.util.Date
 
@@ -46,6 +55,7 @@ fun DialogSampleScreen(
     navHostController: NavHostController
 ) {
     val context = LocalContext.current
+    val activity = context.findActivity()
 
     val showDefaultDialog = remember {
         mutableStateOf(false)
@@ -130,6 +140,43 @@ fun DialogSampleScreen(
                 buttonVariant = ButtonVariant.Primary
             ) {
                 showDatePicker.value = true
+            }
+            DefaultSpacer()
+            DefaultButton(
+                modifier = Modifier.fillMaxWidth(),
+                text = "Dynamic Dialog",
+                buttonVariant = ButtonVariant.Neutral
+            ) {
+                DefaultDynamicDialog.showDialog(
+                    fragmentManager = (activity as AppCompatActivity).supportFragmentManager,
+                    onDismiss = {},
+                    content = {
+                        Card(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(LocalDimen.current.regular)
+                                .shadow(LocalDimen.current.small),
+                            shape = LocalShapes.medium,
+                            colors = CardDefaults.cardColors(containerColor = colorResource(id = com.noblesoftware.portalcore.R.color.background_body))
+                        ) {
+                            Column(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(LocalDimen.current.regular)
+                            ) {
+                                DefaultButton(
+                                    modifier = Modifier.fillMaxWidth(),
+                                    text = "Dismiss from outside",
+                                    buttonVariant = ButtonVariant.Primary
+                                ) {
+                                    activity.dismissDialog()
+                                }
+                                DefaultSpacer()
+                                Text(text = "This is compose component")
+                            }
+                        }
+                    }
+                )
             }
         }
 
@@ -226,5 +273,6 @@ fun DialogSampleScreen(
                 },
             )
         }
+
     }
 }

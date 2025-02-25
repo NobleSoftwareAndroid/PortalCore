@@ -3,7 +3,8 @@ package com.noblesoftware.portalcore.util.extension
 import android.text.format.DateFormat
 import com.noblesoftware.portalcore.util.DateTimeHelper
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Date
+import java.util.Locale
 
 /**
  * Return date in yyyy-MM-dd format.
