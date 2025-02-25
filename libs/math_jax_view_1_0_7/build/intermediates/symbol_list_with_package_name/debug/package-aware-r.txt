@@ -1,0 +1,3 @@
+io.github.sidvenu.mathjaxview
+string app_name
+styleable MathJaxView android_text

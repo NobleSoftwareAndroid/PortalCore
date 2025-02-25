@@ -269,3 +269,44 @@ val httpErrors = listOf(
     "500",
     "501",
 )
+
+fun String.toMathEqFormatted(): String {
+    var newData = this
+    val regexOverallFormat = Regex("""<span class=(.*math.*)>(.*?)</span>""")
+    val regexForSplit = Regex("""<span[^>]*>(?:[^<]|(?!</span>)<).+?</span>""")
+    newData = newData.replace(regexForSplit) { splittedData ->
+        val replacedString = splittedData.value.replace(regexOverallFormat) { matchResult ->
+            var newValue = matchResult.value
+            val replacedValue = matchResult.value.replace("<span class=\"math-tex\">", "")
+                .replace("<span class=\"math inline\">", "").replace("</span>", "")
+            if (!(replacedValue.startsWith("\\( ") && replacedValue.endsWith(" \\)"))) {
+                var formattedValue = replacedValue
+                if (formattedValue.startsWith("\\(")) {
+                    formattedValue = formattedValue.replace("\\(", "")
+                }
+                if (formattedValue.endsWith("\\)")) {
+                    formattedValue = formattedValue.replace("\\)", "")
+                }
+                newValue = "\\( $formattedValue \\)"
+            }
+            return@replace newValue
+        }
+        return@replace replacedString
+    }
+    newData = when {
+        newData.contains("""\(""") -> {
+            newData.replace("""\(""", "$", true).replace("""\)""", "$", true)
+        }
+
+        newData.contains("""\[""") -> {
+            newData.replace("""\[""", "$$", true).replace("""\]""", "$$", true)
+        }
+
+        else -> {
+            newData
+        }
+    }
+
+
+    return newData
+}

@@ -4,6 +4,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -51,6 +52,9 @@ import com.noblesoftware.portalcore.component.compose.DefaultTopAppBar
 import com.noblesoftware.portalcore.component.compose.DefaultTopAppBarMultiLine
 import com.noblesoftware.portalcore.component.compose.TextLabel
 import com.noblesoftware.portalcore.component.compose.TopAppBarTitle
+import com.noblesoftware.portalcore.component.compose.WebViewComposable
+import com.noblesoftware.portalcore.component.compose.richeditor.RichEditorComposable
+import com.noblesoftware.portalcore.model.WebViewFontStyle
 import com.noblesoftware.portalcore.theme.LocalDimen
 import com.noblesoftware.portalcore.util.extension.handleSafeScaffoldPadding
 import com.noblesoftware.portalcore.util.extension.toCommaFormat
@@ -86,10 +90,8 @@ fun CommonSampleScreen(
         LazyColumn(
             modifier = Modifier
                 .background(color = colorResource(id = R.color.background_body))
-                .padding(paddingValues = it)
-                .then(
-                    Modifier.padding(LocalDimen.current.regular)
-                ),
+                .padding(paddingValues = it),
+            contentPadding = PaddingValues(LocalDimen.current.regular),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             // button
@@ -846,6 +848,43 @@ fun CommonSampleScreen(
                         isWrapContent = true
                     )
 
+                    DefaultSpacer(height = LocalDimen.current.extraLarge)
+                }
+            }
+
+            // Rich Editor
+            item {
+                Column {
+                    Text("Rich Editor")
+                    DefaultSpacer()
+                    RichEditorComposable(
+                        modifier = Modifier.fillMaxWidth(),
+                        value = "",
+                        imageFormName = "image",
+                        isImageEnabled = false,
+                        onImageUpload = {},
+                        onImageRetrieve = { "" },
+                        onSnackbar = {},
+                        onTextChanged = {},
+                        onExcuseAntiCheat = {}
+                    )
+                    DefaultSpacer(height = LocalDimen.current.extraLarge)
+                }
+            }
+
+            // Web View
+            item {
+                Column {
+                    Text("Web View")
+                    DefaultSpacer()
+                    WebViewComposable(
+                        modifier = Modifier.fillMaxWidth(),
+                        content = "<p><img src=\"https://dian-media-staging-jakarta.s3.ap-southeast-3.amazonaws.com/media/WsywigImages/2025/02/11/132438920_ynepvXN.jpg\" alt=\"\" width=\"198\" height=\"198\"> ini gambar</p>\n",
+                        onWebViewCreated = { webView ->
+                            webView.useDefaultTableStyle = true
+                            webView.webViewFontStyle = WebViewFontStyle(size = 14)
+                        }
+                    )
                     DefaultSpacer(height = LocalDimen.current.extraLarge)
                 }
             }

@@ -37,4 +37,7 @@
     <string name="hours">hours</string>
     <string name="mins">mins</string>
     <string name="something_went_wrong">Something went wrong</string>
+    <string name="type_answer_here">Type answer here</string>
+    <string name="max_file_5mb">Maximum file size is 5 MB</string>
+    <string name="file_not_supported">Upload error, file type is not supported</string>
 </resources>
