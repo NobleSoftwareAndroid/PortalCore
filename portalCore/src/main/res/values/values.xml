@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<!--    <string name="app_name">MathJaxView</string>-->
+    <declare-styleable name="MathJaxView">
+        <attr name="android:text"/>
+    </declare-styleable>
+</resources>

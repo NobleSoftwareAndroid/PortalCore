@@ -69,8 +69,6 @@ dependencies {
     implementation(libs.okhttp)
     implementation(libs.timber)
     implementation(libs.paging)
-    implementation(project(":libs:richeditor_2_0_0"))
-    implementation(project(":libs:math_jax_view_1_0_7"))
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)

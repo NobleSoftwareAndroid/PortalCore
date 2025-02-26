@@ -57,8 +57,8 @@ import com.noblesoftware.portalcore.component.compose.richeditor.model.RichEdito
 import com.noblesoftware.portalcore.component.compose.richeditor.model.RichEditorState
 import com.noblesoftware.portalcore.component.compose.richeditor.model.richEditorFontAlign
 import com.noblesoftware.portalcore.component.compose.richeditor.model.richEditorFontSize
+import com.noblesoftware.portalcore.libs.rich_editor.RichEditor
 import com.noblesoftware.portalcore.util.extension.rememberKeyboardState
-import jp.wasabeef.richeditor.RichEditor
 import okhttp3.MultipartBody
 
 
