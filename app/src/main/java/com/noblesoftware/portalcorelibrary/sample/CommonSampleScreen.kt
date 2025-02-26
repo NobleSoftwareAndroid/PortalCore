@@ -885,6 +885,15 @@ fun CommonSampleScreen(
                             webView.webViewFontStyle = WebViewFontStyle(size = 14)
                         }
                     )
+                    DefaultSpacer()
+                    WebViewComposable(
+                        modifier = Modifier.fillMaxWidth(),
+                        content = "<span class=\"math-tex\">\\( \\times668\\int_0^{\\infty2}56 \\)</span>",
+                        onWebViewCreated = { webView ->
+                            webView.useDefaultTableStyle = true
+                            webView.webViewFontStyle = WebViewFontStyle(size = 14)
+                        }
+                    )
                     DefaultSpacer(height = LocalDimen.current.extraLarge)
                 }
             }
