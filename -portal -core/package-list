@@ -662,6 +662,7 @@ $dokka.location:com.noblesoftware.portalcore.util.extension//shimmerEffect/andro
 $dokka.location:com.noblesoftware.portalcore.util.extension//showKeyboard/#android.app.Activity#android.view.View?/PointingToDeclaration/-portal -core/com.noblesoftware.portalcore.util.extension/show-keyboard.html
 $dokka.location:com.noblesoftware.portalcore.util.extension//showSnackBar/android.view.View#kotlin.String#kotlin.Boolean#kotlin.String#kotlin.Function0[kotlin.Unit]#kotlin.Boolean/PointingToDeclaration/-portal -core/com.noblesoftware.portalcore.util.extension/show-snack-bar.html
 $dokka.location:com.noblesoftware.portalcore.util.extension//spToPx/kotlin.Int#/PointingToDeclaration/-portal -core/com.noblesoftware.portalcore.util.extension/sp-to-px.html
+$dokka.location:com.noblesoftware.portalcore.util.extension//timeoutErrors/#/PointingToDeclaration/-portal -core/com.noblesoftware.portalcore.util.extension/timeout-errors.html
 $dokka.location:com.noblesoftware.portalcore.util.extension//toCommaFormat/kotlin.Long#java.util.Locale/PointingToDeclaration/-portal -core/com.noblesoftware.portalcore.util.extension/to-comma-format.html
 $dokka.location:com.noblesoftware.portalcore.util.extension//toCommaFormat/kotlin.String#java.util.Locale/PointingToDeclaration/-portal -core/com.noblesoftware.portalcore.util.extension/to-comma-format.html
 $dokka.location:com.noblesoftware.portalcore.util.extension//toCurrency/kotlin.Int#/PointingToDeclaration/-portal -core/com.noblesoftware.portalcore.util.extension/to-currency.html
