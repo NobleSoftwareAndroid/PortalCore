@@ -246,6 +246,8 @@ fun String?.formatErrorMessage(context: Context): String {
     this?.let {
         if (httpErrors.any { error -> it.trim().lowercase().contains(error, true) }) {
             return context.getString(R.string.something_went_wrong)
+        } else if (timeoutErrors.any { error -> it.trim().lowercase().contains(error, true) }) {
+            return context.getString(R.string.failed_to_load_please_try_again_later)
         } else {
             return it
         }
@@ -260,6 +262,7 @@ val httpErrors = listOf(
     "null",
     "port",
     "backend",
+    "invalid pk",
     "400",
     "401",
     "402",
@@ -268,6 +271,10 @@ val httpErrors = listOf(
     "443",
     "500",
     "501",
+)
+
+val timeoutErrors = listOf(
+    "timeout"
 )
 
 fun String.toMathEqFormatted(): String {
