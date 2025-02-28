@@ -40,4 +40,5 @@
     <string name="type_answer_here">Type answer here</string>
     <string name="max_file_5mb">Maximum file size is 5 MB</string>
     <string name="file_not_supported">Upload error, file type is not supported</string>
+    <string name="failed_to_load_please_try_again_later">Failed to load, please try again later.</string>
 </resources>

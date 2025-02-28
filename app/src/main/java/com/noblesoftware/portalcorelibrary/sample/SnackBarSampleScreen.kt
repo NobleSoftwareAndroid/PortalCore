@@ -193,6 +193,18 @@ fun SnackBarSampleScreen(
                 )
             }
             DefaultSpacer()
+            DefaultButton(
+                modifier = Modifier.fillMaxWidth(),
+                text = "formatted error timeout message",
+                buttonVariant = ButtonVariant.Danger,
+                buttonType = ButtonType.Outlined,
+            ) {
+                snackbarState.value = SnackbarState(
+                    message = "timeout",
+                    isSuccess = false,
+                )
+            }
+            DefaultSpacer()
             HorizontalDivider()
             DefaultSpacer()
             DefaultButton(

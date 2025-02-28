@@ -36,4 +36,5 @@
     <string name="type_answer_here">Ketik jawaban di sini</string>
     <string name="max_file_5mb">Ukuran file maksimal adalah 5 MB</string>
     <string name="file_not_supported">Gagal mengunggah, tipe file tidak didukung</string>
+    <string name="failed_to_load_please_try_again_later">Gagal memuat, mohon coba sebentar lagi.</string>
 </resources>
