@@ -15,7 +15,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -41,8 +40,15 @@ import androidx.core.view.setPadding
 import com.noblesoftware.portalcore.R
 import com.noblesoftware.portalcore.component.compose.DefaultSelectionItem
 import com.noblesoftware.portalcore.component.compose.DefaultSpacer
+import com.noblesoftware.portalcore.component.compose.richeditor.component.DefaultFontBox
+import com.noblesoftware.portalcore.component.compose.richeditor.model.RichEditorFontAlign
+import com.noblesoftware.portalcore.component.compose.richeditor.model.RichEditorFontAlign.Companion.toRichEditorFontAlign
+import com.noblesoftware.portalcore.component.compose.richeditor.model.RichEditorState
+import com.noblesoftware.portalcore.component.compose.richeditor.model.richEditorFontAlign
+import com.noblesoftware.portalcore.component.compose.richeditor.model.richEditorFontSize
 import com.noblesoftware.portalcore.component.xml.dynamic_bottom_sheet.DefaultDynamicBottomSheetDialog
 import com.noblesoftware.portalcore.component.xml.dynamic_bottom_sheet.DefaultDynamicBottomSheetDialog.Companion.dismiss
+import com.noblesoftware.portalcore.libs.rich_editor.RichEditor
 import com.noblesoftware.portalcore.model.SnackbarState
 import com.noblesoftware.portalcore.theme.LocalDimen
 import com.noblesoftware.portalcore.util.FileUtils
@@ -51,13 +57,6 @@ import com.noblesoftware.portalcore.util.extension.htmlToString
 import com.noblesoftware.portalcore.util.extension.isFalse
 import com.noblesoftware.portalcore.util.extension.isTrue
 import com.noblesoftware.portalcore.util.extension.orZero
-import com.noblesoftware.portalcore.component.compose.richeditor.component.DefaultFontBox
-import com.noblesoftware.portalcore.component.compose.richeditor.model.RichEditorFontAlign
-import com.noblesoftware.portalcore.component.compose.richeditor.model.RichEditorFontAlign.Companion.toRichEditorFontAlign
-import com.noblesoftware.portalcore.component.compose.richeditor.model.RichEditorState
-import com.noblesoftware.portalcore.component.compose.richeditor.model.richEditorFontAlign
-import com.noblesoftware.portalcore.component.compose.richeditor.model.richEditorFontSize
-import com.noblesoftware.portalcore.libs.rich_editor.RichEditor
 import com.noblesoftware.portalcore.util.extension.rememberKeyboardState
 import okhttp3.MultipartBody
 
@@ -66,6 +65,7 @@ import okhttp3.MultipartBody
 fun RichEditorComposable(
     modifier: Modifier = Modifier,
     value: String = "",
+    tag: String = DefaultDynamicBottomSheetDialog::class.java.simpleName,
     state: RichEditorState = RichEditorState(),
     placeholder: String = stringResource(R.string.type_answer_here),
     minEditorHeight: Int = 150,
@@ -80,7 +80,6 @@ fun RichEditorComposable(
     onImageRetrieve: () -> String,
     onSnackbar: (SnackbarState) -> Unit,
     onTextChanged: (String) -> Unit,
-    onExcuseAntiCheat: () -> Unit = {}
 ) {
 
     val context = LocalContext.current
@@ -256,10 +255,10 @@ fun RichEditorComposable(
                     item {
                         DefaultFontBox(
                             onClick = {
-                                onExcuseAntiCheat.invoke()
                                 checkFocusEditor(richEditor)
                                 DefaultDynamicBottomSheetDialog.showDialog(
                                     fragmentManager = (activity as AppCompatActivity).supportFragmentManager,
+                                    tag = tag
                                 ) {
                                     LazyColumn(
                                         modifier = Modifier.fillMaxWidth(),
@@ -273,7 +272,7 @@ fun RichEditorComposable(
                                             DefaultSelectionItem(
                                                 isSelected = isSelected,
                                                 onClick = {
-                                                    activity.dismiss()
+                                                    activity.dismiss(tag)
                                                     richEditor.setFontTextSize(fontSize.id.orZero())
                                                     richEditorState.value =
                                                         richEditorState.value.copy(fontSize = fontSize.id.orZero())
@@ -341,10 +340,10 @@ fun RichEditorComposable(
                     item {
                         DefaultFontBox(
                             onClick = {
-                                onExcuseAntiCheat.invoke()
                                 checkFocusEditor(richEditor)
                                 DefaultDynamicBottomSheetDialog.showDialog(
                                     fragmentManager = (activity as AppCompatActivity).supportFragmentManager,
+                                    tag = tag
                                 ) {
                                     LazyColumn(
                                         modifier = Modifier.fillMaxWidth(),
@@ -358,7 +357,7 @@ fun RichEditorComposable(
                                             DefaultSelectionItem(
                                                 isSelected = isSelected,
                                                 onClick = {
-                                                    activity.dismiss()
+                                                    activity.dismiss(tag)
                                                     richEditorState.value =
                                                         richEditorState.value.copy(fontAlign = fontAlign.extras.toRichEditorFontAlign())
                                                     when (fontAlign.extras.toRichEditorFontAlign()) {
@@ -399,7 +398,6 @@ fun RichEditorComposable(
                         DefaultFontBox(
                             isEnabled = isImageEnabled,
                             onClick = {
-                                onExcuseAntiCheat.invoke()
                                 galleryLauncher.launch(
                                     PickVisualMediaRequest(
                                         ActivityResultContracts.PickVisualMedia.ImageOnly
