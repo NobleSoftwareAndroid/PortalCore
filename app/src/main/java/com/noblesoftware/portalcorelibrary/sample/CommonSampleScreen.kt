@@ -866,7 +866,6 @@ fun CommonSampleScreen(
                         onImageRetrieve = { "" },
                         onSnackbar = {},
                         onTextChanged = {},
-                        onExcuseAntiCheat = {}
                     )
                     DefaultSpacer(height = LocalDimen.current.extraLarge)
                 }
