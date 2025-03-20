@@ -73,6 +73,11 @@ public class RichEditor extends WebView {
         void onTextPaste(String text);
     }
 
+    public interface OnTextCopyOrCutListener {
+
+        void onTextCopyOrCut(String text);
+    }
+
     public interface OnDecorationStateListener {
 
         void onStateChangeListener(String text, List<Type> types);
@@ -86,11 +91,13 @@ public class RichEditor extends WebView {
     private static final String SETUP_HTML = "file:///android_asset/RichEditor/rich_editor.html";
     private static final String CALLBACK_SCHEME = "re-callback://";
     private static final String CALLBACK_PASTE = "re-callback-paste://";
+    private static final String CALLBACK_COPY_OR_CUT = "re-callback-copy-cut://";
     private static final String STATE_SCHEME = "re-state://";
     private boolean isReady = false;
     private String mContents;
     private OnTextChangeListener mTextChangeListener;
     private OnTextPasteListener mTextPasteListener;
+    private OnTextCopyOrCutListener mTextCopyOrCutListener;
     private OnDecorationStateListener mDecorationStateListener;
     private AfterInitialLoadListener mLoadListener;
 
@@ -143,6 +150,10 @@ public class RichEditor extends WebView {
         mTextPasteListener = listener;
     }
 
+    public void setOnTextCopyOrCut(OnTextCopyOrCutListener listener) {
+        mTextCopyOrCutListener = listener;
+    }
+
     public void setOnDecorationChangeListener(OnDecorationStateListener listener) {
         mDecorationStateListener = listener;
     }
@@ -162,6 +173,13 @@ public class RichEditor extends WebView {
         mContents = text.replaceFirst(CALLBACK_PASTE, "");
         if (mTextPasteListener != null) {
             mTextPasteListener.onTextPaste(mContents);
+        }
+    }
+
+    private void callbackCopyOrCut(String text) {
+        mContents = text.replaceFirst(CALLBACK_COPY_OR_CUT, "");
+        if (mTextCopyOrCutListener != null) {
+            mTextCopyOrCutListener.onTextCopyOrCut(mContents);
         }
     }
 
@@ -233,6 +251,14 @@ public class RichEditor extends WebView {
     public void setEditorFontColor(int color) {
         String hex = convertHexColorString(color);
         exec("javascript:RE.setBaseTextColor('" + hex + "');");
+    }
+
+    public void setPreventPaste(boolean isPrevent) {
+        exec("javascript:RE.setPreventPaste('" + isPrevent + "');");
+    }
+
+    public void setPreventCopyOrCut(boolean isPrevent) {
+        exec("javascript:RE.setPreventCopyOrCut('" + isPrevent + "');");
     }
 
     public void setEditorFontSize(int px) {
@@ -547,6 +573,9 @@ public class RichEditor extends WebView {
                 return true;
             } else if (TextUtils.indexOf(url, CALLBACK_PASTE) == 0) {
                 callbackPaste(decode);
+                return true;
+            } else if (TextUtils.indexOf(url, CALLBACK_COPY_OR_CUT) == 0) {
+                callbackCopyOrCut(decode);
                 return true;
             } else if (TextUtils.indexOf(url, STATE_SCHEME) == 0) {
                 stateCheck(decode);

@@ -27,6 +27,8 @@ RE.currentSelection = {
     "endOffset": 0};
 
 RE.editor = document.getElementById('editor');
+RE.isPreventPaste = false
+RE.isPreventCopyOrCut = false
 
 document.addEventListener("selectionchange", function() { RE.backuprange(); });
 
@@ -37,6 +39,10 @@ RE.callback = function() {
 
 RE.callbackPaste = function(e) {
     window.location.href = "re-callback-paste://" + encodeURIComponent(e);
+}
+
+RE.callbackCopyOrCut = function(e) {
+    window.location.href = "re-callback-copy-cut://" + encodeURIComponent(e);
 }
 
 RE.setHtml = function(contents) {
@@ -397,16 +403,55 @@ RE.editor.addEventListener("click", RE.enabledEditingItems);
 
 // Handle paste
 RE.editor.addEventListener("paste", function (e) {
-  var clipboardData, pastedData;
+    if (RE.isPreventPaste == "true") {
+        var clipboardData, pastedData;
 
-  // Stop data actually being pasted into div
-  e.stopPropagation();
-  e.preventDefault();
+        // Stop data actually being pasted into div
+        e.stopPropagation();
+        e.preventDefault();
 
-  // Get pasted data via clipboard API
-  clipboardData = e.clipboardData || window.clipboardData;
-  pastedData = clipboardData.getData('Text');
+        // Get pasted data via clipboard API
+        clipboardData = e.clipboardData || window.clipboardData;
+        pastedData = clipboardData.getData('Text');
 
-  // callback paste
-  RE.callbackPaste(pastedData)
+        console.log(pastedData)
+
+        // callback paste
+        RE.callbackPaste(pastedData)
+    }
 });
+
+
+// Handle copy
+RE.editor.addEventListener("copy", function (e) {
+    if (RE.isPreventCopyOrCut == "true") {
+        var selection = window.getSelection();
+
+        e.clipboardData?.setData('Text', "");
+        e.preventDefault();
+
+        // callback copy
+        RE.callbackCopyOrCut(selection.toString())
+    }
+});
+
+// Handle cut
+RE.editor.addEventListener("cut", function (e) {
+    if (RE.isPreventCopyOrCut == "true") {
+        var selection = window.getSelection();
+
+        e.clipboardData?.setData('Text', "");
+        e.preventDefault();
+
+        // callback copy
+        RE.callbackCopyOrCut(selection.toString())
+    }
+});
+
+RE.setPreventPaste = function(isPrevent) {
+    RE.isPreventPaste = isPrevent;
+}
+
+RE.setPreventCopyOrCut = function(isPrevent) {
+    RE.isPreventCopyOrCut = isPrevent;
+}

@@ -862,11 +862,13 @@ fun CommonSampleScreen(
                         value = "",
                         imageFormName = "image",
                         isImageEnabled = false,
+                        isAntiCheatEnable = false,
                         onImageUpload = {},
                         onImageRetrieve = { "" },
                         onSnackbar = {},
                         onTextChanged = {},
-                        onTextPaste = {}
+                        onTextPaste = {},
+                        onTextCopyOrCut = {}
                     )
                     DefaultSpacer(height = LocalDimen.current.extraLarge)
                 }
