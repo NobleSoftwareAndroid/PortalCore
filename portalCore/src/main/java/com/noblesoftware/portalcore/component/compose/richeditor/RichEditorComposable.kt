@@ -56,6 +56,7 @@ import com.noblesoftware.portalcore.util.extension.findActivity
 import com.noblesoftware.portalcore.util.extension.htmlToString
 import com.noblesoftware.portalcore.util.extension.isFalse
 import com.noblesoftware.portalcore.util.extension.isTrue
+import com.noblesoftware.portalcore.util.extension.loge
 import com.noblesoftware.portalcore.util.extension.orZero
 import com.noblesoftware.portalcore.util.extension.rememberKeyboardState
 import okhttp3.MultipartBody
@@ -76,9 +77,12 @@ fun RichEditorComposable(
     maxImageSize: Int = 5,
     maxImageSizeError: String = stringResource(R.string.max_file_5mb),
     isImageEnabled: Boolean = true,
+    isAntiCheatEnable: Boolean = false,
     onImageUpload: (MultipartBody.Part) -> Unit,
     onImageRetrieve: () -> String,
     onSnackbar: (SnackbarState) -> Unit,
+    onTextPaste: ((String) -> Unit?) = {},
+    onTextCopyOrCut: ((String) -> Unit?) = {},
     onTextChanged: (String) -> Unit,
 ) {
 
@@ -115,8 +119,17 @@ fun RichEditorComposable(
                     if (text.htmlToString().isBlank()) "" else text
                 )
             }
+            setPreventPaste(isAntiCheatEnable)
+            setOnTextPasteListener { text ->
+                onTextPaste.invoke(text)
+            }
+            setPreventCopyOrCut(isAntiCheatEnable)
+            setOnTextCopyOrCut { text ->
+                onTextCopyOrCut.invoke(text)
+            }
         }
     }
+
 
     val galleryLauncher =
         rememberLauncherForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->
