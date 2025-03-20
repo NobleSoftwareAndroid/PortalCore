@@ -56,6 +56,7 @@ import com.noblesoftware.portalcore.util.extension.findActivity
 import com.noblesoftware.portalcore.util.extension.htmlToString
 import com.noblesoftware.portalcore.util.extension.isFalse
 import com.noblesoftware.portalcore.util.extension.isTrue
+import com.noblesoftware.portalcore.util.extension.loge
 import com.noblesoftware.portalcore.util.extension.orZero
 import com.noblesoftware.portalcore.util.extension.rememberKeyboardState
 import okhttp3.MultipartBody
@@ -79,6 +80,7 @@ fun RichEditorComposable(
     onImageUpload: (MultipartBody.Part) -> Unit,
     onImageRetrieve: () -> String,
     onSnackbar: (SnackbarState) -> Unit,
+    onTextPaste: ((String) -> Unit?) = {},
     onTextChanged: (String) -> Unit,
 ) {
 
@@ -115,8 +117,12 @@ fun RichEditorComposable(
                     if (text.htmlToString().isBlank()) "" else text
                 )
             }
+            setOnTextPasteListener { text ->
+                onTextPaste.invoke(text)
+            }
         }
     }
+
 
     val galleryLauncher =
         rememberLauncherForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->

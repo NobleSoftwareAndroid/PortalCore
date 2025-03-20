@@ -35,6 +35,10 @@ RE.callback = function() {
     window.location.href = "re-callback://" + encodeURIComponent(RE.getHtml());
 }
 
+RE.callbackPaste = function(e) {
+    window.location.href = "re-callback-paste://" + encodeURIComponent(e);
+}
+
 RE.setHtml = function(contents) {
     RE.editor.innerHTML = decodeURIComponent(contents.replace(/\+/g, '%20'));
 }
@@ -390,3 +394,19 @@ RE.editor.addEventListener("keyup", function(e) {
     }
 });
 RE.editor.addEventListener("click", RE.enabledEditingItems);
+
+// Handle paste
+RE.editor.addEventListener("paste", function (e) {
+  var clipboardData, pastedData;
+
+  // Stop data actually being pasted into div
+  e.stopPropagation();
+  e.preventDefault();
+
+  // Get pasted data via clipboard API
+  clipboardData = e.clipboardData || window.clipboardData;
+  pastedData = clipboardData.getData('Text');
+
+  // callback paste
+  RE.callbackPaste(pastedData)
+});

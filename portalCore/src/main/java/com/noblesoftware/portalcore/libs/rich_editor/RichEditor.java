@@ -68,6 +68,11 @@ public class RichEditor extends WebView {
         void onTextChange(String text);
     }
 
+    public interface OnTextPasteListener {
+
+        void onTextPaste(String text);
+    }
+
     public interface OnDecorationStateListener {
 
         void onStateChangeListener(String text, List<Type> types);
@@ -80,10 +85,12 @@ public class RichEditor extends WebView {
 
     private static final String SETUP_HTML = "file:///android_asset/RichEditor/rich_editor.html";
     private static final String CALLBACK_SCHEME = "re-callback://";
+    private static final String CALLBACK_PASTE = "re-callback-paste://";
     private static final String STATE_SCHEME = "re-state://";
     private boolean isReady = false;
     private String mContents;
     private OnTextChangeListener mTextChangeListener;
+    private OnTextPasteListener mTextPasteListener;
     private OnDecorationStateListener mDecorationStateListener;
     private AfterInitialLoadListener mLoadListener;
 
@@ -132,6 +139,10 @@ public class RichEditor extends WebView {
         mTextChangeListener = listener;
     }
 
+    public void setOnTextPasteListener(OnTextPasteListener listener) {
+        mTextPasteListener = listener;
+    }
+
     public void setOnDecorationChangeListener(OnDecorationStateListener listener) {
         mDecorationStateListener = listener;
     }
@@ -144,6 +155,13 @@ public class RichEditor extends WebView {
         mContents = text.replaceFirst(CALLBACK_SCHEME, "");
         if (mTextChangeListener != null) {
             mTextChangeListener.onTextChange(mContents);
+        }
+    }
+
+    private void callbackPaste(String text) {
+        mContents = text.replaceFirst(CALLBACK_PASTE, "");
+        if (mTextPasteListener != null) {
+            mTextPasteListener.onTextPaste(mContents);
         }
     }
 
@@ -526,6 +544,9 @@ public class RichEditor extends WebView {
 
             if (TextUtils.indexOf(url, CALLBACK_SCHEME) == 0) {
                 callback(decode);
+                return true;
+            } else if (TextUtils.indexOf(url, CALLBACK_PASTE) == 0) {
+                callbackPaste(decode);
                 return true;
             } else if (TextUtils.indexOf(url, STATE_SCHEME) == 0) {
                 stateCheck(decode);
