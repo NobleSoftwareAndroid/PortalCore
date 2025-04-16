@@ -111,7 +111,7 @@ fun RichEditorComposable(
                     R.color.text_primary
                 )
             )
-            setFontTextSize(state.fontSize.size)
+            setEditorFontSize(state.fontSize.size.plus(4))
             setPlaceholder(placeholder)
             html = value
             setOnTextChangeListener { text ->
