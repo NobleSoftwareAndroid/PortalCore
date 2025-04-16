@@ -10,19 +10,19 @@ sealed class RichEditorFontSize(
 ) {
     object Small : RichEditorFontSize(
         type = RichEditorFontSizeType.SMALL,
-        size = 8,
+        size = 4,
         nameId = R.string.small
     )
 
     object Normal : RichEditorFontSize(
         type = RichEditorFontSizeType.NORMAL,
-        size = 16,
+        size = 12,
         nameId = R.string.normal
     )
 
     object Large : RichEditorFontSize(
         type = RichEditorFontSizeType.LARGE,
-        size = 24,
+        size = 20,
         nameId = R.string.large
     )
 
