@@ -43,6 +43,7 @@ import com.noblesoftware.portalcore.component.compose.DefaultSpacer
 import com.noblesoftware.portalcore.component.compose.richeditor.component.DefaultFontBox
 import com.noblesoftware.portalcore.component.compose.richeditor.model.RichEditorFontAlign
 import com.noblesoftware.portalcore.component.compose.richeditor.model.RichEditorFontAlign.Companion.toRichEditorFontAlign
+import com.noblesoftware.portalcore.component.compose.richeditor.model.RichEditorFontSize.Companion.toRichEditorFontSize
 import com.noblesoftware.portalcore.component.compose.richeditor.model.RichEditorState
 import com.noblesoftware.portalcore.component.compose.richeditor.model.richEditorFontAlign
 import com.noblesoftware.portalcore.component.compose.richeditor.model.richEditorFontSize
@@ -56,7 +57,6 @@ import com.noblesoftware.portalcore.util.extension.findActivity
 import com.noblesoftware.portalcore.util.extension.htmlToString
 import com.noblesoftware.portalcore.util.extension.isFalse
 import com.noblesoftware.portalcore.util.extension.isTrue
-import com.noblesoftware.portalcore.util.extension.loge
 import com.noblesoftware.portalcore.util.extension.orZero
 import com.noblesoftware.portalcore.util.extension.rememberKeyboardState
 import okhttp3.MultipartBody
@@ -111,7 +111,7 @@ fun RichEditorComposable(
                     R.color.text_primary
                 )
             )
-            setFontTextSize(state.fontSize)
+            setFontTextSize(state.fontSize.size)
             setPlaceholder(placeholder)
             html = value
             setOnTextChangeListener { text ->
@@ -278,21 +278,23 @@ fun RichEditorComposable(
                                         contentPadding = PaddingValues(horizontal = LocalDimen.current.regular)
                                     ) {
                                         items(richEditorFontSize.size) { index ->
-                                            val fontSize = richEditorFontSize[index]
+                                            val selectOption = richEditorFontSize[index]
                                             val isSelected =
-                                                fontSize.id == richEditorState.value.fontSize
+                                                selectOption.id == richEditorState.value.fontSize.size
 
                                             DefaultSelectionItem(
                                                 isSelected = isSelected,
                                                 onClick = {
                                                     activity.dismiss(tag)
-                                                    richEditor.setFontTextSize(fontSize.id.orZero())
+                                                    richEditor.setFontTextSize(selectOption.id.orZero())
                                                     richEditorState.value =
-                                                        richEditorState.value.copy(fontSize = fontSize.id.orZero())
+                                                        richEditorState.value.copy(fontSize = selectOption.extras.toRichEditorFontSize())
                                                 },
                                             ) {
                                                 Text(
-                                                    text = fontSize.name,
+                                                    text = stringResource(
+                                                        selectOption.nameId ?: R.string.strip
+                                                    ),
                                                     style = MaterialTheme.typography.labelMedium.copy(
                                                         colorResource(id = if (isSelected) R.color.primary_plain_color else R.color.text_primary)
                                                     )
@@ -305,8 +307,8 @@ fun RichEditorComposable(
                         ) {
                             Row(verticalAlignment = Alignment.CenterVertically) {
                                 Text(
-                                    text = richEditorState.value.fontSize.toString(),
-                                    style = MaterialTheme.typography.labelLarge.copy(
+                                    text = stringResource(richEditorState.value.fontSize.nameId),
+                                    style = MaterialTheme.typography.labelMedium.copy(
                                         colorResource(id = R.color.text_primary),
                                     )
                                 )
