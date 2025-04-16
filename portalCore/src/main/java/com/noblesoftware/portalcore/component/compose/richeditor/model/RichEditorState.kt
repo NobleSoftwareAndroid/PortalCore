@@ -3,17 +3,30 @@ package com.noblesoftware.portalcore.component.compose.richeditor.model
 import com.noblesoftware.portalcore.model.SelectOption
 
 data class RichEditorState(
-    val fontSize: Int = 14,
+    val fontSize: RichEditorFontSize = RichEditorFontSize.Normal,
     val fontAlign: RichEditorFontAlign = RichEditorFontAlign.Left,
 )
 
-val richEditorFontSize = (12..25).toList().map {
+val richEditorFontSize = listOf(
     SelectOption(
-        id = it,
-        name = it.toString(),
-        isSelected = it == 14
-    )
-}
+        id = RichEditorFontSize.Small.size,
+        nameId = RichEditorFontSize.Small.nameId,
+        extras = RichEditorFontSize.Small.type.name,
+        isSelected = true
+    ),
+    SelectOption(
+        id = RichEditorFontSize.Normal.size,
+        nameId = RichEditorFontSize.Normal.nameId,
+        extras = RichEditorFontSize.Normal.type.name,
+        isSelected = false
+    ),
+    SelectOption(
+        id = RichEditorFontSize.Large.size,
+        nameId = RichEditorFontSize.Large.nameId,
+        extras = RichEditorFontSize.Large.type.name,
+        isSelected = false
+    ),
+)
 
 val richEditorFontAlign = listOf(
     SelectOption(
