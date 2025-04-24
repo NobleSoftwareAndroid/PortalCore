@@ -93,6 +93,13 @@ object DateTimeHelper {
         return sdf.format(dt)
     }
 
+    fun milliToDateFormatUTC(millis: Long, format: String): String {
+        val sdf = SimpleDateFormat(format, Locale.ENGLISH)
+        sdf.timeZone = TimeZone.getTimeZone("UTC")
+        val dt = Date(millis)
+        return sdf.format(dt)
+    }
+
     fun milliToTimeMinsFormattedWithNoSec(millis: Long): String {
         var time = ""
         try {
