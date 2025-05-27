@@ -5,7 +5,8 @@ plugins {
     alias(libs.plugins.org.jetbrains.kotlin.kapt)
     alias(libs.plugins.devtools.ksp)
     alias(libs.plugins.hilt.android)
-    kotlin("plugin.serialization") version "1.4.21"
+    kotlin("plugin.serialization")
+    alias(libs.plugins.kotlin.compose)
 }
 
 android {
@@ -48,9 +49,6 @@ android {
         compose = true
         dataBinding = true
         buildConfig = true
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.4.3"
     }
     packaging {
         resources {
