@@ -1,6 +1,7 @@
 package com.noblesoftware.portalcore.model
 
 import androidx.annotation.ColorRes
+import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import com.noblesoftware.portalcore.R
 
@@ -15,6 +16,8 @@ sealed class FieldType(
         val value: String = "",
         @StringRes val valueId: Int = R.string.empty_string,
         @ColorRes val textColor: Int = R.color.text_secondary,
+        @DrawableRes val icon: Int? = null,
+        @ColorRes val iconTint: Int = R.color.text_icon,
     ) : FieldType(
         type = SINGLE,
         formTitle = title,

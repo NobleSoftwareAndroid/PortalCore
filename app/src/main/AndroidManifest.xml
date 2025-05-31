@@ -20,7 +20,8 @@
             android:name=".MainActivity"
             android:exported="true"
             android:label="@string/app_name"
-            android:theme="@style/Theme.PortalCore">
+            android:theme="@style/Theme.PortalCore"
+            android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -32,7 +33,7 @@
             android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.PortalCoreActivityComponent"
-            android:windowSoftInputMode="adjustPan" />
+            android:windowSoftInputMode="adjustResize" />
     </application>
 
 </manifest>
