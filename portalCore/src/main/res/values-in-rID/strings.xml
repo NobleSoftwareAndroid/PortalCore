@@ -40,4 +40,5 @@
     <string name="small">Kecil</string>
     <string name="normal">Normal</string>
     <string name="large">Besar</string>
+    <string name="please_check_internet_connection">Periksa koneksi internet Anda</string>
 </resources>

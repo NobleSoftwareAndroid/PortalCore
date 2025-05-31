@@ -7,6 +7,7 @@ plugins {
     alias(libs.plugins.hilt.android)
     alias(libs.plugins.kotlin.parcelize)
     alias(libs.plugins.org.jetbrains.dokka)
+    alias(libs.plugins.kotlin.compose)
     `maven-publish`
 }
 
@@ -38,9 +39,6 @@ android {
         compose = true
         dataBinding = true
         buildConfig = true
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.4.3"
     }
     kotlinOptions {
         jvmTarget = "17"
