@@ -19,6 +19,7 @@ import com.noblesoftware.portalcorelibrary.sample.CommonSampleScreen
 import com.noblesoftware.portalcorelibrary.sample.ContainerSampleScreen
 import com.noblesoftware.portalcorelibrary.sample.DialogSampleScreen
 import com.noblesoftware.portalcorelibrary.sample.FullEdgeSampleScreen
+import com.noblesoftware.portalcorelibrary.sample.RichTextEditorSampleScreen
 import com.noblesoftware.portalcorelibrary.sample.SnackBarSampleScreen
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -43,6 +44,7 @@ class MainActivity : AppCompatActivity() {
                         composable<ContainerRoute> { ContainerSampleScreen(navHostController = navController) }
                         composable<FullEdgeRoute> { FullEdgeSampleScreen(navHostController = navController) }
                         composable<DialogRoute> { DialogSampleScreen(navHostController = navController) }
+                        composable<RichTextEditorRoute> { RichTextEditorSampleScreen(navHostController = navController) }
                     }
                 }
             }

@@ -317,12 +317,19 @@ open class DefaultPaginatedBottomSheetDialog : BottomSheetDialogFragment() {
                                         DefaultSpacer(height = LocalDimen.current.extraRegular)
                                         DefaultEmptyState(
                                             modifier = Modifier.fillMaxWidth(),
+                                            icon = if (state.keywords.isBlank() || state.keywords.length < paginatedBottomSheetData.searchQueryMinimalChar)
+                                                paginatedBottomSheetData.initialIcon?.let {
+                                                    painterResource(id = it)
+                                                }
+                                            else paginatedBottomSheetData.icon?.let {
+                                                painterResource(id = it)
+                                            },
                                             title = if (state.keywords.isBlank() || state.keywords.length < paginatedBottomSheetData.searchQueryMinimalChar) paginatedBottomSheetData.initialTitle else paginatedBottomSheetData.title,
                                             message = if (state.keywords.isBlank()) {
                                                 paginatedBottomSheetData.initialSubtitle
                                             } else if (state.keywords.length < paginatedBottomSheetData.searchQueryMinimalChar) {
-                                                paginatedBottomSheetData.subtitle
-                                            } else stringResource(id = R.string.empty_string)
+                                                paginatedBottomSheetData.additionalSubtitle
+                                            } else paginatedBottomSheetData.subtitle
                                         )
                                     }
                                 } else {
@@ -506,7 +513,10 @@ open class DefaultPaginatedBottomSheetDialog : BottomSheetDialogFragment() {
 data class PaginatedBottomSheetData(
     val title: String,
     val subtitle: String,
+    val additionalSubtitle: String,
+    val icon: Int? = null,
     val initialTitle: String,
     val initialSubtitle: String,
+    val initialIcon: Int? = null,
     val searchQueryMinimalChar: Int
 )

@@ -9,3 +9,4 @@ import kotlinx.serialization.Serializable
 @Serializable object ContainerRoute
 @Serializable object FullEdgeRoute
 @Serializable object DialogRoute
+@Serializable object RichTextEditorRoute
