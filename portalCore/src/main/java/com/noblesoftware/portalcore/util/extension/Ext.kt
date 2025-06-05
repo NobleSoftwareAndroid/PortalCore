@@ -319,3 +319,17 @@ fun String.toMathEqFormatted(): String {
 
     return newData
 }
+
+/**
+ * Convert [Int] into [mm:ss]
+ */
+fun Int.toMinuteSeconds(): String =
+    runCatching {
+        val minute = this / 60
+        val strMinute = if (minute < 10) "0$minute" else minute.toString()
+
+        val second = this % 60
+        val strSecond = if (second < 10) "0$second" else second.toString()
+
+        "$strMinute:$strSecond"
+    }.getOrElse { "" }
