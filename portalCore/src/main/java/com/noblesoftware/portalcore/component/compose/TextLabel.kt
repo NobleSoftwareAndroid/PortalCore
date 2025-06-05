@@ -1,6 +1,5 @@
 package com.noblesoftware.portalcore.component.compose
 
-import android.graphics.Paint.Align
 import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.background
