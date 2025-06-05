@@ -97,6 +97,14 @@ fun MainScreen(
             ) {
                 navHostController.navigate(route = DialogRoute)
             }
+            DefaultSpacer()
+            DefaultButton(
+                modifier = Modifier.fillMaxWidth(),
+                text = "RichText Editor",
+                buttonVariant = ButtonVariant.Neutral
+            ) {
+                navHostController.navigate(route = RichTextEditorRoute)
+            }
         }
     }
 }
