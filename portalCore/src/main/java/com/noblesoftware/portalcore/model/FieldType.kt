@@ -81,6 +81,21 @@ sealed class FieldType(
         formTitleId = titleId,
     )
 
+    data class Email(
+        val title: String = "",
+        @StringRes val titleId: Int = R.string.empty_string,
+        val value: String = "",
+        @StringRes val valueId: Int = R.string.empty_string,
+        @ColorRes val textColor: Int = R.color.text_secondary,
+        @DrawableRes val icon: Int? = null,
+        @ColorRes val iconTint: Int = R.color.text_icon,
+        val isVerified: Boolean? = null
+    ) : FieldType(
+        type = EMAIL,
+        formTitle = title,
+        formTitleId = titleId,
+    )
+
     companion object {
         const val SINGLE = "single"
         const val MULTIPLE = "multiple"
@@ -88,5 +103,6 @@ sealed class FieldType(
         const val STATUS = "status"
         const val FILE = "file"
         const val MULTIPLE_ANSWER = "multiple_answer"
+        const val EMAIL = "email"
     }
 }

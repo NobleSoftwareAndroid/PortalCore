@@ -61,6 +61,7 @@ import com.noblesoftware.portalcore.model.StatusModel
 import com.noblesoftware.portalcore.model.WebViewFontStyle
 import com.noblesoftware.portalcore.theme.LocalDimen
 import com.noblesoftware.portalcore.util.extension.handleSafeScaffoldPadding
+import com.noblesoftware.portalcore.util.extension.loge
 import com.noblesoftware.portalcore.util.extension.toCommaFormat
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -1043,9 +1044,70 @@ fun CommonSampleScreen(
                     fieldType = FieldType.Single(
                         title = "Single",
                         value = "Single Value hf sjkdbf jsdbf kjsbf jskdbf jksbf ksdjbf ksjbf sjbf sjkbf skdjbf kjsbf jsbd fjbsdf kjbsd fkjsb fbsdfkdjbs fjsbd fjdsbf ksjbdf ksdjbf ksjbf",
+                    ),
+                )
+                HorizontalDivider(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = LocalDimen.current.regular),
+                    color = colorResource(id = R.color.divider)
+                )
+                FieldItem(
+                    modifier = Modifier.fillMaxWidth(),
+                    fieldType = FieldType.Single(
+                        title = "Single with Icon",
+                        value = "Single Value hf sjkdbf jsdbf kjsbf jskdbf jksbf ksdjbf ksjbf sjbf sjkbf skdjbf kjsbf jsbd fjbsdf kjbsd fkjsb fbsdfkdjbs fjsbd fjdsbf ksjbdf ksdjbf ksjbf",
                         icon = R.drawable.ic_check_in
                     ),
                     onIconClick = {}
+                )
+                HorizontalDivider(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = LocalDimen.current.regular),
+                    color = colorResource(id = R.color.divider)
+                )
+                FieldItem(
+                    modifier = Modifier.fillMaxWidth(),
+                    fieldType = FieldType.Email(
+                        title = "No Email",
+                        value = "",
+                        icon = R.drawable.ic_edit,
+                    ),
+                    onIconClick = {}
+                )
+                HorizontalDivider(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = LocalDimen.current.regular),
+                    color = colorResource(id = R.color.divider)
+                )
+                FieldItem(
+                    modifier = Modifier.fillMaxWidth(),
+                    fieldType = FieldType.Email(
+                        title = "Email Verified",
+                        value = "stanleymesa@gmail.com",
+                        icon = R.drawable.ic_edit,
+                        isVerified = true
+                    ),
+                    onIconClick = {}
+                )
+                HorizontalDivider(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = LocalDimen.current.regular),
+                    color = colorResource(id = R.color.divider)
+                )
+                FieldItem(
+                    modifier = Modifier.fillMaxWidth(),
+                    fieldType = FieldType.Email(
+                        title = "Email Unverified",
+                        value = "stanleymesa@gmail.com",
+                        icon = R.drawable.ic_edit,
+                        isVerified = false
+                    ),
+                    onIconClick = {},
+                    onResendVerificationClick = {}
                 )
                 HorizontalDivider(
                     modifier = Modifier

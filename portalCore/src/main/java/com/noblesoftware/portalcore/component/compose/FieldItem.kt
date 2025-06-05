@@ -25,7 +25,11 @@ import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
 import com.noblesoftware.portalcore.R
 import com.noblesoftware.portalcore.model.FieldType
+import com.noblesoftware.portalcore.model.StatusModel
 import com.noblesoftware.portalcore.theme.LocalDimen
+import com.noblesoftware.portalcore.util.extension.isFalse
+import com.noblesoftware.portalcore.util.extension.isNotStrip
+import com.noblesoftware.portalcore.util.extension.isTrue
 
 @Composable
 fun FieldItem(
@@ -33,6 +37,7 @@ fun FieldItem(
     fieldType: FieldType,
     onFileClick: (fileUrl: String, fileName: String) -> Unit = { _, _ -> },
     onIconClick: () -> Unit = {},
+    onResendVerificationClick: () -> Unit = {},
     onClick: () -> Unit = {}
 ) {
     ConstraintLayout(
@@ -54,13 +59,12 @@ fun FieldItem(
                 vertical = LocalDimen.current.medium,
             ),
     ) {
-        val (field, icon) = createRefs()
+        val (field, icon, btnResendVerification) = createRefs()
         Column(
             modifier = Modifier.constrainAs(field) {
                 start.linkTo(parent.start)
                 top.linkTo(parent.top)
-                bottom.linkTo(parent.bottom)
-                if (fieldType is FieldType.Single && fieldType.icon != null) {
+                if ((fieldType is FieldType.Single && fieldType.icon != null) || (fieldType is FieldType.Email && fieldType.icon != null)) {
                     end.linkTo(icon.start, margin = 12.dp)
                 } else {
                     end.linkTo(parent.end)
@@ -134,7 +138,7 @@ fun FieldItem(
                         TextLabel(
                             label = statusModel.label.ifEmpty { stringResource(id = statusModel.labelId) },
                             backgroundColor = colorResource(id = statusModel.backgroundColor),
-                            textStyle = MaterialTheme.typography.titleSmall.copy(
+                            textStyle = MaterialTheme.typography.labelMedium.copy(
                                 color = colorResource(id = statusModel.textColor),
                                 fontWeight = FontWeight.W500,
                                 fontSize = statusModel.fontSize
@@ -217,13 +221,55 @@ fun FieldItem(
                     }
                 }
             }
+            // if is Email
+            if (fieldType is FieldType.Email) {
+                DefaultSpacer(height = LocalDimen.current.default)
+                Text(
+                    text = fieldType.value.ifBlank {
+                        stringResource(id = fieldType.valueId).ifBlank { "-" }
+                    },
+                    style = MaterialTheme.typography.bodyMedium.copy(colorResource(id = fieldType.textColor))
+                )
+                if (fieldType.isVerified != null && fieldType.value.isNotBlank() && fieldType.value.isNotStrip()) {
+                    val statusModel = if (fieldType.isVerified.isTrue())
+                        StatusModel(
+                            labelId = R.string.verified_email,
+                            backgroundColor = R.color.success_soft_bg,
+                            textColor = R.color.success_soft_color,
+                            startIcon = R.drawable.ic_check,
+                            startIconTint = R.color.success_soft_color,
+                        )
+                    else
+                        StatusModel(
+                            labelId = R.string.unverified_email,
+                            backgroundColor = R.color.warning_soft_bg,
+                            textColor = R.color.warning_soft_color,
+                            startIcon = R.drawable.ic_mail,
+                            startIconTint = R.color.warning_soft_color,
+                        )
+
+                    DefaultSpacer(height = LocalDimen.current.medium)
+                    TextLabel(
+                        label = stringResource(statusModel.labelId),
+                        backgroundColor = colorResource(id = statusModel.backgroundColor),
+                        textStyle = MaterialTheme.typography.labelMedium.copy(
+                            color = colorResource(id = statusModel.textColor),
+                            fontWeight = FontWeight.W500,
+                        ),
+                        startIcon = statusModel.startIcon,
+                        startIconTint = statusModel.startIconTint
+                    )
+                }
+            }
         }
+
+        /** Add End Icon if its Single and has icon */
         if (fieldType is FieldType.Single && fieldType.icon != null) {
             CompositionLocalProvider(LocalMinimumInteractiveComponentSize provides LocalDimen.current.zero) {
                 IconButton(modifier = Modifier.constrainAs(icon) {
                     end.linkTo(parent.end)
-                    top.linkTo(parent.top)
-                    bottom.linkTo(parent.bottom)
+                    top.linkTo(field.top)
+                    bottom.linkTo(field.bottom)
                 }, onClick = onIconClick) {
                     Icon(
                         painter = painterResource(fieldType.icon),
@@ -231,6 +277,40 @@ fun FieldItem(
                         tint = colorResource(id = fieldType.iconTint)
                     )
                 }
+            }
+        }
+        /** Add End Icon if its Email and has icon */
+        if (fieldType is FieldType.Email && fieldType.icon != null) {
+            CompositionLocalProvider(LocalMinimumInteractiveComponentSize provides LocalDimen.current.zero) {
+                IconButton(modifier = Modifier.constrainAs(icon) {
+                    end.linkTo(parent.end)
+                    top.linkTo(field.top)
+                    bottom.linkTo(field.bottom)
+                }, onClick = onIconClick) {
+                    Icon(
+                        painter = painterResource(fieldType.icon),
+                        contentDescription = "",
+                        tint = colorResource(id = fieldType.iconTint)
+                    )
+                }
+            }
+        }
+
+        /** Add Resend Verification Button if its Unverified Email */
+        if (fieldType is FieldType.Email && fieldType.isVerified.isFalse() && fieldType.value.isNotBlank() && fieldType.value.isNotStrip()) {
+            DefaultButton(
+                modifier = Modifier.constrainAs(btnResendVerification) {
+                    start.linkTo(parent.start)
+                    end.linkTo(parent.end)
+                    top.linkTo(field.bottom, margin = 12.dp)
+                    width = Dimension.fillToConstraints
+                },
+                text = stringResource(R.string.resend_verification_email),
+                buttonVariant = ButtonVariant.Primary,
+                buttonSize = ButtonSize.Medium,
+                buttonType = ButtonType.Outlined
+            ) {
+                onResendVerificationClick.invoke()
             }
         }
     }

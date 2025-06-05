@@ -1,15 +1,22 @@
 package com.noblesoftware.portalcore.component.compose
 
+import android.graphics.Paint.Align
+import androidx.annotation.ColorRes
+import androidx.annotation.DrawableRes
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.CornerSize
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
@@ -31,10 +38,11 @@ fun TextLabel(
     textStyle: TextStyle = MaterialTheme.typography.titleSmall.copy(
         color = textColor,
         fontWeight = FontWeight.W500
-    )
+    ),
+    @DrawableRes startIcon: Int? = null,
+    @ColorRes startIconTint: Int = R.color.text_icon
 ) {
-    Text(
-        text = label,
+    Row(
         modifier = modifier
             .clip(LocalShapes.medium.copy(all = CornerSize(LocalDimen.current.extraRegular)))
             .background(backgroundColor)
@@ -42,10 +50,23 @@ fun TextLabel(
                 horizontal = LocalDimen.current.default,
                 vertical = LocalDimen.current.extraSmall
             ),
-        style = textStyle,
-        maxLines = 1,
-        overflow = TextOverflow.Ellipsis
-    )
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        if (startIcon != null) {
+            Icon(
+                painter = painterResource(startIcon),
+                tint = colorResource(startIconTint),
+                contentDescription = ""
+            )
+            DefaultSpacer(width = LocalDimen.current.default)
+        }
+        Text(
+            text = label,
+            style = textStyle,
+            maxLines = 1,
+            overflow = TextOverflow.Ellipsis
+        )
+    }
 }
 
 

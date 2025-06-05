@@ -219,6 +219,8 @@ fun Context.getColorStateListCompat(@ColorRes colorResId: Int) =
 fun String?.isSuccess() = this?.equals("success").orFalse()
 
 fun String?.orStrip() = if (!this.isNullOrBlank()) this else "-"
+fun String?.isStrip() = this == "-"
+fun String?.isNotStrip() = isStrip().isFalse()
 
 /**
  * convert string value null to zero
