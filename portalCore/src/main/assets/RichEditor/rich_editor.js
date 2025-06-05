@@ -427,7 +427,9 @@ RE.editor.addEventListener("copy", function (e) {
     if (RE.isPreventCopyOrCut == "true") {
         var selection = window.getSelection();
 
-        e.clipboardData?.setData('Text', "");
+        if (e.clipboardData) {
+            e.clipboardData.setData('Text', "");
+        }
         e.preventDefault();
 
         // callback copy
@@ -440,7 +442,9 @@ RE.editor.addEventListener("cut", function (e) {
     if (RE.isPreventCopyOrCut == "true") {
         var selection = window.getSelection();
 
-        e.clipboardData?.setData('Text', "");
+        if (e.clipboardData) {
+            e.clipboardData.setData('Text', "");
+        }
         e.preventDefault();
 
         // callback copy
