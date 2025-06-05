@@ -273,6 +273,7 @@ val httpErrors = listOf(
     "443",
     "500",
     "501",
+    "503",
 )
 
 val timeoutErrors = listOf(
