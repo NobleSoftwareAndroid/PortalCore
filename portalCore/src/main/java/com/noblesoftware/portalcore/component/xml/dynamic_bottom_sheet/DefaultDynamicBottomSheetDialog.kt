@@ -3,6 +3,7 @@ package com.noblesoftware.portalcore.component.xml.dynamic_bottom_sheet
 import android.annotation.SuppressLint
 import android.app.Dialog
 import android.content.Context
+import android.content.DialogInterface
 import android.content.res.ColorStateList
 import android.os.Build
 import android.os.Bundle
@@ -60,6 +61,8 @@ open class DefaultDynamicBottomSheetDialog : BottomSheetDialogFragment() {
     private var buttonSecondText: Int = R.string.okay
     private var buttonSecondType: BottomSheetActionType = BottomSheetActionType.PRIMARY_SOLID
     private var buttonSecondOnClick: () -> Unit = {}
+    private var onDismiss: () -> Unit = {}
+
     override fun getTheme(): Int = R.style.ModalBottomSheetDialog
 
     override fun onCreateView(
@@ -165,6 +168,11 @@ open class DefaultDynamicBottomSheetDialog : BottomSheetDialogFragment() {
         }
     }
 
+    override fun onDismiss(dialog: DialogInterface) {
+        super.onDismiss(dialog)
+        onDismiss.invoke()
+    }
+
     override fun onDestroy() {
         super.onDestroy()
     }
@@ -182,6 +190,7 @@ open class DefaultDynamicBottomSheetDialog : BottomSheetDialogFragment() {
             tag: String = DefaultDynamicBottomSheetDialog::class.java.simpleName,
             buttonFirstOnClick: () -> Unit = {},
             buttonSecondOnClick: () -> Unit = {},
+            onDismiss: () -> Unit = {},
             content: @Composable () -> Unit
         ) {
             DefaultDynamicBottomSheetDialog().apply {
@@ -194,6 +203,7 @@ open class DefaultDynamicBottomSheetDialog : BottomSheetDialogFragment() {
                 this.buttonSecondType = buttonSecondType
                 this.buttonFirstOnClick = buttonFirstOnClick
                 this.buttonSecondOnClick = buttonSecondOnClick
+                this.onDismiss = onDismiss
                 this.content = content
             }.show(fragmentManager, tag)
         }

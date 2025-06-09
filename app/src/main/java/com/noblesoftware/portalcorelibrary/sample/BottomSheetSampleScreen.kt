@@ -31,7 +31,6 @@ import com.noblesoftware.portalcore.component.compose.DefaultTopAppBar
 import com.noblesoftware.portalcore.component.compose.showDefaultSnackbar
 import com.noblesoftware.portalcore.component.xml.dynamic_bottom_sheet.DefaultDynamicBottomSheetDialog
 import com.noblesoftware.portalcore.component.xml.dynamic_bottom_sheet.DefaultDynamicBottomSheetDialog.Companion.dismiss
-import com.noblesoftware.portalcore.component.xml.dynamic_dialog.DefaultDynamicDialog
 import com.noblesoftware.portalcore.component.xml.options_bottom_sheet.DefaultBottomSheetDialog
 import com.noblesoftware.portalcore.enums.BottomSheetActionType
 import com.noblesoftware.portalcore.enums.BottomSheetType
@@ -91,7 +90,8 @@ fun BottomSheetSampleScreen(
             )
         },
         snackbarHost = {
-            SnackbarHost(hostState = snackbarHostState,
+            SnackbarHost(
+                hostState = snackbarHostState,
                 snackbar = { DefaultSnackbar(data = it, state = snackbarState.value) })
         }
     ) {
@@ -340,7 +340,8 @@ fun BottomSheetSampleScreen(
                     buttonFirstText = R.string.close,
                     buttonFirstType = BottomSheetActionType.NEUTRAL,
                     buttonFirstOnClick = {
-
+                    },
+                    onDismiss = {
                     },
                     content = {
                         Column {
@@ -359,6 +360,8 @@ fun BottomSheetSampleScreen(
                     fragmentManager = (activity as AppCompatActivity).supportFragmentManager,
                     buttonFirstEnable = false,
                     buttonSecondEnable = false,
+                    onDismiss = {
+                    },
                     content = {
                         Column(
                             modifier = Modifier
