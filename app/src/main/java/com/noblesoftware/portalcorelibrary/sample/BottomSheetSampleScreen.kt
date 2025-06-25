@@ -116,9 +116,15 @@ fun BottomSheetSampleScreen(
                     bottomSheetType = BottomSheetType.SINGLE_SELECTION,
                     options = listOf(
                         SelectOption(1, false, "Sample Option 1"),
-                        SelectOption(2, false, "Sample Option 2"),
-                        SelectOption(3, false, "Sample Option 3"),
-                        SelectOption(4, false, "Sample Option 4"),
+                        SelectOption(2, false, "Sample Option 2", startIcon = R.drawable.ic_key),
+                        SelectOption(3, false, "Sample Option 3", endIcon = R.drawable.ic_account),
+                        SelectOption(
+                            4,
+                            false,
+                            "Sample Option 4",
+                            startIcon = R.drawable.ic_key,
+                            endIcon = R.drawable.ic_account
+                        ),
                         SelectOption(5, false, "Sample Option 5")
                     ),
                     onSelected = { options ->
@@ -162,9 +168,15 @@ fun BottomSheetSampleScreen(
                     bottomSheetType = BottomSheetType.MULTIPLE_SELECTION,
                     options = listOf(
                         SelectOption(1, false, "Sample Option 1"),
-                        SelectOption(2, false, "Sample Option 2"),
-                        SelectOption(3, false, "Sample Option 3"),
-                        SelectOption(4, false, "Sample Option 4"),
+                        SelectOption(2, false, "Sample Option 2", startIcon = R.drawable.ic_key),
+                        SelectOption(3, false, "Sample Option 3", endIcon = R.drawable.ic_account),
+                        SelectOption(
+                            4,
+                            false,
+                            "Sample Option 4",
+                            startIcon = R.drawable.ic_key,
+                            endIcon = R.drawable.ic_account
+                        ),
                         SelectOption(5, false, "Sample Option 5")
                     ),
                     onSelected = { options ->
@@ -236,9 +248,15 @@ fun BottomSheetSampleScreen(
                     searchHint = "Search",
                     options = listOf(
                         SelectOption(1, false, "Sample Option 1"),
-                        SelectOption(2, false, "Sample Option 2"),
-                        SelectOption(3, false, "Sample Option 3"),
-                        SelectOption(4, false, "Sample Option 4"),
+                        SelectOption(2, false, "Sample Option 2", startIcon = R.drawable.ic_key),
+                        SelectOption(3, false, "Sample Option 3", endIcon = R.drawable.ic_account),
+                        SelectOption(
+                            4,
+                            false,
+                            "Sample Option 4",
+                            startIcon = R.drawable.ic_key,
+                            endIcon = R.drawable.ic_account
+                        ),
                         SelectOption(5, false, "Sample Option 5")
                     ),
                     onSelected = { options ->
@@ -288,35 +306,22 @@ fun BottomSheetSampleScreen(
                     bottomSheetType = BottomSheetType.MULTIPLE_SELECTION,
                     options = listOf(
                         SelectOption(1, false, "Sample Option 1"),
-                        SelectOption(2, false, "Sample Option 2", enabled = false),
-                        SelectOption(3, false, "Sample Option 3", enabled = false),
-                        SelectOption(4, false, "Sample Option 4"),
-                        SelectOption(5, false, "Sample Option 5"),
-                        SelectOption(5, false, "Sample Option 5"),
-                        SelectOption(5, false, "Sample Option 5"),
-                        SelectOption(5, false, "Sample Option 5"),
-                        SelectOption(5, false, "Sample Option 5"),
-                        SelectOption(5, false, "Sample Option 5"),
-                        SelectOption(5, false, "Sample Option 5"),
-                        SelectOption(5, false, "Sample Option 5"),
-                        SelectOption(5, false, "Sample Option 5"),
-                        SelectOption(5, false, "Sample Option 5"),
-                        SelectOption(5, false, "Sample Option 5"),
-                        SelectOption(5, false, "Sample Option 5"),
-                        SelectOption(5, false, "Sample Option 5"),
-                        SelectOption(5, false, "Sample Option 5"),
-                        SelectOption(5, false, "Sample Option 5"),
-                        SelectOption(5, false, "Sample Option 5"),
-                        SelectOption(5, false, "Sample Option 5"),
-                        SelectOption(5, false, "Sample Option 5"),
-                        SelectOption(5, false, "Sample Option 5"),
-                        SelectOption(5, false, "Sample Option 5"),
-                        SelectOption(5, false, "Sample Option 5"),
-                        SelectOption(5, false, "Sample Option 5"),
-                        SelectOption(5, false, "Sample Option 5"),
-                        SelectOption(5, false, "Sample Option 5"),
-                        SelectOption(5, false, "Sample Option 5"),
-                        SelectOption(5, false, "Sample Option 5"),
+                        SelectOption(2, false, "Sample Option 2", startIcon = R.drawable.ic_key),
+                        SelectOption(
+                            3,
+                            false,
+                            "Sample Option 3",
+                            endIcon = R.drawable.ic_account,
+                            enabled = false
+                        ),
+                        SelectOption(
+                            4,
+                            false,
+                            "Sample Option 4",
+                            startIcon = R.drawable.ic_key,
+                            endIcon = R.drawable.ic_account,
+                            enabled = false
+                        ),
                         SelectOption(5, false, "Sample Option 5"),
                     ),
                     onSelected = { options ->
