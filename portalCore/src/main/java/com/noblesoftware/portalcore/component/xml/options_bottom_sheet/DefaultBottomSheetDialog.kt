@@ -12,9 +12,6 @@ import android.view.ViewGroup
 import android.widget.FrameLayout
 import androidx.annotation.StringRes
 import androidx.compose.animation.core.animateFloatAsState
-import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -26,24 +23,17 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Checkbox
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.LocalMinimumInteractiveComponentSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
-import androidx.compose.material3.ripple
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.ViewCompositionStrategy
@@ -52,7 +42,6 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.databinding.DataBindingUtil
@@ -66,6 +55,8 @@ import com.noblesoftware.portalcore.component.compose.DefaultEmptyState
 import com.noblesoftware.portalcore.component.compose.DefaultSpacer
 import com.noblesoftware.portalcore.component.compose.DefaultTextInput
 import com.noblesoftware.portalcore.component.compose.DefaultTextInputIcon
+import com.noblesoftware.portalcore.component.xml.options_bottom_sheet.component.DefaultMultipleSelection
+import com.noblesoftware.portalcore.component.xml.options_bottom_sheet.component.DefaultSingleSelection
 import com.noblesoftware.portalcore.databinding.BottomSheetDialogBinding
 import com.noblesoftware.portalcore.enums.BottomSheetType
 import com.noblesoftware.portalcore.model.SelectOption
@@ -241,118 +232,22 @@ open class DefaultBottomSheetDialog : BottomSheetDialogFragment() {
                                     items(if (state.keywords.isEmpty()) state.selectOptions.size else state.filteredSelectOptions.size) {
                                         val selectOption =
                                             if (state.keywords.isEmpty()) state.selectOptions[it] else state.filteredSelectOptions[it]
+
+                                        /** If Single Selection */
                                         if (bottomSheetType != BottomSheetType.MULTIPLE_SELECTION && bottomSheetType != BottomSheetType.MULTIPLE_SELECTION_WITH_SEARCH) {
-                                            Box(
-                                                modifier = Modifier
-                                                    .clip(RoundedCornerShape(LocalDimen.current.small))
-                                                    .fillMaxWidth()
-                                                    .then(
-                                                        if (selectOption.isSelected) {
-                                                            Modifier.background(
-                                                                color = colorResource(
-                                                                    id = R.color.primary_plain_active_bg
-                                                                )
-                                                            )
-                                                        } else {
-                                                            Modifier
-                                                        }
-                                                    )
-                                                    .then(
-                                                        if (selectOption.enabled) {
-                                                            Modifier.clickable(
-                                                                interactionSource = remember { MutableInteractionSource() },
-                                                                indication = ripple(
-                                                                    color = colorResource(id = R.color.primary_plain_color),
-                                                                ),
-                                                                onClick = {
-                                                                    onSelected.invoke(
-                                                                        arrayListOf(
-                                                                            selectOption
-                                                                        )
-                                                                    )
-                                                                    dismiss()
-                                                                },
-                                                            )
-                                                        } else Modifier
-                                                    )
-                                                    .padding(
-                                                        horizontal = LocalDimen.current.default,
-                                                        vertical = LocalDimen.current.regular
-                                                    )
-                                            ) {
-                                                Text(
-                                                    text = if (selectOption.nameId != null) stringResource(
-                                                        id = selectOption.nameId
-                                                            ?: R.string.empty_string
-                                                    ) else selectOption.name,
-                                                    style = MaterialTheme.typography.bodyMedium.copy(
-                                                        color = colorResource(id = if (selectOption.isSelected) R.color.primary_plain_color else if (selectOption.enabled.isFalse()) R.color.primary_plain_disabled_color else R.color.text_primary)
-                                                    )
-                                                )
+                                            DefaultSingleSelection(
+                                                selectOption = selectOption,
+                                            ) { selectOptions ->
+                                                onSelected.invoke(selectOptions)
+                                                dismiss()
                                             }
-                                        } else {
-                                            Row(
-                                                modifier = Modifier
-                                                    .clip(RoundedCornerShape(LocalDimen.current.small))
-                                                    .fillMaxWidth()
-                                                    .then(
-                                                        if (selectOption.isSelected) {
-                                                            Modifier.background(
-                                                                color = colorResource(
-                                                                    id = R.color.primary_plain_active_bg
-                                                                )
-                                                            )
-                                                        } else {
-                                                            Modifier
-                                                        }
-                                                    )
-                                                    .then(
-                                                        if (selectOption.enabled) {
-                                                            Modifier.clickable(
-                                                                interactionSource = remember { MutableInteractionSource() },
-                                                                indication = ripple(
-                                                                    color = colorResource(id = R.color.primary_plain_color),
-                                                                ),
-                                                                onClick = {
-                                                                    onEvent(
-                                                                        BottomSheetEvent.OnSelect(
-                                                                            selectOption
-                                                                        )
-                                                                    )
-                                                                },
-                                                            )
-                                                        } else Modifier
-                                                    )
-                                                    .padding(
-                                                        horizontal = LocalDimen.current.default,
-                                                        vertical = LocalDimen.current.regular
-                                                    ),
-                                                verticalAlignment = Alignment.CenterVertically,
+                                        }
+                                        /** If Multiple Selection */
+                                        else {
+                                            DefaultMultipleSelection(
+                                                selectOption = selectOption,
                                             ) {
-                                                CompositionLocalProvider(
-                                                    LocalMinimumInteractiveComponentSize provides Dp.Unspecified
-                                                ) {
-                                                    Checkbox(
-                                                        enabled = selectOption.enabled,
-                                                        checked = selectOption.isSelected,
-                                                        onCheckedChange = {
-                                                            onEvent(
-                                                                BottomSheetEvent.OnSelect(
-                                                                    selectOption
-                                                                )
-                                                            )
-                                                        })
-                                                }
-                                                DefaultSpacer(width = 14.dp)
-                                                Text(
-                                                    text = if (selectOption.nameId != null) stringResource(
-                                                        id = selectOption.nameId
-                                                            ?: R.string.empty_string
-                                                    ) else selectOption.name,
-                                                    style = MaterialTheme.typography.bodyMedium.copy(
-                                                        color = colorResource(id = if (selectOption.isSelected) R.color.primary_plain_color else if (selectOption.enabled.isFalse()) R.color.primary_plain_disabled_color else R.color.text_primary)
-                                                    )
-                                                )
+                                                onEvent(BottomSheetEvent.OnSelect(it))
                                             }
                                         }
                                     }

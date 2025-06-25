@@ -61,7 +61,6 @@ import com.noblesoftware.portalcore.model.StatusModel
 import com.noblesoftware.portalcore.model.WebViewFontStyle
 import com.noblesoftware.portalcore.theme.LocalDimen
 import com.noblesoftware.portalcore.util.extension.handleSafeScaffoldPadding
-import com.noblesoftware.portalcore.util.extension.loge
 import com.noblesoftware.portalcore.util.extension.toCommaFormat
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch

@@ -1,5 +1,7 @@
 package com.noblesoftware.portalcore.model
 
+import androidx.annotation.DrawableRes
+
 data class SelectOption(
     var id: Int? = 0,
     var isSelected: Boolean = false,
@@ -11,5 +13,7 @@ data class SelectOption(
     var booleanExtras2: Boolean? = null,
     var intExtras: Int? = null,
     var intExtras2: Int? = null,
+    @DrawableRes val startIcon: Int? = null,
+    @DrawableRes val endIcon: Int? = null,
     var enabled: Boolean = true,
 )
