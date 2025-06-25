@@ -213,6 +213,9 @@ $dokka.location:com.noblesoftware.portalcore.component.xml.dynamic_dialog/Defaul
 $dokka.location:com.noblesoftware.portalcore.component.xml.dynamic_dialog/DefaultDynamicDialog/onDismiss/#android.content.DialogInterface/PointingToDeclaration/-portal -core/com.noblesoftware.portalcore.component.xml.dynamic_dialog/-default-dynamic-dialog/on-dismiss.html
 $dokka.location:com.noblesoftware.portalcore.component.xml.dynamic_dialog/DefaultDynamicDialog/onStart/#/PointingToDeclaration/-portal -core/com.noblesoftware.portalcore.component.xml.dynamic_dialog/-default-dynamic-dialog/on-start.html
 $dokka.location:com.noblesoftware.portalcore.component.xml.dynamic_dialog/DefaultDynamicDialog/onViewCreated/#android.view.View#android.os.Bundle?/PointingToDeclaration/-portal -core/com.noblesoftware.portalcore.component.xml.dynamic_dialog/-default-dynamic-dialog/on-view-created.html
+$dokka.location:com.noblesoftware.portalcore.component.xml.options_bottom_sheet.component////PointingToDeclaration/-portal -core/com.noblesoftware.portalcore.component.xml.options_bottom_sheet.component/index.html
+$dokka.location:com.noblesoftware.portalcore.component.xml.options_bottom_sheet.component//DefaultMultipleSelection/#androidx.compose.ui.Modifier#com.noblesoftware.portalcore.model.SelectOption#kotlin.Function1[com.noblesoftware.portalcore.model.SelectOption,kotlin.Unit]/PointingToDeclaration/-portal -core/com.noblesoftware.portalcore.component.xml.options_bottom_sheet.component/-default-multiple-selection.html
+$dokka.location:com.noblesoftware.portalcore.component.xml.options_bottom_sheet.component//DefaultSingleSelection/#androidx.compose.ui.Modifier#com.noblesoftware.portalcore.model.SelectOption#kotlin.Function1[kotlin.collections.List[com.noblesoftware.portalcore.model.SelectOption],kotlin.Unit]/PointingToDeclaration/-portal -core/com.noblesoftware.portalcore.component.xml.options_bottom_sheet.component/-default-single-selection.html
 $dokka.location:com.noblesoftware.portalcore.component.xml.options_bottom_sheet////PointingToDeclaration/-portal -core/com.noblesoftware.portalcore.component.xml.options_bottom_sheet/index.html
 $dokka.location:com.noblesoftware.portalcore.component.xml.options_bottom_sheet/BottomSheetEvent.InitSelectOptions///PointingToDeclaration/-portal -core/com.noblesoftware.portalcore.component.xml.options_bottom_sheet/-bottom-sheet-event/-init-select-options/index.html
 $dokka.location:com.noblesoftware.portalcore.component.xml.options_bottom_sheet/BottomSheetEvent.InitSelectOptions/InitSelectOptions/#kotlin.collections.List[com.noblesoftware.portalcore.model.SelectOption]/PointingToDeclaration/-portal -core/com.noblesoftware.portalcore.component.xml.options_bottom_sheet/-bottom-sheet-event/-init-select-options/-init-select-options.html
@@ -545,10 +548,11 @@ $dokka.location:com.noblesoftware.portalcore.model/FieldType/formTitle/#/Pointin
 $dokka.location:com.noblesoftware.portalcore.model/FieldType/formTitleId/#/PointingToDeclaration/-portal -core/com.noblesoftware.portalcore.model/-field-type/form-title-id.html
 $dokka.location:com.noblesoftware.portalcore.model/FieldType/type/#/PointingToDeclaration/-portal -core/com.noblesoftware.portalcore.model/-field-type/type.html
 $dokka.location:com.noblesoftware.portalcore.model/SelectOption///PointingToDeclaration/-portal -core/com.noblesoftware.portalcore.model/-select-option/index.html
-$dokka.location:com.noblesoftware.portalcore.model/SelectOption/SelectOption/#kotlin.Int?#kotlin.Boolean#kotlin.String#kotlin.Int?#kotlin.String?#kotlin.String?#kotlin.Boolean?#kotlin.Boolean?#kotlin.Int?#kotlin.Int?#kotlin.Boolean/PointingToDeclaration/-portal -core/com.noblesoftware.portalcore.model/-select-option/-select-option.html
+$dokka.location:com.noblesoftware.portalcore.model/SelectOption/SelectOption/#kotlin.Int?#kotlin.Boolean#kotlin.String#kotlin.Int?#kotlin.String?#kotlin.String?#kotlin.Boolean?#kotlin.Boolean?#kotlin.Int?#kotlin.Int?#kotlin.Int?#kotlin.Int?#kotlin.Boolean/PointingToDeclaration/-portal -core/com.noblesoftware.portalcore.model/-select-option/-select-option.html
 $dokka.location:com.noblesoftware.portalcore.model/SelectOption/booleanExtras/#/PointingToDeclaration/-portal -core/com.noblesoftware.portalcore.model/-select-option/boolean-extras.html
 $dokka.location:com.noblesoftware.portalcore.model/SelectOption/booleanExtras2/#/PointingToDeclaration/-portal -core/com.noblesoftware.portalcore.model/-select-option/boolean-extras2.html
 $dokka.location:com.noblesoftware.portalcore.model/SelectOption/enabled/#/PointingToDeclaration/-portal -core/com.noblesoftware.portalcore.model/-select-option/enabled.html
+$dokka.location:com.noblesoftware.portalcore.model/SelectOption/endIcon/#/PointingToDeclaration/-portal -core/com.noblesoftware.portalcore.model/-select-option/end-icon.html
 $dokka.location:com.noblesoftware.portalcore.model/SelectOption/extras/#/PointingToDeclaration/-portal -core/com.noblesoftware.portalcore.model/-select-option/extras.html
 $dokka.location:com.noblesoftware.portalcore.model/SelectOption/extras2/#/PointingToDeclaration/-portal -core/com.noblesoftware.portalcore.model/-select-option/extras2.html
 $dokka.location:com.noblesoftware.portalcore.model/SelectOption/id/#/PointingToDeclaration/-portal -core/com.noblesoftware.portalcore.model/-select-option/id.html
@@ -557,6 +561,7 @@ $dokka.location:com.noblesoftware.portalcore.model/SelectOption/intExtras2/#/Poi
 $dokka.location:com.noblesoftware.portalcore.model/SelectOption/isSelected/#/PointingToDeclaration/-portal -core/com.noblesoftware.portalcore.model/-select-option/is-selected.html
 $dokka.location:com.noblesoftware.portalcore.model/SelectOption/name/#/PointingToDeclaration/-portal -core/com.noblesoftware.portalcore.model/-select-option/name.html
 $dokka.location:com.noblesoftware.portalcore.model/SelectOption/nameId/#/PointingToDeclaration/-portal -core/com.noblesoftware.portalcore.model/-select-option/name-id.html
+$dokka.location:com.noblesoftware.portalcore.model/SelectOption/startIcon/#/PointingToDeclaration/-portal -core/com.noblesoftware.portalcore.model/-select-option/start-icon.html
 $dokka.location:com.noblesoftware.portalcore.model/ShowPermissionState///PointingToDeclaration/-portal -core/com.noblesoftware.portalcore.model/-show-permission-state/index.html
 $dokka.location:com.noblesoftware.portalcore.model/ShowPermissionState/ShowPermissionState/#kotlin.Boolean#kotlin.Boolean#com.noblesoftware.portalcore.enums.PermissionType/PointingToDeclaration/-portal -core/com.noblesoftware.portalcore.model/-show-permission-state/-show-permission-state.html
 $dokka.location:com.noblesoftware.portalcore.model/ShowPermissionState/isRationale/#/PointingToDeclaration/-portal -core/com.noblesoftware.portalcore.model/-show-permission-state/is-rationale.html
@@ -894,6 +899,7 @@ com.noblesoftware.portalcore.component.xml
 com.noblesoftware.portalcore.component.xml.dynamic_bottom_sheet
 com.noblesoftware.portalcore.component.xml.dynamic_dialog
 com.noblesoftware.portalcore.component.xml.options_bottom_sheet
+com.noblesoftware.portalcore.component.xml.options_bottom_sheet.component
 com.noblesoftware.portalcore.component.xml.paginated_bottom_sheet
 com.noblesoftware.portalcore.container
 com.noblesoftware.portalcore.di
