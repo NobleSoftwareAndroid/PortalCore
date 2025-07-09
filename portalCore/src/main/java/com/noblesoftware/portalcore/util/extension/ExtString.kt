@@ -121,3 +121,7 @@ fun String.removeSubdomain(): String {
     // If "://" or a dot after "://" is not found, return the original URL
     return this
 }
+
+fun String.toHtmlFormatMention(): String {
+    return "<span id=\"#${System.currentTimeMillis()}\" style=\"color: #034aa6;\" contenteditable=\"false\"><strong>@$this</strong></span>&nbsp;"
+}
