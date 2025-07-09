@@ -445,6 +445,12 @@ public class RichEditor extends WebView {
         exec("javascript:RE.insertImageWithSize('" + url + "', '" + alt + "','" + width + "', '" + height + "', '" + relative.toString() + "');");
     }
 
+    public void insertHtmlValue(String html) {
+        exec("javascript:RE.prepareInsert();");
+        exec("javascript:RE.insertHtmlValue('" + html + "');");
+    }
+
+
     /**
      * the image according to the specific width of the image automatically
      *

@@ -10,12 +10,15 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyItemScope
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.HorizontalDivider
@@ -57,6 +60,7 @@ import com.noblesoftware.portalcore.util.extension.findActivity
 import com.noblesoftware.portalcore.util.extension.htmlToString
 import com.noblesoftware.portalcore.util.extension.isFalse
 import com.noblesoftware.portalcore.util.extension.isTrue
+import com.noblesoftware.portalcore.util.extension.loge
 import com.noblesoftware.portalcore.util.extension.orZero
 import com.noblesoftware.portalcore.util.extension.rememberKeyboardState
 import okhttp3.MultipartBody
@@ -84,6 +88,8 @@ fun RichEditorComposable(
     onTextPaste: ((String) -> Unit?) = {},
     onTextCopyOrCut: ((String) -> Unit?) = {},
     onTextChanged: (String) -> Unit,
+    onHtmlRetrieve: (() -> String?)? = null,
+    action: (@Composable LazyItemScope.() -> Unit)? = null
 ) {
 
     val context = LocalContext.current
@@ -115,6 +121,7 @@ fun RichEditorComposable(
             setPlaceholder(placeholder)
             html = value
             setOnTextChangeListener { text ->
+                println("RichEditorComposable text: $text")
                 onTextChanged.invoke(
                     if (text.htmlToString().isBlank()) "" else text
                 )
@@ -188,6 +195,14 @@ fun RichEditorComposable(
         val image = onImageRetrieve.invoke()
         if (image.isNotBlank()) {
             richEditor.insertImageWithSize(image, "", "100%", "auto", false)
+        }
+    }
+
+    LaunchedEffect(onHtmlRetrieve?.invoke()) {
+        val htmlValue = onHtmlRetrieve?.invoke()
+        if (htmlValue.isNullOrBlank().isFalse()) {
+            checkFocusEditor(richEditor)
+            richEditor.insertHtmlValue(htmlValue)
         }
     }
 
@@ -425,6 +440,11 @@ fun RichEditorComposable(
                                 tint = colorResource(id = if (isImageEnabled) R.color.text_primary else R.color.neutral_solid_disabled_color),
                                 contentDescription = "",
                             )
+                        }
+                    }
+                    action?.let {
+                        item {
+                            it()
                         }
                     }
                 }

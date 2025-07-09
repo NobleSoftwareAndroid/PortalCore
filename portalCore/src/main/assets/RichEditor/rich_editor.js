@@ -271,6 +271,28 @@ RE.insertYoutubeVideoWH = function(url, width, height) {
     RE.insertHTML(html);
 }
 
+RE.insertHtmlValue =  function(htmlString) {
+    RE.restorerange();
+
+    var selection = window.getSelection();
+    if (selection.rangeCount > 0) {
+        var range = selection.getRangeAt(0);
+
+        var tempDiv = document.createElement('div');
+        tempDiv.innerHTML = htmlString;
+
+        while (tempDiv.firstChild) {
+            range.insertNode(tempDiv.firstChild);
+        }
+
+        range.collapse(false);
+        selection.removeAllRanges();
+        selection.addRange(range);
+    }
+
+    RE.focus();
+}
+
 RE.insertHTML = function(html) {
     RE.restorerange();
     document.execCommand('insertHTML', false, html);
