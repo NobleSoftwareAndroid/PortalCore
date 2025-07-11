@@ -102,8 +102,6 @@ fun RichTextEditorSampleScreen(
                     tag = "tag",
                     buttonFirstEnable = true,
                     buttonSecondEnable = true,
-                    isDismissible = false,
-                    isInitialFullscreen = false,
                     buttonFirstText = R.string.close,
                     buttonSecondText = R.string.okay,
                 ) {
