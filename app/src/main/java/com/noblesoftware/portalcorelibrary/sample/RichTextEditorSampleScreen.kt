@@ -99,11 +99,17 @@ fun RichTextEditorSampleScreen(
             ) {
                 DefaultDynamicBottomSheetDialog.showDialog(
                     fragmentManager = (context as MainActivity).supportFragmentManager,
-                    tag = "tag"
+                    tag = "tag",
+                    buttonFirstEnable = true,
+                    buttonSecondEnable = true,
+                    isDismissible = false,
+                    isInitialFullscreen = false,
+                    buttonFirstText = R.string.close,
+                    buttonSecondText = R.string.okay,
                 ) {
                     RichEditorComposable(
                         modifier = Modifier
-                            .fillMaxWidth()
+                            .fillMaxSize()
                             .padding(horizontal = LocalDimen.current.regular),
                         value = "",
                         imageFormName = "image",

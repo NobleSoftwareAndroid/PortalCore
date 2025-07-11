@@ -30,6 +30,7 @@ import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.button.MaterialButton
@@ -52,6 +53,9 @@ open class DefaultDynamicBottomSheetDialog : BottomSheetDialogFragment() {
     /** if [isStatusBarTransparent] = true -> set this activity and PortalCoreTheme statusBar to transparent */
     private var isStatusBarTransparent: Boolean = false
 
+    private var initialBottomSheetState = BottomSheetBehavior.STATE_EXPANDED
+    private var dismissible: Boolean = false
+
     private var buttonFirstEnable: Boolean = true
     private var buttonFirstText: Int = R.string.close
     private var buttonFirstType: BottomSheetActionType = BottomSheetActionType.NEUTRAL
@@ -61,6 +65,7 @@ open class DefaultDynamicBottomSheetDialog : BottomSheetDialogFragment() {
     private var buttonSecondText: Int = R.string.okay
     private var buttonSecondType: BottomSheetActionType = BottomSheetActionType.PRIMARY_SOLID
     private var buttonSecondOnClick: () -> Unit = {}
+
     private var onDismiss: () -> Unit = {}
 
     override fun getTheme(): Int = R.style.ModalBottomSheetDialog
@@ -154,8 +159,20 @@ open class DefaultDynamicBottomSheetDialog : BottomSheetDialogFragment() {
                 )
             }
 
+            /** if the initial fullscreen */
+            if (initialBottomSheetState == BottomSheetBehavior.STATE_EXPANDED) {
+                it.findViewById<FrameLayout>(com.google.android.material.R.id.design_bottom_sheet)
+                    ?.let {
+                        val bottomSheetBehavior = BottomSheetBehavior.from(it)
+                        bottomSheetBehavior.skipCollapsed = true
+                        bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
+                    }
+            }
+            bottomSheetDialog.setCancelable(dismissible)
+
             containerLayout?.addView(buttons)
         }
+
         return bottomSheetDialog
     }
 
@@ -181,6 +198,8 @@ open class DefaultDynamicBottomSheetDialog : BottomSheetDialogFragment() {
         fun showDialog(
             fragmentManager: FragmentManager,
             isStatusBarTransparent: Boolean = false,
+            isDismissible: Boolean = true,
+            isInitialFullscreen: Boolean = false,
             buttonFirstEnable: Boolean = true,
             buttonSecondEnable: Boolean = false,
             @StringRes buttonFirstText: Int = R.string.close,
@@ -195,6 +214,9 @@ open class DefaultDynamicBottomSheetDialog : BottomSheetDialogFragment() {
         ) {
             DefaultDynamicBottomSheetDialog().apply {
                 this.isStatusBarTransparent = isStatusBarTransparent
+                this.dismissible = isDismissible
+                this.initialBottomSheetState =
+                    if (isInitialFullscreen) BottomSheetBehavior.STATE_EXPANDED else BottomSheetBehavior.STATE_HALF_EXPANDED
                 this.buttonFirstEnable = buttonFirstEnable
                 this.buttonSecondEnable = buttonSecondEnable
                 this.buttonFirstText = buttonFirstText
