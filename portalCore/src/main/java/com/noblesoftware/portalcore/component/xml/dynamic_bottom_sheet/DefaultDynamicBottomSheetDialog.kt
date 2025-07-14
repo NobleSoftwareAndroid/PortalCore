@@ -135,11 +135,15 @@ open class DefaultDynamicBottomSheetDialog : BottomSheetDialogFragment() {
 
             buttonFirst.setOnClickListener {
                 buttonFirstOnClick.invoke()
-                dismiss()
+                if (dismissible) {
+                    dismiss()
+                }
             }
             buttonSecond.setOnClickListener {
                 buttonSecondOnClick.invoke()
-                dismiss()
+                if (dismissible) {
+                    dismiss()
+                }
             }
 
             buttons.layoutParams = FrameLayout.LayoutParams(
