@@ -291,6 +291,7 @@ RE.insertHtmlValue =  function(htmlString) {
     }
 
     RE.focus();
+    RE.callback();
 }
 
 RE.insertHTML = function(html) {

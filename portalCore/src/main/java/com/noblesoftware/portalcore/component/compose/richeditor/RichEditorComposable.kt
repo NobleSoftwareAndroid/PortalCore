@@ -121,7 +121,6 @@ fun RichEditorComposable(
             setPlaceholder(placeholder)
             html = value
             setOnTextChangeListener { text ->
-                println("RichEditorComposable text: $text")
                 onTextChanged.invoke(
                     if (text.htmlToString().isBlank()) "" else text
                 )

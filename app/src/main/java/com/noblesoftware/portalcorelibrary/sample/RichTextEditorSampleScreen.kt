@@ -28,6 +28,7 @@ import com.noblesoftware.portalcore.component.compose.DefaultTopAppBar
 import com.noblesoftware.portalcore.component.compose.richeditor.RichEditorComposable
 import com.noblesoftware.portalcore.component.compose.richeditor.component.DefaultFontBox
 import com.noblesoftware.portalcore.component.xml.dynamic_bottom_sheet.DefaultDynamicBottomSheetDialog
+import com.noblesoftware.portalcore.component.xml.dynamic_fullscreen_dialog.DefaultDynamicFragment.Companion.dismiss
 import com.noblesoftware.portalcore.theme.LocalDimen
 import com.noblesoftware.portalcore.util.extension.handleSafeScaffoldPadding
 import com.noblesoftware.portalcore.util.extension.toHtmlFormatMention
@@ -102,7 +103,10 @@ fun RichTextEditorSampleScreen(
                     tag = "tag",
                     buttonFirstEnable = true,
                     buttonSecondEnable = true,
-                    isDismissible = true,
+                    isDismissible = false,
+                    buttonFirstOnClick = {
+                        context.dismiss("tag")
+                    },
                     isInitialFullscreen = false,
                     buttonFirstText = R.string.close,
                     buttonSecondText = R.string.okay,
