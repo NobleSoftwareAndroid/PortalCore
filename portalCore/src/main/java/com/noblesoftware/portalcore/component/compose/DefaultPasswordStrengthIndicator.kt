@@ -118,7 +118,26 @@ fun DefaultPasswordStrengthIndicator(
                 color = colorResource(id = if (validCaseList.value.count() > 3) indicatorColor.value else R.color.primary_soft_disabled_bg)
             )
         }
-        DefaultSpacer(height = LocalDimen.current.medium)
+        if (indicatorColor.value == R.color.primary_soft_disabled_bg) {
+            DefaultSpacer(height = LocalDimen.current.medium)
+        } else {
+            DefaultSpacer(height = LocalDimen.current.default)
+            Text(
+                modifier = Modifier.fillMaxWidth(),
+                text = stringResource(
+                    when (indicatorColor.value) {
+                        R.color.danger_outlined_color -> R.string.weak
+                        R.color.warning_outlined_color -> R.string.medium
+                        R.color.success_outlined_color -> R.string.strong
+                        else -> R.string.empty_string
+                    }
+                ),
+                style = MaterialTheme.typography.bodyMedium.copy(
+                    colorResource(id = indicatorColor.value)
+                )
+            )
+            DefaultSpacer(height = LocalDimen.current.default)
+        }
         Column(
             Modifier
                 .fillMaxWidth()

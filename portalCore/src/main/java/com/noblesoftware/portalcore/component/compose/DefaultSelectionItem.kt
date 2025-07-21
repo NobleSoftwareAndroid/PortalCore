@@ -1,5 +1,6 @@
 package com.noblesoftware.portalcore.component.compose
 
+import androidx.annotation.ColorRes
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -19,6 +20,7 @@ import com.noblesoftware.portalcore.theme.LocalDimen
 @Composable
 fun DefaultSelectionItem(
     isSelected: Boolean,
+    @ColorRes rippleColor: Int = R.color.primary_plain_color,
     onClick: () -> Unit,
     content: @Composable () -> Unit
 ) {
@@ -29,7 +31,7 @@ fun DefaultSelectionItem(
             .clickable(
                 interactionSource = remember { MutableInteractionSource() },
                 indication = ripple(
-                    color = colorResource(id = R.color.primary_plain_color),
+                    color = colorResource(id = rippleColor),
                 ),
             ) {
                 onClick.invoke()

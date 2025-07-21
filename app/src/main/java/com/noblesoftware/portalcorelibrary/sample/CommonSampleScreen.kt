@@ -45,6 +45,7 @@ import com.noblesoftware.portalcore.component.compose.DefaultButton
 import com.noblesoftware.portalcore.component.compose.DefaultDocument
 import com.noblesoftware.portalcore.component.compose.DefaultFileButton
 import com.noblesoftware.portalcore.component.compose.DefaultProgressDialog
+import com.noblesoftware.portalcore.component.compose.DefaultSegmentedButton
 import com.noblesoftware.portalcore.component.compose.DefaultSpacer
 import com.noblesoftware.portalcore.component.compose.DefaultTextInput
 import com.noblesoftware.portalcore.component.compose.DefaultTextInputCurrency
@@ -57,6 +58,7 @@ import com.noblesoftware.portalcore.component.compose.TopAppBarTitle
 import com.noblesoftware.portalcore.component.compose.WebViewComposable
 import com.noblesoftware.portalcore.component.compose.richeditor.RichEditorComposable
 import com.noblesoftware.portalcore.model.FieldType
+import com.noblesoftware.portalcore.model.SelectOption
 import com.noblesoftware.portalcore.model.StatusModel
 import com.noblesoftware.portalcore.model.WebViewFontStyle
 import com.noblesoftware.portalcore.theme.LocalDimen
@@ -79,6 +81,15 @@ fun CommonSampleScreen(
     var openBottomSheet by rememberSaveable { mutableStateOf(false) }
     var openBottomSheet2 by rememberSaveable { mutableStateOf(false) }
     val isDocumentLoading = remember { mutableStateOf(false) }
+    val segmentedButtonList = remember {
+        mutableStateOf(
+            listOf(
+                SelectOption(id = 1, name = "Semester 1", isSelected = true),
+                SelectOption(id = 2, name = "Semester 2"),
+                SelectOption(id = 3, nameId = R.string.medium) // in case if you want to using @StringRes
+            )
+        )
+    }
 
     Scaffold(
         modifier = Modifier.handleSafeScaffoldPadding(),
@@ -589,6 +600,16 @@ fun CommonSampleScreen(
                         enabled = false
                     ) {
 
+                    }
+
+
+                    Text(text = "segmented button")
+                    DefaultSegmentedButton(
+                        modifier = Modifier.fillMaxWidth(),
+                        items = segmentedButtonList.value // set the selected if you want to set default selected
+                    ) { selected ->
+                        segmentedButtonList.value =
+                            segmentedButtonList.value.map { it.copy(isSelected = it.id == selected.id) }
                     }
                     DefaultSpacer(LocalDimen.current.extraLarge)
                 }

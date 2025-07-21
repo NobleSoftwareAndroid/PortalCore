@@ -66,6 +66,32 @@ import com.noblesoftware.portalcore.util.extension.rememberKeyboardState
 import okhttp3.MultipartBody
 
 
+/**
+ * A Composable function that provides a rich text editor with various formatting options.
+ *
+ * This editor allows users to format text with bold, italic, font size changes,
+ * ordered/unordered lists, text alignment, and image insertion.
+ * It also supports anti-cheat features like preventing paste and copy/cut operations.
+ *
+ * @param modifier Modifier for styling the Composable.
+ * @param value The initial HTML content of the editor.
+ * @param tag A unique tag for the [DefaultDynamicBottomSheetDialog] used for font size and alignment selection.
+ * @param state The current state of the rich editor, including font size and alignment.
+ * @param placeholder The placeholder text to display when the editor is empty.
+ * @param minEditorHeight The minimum height of the editor in pixels.
+ * @param contentPadding The padding around the content of the editor in pixels.
+ * @param imageFormName The name to be used for the image file in the [MultipartBody.Part] when uploading.
+ * @param maxImageSize The maximum allowed size for an uploaded image in megabytes (MB).
+ * @param maxImageSizeError The error message to display when an image exceeds the maximum size.
+ * @param notSupportImageError The error message to display when an unsupported image type is selected.
+ * @param isImageEnabled A boolean indicating whether the image insertion feature is enabled.
+ * @param isAntiCheatEnable A boolean indicating whether anti-cheat features (preventing paste and copy/cut) are enabled.
+ * @param onImageUpload A lambda function that is invoked when an image is selected and ready for upload. It provides the [MultipartBody.Part] of the image.
+ * @param onImageRetrieve A lambda function that is invoked to get the URL or path of an image that has been successfully uploaded and should be inserted into the editor.
+ * @param onSnackbar A lambda function to display a snackbar message (e.g., for errors or success notifications).
+ * @param onTextPaste A lambda function that is invoked when text is pasted into the editor. It receives the pasted text as a String.
+ * @param onTextCopyOrCut A lambda function that is invoked when text is copied or cut from the editor. It receives the copied/cut text as a String.
+ */
 @Composable
 fun RichEditorComposable(
     modifier: Modifier = Modifier,
@@ -80,6 +106,7 @@ fun RichEditorComposable(
     /** [maxImageSize] max file size in MB */
     maxImageSize: Int = 5,
     maxImageSizeError: String = stringResource(R.string.max_file_5mb),
+    notSupportImageError: String = stringResource(R.string.file_not_supported),
     isImageEnabled: Boolean = true,
     isAntiCheatEnable: Boolean = false,
     onImageUpload: (MultipartBody.Part) -> Unit,
@@ -174,7 +201,7 @@ fun RichEditorComposable(
                     } else {
                         onSnackbar.invoke(
                             SnackbarState(
-                                messageId = R.string.file_not_supported,
+                                message = notSupportImageError,
                                 isSuccess = false
                             )
                         )

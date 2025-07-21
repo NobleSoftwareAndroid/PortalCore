@@ -157,4 +157,6 @@
     <color name="gray">#D0D5DD</color>
 
     <color name="red_soft">#FDEEEF</color>
+
+    <color name="segmented_selected_background">#F1F5F9</color>
 </resources>
