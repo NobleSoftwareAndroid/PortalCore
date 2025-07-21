@@ -84,7 +84,7 @@ fun CommonSampleScreen(
     val segmentedButtonList = remember {
         mutableStateOf(
             listOf(
-                SelectOption(id = 1, name = "Semester 1", isSelected = true),
+                SelectOption(id = 1, name = "Semester 1", isSelected = true),  // set the `isSelected` if you want to set default selected
                 SelectOption(id = 2, name = "Semester 2"),
                 SelectOption(id = 3, nameId = R.string.medium) // in case if you want to using @StringRes
             )
@@ -606,7 +606,7 @@ fun CommonSampleScreen(
                     Text(text = "segmented button")
                     DefaultSegmentedButton(
                         modifier = Modifier.fillMaxWidth(),
-                        items = segmentedButtonList.value // set the selected if you want to set default selected
+                        items = segmentedButtonList.value
                     ) { selected ->
                         segmentedButtonList.value =
                             segmentedButtonList.value.map { it.copy(isSelected = it.id == selected.id) }
