@@ -104,3 +104,24 @@ fun String.htmlToString(): String =
         .replace("\n", " ")
         .replace("\t", "")
         .trim()
+
+fun String.removeSubdomain(): String {
+    val protocolEndIndex = this.indexOf("://")
+
+    if (protocolEndIndex != -1) {
+        val afterProtocol = this.substring(protocolEndIndex + 3) // +3 to skip "://"
+        val firstDotIndex = afterProtocol.indexOf(".")
+
+        if (firstDotIndex != -1) {
+            val beforeDot = afterProtocol.substring(0, firstDotIndex)
+            // Reconstruct the URL: protocol + (part before the removed string) + (part after the removed string)
+            return this.substring(0, protocolEndIndex + 3) + afterProtocol.substring(firstDotIndex)
+        }
+    }
+    // If "://" or a dot after "://" is not found, return the original URL
+    return this
+}
+
+fun String.toHtmlFormatMention(): String {
+    return "<span id=\"#${System.currentTimeMillis()}\" style=\"color: #034aa6;\" contenteditable=\"false\"><strong>@$this</strong></span>&nbsp;"
+}

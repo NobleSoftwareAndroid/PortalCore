@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -44,16 +45,21 @@ import com.noblesoftware.portalcore.component.compose.DefaultButton
 import com.noblesoftware.portalcore.component.compose.DefaultDocument
 import com.noblesoftware.portalcore.component.compose.DefaultFileButton
 import com.noblesoftware.portalcore.component.compose.DefaultProgressDialog
+import com.noblesoftware.portalcore.component.compose.DefaultSegmentedButton
 import com.noblesoftware.portalcore.component.compose.DefaultSpacer
 import com.noblesoftware.portalcore.component.compose.DefaultTextInput
 import com.noblesoftware.portalcore.component.compose.DefaultTextInputCurrency
 import com.noblesoftware.portalcore.component.compose.DefaultTextInputDropdown
 import com.noblesoftware.portalcore.component.compose.DefaultTopAppBar
 import com.noblesoftware.portalcore.component.compose.DefaultTopAppBarMultiLine
+import com.noblesoftware.portalcore.component.compose.FieldItem
 import com.noblesoftware.portalcore.component.compose.TextLabel
 import com.noblesoftware.portalcore.component.compose.TopAppBarTitle
 import com.noblesoftware.portalcore.component.compose.WebViewComposable
 import com.noblesoftware.portalcore.component.compose.richeditor.RichEditorComposable
+import com.noblesoftware.portalcore.model.FieldType
+import com.noblesoftware.portalcore.model.SelectOption
+import com.noblesoftware.portalcore.model.StatusModel
 import com.noblesoftware.portalcore.model.WebViewFontStyle
 import com.noblesoftware.portalcore.theme.LocalDimen
 import com.noblesoftware.portalcore.util.extension.handleSafeScaffoldPadding
@@ -75,6 +81,15 @@ fun CommonSampleScreen(
     var openBottomSheet by rememberSaveable { mutableStateOf(false) }
     var openBottomSheet2 by rememberSaveable { mutableStateOf(false) }
     val isDocumentLoading = remember { mutableStateOf(false) }
+    val segmentedButtonList = remember {
+        mutableStateOf(
+            listOf(
+                SelectOption(id = 1, name = "Semester 1", isSelected = true),  // set the `isSelected` if you want to set default selected
+                SelectOption(id = 2, name = "Semester 2"),
+                SelectOption(id = 3, nameId = R.string.medium) // in case if you want to using @StringRes
+            )
+        )
+    }
 
     Scaffold(
         modifier = Modifier.handleSafeScaffoldPadding(),
@@ -586,6 +601,16 @@ fun CommonSampleScreen(
                     ) {
 
                     }
+
+
+                    Text(text = "segmented button")
+                    DefaultSegmentedButton(
+                        modifier = Modifier.fillMaxWidth(),
+                        items = segmentedButtonList.value
+                    ) { selected ->
+                        segmentedButtonList.value =
+                            segmentedButtonList.value.map { it.copy(isSelected = it.id == selected.id) }
+                    }
                     DefaultSpacer(LocalDimen.current.extraLarge)
                 }
             }
@@ -1028,9 +1053,156 @@ fun CommonSampleScreen(
                                 }
                             }
                         })
-                    DefaultSpacer()
                     DefaultSpacer(height = LocalDimen.current.extraLarge)
                 }
+            }
+
+            // Field Item
+            item {
+                FieldItem(
+                    modifier = Modifier.fillMaxWidth(),
+                    fieldType = FieldType.Single(
+                        title = "Single",
+                        value = "Single Value hf sjkdbf jsdbf kjsbf jskdbf jksbf ksdjbf ksjbf sjbf sjkbf skdjbf kjsbf jsbd fjbsdf kjbsd fkjsb fbsdfkdjbs fjsbd fjdsbf ksjbdf ksdjbf ksjbf",
+                    ),
+                )
+                HorizontalDivider(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = LocalDimen.current.regular),
+                    color = colorResource(id = R.color.divider)
+                )
+                FieldItem(
+                    modifier = Modifier.fillMaxWidth(),
+                    fieldType = FieldType.Single(
+                        title = "Single with Icon",
+                        value = "Single Value hf sjkdbf jsdbf kjsbf jskdbf jksbf ksdjbf ksjbf sjbf sjkbf skdjbf kjsbf jsbd fjbsdf kjbsd fkjsb fbsdfkdjbs fjsbd fjdsbf ksjbdf ksdjbf ksjbf",
+                        icon = R.drawable.ic_check_in
+                    ),
+                    onIconClick = {}
+                )
+                HorizontalDivider(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = LocalDimen.current.regular),
+                    color = colorResource(id = R.color.divider)
+                )
+                FieldItem(
+                    modifier = Modifier.fillMaxWidth(),
+                    fieldType = FieldType.Email(
+                        title = "No Email",
+                        value = "",
+                        icon = R.drawable.ic_edit,
+                    ),
+                    onIconClick = {}
+                )
+                HorizontalDivider(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = LocalDimen.current.regular),
+                    color = colorResource(id = R.color.divider)
+                )
+                FieldItem(
+                    modifier = Modifier.fillMaxWidth(),
+                    fieldType = FieldType.Email(
+                        title = "Email Verified",
+                        value = "stanleymesa@gmail.com",
+                        icon = R.drawable.ic_edit,
+                        isVerified = true
+                    ),
+                    onIconClick = {}
+                )
+                HorizontalDivider(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = LocalDimen.current.regular),
+                    color = colorResource(id = R.color.divider)
+                )
+                FieldItem(
+                    modifier = Modifier.fillMaxWidth(),
+                    fieldType = FieldType.Email(
+                        title = "Email Unverified",
+                        value = "stanleymesa@gmail.com",
+                        icon = R.drawable.ic_edit,
+                        isVerified = false
+                    ),
+                    onIconClick = {},
+                    onResendVerificationClick = {}
+                )
+                HorizontalDivider(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = LocalDimen.current.regular),
+                    color = colorResource(id = R.color.divider)
+                )
+                FieldItem(
+                    modifier = Modifier.fillMaxWidth(),
+                    fieldType = FieldType.Multiple(
+                        title = "Multiple",
+                        listValue = listOf("Multiple Value 1", "Multiple Value 2")
+                    )
+                )
+                HorizontalDivider(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = LocalDimen.current.regular),
+                    color = colorResource(id = R.color.divider)
+                )
+                FieldItem(
+                    modifier = Modifier.fillMaxWidth(),
+                    fieldType = FieldType.SingleClickable(
+                        title = "Single Clickable",
+                        value = "Single Clickable Value",
+                        extras = "extras"
+                    )
+                )
+                HorizontalDivider(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = LocalDimen.current.regular),
+                    color = colorResource(id = R.color.divider)
+                )
+                FieldItem(
+                    modifier = Modifier.fillMaxWidth(),
+                    fieldType = FieldType.Status(
+                        title = "Status",
+                        statusModels = listOf(StatusModel(label = "Active"))
+                    )
+                )
+                HorizontalDivider(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = LocalDimen.current.regular),
+                    color = colorResource(id = R.color.divider)
+                )
+                FieldItem(
+                    modifier = Modifier.fillMaxWidth(),
+                    fieldType = FieldType.File(
+                        title = "File",
+                        url = "https://www.google.com",
+                        fileName = "Google"
+                    )
+                )
+                HorizontalDivider(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = LocalDimen.current.regular),
+                    color = colorResource(id = R.color.divider)
+                )
+                FieldItem(
+                    modifier = Modifier.fillMaxWidth(),
+                    fieldType = FieldType.MultipleAnswer(
+                        title = "Multiple Answer",
+                        listValue = listOf("Multiple Answer 1", "Multiple Answer 2")
+                    )
+                )
+                HorizontalDivider(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = LocalDimen.current.regular),
+                    color = colorResource(id = R.color.divider)
+                )
+                DefaultSpacer(height = LocalDimen.current.extraLarge)
             }
 
             // progress

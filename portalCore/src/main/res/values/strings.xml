@@ -44,4 +44,11 @@
     <string name="small">Small</string>
     <string name="normal">Normal</string>
     <string name="large">Large</string>
+    <string name="please_check_internet_connection">Please check your internet connection</string>
+    <string name="verified_email">Verified Email</string>
+    <string name="unverified_email">Unverified Email</string>
+    <string name="resend_verification_email">Resend Verification Email</string>
+    <string name="strong">Strong</string>
+    <string name="medium">Medium</string>
+    <string name="weak">Weak</string>
 </resources>

@@ -219,6 +219,8 @@ fun Context.getColorStateListCompat(@ColorRes colorResId: Int) =
 fun String?.isSuccess() = this?.equals("success").orFalse()
 
 fun String?.orStrip() = if (!this.isNullOrBlank()) this else "-"
+fun String?.isStrip() = this == "-"
+fun String?.isNotStrip() = this.isStrip().isFalse()
 
 /**
  * convert string value null to zero
@@ -271,6 +273,7 @@ val httpErrors = listOf(
     "443",
     "500",
     "501",
+    "503",
 )
 
 val timeoutErrors = listOf(
@@ -317,3 +320,17 @@ fun String.toMathEqFormatted(): String {
 
     return newData
 }
+
+/**
+ * Convert [Int] into [mm:ss]
+ */
+fun Int.toMinuteSeconds(): String =
+    runCatching {
+        val minute = this / 60
+        val strMinute = if (minute < 10) "0$minute" else minute.toString()
+
+        val second = this % 60
+        val strSecond = if (second < 10) "0$second" else second.toString()
+
+        "$strMinute:$strSecond"
+    }.getOrElse { "" }

@@ -3,6 +3,7 @@ package com.noblesoftware.portalcore.component.xml.dynamic_bottom_sheet
 import android.annotation.SuppressLint
 import android.app.Dialog
 import android.content.Context
+import android.content.DialogInterface
 import android.content.res.ColorStateList
 import android.os.Build
 import android.os.Bundle
@@ -29,6 +30,7 @@ import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.button.MaterialButton
@@ -51,6 +53,9 @@ open class DefaultDynamicBottomSheetDialog : BottomSheetDialogFragment() {
     /** if [isStatusBarTransparent] = true -> set this activity and PortalCoreTheme statusBar to transparent */
     private var isStatusBarTransparent: Boolean = false
 
+    private var initialBottomSheetState = BottomSheetBehavior.STATE_EXPANDED
+    private var dismissible: Boolean = false
+
     private var buttonFirstEnable: Boolean = true
     private var buttonFirstText: Int = R.string.close
     private var buttonFirstType: BottomSheetActionType = BottomSheetActionType.NEUTRAL
@@ -60,6 +65,9 @@ open class DefaultDynamicBottomSheetDialog : BottomSheetDialogFragment() {
     private var buttonSecondText: Int = R.string.okay
     private var buttonSecondType: BottomSheetActionType = BottomSheetActionType.PRIMARY_SOLID
     private var buttonSecondOnClick: () -> Unit = {}
+
+    private var onDismiss: () -> Unit = {}
+
     override fun getTheme(): Int = R.style.ModalBottomSheetDialog
 
     override fun onCreateView(
@@ -127,11 +135,15 @@ open class DefaultDynamicBottomSheetDialog : BottomSheetDialogFragment() {
 
             buttonFirst.setOnClickListener {
                 buttonFirstOnClick.invoke()
-                dismiss()
+                if (dismissible) {
+                    dismiss()
+                }
             }
             buttonSecond.setOnClickListener {
                 buttonSecondOnClick.invoke()
-                dismiss()
+                if (dismissible) {
+                    dismiss()
+                }
             }
 
             buttons.layoutParams = FrameLayout.LayoutParams(
@@ -151,8 +163,20 @@ open class DefaultDynamicBottomSheetDialog : BottomSheetDialogFragment() {
                 )
             }
 
+            /** if the initial fullscreen */
+            if (initialBottomSheetState == BottomSheetBehavior.STATE_EXPANDED) {
+                it.findViewById<FrameLayout>(com.google.android.material.R.id.design_bottom_sheet)
+                    ?.let {
+                        val bottomSheetBehavior = BottomSheetBehavior.from(it)
+                        bottomSheetBehavior.skipCollapsed = true
+                        bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
+                    }
+            }
+            bottomSheetDialog.setCancelable(dismissible)
+
             containerLayout?.addView(buttons)
         }
+
         return bottomSheetDialog
     }
 
@@ -165,6 +189,11 @@ open class DefaultDynamicBottomSheetDialog : BottomSheetDialogFragment() {
         }
     }
 
+    override fun onDismiss(dialog: DialogInterface) {
+        super.onDismiss(dialog)
+        onDismiss.invoke()
+    }
+
     override fun onDestroy() {
         super.onDestroy()
     }
@@ -173,6 +202,8 @@ open class DefaultDynamicBottomSheetDialog : BottomSheetDialogFragment() {
         fun showDialog(
             fragmentManager: FragmentManager,
             isStatusBarTransparent: Boolean = false,
+            isDismissible: Boolean = true,
+            isInitialFullscreen: Boolean = false,
             buttonFirstEnable: Boolean = true,
             buttonSecondEnable: Boolean = false,
             @StringRes buttonFirstText: Int = R.string.close,
@@ -182,10 +213,14 @@ open class DefaultDynamicBottomSheetDialog : BottomSheetDialogFragment() {
             tag: String = DefaultDynamicBottomSheetDialog::class.java.simpleName,
             buttonFirstOnClick: () -> Unit = {},
             buttonSecondOnClick: () -> Unit = {},
+            onDismiss: () -> Unit = {},
             content: @Composable () -> Unit
         ) {
             DefaultDynamicBottomSheetDialog().apply {
                 this.isStatusBarTransparent = isStatusBarTransparent
+                this.dismissible = isDismissible
+                this.initialBottomSheetState =
+                    if (isInitialFullscreen) BottomSheetBehavior.STATE_EXPANDED else BottomSheetBehavior.STATE_HALF_EXPANDED
                 this.buttonFirstEnable = buttonFirstEnable
                 this.buttonSecondEnable = buttonSecondEnable
                 this.buttonFirstText = buttonFirstText
@@ -194,6 +229,7 @@ open class DefaultDynamicBottomSheetDialog : BottomSheetDialogFragment() {
                 this.buttonSecondType = buttonSecondType
                 this.buttonFirstOnClick = buttonFirstOnClick
                 this.buttonSecondOnClick = buttonSecondOnClick
+                this.onDismiss = onDismiss
                 this.content = content
             }.show(fragmentManager, tag)
         }

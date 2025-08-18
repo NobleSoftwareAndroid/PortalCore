@@ -40,4 +40,11 @@
     <string name="small">Kecil</string>
     <string name="normal">Normal</string>
     <string name="large">Besar</string>
+    <string name="please_check_internet_connection">Periksa koneksi internet Anda</string>
+    <string name="verified_email">Email terverifikasi</string>
+    <string name="unverified_email">Email belum terverifikasi</string>
+    <string name="resend_verification_email">Kirim Ulang Email Verifikasi</string>
+    <string name="strong">Kuat</string>
+    <string name="medium">Sedang</string>
+    <string name="weak">Lemah</string>
 </resources>
