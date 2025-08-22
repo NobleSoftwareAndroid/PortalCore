@@ -7,10 +7,12 @@ import androidx.compose.animation.slideInVertically
 import androidx.compose.animation.slideOutVertically
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -56,6 +58,7 @@ import com.noblesoftware.portalcore.R
 import com.noblesoftware.portalcore.theme.LocalDimen
 import com.noblesoftware.portalcore.theme.LocalShapes
 import com.noblesoftware.portalcore.util.extension.isFalse
+import com.noblesoftware.portalcore.util.extension.isTrue
 
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
@@ -116,6 +119,7 @@ fun DefaultTextInput(
     inputType: KeyboardType = KeyboardType.Text,
     readOnly: Boolean = false,
     singleLine: Boolean = true,
+    isCount: Boolean = false,
     maxLength: Int = Int.MAX_VALUE,
     maxLines: Int = 1,
     minLines: Int = 1,
@@ -395,6 +399,28 @@ fun DefaultTextInput(
                     modifier = Modifier.padding(start = 5.dp, top = 1.dp),
                     text = helperText,
                     color = colorResource(id = R.color.text_secondary),
+                    style = MaterialTheme.typography.bodySmall.copy(
+                        colorResource(id = R.color.text_primary),
+                    )
+                )
+            }
+        }
+        AnimatedVisibility(
+            visible = isCount.isTrue(),
+            enter = slideInVertically() + fadeIn(),
+            exit = slideOutVertically() + fadeOut()
+        ) {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 5.dp)
+                    .align(alignment = Alignment.CenterHorizontally),
+                horizontalArrangement = Arrangement.End
+            ) {
+                Text(
+                    modifier = Modifier.padding(end = 5.dp, top = 1.dp),
+                    text = "${value.length}/$maxLength",
+                    color = colorResource(id = R.color.text_icon),
                     style = MaterialTheme.typography.bodySmall.copy(
                         colorResource(id = R.color.text_primary),
                     )
