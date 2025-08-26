@@ -36,6 +36,7 @@ import com.noblesoftware.portalcore.util.extension.isFalse
 fun DefaultMultipleSelection(
     modifier: Modifier = Modifier,
     selectOption: SelectOption,
+    startContent: (@Composable () -> Unit)? = null,
     onSelectOption: (SelectOption) -> Unit,
 ) {
     ConstraintLayout(
@@ -110,6 +111,9 @@ fun DefaultMultipleSelection(
                     tint = colorResource(id = if (selectOption.isSelected) R.color.primary_plain_color else if (selectOption.enabled.isFalse()) R.color.primary_plain_disabled_color else R.color.text_primary),
                     contentDescription = ""
                 )
+                DefaultSpacer(width = LocalDimen.current.medium)
+            } else if (startContent != null) {
+                startContent.invoke()
                 DefaultSpacer(width = LocalDimen.current.medium)
             }
             Text(
