@@ -586,6 +586,63 @@ fun CommonSampleScreen(
 
                     }
                     DefaultSpacer()
+                    DefaultSpacer()
+                    DefaultButton(
+                        modifier = Modifier.fillMaxWidth(),
+                        text = "Sign In With Google",
+                        buttonVariant = ButtonVariant.Primary,
+                        buttonSize = ButtonSize.Large,
+                        buttonType = ButtonType.Outlined,
+                        iconWithSpacer = true,
+                        startIcon = com.noblesoftware.portalcore.R.drawable.ic_google,
+                        startIconAsImage = true,
+                        startIconSize = 20.dp,
+                    ) {
+
+                    }
+                    DefaultSpacer()
+                    DefaultButton(
+                        modifier = Modifier.fillMaxWidth(),
+                        text = "Sign In With Google",
+                        buttonVariant = ButtonVariant.Danger,
+                        buttonSize = ButtonSize.Large,
+                        buttonType = ButtonType.Outlined,
+                        iconWithSpacer = true,
+                        endIcon = com.noblesoftware.portalcore.R.drawable.ic_google,
+                        endIconAsImage = true,
+                        endIconSize = 20.dp
+                    ) {
+
+                    }
+                    DefaultSpacer()
+                    DefaultButton(
+                        modifier = Modifier.fillMaxWidth(),
+                        text = "Sign In With Google",
+                        buttonVariant = ButtonVariant.Neutral,
+                        buttonSize = ButtonSize.Large,
+                        buttonType = ButtonType.Outlined,
+                        iconWithSpacer = true,
+                        startIcon = com.noblesoftware.portalcore.R.drawable.ic_google,
+                        startIconAsImage = true,
+                        startIconSize = 20.dp
+                    ) {
+
+                    }
+                    DefaultSpacer()
+                    DefaultButton(
+                        modifier = Modifier.fillMaxWidth(),
+                        text = "Sign In With Google",
+                        buttonVariant = ButtonVariant.Neutral,
+                        buttonSize = ButtonSize.Large,
+                        buttonType = ButtonType.Outlined,
+                        iconWithSpacer = true,
+                        startIcon = com.noblesoftware.portalcore.R.drawable.ic_google,
+                        startIconSize = 20.dp
+                    ) {
+
+                    }
+                    DefaultSpacer()
+                    DefaultSpacer()
                     DefaultButton(
                         modifier = Modifier.fillMaxWidth(),
                         text = "Login",
@@ -613,7 +670,7 @@ fun CommonSampleScreen(
 
                     }
 
-
+                    DefaultSpacer()
                     Text(text = "segmented button")
                     DefaultSegmentedButton(
                         modifier = Modifier.fillMaxWidth(),
