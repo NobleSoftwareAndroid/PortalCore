@@ -3,6 +3,7 @@ package com.noblesoftware.portalcore.component.xml.options_bottom_sheet.componen
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -29,6 +30,7 @@ import com.noblesoftware.portalcore.util.extension.isFalse
 fun DefaultSingleSelection(
     modifier: Modifier = Modifier,
     selectOption: SelectOption,
+    startContent: (@Composable () -> Unit)? = null,
     onSelected: (List<SelectOption>) -> Unit,
 ) {
     ConstraintLayout(
@@ -65,6 +67,7 @@ fun DefaultSingleSelection(
             ),
     ) {
         val (startIcon, text, endIcon) = createRefs()
+
         if (selectOption.startIcon != null) {
             Icon(
                 modifier = Modifier.constrainAs(startIcon) {
@@ -76,10 +79,23 @@ fun DefaultSingleSelection(
                 tint = colorResource(id = if (selectOption.isSelected) R.color.primary_plain_color else if (selectOption.enabled.isFalse()) R.color.primary_plain_disabled_color else R.color.text_primary),
                 contentDescription = ""
             )
+        } else if (startContent != null) {
+            Box(
+                modifier = Modifier
+                    .constrainAs(startIcon) {
+                        start.linkTo(parent.start)
+                        top.linkTo(parent.top)
+                        bottom.linkTo(parent.bottom)
+                    }
+
+            ) {
+                startContent.invoke()
+            }
         }
+
         Text(
             modifier = Modifier.constrainAs(text) {
-                if (selectOption.startIcon != null) {
+                if (selectOption.startIcon != null || startContent != null) {
                     start.linkTo(startIcon.end, margin = 12.dp)
                 } else {
                     start.linkTo(parent.start)

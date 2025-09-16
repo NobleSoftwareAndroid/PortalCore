@@ -10,7 +10,9 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
@@ -28,11 +30,13 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.noblesoftware.portalcore.R
 import com.noblesoftware.portalcore.component.compose.BottomSheetType
@@ -84,9 +88,16 @@ fun CommonSampleScreen(
     val segmentedButtonList = remember {
         mutableStateOf(
             listOf(
-                SelectOption(id = 1, name = "Semester 1", isSelected = true),  // set the `isSelected` if you want to set default selected
+                SelectOption(
+                    id = 1,
+                    name = "Semester 1",
+                    isSelected = true
+                ),  // set the `isSelected` if you want to set default selected
                 SelectOption(id = 2, name = "Semester 2"),
-                SelectOption(id = 3, nameId = R.string.medium) // in case if you want to using @StringRes
+                SelectOption(
+                    id = 3,
+                    nameId = R.string.medium
+                ) // in case if you want to using @StringRes
             )
         )
     }
@@ -736,6 +747,34 @@ fun CommonSampleScreen(
                     Text(text = "input default")
                     DefaultSpacer()
 
+                    DefaultTextInputDropdown(
+                        label = "Label",
+                        placeholder = "Please select label",
+                        required = true,
+                        leadingIcon = {
+                            Column(
+                                modifier = Modifier
+                                    .fillMaxHeight()
+                                    .padding(
+                                        start = LocalDimen.current.medium,
+                                        end = LocalDimen.current.default
+                                    ),
+                                verticalArrangement = Arrangement.Center
+                            ) {
+                                Box(
+                                    modifier = Modifier
+                                        .size(20.dp)
+                                        .clip(CircleShape)
+                                        .background(colorResource(R.color.neutral_solid_disabled_color))
+                                )
+                            }
+                        },
+                        value = text.value,
+                        onClick = {
+
+                        },
+                        onValueChange = { text.value = it })
+                    DefaultSpacer()
                     DefaultTextInput(
                         label = "Email",
                         placeholder = "Please input email",
@@ -757,8 +796,10 @@ fun CommonSampleScreen(
                         placeholder = "Please input address",
                         required = true,
                         singleLine = false,
+                        isCount = true,
                         value = text.value,
                         minLines = 4,
+                        maxLength = 10,
                         onValueChange = { text.value = it })
                     DefaultSpacer()
 

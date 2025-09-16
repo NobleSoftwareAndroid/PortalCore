@@ -65,6 +65,13 @@ fun View.showSnackBar(
 
     tvTitle.text = message
     btnOk.text = textDismissButton
+    btnOk.setTextColor(
+        if (isSuccess) {
+            this.context.getColorCompat(R.color.success_soft_color)
+        } else {
+            this.context.getColorCompat(R.color.danger_soft_color)
+        }
+    )
     btnOk.setOnClickListener {
         dismissClicked()
         snackbar.dismiss()
