@@ -21,14 +21,18 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavHostController
 import com.noblesoftware.portalcore.R
 import com.noblesoftware.portalcore.component.compose.ButtonVariant
 import com.noblesoftware.portalcore.component.compose.DefaultButton
+import com.noblesoftware.portalcore.component.compose.DefaultDurationPicker
 import com.noblesoftware.portalcore.component.compose.DefaultSnackbar
 import com.noblesoftware.portalcore.component.compose.DefaultSpacer
 import com.noblesoftware.portalcore.component.compose.DefaultTopAppBar
+import com.noblesoftware.portalcore.component.compose.rememberDurationPickerState
 import com.noblesoftware.portalcore.component.compose.showDefaultSnackbar
+import com.noblesoftware.portalcore.component.xml.duration_picker_bottom_sheet.DurationPickerBottomSheetDialog
 import com.noblesoftware.portalcore.component.xml.dynamic_bottom_sheet.DefaultDynamicBottomSheetDialog
 import com.noblesoftware.portalcore.component.xml.dynamic_bottom_sheet.DefaultDynamicBottomSheetDialog.Companion.dismiss
 import com.noblesoftware.portalcore.component.xml.options_bottom_sheet.DefaultBottomSheetDialog
@@ -39,6 +43,8 @@ import com.noblesoftware.portalcore.model.SnackbarState
 import com.noblesoftware.portalcore.theme.LocalDimen
 import com.noblesoftware.portalcore.util.extension.findActivity
 import com.noblesoftware.portalcore.util.extension.handleSafeScaffoldPadding
+import com.noblesoftware.portalcore.util.extension.isTrue
+import com.noblesoftware.portalcore.util.extension.loge
 
 @Composable
 fun BottomSheetSampleScreen(
@@ -57,6 +63,8 @@ fun BottomSheetSampleScreen(
             )
         )
     }
+    val isShowDurationPicker = remember { mutableStateOf(false) }
+
     LaunchedEffect(snackbarState.value) {
         if (!snackbarState.value.message.isNullOrBlank() || snackbarState.value.messageId != null) {
             snackbarHostState.showDefaultSnackbar(
@@ -384,6 +392,19 @@ fun BottomSheetSampleScreen(
                             Text(text = "This is compose component")
                         }
                     }
+                )
+            }
+            DefaultSpacer()
+            DefaultButton(
+                modifier = Modifier.fillMaxWidth(),
+                text = "Default Duration Picker",
+                buttonVariant = ButtonVariant.Neutral
+            ) {
+                DurationPickerBottomSheetDialog.showDialog(
+                    fragmentManager = (activity as AppCompatActivity).supportFragmentManager,
+                    title = R.string.select_time,
+                    onDismiss = {
+                    },
                 )
             }
         }
