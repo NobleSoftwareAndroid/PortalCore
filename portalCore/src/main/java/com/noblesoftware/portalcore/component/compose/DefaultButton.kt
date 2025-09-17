@@ -2,6 +2,7 @@ package com.noblesoftware.portalcore.component.compose
 
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -64,6 +65,10 @@ fun DefaultButton(
     @DrawableRes endIcon: Int? = null,
     textAllCaps: Boolean = false,
     iconWithSpacer: Boolean = false,
+    startIconAsImage: Boolean = false,
+    endIconAsImage: Boolean = false,
+    startIconSize: Dp? = null,
+    endIconSize: Dp? = null,
     enabled: Boolean = true,
     loading: Boolean = false,
     shape: Shape? = null,
@@ -111,11 +116,24 @@ fun DefaultButton(
         contentPadding = contentPadding
     ) {
         if (startIcon != null) {
-            Icon(
-                painter = painterResource(id = startIcon),
-                contentDescription = text,
-                tint = if (enabled) contentColor else colorResource(id = R.color.primary_solid_disabled_color)
-            )
+            if (startIconAsImage) {
+                Image(
+                    modifier = Modifier.then(
+                        if (startIconSize != null) Modifier.size(startIconSize) else Modifier
+                    ),
+                    painter = painterResource(id = startIcon),
+                    contentDescription = text,
+                )
+            } else {
+                Icon(
+                    modifier = Modifier.then(
+                        if (startIconSize != null) Modifier.size(startIconSize) else Modifier
+                    ),
+                    painter = painterResource(id = startIcon),
+                    contentDescription = text,
+                    tint = if (enabled) contentColor else colorResource(id = R.color.primary_solid_disabled_color)
+                )
+            }
             if (iconWithSpacer) {
                 Spacer(Modifier.size(ButtonDefaults.IconSpacing))
             }
@@ -140,11 +158,24 @@ fun DefaultButton(
 
         if (endIcon != null) {
             Spacer(Modifier.size(ButtonDefaults.IconSpacing))
-            Icon(
-                painter = painterResource(id = endIcon),
-                contentDescription = textValue,
-                tint = if (enabled) contentColor else colorResource(id = R.color.primary_solid_disabled_color)
-            )
+            if (endIconAsImage) {
+                Image(
+                    modifier = Modifier.then(
+                        if (endIconSize != null) Modifier.size(endIconSize) else Modifier
+                    ),
+                    painter = painterResource(id = endIcon),
+                    contentDescription = textValue,
+                )
+            } else {
+                Icon(
+                    modifier = Modifier.then(
+                        if (endIconSize != null) Modifier.size(endIconSize) else Modifier
+                    ),
+                    painter = painterResource(id = endIcon),
+                    contentDescription = textValue,
+                    tint = if (enabled) contentColor else colorResource(id = R.color.primary_solid_disabled_color)
+                )
+            }
         }
     }
 }
