@@ -17,13 +17,13 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -35,7 +35,6 @@ import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.compose.ui.platform.rememberNestedScrollInteropConnection
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.databinding.DataBindingUtil
@@ -47,12 +46,15 @@ import com.noblesoftware.portalcore.component.compose.ButtonType
 import com.noblesoftware.portalcore.component.compose.ButtonVariant
 import com.noblesoftware.portalcore.component.compose.DefaultButton
 import com.noblesoftware.portalcore.component.compose.DefaultSpacer
+import com.noblesoftware.portalcore.component.xml.duration_picker_bottom_sheet.component.DurationPickerTitles
+import com.noblesoftware.portalcore.component.xml.duration_picker_bottom_sheet.model.DurationPickerBottomSheetResult
+import com.noblesoftware.portalcore.component.xml.duration_picker_bottom_sheet.model.DurationPickerBottomSheetState
+import com.noblesoftware.portalcore.component.xml.duration_picker_bottom_sheet.model.DurationPickerFormat
 import com.noblesoftware.portalcore.databinding.BottomSheetDialogBinding
 import com.noblesoftware.portalcore.theme.LocalDimen
 import com.noblesoftware.portalcore.theme.PortalCoreTheme
 import com.noblesoftware.portalcore.util.extension.fadingEdge
 import com.noblesoftware.portalcore.util.extension.isTrue
-import com.noblesoftware.portalcore.util.extension.loge
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -61,11 +63,30 @@ open class DurationPickerBottomSheetDialog : BottomSheetDialogFragment() {
     private lateinit var binding: BottomSheetDialogBinding
 
     @StringRes
-    private var title: Int = R.string.empty_string
+    private var title: Int = R.string.edit_timer
+
+    @StringRes
+    private var hourTitle: Int = R.string.hours
+
+    @StringRes
+    private var minuteTitle: Int = R.string.min
+
+    @StringRes
+    private var secondTitle: Int = R.string.sec
+
+    @StringRes
+    private var negativeButtonText: Int = R.string.cancel
+
+    @StringRes
+    private var positiveButtonText: Int = R.string.set
 
     /** if [isStatusBarTransparent] = true -> set this activity and PortalCoreTheme statusBar to transparent */
     private var isStatusBarTransparent: Boolean = false
+    private var durationPickerBottomSheetState: DurationPickerBottomSheetState =
+        DurationPickerBottomSheetState()
     private var onDismiss: () -> Unit = {}
+    private var onNegative: () -> Unit = {}
+    private var onPositive: (result: DurationPickerBottomSheetResult) -> Unit = {}
 
     override fun getTheme(): Int = R.style.ModalBottomSheetDialog
 
@@ -87,9 +108,18 @@ open class DurationPickerBottomSheetDialog : BottomSheetDialogFragment() {
         binding.composeView.apply {
             setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
             setContent {
-                val totalItems = 120
-                val visibleItems = 7
+                val state = remember { durationPickerBottomSheetState }
+                val result = remember {
+                    mutableStateOf(
+                        DurationPickerBottomSheetResult(
+                            hour = state.initialHour,
+                            minute = state.initialMinute,
+                            second = state.initialSecond
+                        )
+                    )
+                }
                 val itemHeight = 50
+                val loops = 100
                 val fadingEdgeGradient = remember {
                     Brush.verticalGradient(
                         0f to Color.Transparent,
@@ -98,41 +128,51 @@ open class DurationPickerBottomSheetDialog : BottomSheetDialogFragment() {
                     )
                 }
 
+                /** Hours State */
+                val hourItems = state.hourLimit * loops
                 val listStateHours =
-                    rememberLazyListState(initialFirstVisibleItemIndex = (totalItems / 2) - (visibleItems / 2))
+                    rememberLazyListState(initialFirstVisibleItemIndex = (hourItems / 2) - (state.visibleItems / 2) + state.initialHour)
                 val flingBehaviorHours = rememberSnapFlingBehavior(lazyListState = listStateHours)
                 LaunchedEffect(listStateHours.isScrollInProgress) {
                     if (!listStateHours.isScrollInProgress) {
                         val visible = listStateHours.layoutInfo.visibleItemsInfo
                         val chosen =
-                            runCatching { visible[visibleItems / 2].index % 60 }.getOrElse { 0 }
-                        loge("Chosen: $chosen")
+                            runCatching { visible[state.visibleItems / 2].index % state.hourLimit }.getOrElse { 0 }
+                        result.value = result.value.copy(hour = chosen)
                     }
                 }
 
+                /** Minutes State */
+                val minuteItems = state.minuteLimit * loops
                 val listStateMinutes =
-                    rememberLazyListState(initialFirstVisibleItemIndex = (totalItems / 2) - (visibleItems / 2))
+                    rememberLazyListState(initialFirstVisibleItemIndex = (minuteItems / 2) - (state.visibleItems / 2) + state.initialMinute)
                 val flingBehaviorMinutes =
                     rememberSnapFlingBehavior(lazyListState = listStateMinutes)
                 LaunchedEffect(listStateMinutes.isScrollInProgress) {
                     if (!listStateMinutes.isScrollInProgress) {
-                        val visible = listStateHours.layoutInfo.visibleItemsInfo
+                        val visible = listStateMinutes.layoutInfo.visibleItemsInfo
                         val chosen =
-                            runCatching { visible[visibleItems / 2].index % 60 }.getOrElse { 0 }
-                        loge("Chosen: $chosen")
+                            runCatching { visible[state.visibleItems / 2].index % state.minuteLimit }.getOrElse { 0 }
+                        result.value = result.value.copy(minute = chosen)
                     }
                 }
 
+                /** Seconds State */
+                val secondItems = state.secondLimit * loops
                 val listStateSeconds =
-                    rememberLazyListState(initialFirstVisibleItemIndex = (totalItems / 2) - (visibleItems / 2))
+                    rememberLazyListState(initialFirstVisibleItemIndex = (secondItems / 2) - (state.visibleItems / 2) + state.initialSecond)
                 val flingBehaviorSeconds =
                     rememberSnapFlingBehavior(lazyListState = listStateSeconds)
-                LaunchedEffect(listStateSeconds.isScrollInProgress) {
-                    if (!listStateHours.isScrollInProgress) {
-                        val visible = listStateHours.layoutInfo.visibleItemsInfo
-                        val chosen =
-                            runCatching { visible[visibleItems / 2].index % 60 }.getOrElse { 0 }
-                        loge("Chosen: $chosen")
+
+                /** Add Conditional for Second's LaunchedEffect */
+                if (state.durationPickerFormat == DurationPickerFormat.H_M_S) {
+                    LaunchedEffect(listStateSeconds.isScrollInProgress) {
+                        if (!listStateHours.isScrollInProgress) {
+                            val visible = listStateSeconds.layoutInfo.visibleItemsInfo
+                            val chosen =
+                                runCatching { visible[state.visibleItems / 2].index % state.secondLimit }.getOrElse { 0 }
+                            result.value = result.value.copy(second = chosen)
+                        }
                     }
                 }
 
@@ -153,7 +193,7 @@ open class DurationPickerBottomSheetDialog : BottomSheetDialogFragment() {
                             DefaultSpacer()
                             Text(
                                 modifier = Modifier.padding(start = LocalDimen.current.regular),
-                                text = "Time picker",
+                                text = stringResource(title),
                                 style = MaterialTheme.typography.labelLarge,
                                 color = colorResource(R.color.text_primary)
                             )
@@ -162,80 +202,16 @@ open class DurationPickerBottomSheetDialog : BottomSheetDialogFragment() {
                             Box(
                                 modifier = Modifier
                                     .fillMaxWidth()
-                                    .height((visibleItems * itemHeight).dp),
+                                    .height((state.visibleItems * itemHeight).dp),
                             ) {
-                                /** Titles */
-                                Row(modifier = Modifier.fillMaxSize()) {
-                                    Box(
-                                        modifier = Modifier
-                                            .weight(1f)
-                                            .fillMaxHeight(),
-                                        contentAlignment = Alignment.Center
-                                    ) {
-                                        Box(
-                                            modifier = Modifier
-                                                .padding(start = itemHeight.dp.plus(LocalDimen.current.large))
-                                                .width(itemHeight.dp.plus(LocalDimen.current.extraRegular))
-                                                .height(itemHeight.dp),
-                                            contentAlignment = Alignment.CenterStart
-                                        ) {
-                                            Text(
-                                                modifier = Modifier,
-                                                text = "hours",
-                                                style = MaterialTheme.typography.bodyMedium,
-                                                color = colorResource(R.color.text_primary),
-                                                maxLines = 1,
-                                                overflow = TextOverflow.Ellipsis
-                                            )
-                                        }
-                                    }
-                                    Box(
-                                        modifier = Modifier
-                                            .weight(1f)
-                                            .fillMaxHeight(),
-                                        contentAlignment = Alignment.Center
-                                    ) {
-                                        Box(
-                                            modifier = Modifier
-                                                .padding(start = itemHeight.dp.plus(LocalDimen.current.large))
-                                                .width(itemHeight.dp.plus(LocalDimen.current.extraRegular))
-                                                .height(itemHeight.dp),
-                                            contentAlignment = Alignment.CenterStart
-                                        ) {
-                                            Text(
-                                                modifier = Modifier,
-                                                text = "min",
-                                                style = MaterialTheme.typography.bodyMedium,
-                                                color = colorResource(R.color.text_primary),
-                                                maxLines = 1,
-                                                overflow = TextOverflow.Ellipsis
-                                            )
-                                        }
-                                    }
-                                    Box(
-                                        modifier = Modifier
-                                            .weight(1f)
-                                            .fillMaxHeight(),
-                                        contentAlignment = Alignment.Center
-                                    ) {
-                                        Box(
-                                            modifier = Modifier
-                                                .padding(start = itemHeight.dp.plus(LocalDimen.current.large))
-                                                .width(itemHeight.dp.plus(LocalDimen.current.extraRegular))
-                                                .height(itemHeight.dp),
-                                            contentAlignment = Alignment.CenterStart
-                                        ) {
-                                            Text(
-                                                modifier = Modifier,
-                                                text = "sec",
-                                                style = MaterialTheme.typography.bodyMedium,
-                                                color = colorResource(R.color.text_primary),
-                                                maxLines = 1,
-                                                overflow = TextOverflow.Ellipsis
-                                            )
-                                        }
-                                    }
-                                }
+                                /** Time Titles */
+                                DurationPickerTitles(
+                                    state = state,
+                                    itemHeight = itemHeight,
+                                    hourTitle = hourTitle,
+                                    minuteTitle = minuteTitle,
+                                    secondTitle = secondTitle
+                                )
 
                                 /** LazyColumn */
                                 Row(modifier = Modifier.fillMaxSize()) {
@@ -248,7 +224,7 @@ open class DurationPickerBottomSheetDialog : BottomSheetDialogFragment() {
                                         flingBehavior = flingBehaviorHours,
                                         contentPadding = PaddingValues(end = LocalDimen.current.large)
                                     ) {
-                                        items(count = totalItems) { index ->
+                                        items(count = hourItems) { index ->
                                             Box(
                                                 modifier = Modifier
                                                     .fillMaxWidth()
@@ -256,7 +232,7 @@ open class DurationPickerBottomSheetDialog : BottomSheetDialogFragment() {
                                                 contentAlignment = Alignment.Center
                                             ) {
                                                 Text(
-                                                    text = (index % 60).toString(),
+                                                    text = (index % state.hourLimit).toString(),
                                                     style = MaterialTheme.typography.labelLarge.copy(
                                                         fontSize = 20.sp
                                                     ),
@@ -274,7 +250,7 @@ open class DurationPickerBottomSheetDialog : BottomSheetDialogFragment() {
                                         flingBehavior = flingBehaviorMinutes,
                                         contentPadding = PaddingValues(end = LocalDimen.current.large)
                                     ) {
-                                        items(count = totalItems) { index ->
+                                        items(count = minuteItems) { index ->
                                             Box(
                                                 modifier = Modifier
                                                     .fillMaxWidth()
@@ -282,7 +258,7 @@ open class DurationPickerBottomSheetDialog : BottomSheetDialogFragment() {
                                                 contentAlignment = Alignment.Center
                                             ) {
                                                 Text(
-                                                    text = (index % 60).toString(),
+                                                    text = (index % state.minuteLimit).toString(),
                                                     style = MaterialTheme.typography.labelLarge.copy(
                                                         fontSize = 20.sp
                                                     ),
@@ -291,29 +267,31 @@ open class DurationPickerBottomSheetDialog : BottomSheetDialogFragment() {
                                             }
                                         }
                                     }
-                                    LazyColumn(
-                                        modifier = Modifier
-                                            .weight(1f)
-                                            .fillMaxHeight()
-                                            .fadingEdge(fadingEdgeGradient),
-                                        state = listStateSeconds,
-                                        flingBehavior = flingBehaviorSeconds,
-                                        contentPadding = PaddingValues(end = LocalDimen.current.large)
-                                    ) {
-                                        items(count = totalItems) { index ->
-                                            Box(
-                                                modifier = Modifier
-                                                    .fillMaxWidth()
-                                                    .height(itemHeight.dp),
-                                                contentAlignment = Alignment.Center
-                                            ) {
-                                                Text(
-                                                    text = (index % 60).toString(),
-                                                    style = MaterialTheme.typography.labelLarge.copy(
-                                                        fontSize = 20.sp
-                                                    ),
-                                                    color = colorResource(R.color.text_primary)
-                                                )
+                                    if (state.durationPickerFormat == DurationPickerFormat.H_M_S) {
+                                        LazyColumn(
+                                            modifier = Modifier
+                                                .weight(1f)
+                                                .fillMaxHeight()
+                                                .fadingEdge(fadingEdgeGradient),
+                                            state = listStateSeconds,
+                                            flingBehavior = flingBehaviorSeconds,
+                                            contentPadding = PaddingValues(end = LocalDimen.current.large)
+                                        ) {
+                                            items(count = secondItems) { index ->
+                                                Box(
+                                                    modifier = Modifier
+                                                        .fillMaxWidth()
+                                                        .height(itemHeight.dp),
+                                                    contentAlignment = Alignment.Center
+                                                ) {
+                                                    Text(
+                                                        text = (index % state.secondLimit).toString(),
+                                                        style = MaterialTheme.typography.labelLarge.copy(
+                                                            fontSize = 20.sp
+                                                        ),
+                                                        color = colorResource(R.color.text_primary)
+                                                    )
+                                                }
                                             }
                                         }
                                     }
@@ -333,8 +311,9 @@ open class DurationPickerBottomSheetDialog : BottomSheetDialogFragment() {
                                     buttonSize = ButtonSize.Medium,
                                     buttonType = ButtonType.Outlined,
                                     buttonVariant = ButtonVariant.Neutral,
-                                    text = stringResource(R.string.cancel),
+                                    text = stringResource(negativeButtonText),
                                 ) {
+                                    onNegative.invoke()
                                 }
                                 DefaultSpacer()
                                 DefaultButton(
@@ -342,8 +321,9 @@ open class DurationPickerBottomSheetDialog : BottomSheetDialogFragment() {
                                     buttonSize = ButtonSize.Medium,
                                     buttonType = ButtonType.Solid,
                                     buttonVariant = ButtonVariant.Primary,
-                                    text = "Set",
+                                    text = stringResource(positiveButtonText),
                                 ) {
+                                    onPositive.invoke(result.value)
                                 }
                             }
                             DefaultSpacer(height = LocalDimen.current.extraRegular)
@@ -376,14 +356,30 @@ open class DurationPickerBottomSheetDialog : BottomSheetDialogFragment() {
     companion object {
         fun showDialog(
             fragmentManager: FragmentManager,
-            @StringRes title: Int = R.string.empty_string,
+            @StringRes title: Int = R.string.edit_timer,
+            @StringRes hourTitle: Int = R.string.hours,
+            @StringRes minuteTitle: Int = R.string.min,
+            @StringRes secondTitle: Int = R.string.sec,
+            @StringRes negativeButtonText: Int = R.string.cancel,
+            @StringRes positiveButtonText: Int = R.string.set,
             isStatusBarTransparent: Boolean = false,
+            state: DurationPickerBottomSheetState = DurationPickerBottomSheetState(),
             onDismiss: () -> Unit = {},
+            onNegative: () -> Unit = {},
+            onPositive: (result: DurationPickerBottomSheetResult) -> Unit,
         ) {
             DurationPickerBottomSheetDialog().apply {
                 this.title = title
+                this.hourTitle = hourTitle
+                this.minuteTitle = minuteTitle
+                this.secondTitle = secondTitle
+                this.negativeButtonText = negativeButtonText
+                this.positiveButtonText = positiveButtonText
                 this.isStatusBarTransparent = isStatusBarTransparent
+                this.durationPickerBottomSheetState = state
                 this.onDismiss = onDismiss
+                this.onNegative = onNegative
+                this.onPositive = onPositive
             }.show(fragmentManager, DurationPickerBottomSheetDialog::class.java.simpleName)
         }
     }

@@ -51,4 +51,8 @@
     <string name="strong">Strong</string>
     <string name="medium">Medium</string>
     <string name="weak">Weak</string>
+    <string name="edit_timer">Edit Timer</string>
+    <string name="min">min</string>
+    <string name="sec">sec</string>
+    <string name="set">Set</string>
 </resources>
