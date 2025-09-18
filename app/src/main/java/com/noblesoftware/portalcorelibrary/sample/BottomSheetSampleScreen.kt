@@ -29,6 +29,8 @@ import com.noblesoftware.portalcore.component.compose.DefaultSnackbar
 import com.noblesoftware.portalcore.component.compose.DefaultSpacer
 import com.noblesoftware.portalcore.component.compose.DefaultTopAppBar
 import com.noblesoftware.portalcore.component.compose.showDefaultSnackbar
+import com.noblesoftware.portalcore.component.xml.duration_picker_bottom_sheet.DurationPickerBottomSheetDialog
+import com.noblesoftware.portalcore.component.xml.duration_picker_bottom_sheet.model.DurationPickerBottomSheetState
 import com.noblesoftware.portalcore.component.xml.dynamic_bottom_sheet.DefaultDynamicBottomSheetDialog
 import com.noblesoftware.portalcore.component.xml.dynamic_bottom_sheet.DefaultDynamicBottomSheetDialog.Companion.dismiss
 import com.noblesoftware.portalcore.component.xml.options_bottom_sheet.DefaultBottomSheetDialog
@@ -39,6 +41,8 @@ import com.noblesoftware.portalcore.model.SnackbarState
 import com.noblesoftware.portalcore.theme.LocalDimen
 import com.noblesoftware.portalcore.util.extension.findActivity
 import com.noblesoftware.portalcore.util.extension.handleSafeScaffoldPadding
+import com.noblesoftware.portalcore.util.extension.loge
+import com.noblesoftware.portalcore.util.extension.toJsonPretty
 
 @Composable
 fun BottomSheetSampleScreen(
@@ -57,6 +61,7 @@ fun BottomSheetSampleScreen(
             )
         )
     }
+
     LaunchedEffect(snackbarState.value) {
         if (!snackbarState.value.message.isNullOrBlank() || snackbarState.value.messageId != null) {
             snackbarHostState.showDefaultSnackbar(
@@ -385,6 +390,28 @@ fun BottomSheetSampleScreen(
                         }
                     }
                 )
+            }
+            DefaultSpacer()
+            DefaultButton(
+                modifier = Modifier.fillMaxWidth(),
+                text = "Default Duration Picker",
+                buttonVariant = ButtonVariant.Neutral
+            ) {
+                DurationPickerBottomSheetDialog.showDialog(
+                    fragmentManager = (activity as AppCompatActivity).supportFragmentManager,
+                    title = R.string.edit_timer,
+                    state = DurationPickerBottomSheetState(
+                        initialHour = 12,
+                        initialMinute = 1,
+                        initialSecond = 31
+                    ),
+                    onNegative = {
+                        activity.dismiss(DurationPickerBottomSheetDialog::class.java.simpleName)
+                    }
+                ) { result ->
+                    loge("result = ${result.toJsonPretty()}")
+                    activity.dismiss(DurationPickerBottomSheetDialog::class.java.simpleName)
+                }
             }
         }
     }
