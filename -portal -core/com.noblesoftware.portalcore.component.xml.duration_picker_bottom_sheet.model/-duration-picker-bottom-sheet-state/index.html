@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html class="no-js">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>DurationPickerBottomSheetState</title>
+    <link href="../../../images/logo-icon.svg" rel="icon" type="image/svg">
+    <script>var pathToRoot = "../../../";</script>
+    <script>document.documentElement.classList.replace("no-js","js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async="async"></script>
+<link href="../../../styles/style.css" rel="Stylesheet">
+<link href="../../../styles/main.css" rel="Stylesheet">
+<link href="../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../../styles/font-jb-sans-auto.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../scripts/clipboard.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/navigation-loader.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/platform-content-handler.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/main.js" defer="defer"></script>
+<script type="text/javascript" src="../../../scripts/prism.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/symbol-parameters-wrapper_deferred.js" defer="defer"></script>
+<link href="../../../images/logo.png">
+<link href="../../../styles/styles.css" rel="Stylesheet">
+</head>
+<body>
+    <div class="root">
+<nav class="navigation" id="navigation-wrapper">
+    <div class="navigation--inner">
+        <div class="navigation-title">
+            <button class="menu-toggle" id="menu-toggle" type="button">toggle menu</button>
+            <div class="library-name">
+                    <a class="library-name--link" href="../../../index.html">
+                            Portal Core
+                    </a>
+            </div>
+            <div class="library-version">
+            </div>
+        </div>
+        <div class="filter-section" id="filter-section">
+                <button class="platform-tag platform-selector jvm-like" data-active="" data-filter=":portalCore:dokkaHtml/release">androidJvm</button>
+        </div>
+    </div>
+    <div class="navigation-controls">
+        <button class="navigation-controls--btn navigation-controls--theme" id="theme-toggle-button" type="button">switch theme</button>
+        <div class="navigation-controls--btn navigation-controls--search" id="searchBar" role="button">search in API</div>
+    </div>
+</nav>
+        <div id="container">
+            <div class="sidebar" id="leftColumn">
+                <div class="sidebar--inner" id="sideMenu"></div>
+            </div>
+            <div id="main">
+<div class="main-content" data-page-type="classlike" id="content" pageIds="Portal Core::com.noblesoftware.portalcore.component.xml.duration_picker_bottom_sheet.model/DurationPickerBottomSheetState///PointingToDeclaration//-1426141027">
+  <div class="breadcrumbs"><a href="../../../index.html">Portal Core</a><span class="delimiter">/</span><a href="../index.html">com.noblesoftware.portalcore.component.xml.duration_picker_bottom_sheet.model</a><span class="delimiter">/</span><span class="current">DurationPickerBottomSheetState</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span>Duration</span><wbr></wbr><span>Picker</span><wbr></wbr><span>Bottom</span><wbr></wbr><span>Sheet</span><wbr></wbr><span><span>State</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":portalCore:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">class </span><a href="index.html">DurationPickerBottomSheetState</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>durationPickerFormat<span class="token operator">: </span><a href="../-duration-picker-format/index.html">DurationPickerFormat</a><span class="token operator"> = </span>DurationPickerFormat.H_M_S<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>initialHour<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">0</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>initialMinute<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">0</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>initialSecond<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">0</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>hourLimit<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">24</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>minuteLimit<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">60</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>secondLimit<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">60</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>visibleItems<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">7</span></span></span><span class="token punctuation">)</span></div></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="CONSTRUCTOR">
+        <h2 class="">Constructors</h2>
+        <div class="table"><a data-name="2040242919%2FConstructors%2F-1426141027" anchor-label="DurationPickerBottomSheetState" id="2040242919%2FConstructors%2F-1426141027" data-filterable-set=":portalCore:dokkaHtml/release"></a>
+          <div class="table-row" data-togglable="CONSTRUCTOR" data-filterable-current=":portalCore:dokkaHtml/release" data-filterable-set=":portalCore:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-duration-picker-bottom-sheet-state.html"><span>Duration</span><wbr></wbr><span>Picker</span><wbr></wbr><span>Bottom</span><wbr></wbr><span>Sheet</span><wbr></wbr><span><span>State</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2040242919%2FConstructors%2F-1426141027"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":portalCore:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">durationPickerFormat<span class="token operator">: </span><a href="../-duration-picker-format/index.html">DurationPickerFormat</a><span class="token operator"> = </span>DurationPickerFormat.H_M_S<span class="token punctuation">, </span></span><span class="parameter ">initialHour<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">0</span><span class="token punctuation">, </span></span><span class="parameter ">initialMinute<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">0</span><span class="token punctuation">, </span></span><span class="parameter ">initialSecond<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">0</span><span class="token punctuation">, </span></span><span class="parameter ">hourLimit<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">24</span><span class="token punctuation">, </span></span><span class="parameter ">minuteLimit<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">60</span><span class="token punctuation">, </span></span><span class="parameter ">secondLimit<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">60</span><span class="token punctuation">, </span></span><span class="parameter ">visibleItems<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">7</span></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="PROPERTY">
+        <h2 class="">Properties</h2>
+        <div class="table"><a data-name="728834886%2FProperties%2F-1426141027" anchor-label="durationPickerFormat" id="728834886%2FProperties%2F-1426141027" data-filterable-set=":portalCore:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":portalCore:dokkaHtml/release" data-filterable-set=":portalCore:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="duration-picker-format.html"><span>duration</span><wbr></wbr><span>Picker</span><wbr></wbr><span><span>Format</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="728834886%2FProperties%2F-1426141027"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":portalCore:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">val </span><a href="duration-picker-format.html">durationPickerFormat</a><span class="token operator">: </span><a href="../-duration-picker-format/index.html">DurationPickerFormat</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-37394076%2FProperties%2F-1426141027" anchor-label="hourLimit" id="-37394076%2FProperties%2F-1426141027" data-filterable-set=":portalCore:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":portalCore:dokkaHtml/release" data-filterable-set=":portalCore:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="hour-limit.html"><span>hour</span><wbr></wbr><span><span>Limit</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-37394076%2FProperties%2F-1426141027"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":portalCore:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">val </span><a href="hour-limit.html">hourLimit</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">24</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1476805645%2FProperties%2F-1426141027" anchor-label="initialHour" id="-1476805645%2FProperties%2F-1426141027" data-filterable-set=":portalCore:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":portalCore:dokkaHtml/release" data-filterable-set=":portalCore:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="initial-hour.html"><span>initial</span><wbr></wbr><span><span>Hour</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1476805645%2FProperties%2F-1426141027"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":portalCore:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">val </span><a href="initial-hour.html">initialHour</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">0</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1896981315%2FProperties%2F-1426141027" anchor-label="initialMinute" id="1896981315%2FProperties%2F-1426141027" data-filterable-set=":portalCore:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":portalCore:dokkaHtml/release" data-filterable-set=":portalCore:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="initial-minute.html"><span>initial</span><wbr></wbr><span><span>Minute</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1896981315%2FProperties%2F-1426141027"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":portalCore:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">val </span><a href="initial-minute.html">initialMinute</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">0</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="650047715%2FProperties%2F-1426141027" anchor-label="initialSecond" id="650047715%2FProperties%2F-1426141027" data-filterable-set=":portalCore:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":portalCore:dokkaHtml/release" data-filterable-set=":portalCore:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="initial-second.html"><span>initial</span><wbr></wbr><span><span>Second</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="650047715%2FProperties%2F-1426141027"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":portalCore:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">val </span><a href="initial-second.html">initialSecond</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">0</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="65150484%2FProperties%2F-1426141027" anchor-label="minuteLimit" id="65150484%2FProperties%2F-1426141027" data-filterable-set=":portalCore:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":portalCore:dokkaHtml/release" data-filterable-set=":portalCore:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="minute-limit.html"><span>minute</span><wbr></wbr><span><span>Limit</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="65150484%2FProperties%2F-1426141027"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":portalCore:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">val </span><a href="minute-limit.html">minuteLimit</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">60</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1216631924%2FProperties%2F-1426141027" anchor-label="secondLimit" id="1216631924%2FProperties%2F-1426141027" data-filterable-set=":portalCore:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":portalCore:dokkaHtml/release" data-filterable-set=":portalCore:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="second-limit.html"><span>second</span><wbr></wbr><span><span>Limit</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1216631924%2FProperties%2F-1426141027"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":portalCore:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">val </span><a href="second-limit.html">secondLimit</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">60</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1298273873%2FProperties%2F-1426141027" anchor-label="visibleItems" id="1298273873%2FProperties%2F-1426141027" data-filterable-set=":portalCore:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":portalCore:dokkaHtml/release" data-filterable-set=":portalCore:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="visible-items.html"><span>visible</span><wbr></wbr><span><span>Items</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1298273873%2FProperties%2F-1426141027"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":portalCore:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">val </span><a href="visible-items.html">visibleItems</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">7</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      <div class="footer">
+        <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2024 VPN Android Team</span><span
+                class="pull-right"><span>Generated by </span><a
+                href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
+      </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
