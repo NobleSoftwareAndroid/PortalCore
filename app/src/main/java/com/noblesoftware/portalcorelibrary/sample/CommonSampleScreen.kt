@@ -832,6 +832,35 @@ fun CommonSampleScreen(
                         },
                         onValueChange = { text.value = it })
                     DefaultSpacer()
+                    DefaultTextInputDropdown(
+                        label = "Label No Trailing Icon",
+                        placeholder = "Please select label",
+                        required = true,
+                        leadingIcon = {
+                            Column(
+                                modifier = Modifier
+                                    .fillMaxHeight()
+                                    .padding(
+                                        start = LocalDimen.current.medium,
+                                        end = LocalDimen.current.default
+                                    ),
+                                verticalArrangement = Arrangement.Center
+                            ) {
+                                Box(
+                                    modifier = Modifier
+                                        .size(20.dp)
+                                        .clip(CircleShape)
+                                        .background(colorResource(R.color.neutral_solid_disabled_color))
+                                )
+                            }
+                        },
+                        trailingIcon = null,
+                        value = text.value,
+                        onClick = {
+
+                        },
+                        onValueChange = { text.value = it })
+                    DefaultSpacer()
                     DefaultTextInput(
                         label = "Email",
                         placeholder = "Please input email",
