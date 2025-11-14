@@ -55,6 +55,7 @@ import com.noblesoftware.portalcore.theme.LocalDimen
 import com.noblesoftware.portalcore.theme.PortalCoreTheme
 import com.noblesoftware.portalcore.util.extension.fadingEdge
 import com.noblesoftware.portalcore.util.extension.isTrue
+import com.noblesoftware.portalcore.util.extension.loge
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -137,7 +138,11 @@ open class DurationPickerBottomSheetDialog : BottomSheetDialogFragment() {
                     if (!listStateHours.isScrollInProgress) {
                         val visible = listStateHours.layoutInfo.visibleItemsInfo
                         val chosen =
-                            runCatching { visible[state.visibleItems / 2].index % state.hourLimit }.getOrElse { 0 }
+                            runCatching {
+                                val middleIndex = (visible.first().index + visible.last().index) / 2
+                                val index = if (middleIndex < 0) 0 else middleIndex
+                                index % state.minuteLimit
+                            }.getOrElse { 0 }
                         result.value = result.value.copy(hour = chosen)
                     }
                 }
@@ -152,7 +157,11 @@ open class DurationPickerBottomSheetDialog : BottomSheetDialogFragment() {
                     if (!listStateMinutes.isScrollInProgress) {
                         val visible = listStateMinutes.layoutInfo.visibleItemsInfo
                         val chosen =
-                            runCatching { visible[state.visibleItems / 2].index % state.minuteLimit }.getOrElse { 0 }
+                            runCatching {
+                                val middleIndex = (visible.first().index + visible.last().index) / 2
+                                val index = if (middleIndex < 0) 0 else middleIndex
+                                index % state.minuteLimit
+                            }.getOrElse { 0 }
                         result.value = result.value.copy(minute = chosen)
                     }
                 }
@@ -167,10 +176,14 @@ open class DurationPickerBottomSheetDialog : BottomSheetDialogFragment() {
                 /** Add Conditional for Second's LaunchedEffect */
                 if (state.durationPickerFormat == DurationPickerFormat.H_M_S) {
                     LaunchedEffect(listStateSeconds.isScrollInProgress) {
-                        if (!listStateHours.isScrollInProgress) {
+                        if (!listStateSeconds.isScrollInProgress) {
                             val visible = listStateSeconds.layoutInfo.visibleItemsInfo
                             val chosen =
-                                runCatching { visible[state.visibleItems / 2].index % state.secondLimit }.getOrElse { 0 }
+                                runCatching {
+                                    val middleIndex = (visible.first().index + visible.last().index) / 2
+                                    val index = if (middleIndex < 0) 0 else middleIndex
+                                    index % state.secondLimit
+                                }.getOrElse { 0 }
                             result.value = result.value.copy(second = chosen)
                         }
                     }

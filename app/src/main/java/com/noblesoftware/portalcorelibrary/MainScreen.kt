@@ -25,7 +25,6 @@ import com.noblesoftware.portalcore.util.extension.setTransparentStatusBar
 fun MainScreen(
     navHostController: NavHostController
 ) {
-
     val view = LocalView.current
     LaunchedEffect(true) {
         view.setTransparentStatusBar(transparentStatusBar = false)
