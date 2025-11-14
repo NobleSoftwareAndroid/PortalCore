@@ -47,4 +47,8 @@
     <string name="strong">Kuat</string>
     <string name="medium">Sedang</string>
     <string name="weak">Lemah</string>
+    <string name="edit_timer">Ubah Penghitung Waktu</string>
+    <string name="min">mnt</string>
+    <string name="sec">dtk</string>
+    <string name="set">Terapkan</string>
 </resources>
