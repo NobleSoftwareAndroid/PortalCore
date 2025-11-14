@@ -5,12 +5,18 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.navigation.NavHostController
 import com.noblesoftware.portalcore.R
 import com.noblesoftware.portalcore.component.compose.ButtonVariant
@@ -25,7 +31,7 @@ import com.noblesoftware.portalcore.util.extension.setTransparentStatusBar
 fun MainScreen(
     navHostController: NavHostController
 ) {
-
+    val text = remember { mutableStateOf("") }
     val view = LocalView.current
     LaunchedEffect(true) {
         view.setTransparentStatusBar(transparentStatusBar = false)
@@ -50,6 +56,16 @@ fun MainScreen(
                     vertical = LocalDimen.current.extraLarge
                 )
         ) {
+            TextField(
+                modifier = Modifier.fillMaxWidth(),
+                value = text.value,
+                onValueChange = { text.value = it },
+                keyboardOptions = KeyboardOptions(
+                    keyboardType = KeyboardType.Password,
+                    autoCorrect = false
+                ),
+                visualTransformation = VisualTransformation.None
+            )
             DefaultButton(
                 modifier = Modifier.fillMaxWidth(),
                 text = "Common Components",
