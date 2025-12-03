@@ -1,5 +1,6 @@
 package com.noblesoftware.portalcore.component.compose.richeditor
 
+import android.view.View
 import android.view.ViewGroup
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.PickVisualMediaRequest
@@ -129,6 +130,7 @@ fun RichEditorComposable(
 
     val richEditor = remember {
         RichEditor(context).apply {
+           setLayerType(View.LAYER_TYPE_SOFTWARE, null)
             layoutParams = ViewGroup.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT,
