@@ -253,7 +253,7 @@ fun RichEditorComposable(
                     )
                 }
             )
-            .animateContentSize(),
+//            .animateContentSize(),
     ) {
         Column(
             modifier = Modifier
