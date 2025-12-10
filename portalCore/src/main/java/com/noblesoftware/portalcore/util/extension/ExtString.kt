@@ -99,11 +99,15 @@ fun String.toHtmlFormat(): String {
     return "$header<body> $body </body>"
 }
 
-fun String.htmlToString(): String =
-    Html.fromHtml(this, Html.FROM_HTML_MODE_COMPACT).toString()
-        .replace("\n", " ")
-        .replace("\t", "")
-        .trim()
+fun String.htmlToString(keepSpacing: Boolean = false): String {
+    var text = Html.fromHtml(this, Html.FROM_HTML_MODE_COMPACT).toString()
+    if (!keepSpacing) {
+        text = text.replace("\n", " ")
+            .replace("\t", "")
+            .trim()
+    }
+    return text
+}
 
 fun String.removeSubdomain(): String {
     val protocolEndIndex = this.indexOf("://")
