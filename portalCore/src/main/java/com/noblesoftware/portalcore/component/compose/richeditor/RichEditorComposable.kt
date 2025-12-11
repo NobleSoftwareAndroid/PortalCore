@@ -5,7 +5,6 @@ import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -15,6 +14,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyItemScope
 import androidx.compose.foundation.lazy.LazyRow
@@ -98,6 +98,10 @@ fun RichEditorComposable(
     placeholder: String = stringResource(R.string.type_answer_here),
     minEditorHeight: Int = 150,
     contentPadding: Int = 12,
+    isCount: Boolean = false,
+    maxLength: Int = Int.MAX_VALUE,
+    simplify: Boolean = false,
+    /**[simplify] if true it will only show B, I, and Bullets*/
     /** [imageFormName] MultipartBody image name */
     imageFormName: String,
     /** [maxImageSize] max file size in MB */
@@ -228,260 +232,311 @@ fun RichEditorComposable(
             richEditor.insertHtmlValue(htmlValue)
         }
     }
-
-    Box(
-        modifier = modifier
-            .then(
-                if (isKeyboardOpen.value.isTrue()) {
-                    Modifier
-                        .border(
-                            width = 2.dp,
-                            color = colorResource(id = R.color.primary_outlined_active_bg),
-                            shape = RoundedCornerShape(10.dp)
-                        )
-                        .padding(2.dp)
-                        .border(
+    Column(Modifier.fillMaxWidth()) {
+        // text editor
+        Box(
+            modifier = modifier
+                .then(
+                    if (isKeyboardOpen.value.isTrue()) {
+                        Modifier
+                            .border(
+                                width = 2.dp,
+                                color = colorResource(id = R.color.primary_outlined_active_bg),
+                                shape = RoundedCornerShape(10.dp)
+                            )
+                            .padding(2.dp)
+                            .border(
+                                width = 1.dp,
+                                color = colorResource(id = R.color.primary_solid_bg),
+                                shape = RoundedCornerShape(LocalDimen.current.default)
+                            )
+                    } else {
+                        Modifier.border(
                             width = 1.dp,
-                            color = colorResource(id = R.color.primary_solid_bg),
+                            color = colorResource(id = R.color.divider),
                             shape = RoundedCornerShape(LocalDimen.current.default)
                         )
-                } else {
-                    Modifier.border(
-                        width = 1.dp,
-                        color = colorResource(id = R.color.divider),
-                        shape = RoundedCornerShape(LocalDimen.current.default)
-                    )
-                }
-            )
+                    }
+                )
 //            .animateContentSize(),
-    ) {
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
         ) {
-            Box {
-                LazyRow(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(
-                            horizontal = LocalDimen.current.default,
-                            vertical = LocalDimen.current.medium,
-                        ),
-                    horizontalArrangement = Arrangement.spacedBy(LocalDimen.current.default)
-                ) {
-                    /** Bold */
-                    item {
-                        DefaultFontBox(
-                            onClick = {
-                                checkFocusEditor(richEditor)
-                                richEditor.setBold()
-                            },
-                        ) {
-                            Text(
-                                text = "B", style = MaterialTheme.typography.labelLarge.copy(
-                                    colorResource(id = R.color.text_primary),
-                                )
-                            )
-                        }
-                    }
-                    /** Italic */
-                    item {
-                        DefaultFontBox(
-                            onClick = {
-                                checkFocusEditor(richEditor)
-                                richEditor.setItalic()
-                            },
-                        ) {
-                            Text(
-                                modifier = Modifier.offset(x = -(LocalDimen.current.extraSmall)),
-                                text = "i",
-                                style = MaterialTheme.typography.labelLarge.copy(
-                                    colorResource(id = R.color.text_primary),
-                                    fontStyle = FontStyle.Italic,
-                                ),
-                            )
-                        }
-                    }
-                    /** Font Size */
-                    item {
-                        DefaultFontBox(
-                            onClick = {
-                                checkFocusEditor(richEditor)
-                                DefaultDynamicBottomSheetDialog.showDialog(
-                                    fragmentManager = (activity as AppCompatActivity).supportFragmentManager,
-                                    tag = tag
-                                ) {
-                                    LazyColumn(
-                                        modifier = Modifier.fillMaxWidth(),
-                                        contentPadding = PaddingValues(horizontal = LocalDimen.current.regular)
-                                    ) {
-                                        items(richEditorFontSize.size) { index ->
-                                            val selectOption = richEditorFontSize[index]
-                                            val isSelected =
-                                                selectOption.id == richEditorState.value.fontSize.size
-
-                                            DefaultSelectionItem(
-                                                isSelected = isSelected,
-                                                onClick = {
-                                                    activity.dismiss(tag)
-                                                    richEditor.setFontTextSize(selectOption.id.orZero())
-                                                    richEditorState.value =
-                                                        richEditorState.value.copy(fontSize = selectOption.extras.toRichEditorFontSize())
-                                                },
-                                            ) {
-                                                Text(
-                                                    text = stringResource(
-                                                        selectOption.nameId ?: R.string.strip
-                                                    ),
-                                                    style = MaterialTheme.typography.labelMedium.copy(
-                                                        colorResource(id = if (isSelected) R.color.primary_plain_color else R.color.text_primary)
-                                                    )
-                                                )
-                                            }
-                                        }
-                                    }
-                                }
-                            },
-                        ) {
-                            Row(verticalAlignment = Alignment.CenterVertically) {
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+            ) {
+                Box {
+                    LazyRow(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(
+                                horizontal = LocalDimen.current.default,
+                                vertical = LocalDimen.current.medium,
+                            ),
+                        horizontalArrangement = Arrangement.spacedBy(LocalDimen.current.default)
+                    ) {
+                        /** Bold */
+                        item {
+                            DefaultFontBox(
+                                onClick = {
+                                    checkFocusEditor(richEditor)
+                                    richEditor.setBold()
+                                },
+                            ) {
                                 Text(
-                                    text = stringResource(richEditorState.value.fontSize.nameId),
-                                    style = MaterialTheme.typography.labelMedium.copy(
+                                    text = "B", style = MaterialTheme.typography.labelLarge.copy(
                                         colorResource(id = R.color.text_primary),
                                     )
                                 )
-                                DefaultSpacer(width = LocalDimen.current.medium)
-                                Icon(
-                                    painter = painterResource(id = R.drawable.ic_arrow_dropdown),
-                                    tint = colorResource(id = R.color.text_primary),
-                                    contentDescription = "",
+                            }
+                        }
+                        /** Italic */
+                        item {
+                            DefaultFontBox(
+                                onClick = {
+                                    checkFocusEditor(richEditor)
+                                    richEditor.setItalic()
+                                },
+                            ) {
+                                Text(
+                                    modifier = Modifier.offset(x = -(LocalDimen.current.extraSmall)),
+                                    text = "i",
+                                    style = MaterialTheme.typography.labelLarge.copy(
+                                        colorResource(id = R.color.text_primary),
+                                        fontStyle = FontStyle.Italic,
+                                    ),
                                 )
                             }
                         }
-                    }
-                    /** Unordered List */
-                    item {
-                        DefaultFontBox(
-                            onClick = {
-                                checkFocusEditor(richEditor)
-                                richEditor.setBullets()
-                            },
-                        ) {
-                            Icon(
-                                painter = painterResource(id = R.drawable.ic_unordered_list),
-                                tint = colorResource(id = R.color.text_primary),
-                                contentDescription = "",
-                            )
-                        }
-                    }
-                    /** Ordered List */
-                    item {
-                        DefaultFontBox(
-                            onClick = {
-                                checkFocusEditor(richEditor)
-                                richEditor.setNumbers()
-                            },
-                        ) {
-                            Icon(
-                                painter = painterResource(id = R.drawable.ic_ordered_list),
-                                tint = colorResource(id = R.color.text_primary),
-                                contentDescription = "",
-                            )
-                        }
-                    }
-                    /** Font Align */
-                    item {
-                        DefaultFontBox(
-                            onClick = {
-                                checkFocusEditor(richEditor)
-                                DefaultDynamicBottomSheetDialog.showDialog(
-                                    fragmentManager = (activity as AppCompatActivity).supportFragmentManager,
-                                    tag = tag
-                                ) {
-                                    LazyColumn(
-                                        modifier = Modifier.fillMaxWidth(),
-                                        contentPadding = PaddingValues(horizontal = LocalDimen.current.regular)
-                                    ) {
-                                        items(richEditorFontAlign.size) { index ->
-                                            val fontAlign = richEditorFontAlign[index]
-                                            val isSelected =
-                                                fontAlign.extras.toRichEditorFontAlign() == richEditorState.value.fontAlign
-
-                                            DefaultSelectionItem(
-                                                isSelected = isSelected,
-                                                onClick = {
-                                                    activity.dismiss(tag)
-                                                    richEditorState.value =
-                                                        richEditorState.value.copy(fontAlign = fontAlign.extras.toRichEditorFontAlign())
-                                                    when (fontAlign.extras.toRichEditorFontAlign()) {
-                                                        is RichEditorFontAlign.Right -> richEditor.setAlignRight()
-                                                        is RichEditorFontAlign.Left -> richEditor.setAlignLeft()
-                                                        is RichEditorFontAlign.Center -> richEditor.setAlignCenter()
-                                                    }
-                                                },
+                        if (!simplify) {
+                            /** Font Size */
+                            item {
+                                DefaultFontBox(
+                                    onClick = {
+                                        checkFocusEditor(richEditor)
+                                        DefaultDynamicBottomSheetDialog.showDialog(
+                                            fragmentManager = (activity as AppCompatActivity).supportFragmentManager,
+                                            tag = tag
+                                        ) {
+                                            LazyColumn(
+                                                modifier = Modifier.fillMaxWidth(),
+                                                contentPadding = PaddingValues(horizontal = LocalDimen.current.regular)
                                             ) {
-                                                Icon(
-                                                    painter = painterResource(id = fontAlign.extras.toRichEditorFontAlign().icon),
-                                                    tint = colorResource(id = if (isSelected) R.color.primary_plain_color else R.color.text_primary),
-                                                    contentDescription = "",
-                                                )
+                                                items(richEditorFontSize.size) { index ->
+                                                    val selectOption = richEditorFontSize[index]
+                                                    val isSelected =
+                                                        selectOption.id == richEditorState.value.fontSize.size
+
+                                                    DefaultSelectionItem(
+                                                        isSelected = isSelected,
+                                                        onClick = {
+                                                            activity.dismiss(tag)
+                                                            richEditor.setFontTextSize(selectOption.id.orZero())
+                                                            richEditorState.value =
+                                                                richEditorState.value.copy(fontSize = selectOption.extras.toRichEditorFontSize())
+                                                        },
+                                                    ) {
+                                                        Text(
+                                                            text = stringResource(
+                                                                selectOption.nameId
+                                                                    ?: R.string.strip
+                                                            ),
+                                                            style = MaterialTheme.typography.labelMedium.copy(
+                                                                colorResource(id = if (isSelected) R.color.primary_plain_color else R.color.text_primary)
+                                                            )
+                                                        )
+                                                    }
+                                                }
                                             }
                                         }
+                                    },
+                                ) {
+                                    Row(verticalAlignment = Alignment.CenterVertically) {
+                                        Text(
+                                            text = stringResource(richEditorState.value.fontSize.nameId),
+                                            style = MaterialTheme.typography.labelMedium.copy(
+                                                colorResource(id = R.color.text_primary),
+                                            )
+                                        )
+                                        DefaultSpacer(width = LocalDimen.current.medium)
+                                        Icon(
+                                            painter = painterResource(id = R.drawable.ic_arrow_dropdown),
+                                            tint = colorResource(id = R.color.text_primary),
+                                            contentDescription = "",
+                                        )
                                     }
                                 }
-                            },
-                        ) {
-                            Row(verticalAlignment = Alignment.CenterVertically) {
+                            }
+                        }
+                        /** Unordered List */
+                        item {
+                            DefaultFontBox(
+                                onClick = {
+                                    checkFocusEditor(richEditor)
+                                    richEditor.setBullets()
+                                },
+                            ) {
                                 Icon(
-                                    painter = painterResource(id = richEditorState.value.fontAlign.icon),
-                                    tint = colorResource(id = R.color.text_primary),
-                                    contentDescription = "",
-                                )
-                                DefaultSpacer(width = LocalDimen.current.medium)
-                                Icon(
-                                    painter = painterResource(id = R.drawable.ic_arrow_dropdown),
+                                    painter = painterResource(id = R.drawable.ic_unordered_list),
                                     tint = colorResource(id = R.color.text_primary),
                                     contentDescription = "",
                                 )
                             }
                         }
-                    }
-                    /** Image */
-                    item {
-                        DefaultFontBox(
-                            isEnabled = isImageEnabled,
-                            onClick = {
-                                galleryLauncher.launch(
-                                    PickVisualMediaRequest(
-                                        ActivityResultContracts.PickVisualMedia.ImageOnly
+                        if (!simplify) {
+                            /** Ordered List */
+                            item {
+                                DefaultFontBox(
+                                    onClick = {
+                                        checkFocusEditor(richEditor)
+                                        richEditor.setNumbers()
+                                    },
+                                ) {
+                                    Icon(
+                                        painter = painterResource(id = R.drawable.ic_ordered_list),
+                                        tint = colorResource(id = R.color.text_primary),
+                                        contentDescription = "",
                                     )
-                                )
-                            },
-                        ) {
-                            Icon(
-                                painter = painterResource(id = R.drawable.ic_image_manager),
-                                tint = colorResource(id = if (isImageEnabled) R.color.text_primary else R.color.neutral_solid_disabled_color),
-                                contentDescription = "",
-                            )
+                                }
+                            }
+                            /** Font Align */
+                            item {
+                                DefaultFontBox(
+                                    onClick = {
+                                        checkFocusEditor(richEditor)
+                                        DefaultDynamicBottomSheetDialog.showDialog(
+                                            fragmentManager = (activity as AppCompatActivity).supportFragmentManager,
+                                            tag = tag
+                                        ) {
+                                            LazyColumn(
+                                                modifier = Modifier.fillMaxWidth(),
+                                                contentPadding = PaddingValues(horizontal = LocalDimen.current.regular)
+                                            ) {
+                                                items(richEditorFontAlign.size) { index ->
+                                                    val fontAlign = richEditorFontAlign[index]
+                                                    val isSelected =
+                                                        fontAlign.extras.toRichEditorFontAlign() == richEditorState.value.fontAlign
+
+                                                    DefaultSelectionItem(
+                                                        isSelected = isSelected,
+                                                        onClick = {
+                                                            activity.dismiss(tag)
+                                                            richEditorState.value =
+                                                                richEditorState.value.copy(fontAlign = fontAlign.extras.toRichEditorFontAlign())
+                                                            when (fontAlign.extras.toRichEditorFontAlign()) {
+                                                                is RichEditorFontAlign.Right -> richEditor.setAlignRight()
+                                                                is RichEditorFontAlign.Left -> richEditor.setAlignLeft()
+                                                                is RichEditorFontAlign.Center -> richEditor.setAlignCenter()
+                                                            }
+                                                        },
+                                                    ) {
+                                                        Icon(
+                                                            painter = painterResource(id = fontAlign.extras.toRichEditorFontAlign().icon),
+                                                            tint = colorResource(id = if (isSelected) R.color.primary_plain_color else R.color.text_primary),
+                                                            contentDescription = "",
+                                                        )
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    },
+                                ) {
+                                    Row(verticalAlignment = Alignment.CenterVertically) {
+                                        Icon(
+                                            painter = painterResource(id = richEditorState.value.fontAlign.icon),
+                                            tint = colorResource(id = R.color.text_primary),
+                                            contentDescription = "",
+                                        )
+                                        DefaultSpacer(width = LocalDimen.current.medium)
+                                        Icon(
+                                            painter = painterResource(id = R.drawable.ic_arrow_dropdown),
+                                            tint = colorResource(id = R.color.text_primary),
+                                            contentDescription = "",
+                                        )
+                                    }
+                                }
+                            }
+                            /** Image */
+                            item {
+                                DefaultFontBox(
+                                    isEnabled = isImageEnabled,
+                                    onClick = {
+                                        galleryLauncher.launch(
+                                            PickVisualMediaRequest(
+                                                ActivityResultContracts.PickVisualMedia.ImageOnly
+                                            )
+                                        )
+                                    },
+                                ) {
+                                    Icon(
+                                        painter = painterResource(id = R.drawable.ic_image_manager),
+                                        tint = colorResource(id = if (isImageEnabled) R.color.text_primary else R.color.neutral_solid_disabled_color),
+                                        contentDescription = "",
+                                    )
+                                }
+                            }
                         }
-                    }
-                    action?.let {
-                        item {
-                            it()
+                        action?.let {
+                            item {
+                                it()
+                            }
                         }
                     }
                 }
+                HorizontalDivider(color = colorResource(id = R.color.divider))
+                AndroidView(
+                    modifier = Modifier.fillMaxWidth(),
+                    factory = { context ->
+                        richEditor
+                    },
+                )
             }
-            HorizontalDivider(color = colorResource(id = R.color.divider))
-            AndroidView(
-                modifier = Modifier.fillMaxWidth(),
-                factory = { context ->
-                    richEditor
-                },
-            )
+        }
+
+        // text counter
+        if (isCount) {
+            DefaultSpacer(height = LocalDimen.current.small)
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 5.dp)
+                    .align(alignment = Alignment.CenterHorizontally),
+                horizontalArrangement = Arrangement.End,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                if (value.htmlToString(true).length > maxLength) {
+                    Row(
+                        modifier = Modifier.weight(1f),
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Icon(
+                            modifier = Modifier
+                                .size(18.dp)
+                                .padding(),
+                            painter = painterResource(id = R.drawable.ic_error_outline),
+                            contentDescription = "error-icon",
+                            tint = colorResource(id = R.color.danger_outlined_color)
+                        )
+                        Text(
+                            modifier = Modifier.padding(start = 5.dp, top = 1.dp),
+                            text = stringResource(R.string.max_length_chars, maxLength.toString()),
+                            color = colorResource(id = R.color.danger_outlined_color),
+                            style = MaterialTheme.typography.bodySmall.copy(
+                                colorResource(id = R.color.text_primary),
+                            )
+                        )
+                    }
+                    DefaultSpacer(width = LocalDimen.current.regular)
+                }
+                Text(
+                    modifier = Modifier.padding(end = 5.dp, top = 1.dp),
+                    text = "${value.htmlToString(true).length}/$maxLength",
+                    style = MaterialTheme.typography.bodySmall.copy(
+                        colorResource(id = if (value.htmlToString(true).length > maxLength) R.color.danger_outlined_color else R.color.text_icon),
+                    )
+                )
+            }
         }
     }
-
 }
 
 /** Forcing editor to focus,

@@ -23,14 +23,18 @@ import com.noblesoftware.portalcore.theme.LocalDimen
  */
 @Composable
 fun DefaultSpacer(
-    height: Dp = LocalDimen.current.regular,
-    width: Dp = LocalDimen.current.regular,
+    height: Dp = LocalDimen.current.zero,
+    width: Dp = LocalDimen.current.zero,
 ) {
-    Spacer(
-        modifier = Modifier
-            .height(height)
-            .width(width)
-    )
+    val defaultSize = LocalDimen.current.regular
+    val spacerModifier = when {
+        width > LocalDimen.current.zero -> Modifier.width(width)
+        height > LocalDimen.current.zero -> Modifier.height(height)
+        else -> Modifier
+            .height(defaultSize)
+            .width(defaultSize)
+    }
+    Spacer(modifier = spacerModifier)
 }
 
 @Composable

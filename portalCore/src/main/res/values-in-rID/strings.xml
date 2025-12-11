@@ -51,4 +51,5 @@
     <string name="min">mnt</string>
     <string name="sec">dtk</string>
     <string name="set">Terapkan</string>
+    <string name="max_length_chars">Panjang teks maksimal %1$s karakter</string>
 </resources>

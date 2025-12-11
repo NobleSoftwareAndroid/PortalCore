@@ -91,6 +91,43 @@ fun RichTextEditorSampleScreen(
                 onTextCopyOrCut = {},
             )
             DefaultSpacer()
+            Text("Simplify")
+            RichEditorComposable(
+                modifier = Modifier.fillMaxWidth(),
+                value = "",
+                imageFormName = "image",
+                isImageEnabled = false,
+                isAntiCheatEnable = false,
+                onImageUpload = {},
+                onImageRetrieve = { "" },
+                onSnackbar = {},
+                onTextChanged = {},
+                onTextPaste = {},
+                onTextCopyOrCut = {},
+                simplify = true
+            )
+            DefaultSpacer()
+            Text("Simplify with count")
+            val textValue = remember { mutableStateOf("") }
+            RichEditorComposable(
+                modifier = Modifier.fillMaxWidth(),
+                value = textValue.value,
+                imageFormName = "image",
+                isImageEnabled = false,
+                isAntiCheatEnable = false,
+                onImageUpload = {},
+                onImageRetrieve = { "" },
+                onSnackbar = {},
+                onTextChanged = { text ->
+                    textValue.value = text
+                },
+                onTextPaste = {},
+                onTextCopyOrCut = {},
+                simplify = true,
+                isCount = true,
+                maxLength = 10
+            )
+            DefaultSpacer()
             Text("Richtext in bottomsheet")
             DefaultButton(
                 modifier = Modifier.fillMaxWidth(),
