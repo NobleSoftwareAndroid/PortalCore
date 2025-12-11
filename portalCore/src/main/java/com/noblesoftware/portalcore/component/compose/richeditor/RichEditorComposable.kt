@@ -259,7 +259,7 @@ fun RichEditorComposable(
                     } else {
                         Modifier.border(
                             width = 1.dp,
-                            color = colorResource(id = if (isInputError.value) R.color.danger_outlined_color else R.color.divider),
+                            color = colorResource(id = if (isInputError.value) R.color.danger_outlined_active_bg else R.color.divider),
                             shape = RoundedCornerShape(LocalDimen.current.default)
                         )
                     }
