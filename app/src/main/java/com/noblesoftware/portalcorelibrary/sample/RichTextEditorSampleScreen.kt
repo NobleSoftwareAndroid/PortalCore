@@ -104,7 +104,8 @@ fun RichTextEditorSampleScreen(
                 onTextChanged = {},
                 onTextPaste = {},
                 onTextCopyOrCut = {},
-                simplify = true
+                simplify = true,
+                errorText = "Ini test error aja"
             )
             DefaultSpacer()
             Text("Simplify with count")
