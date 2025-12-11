@@ -117,12 +117,18 @@ fun RichEditorComposable(
     onTextCopyOrCut: ((String) -> Unit?) = {},
     onTextChanged: (String) -> Unit,
     onHtmlRetrieve: (() -> String?)? = null,
+    errorText: String = stringResource(id = R.string.empty_string),
     action: (@Composable LazyItemScope.() -> Unit)? = null
 ) {
 
     val context = LocalContext.current
     val activity = context.findActivity()
     val isKeyboardOpen = rememberKeyboardState()
+    val isInputError = remember { mutableStateOf(false) }
+    isInputError.value =
+        errorText != stringResource(id = R.string.empty_string) || (isCount && value.htmlToString(
+            true
+        ).length > maxLength)
 
     val richEditorState = remember {
         mutableStateOf(state)
@@ -241,19 +247,19 @@ fun RichEditorComposable(
                         Modifier
                             .border(
                                 width = 2.dp,
-                                color = colorResource(id = R.color.primary_outlined_active_bg),
+                                color = colorResource(id = if (isInputError.value) R.color.danger_outlined_active_bg else R.color.primary_outlined_active_bg),
                                 shape = RoundedCornerShape(10.dp)
                             )
                             .padding(2.dp)
                             .border(
                                 width = 1.dp,
-                                color = colorResource(id = R.color.primary_solid_bg),
+                                color = colorResource(id = if (isInputError.value) R.color.danger_outlined_color else R.color.primary_solid_bg),
                                 shape = RoundedCornerShape(LocalDimen.current.default)
                             )
                     } else {
                         Modifier.border(
                             width = 1.dp,
-                            color = colorResource(id = R.color.divider),
+                            color = colorResource(id = if (isInputError.value) R.color.danger_outlined_color else R.color.divider),
                             shape = RoundedCornerShape(LocalDimen.current.default)
                         )
                     }
@@ -491,9 +497,7 @@ fun RichEditorComposable(
                 )
             }
         }
-
-        // text counter
-        if (isCount) {
+        if (isInputError.value || isCount) {
             DefaultSpacer(height = LocalDimen.current.small)
             Row(
                 modifier = Modifier
@@ -503,7 +507,7 @@ fun RichEditorComposable(
                 horizontalArrangement = Arrangement.End,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                if (value.htmlToString(true).length > maxLength) {
+                if (isInputError.value) {
                     Row(
                         modifier = Modifier.weight(1f),
                         verticalAlignment = Alignment.CenterVertically
@@ -518,22 +522,27 @@ fun RichEditorComposable(
                         )
                         Text(
                             modifier = Modifier.padding(start = 5.dp, top = 1.dp),
-                            text = stringResource(R.string.max_length_chars, maxLength.toString()),
+                            text = if (value.htmlToString(true).length > maxLength) stringResource(
+                                R.string.max_length_chars,
+                                maxLength.toString()
+                            ) else errorText,
                             color = colorResource(id = R.color.danger_outlined_color),
                             style = MaterialTheme.typography.bodySmall.copy(
                                 colorResource(id = R.color.text_primary),
                             )
                         )
                     }
-                    DefaultSpacer(width = LocalDimen.current.regular)
                 }
-                Text(
-                    modifier = Modifier.padding(end = 5.dp, top = 1.dp),
-                    text = "${value.htmlToString(true).length}/$maxLength",
-                    style = MaterialTheme.typography.bodySmall.copy(
-                        colorResource(id = if (value.htmlToString(true).length > maxLength) R.color.danger_outlined_color else R.color.text_icon),
+                if (isCount) {
+                    DefaultSpacer(width = LocalDimen.current.regular)
+                    Text(
+                        modifier = Modifier.padding(end = 5.dp, top = 1.dp),
+                        text = "${value.htmlToString(true).length}/$maxLength",
+                        style = MaterialTheme.typography.bodySmall.copy(
+                            colorResource(id = if (value.htmlToString(true).length > maxLength) R.color.danger_outlined_color else R.color.text_icon),
+                        )
                     )
-                )
+                }
             }
         }
     }
