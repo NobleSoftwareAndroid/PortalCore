@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyItemScope
 import androidx.compose.foundation.lazy.LazyRow
@@ -499,8 +500,33 @@ fun RichEditorComposable(
                     .fillMaxWidth()
                     .padding(top = 5.dp)
                     .align(alignment = Alignment.CenterHorizontally),
-                horizontalArrangement = Arrangement.End
+                horizontalArrangement = Arrangement.End,
+                verticalAlignment = Alignment.CenterVertically
             ) {
+                if (value.htmlToString(true).length > maxLength) {
+                    Row(
+                        modifier = Modifier.weight(1f),
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Icon(
+                            modifier = Modifier
+                                .size(18.dp)
+                                .padding(),
+                            painter = painterResource(id = R.drawable.ic_error_outline),
+                            contentDescription = "error-icon",
+                            tint = colorResource(id = R.color.danger_outlined_color)
+                        )
+                        Text(
+                            modifier = Modifier.padding(start = 5.dp, top = 1.dp),
+                            text = stringResource(R.string.max_length_chars, maxLength.toString()),
+                            color = colorResource(id = R.color.danger_outlined_color),
+                            style = MaterialTheme.typography.bodySmall.copy(
+                                colorResource(id = R.color.text_primary),
+                            )
+                        )
+                    }
+                    DefaultSpacer(width = LocalDimen.current.regular)
+                }
                 Text(
                     modifier = Modifier.padding(end = 5.dp, top = 1.dp),
                     text = "${value.htmlToString(true).length}/$maxLength",

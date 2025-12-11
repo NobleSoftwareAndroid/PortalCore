@@ -55,4 +55,5 @@
     <string name="min">min</string>
     <string name="sec">sec</string>
     <string name="set">Set</string>
+    <string name="max_length_chars">Maximum length is %1$s characters</string>
 </resources>
