@@ -156,7 +156,6 @@ fun RichEditorComposable(
             )
             setEditorFontSize(state.fontSize.size.plus(4))
             setPlaceholder(placeholder)
-            html = value
             setOnTextChangeListener { text ->
                 onTextChanged.invoke(
                     if (text.htmlToString().isBlank()) "" else text
@@ -498,6 +497,9 @@ fun RichEditorComposable(
                         richEditor
                     },
                     update = { view ->
+                        if (view.html != value) {
+                            view.html = value
+                        }
                         update.invoke(view)
                     }
                 )
