@@ -36,6 +36,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
+import androidx.compose.ui.viewinterop.NoOpUpdate
 import androidx.core.content.ContextCompat
 import androidx.core.view.setPadding
 import com.noblesoftware.portalcore.R
@@ -48,6 +49,7 @@ import com.noblesoftware.portalcore.component.compose.richeditor.model.RichEdito
 import com.noblesoftware.portalcore.component.compose.richeditor.model.RichEditorState
 import com.noblesoftware.portalcore.component.compose.richeditor.model.richEditorFontAlign
 import com.noblesoftware.portalcore.component.compose.richeditor.model.richEditorFontSize
+import com.noblesoftware.portalcore.component.xml.CustomWebview
 import com.noblesoftware.portalcore.component.xml.dynamic_bottom_sheet.DefaultDynamicBottomSheetDialog
 import com.noblesoftware.portalcore.component.xml.dynamic_bottom_sheet.DefaultDynamicBottomSheetDialog.Companion.dismiss
 import com.noblesoftware.portalcore.libs.rich_editor.RichEditor
@@ -118,6 +120,7 @@ fun RichEditorComposable(
     onTextChanged: (String) -> Unit,
     onHtmlRetrieve: (() -> String?)? = null,
     errorText: String = stringResource(id = R.string.empty_string),
+    update: (RichEditor) -> Unit = NoOpUpdate,
     action: (@Composable LazyItemScope.() -> Unit)? = null
 ) {
 
@@ -494,6 +497,9 @@ fun RichEditorComposable(
                     factory = { context ->
                         richEditor
                     },
+                    update = { view ->
+                        update.invoke(view)
+                    }
                 )
             }
         }
