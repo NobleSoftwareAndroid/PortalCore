@@ -35,6 +35,7 @@ import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.Response
 import java.net.URLEncoder
+import androidx.core.net.toUri
 
 
 @AndroidEntryPoint
@@ -162,17 +163,25 @@ class WebViewContainerFragment : Fragment() {
                 request: WebResourceRequest?
             ): Boolean {
                 if (viewModel.isOpenFile) {
-                    view?.loadUrl(viewModel.url.orEmpty())
-                    return true
+                    return false
                 } else {
                     val url = request?.url.toString()
                     if (url.isNotEmpty()) {
-                        startActivity(
-                            Intent(
-                                Intent.ACTION_VIEW,
-                                Uri.parse(request?.url.toString())
-                            )
-                        )
+                        if (url.startsWith("http://") || url.startsWith("https://")) {
+                            return false
+                        } else {
+                            try {
+                                startActivity(
+                                    Intent(
+                                        Intent.ACTION_VIEW,
+                                        url.toUri()
+                                    )
+                                )
+                                return true
+                            } catch (e: Exception) {
+                                return false
+                            }
+                        }
                     }
                 }
                 return super.shouldOverrideUrlLoading(view, request)
