@@ -20,6 +20,11 @@ fun DefaultDatePicker(
     datePickerState: DatePickerState,
     confirmText: String,
     dismissText: String,
+    titleText: String? = null,
+    headlineText: String? = null,
+    title: (@Composable () -> Unit)? = null,
+    headline: (@Composable () -> Unit)? = null,
+    showModeToggle: Boolean = true,
     onConfirm: () -> Unit,
     onDismiss: () -> Unit,
 ) {
@@ -57,6 +62,40 @@ fun DefaultDatePicker(
     ) {
         DatePicker(
             state = datePickerState,
+            title = title ?: {
+                if (titleText != null) {
+                    Text(
+                        text = titleText,
+                        modifier = Modifier.padding(
+                            start = LocalDimen.current.extraRegular,
+                            end = LocalDimen.current.extraRegular,
+                            top = LocalDimen.current.regular,
+                            bottom = LocalDimen.current.default
+                        )
+                    )
+                } else {
+                    DatePickerDefaults.DatePickerTitle(datePickerState.displayMode)
+                }
+            },
+            headline = headline ?: {
+                if (headlineText != null) {
+                    Text(
+                        text = headlineText,
+                        modifier = Modifier.padding(
+                            start = LocalDimen.current.extraRegular,
+                            end = LocalDimen.current.extraRegular,
+                            bottom = LocalDimen.current.medium
+                        )
+                    )
+                } else {
+                    DatePickerDefaults.DatePickerHeadline(
+                        selectedDateMillis = datePickerState.selectedDateMillis,
+                        displayMode = datePickerState.displayMode,
+                        dateFormatter = DatePickerDefaults.dateFormatter()
+                    )
+                }
+            },
+            showModeToggle = showModeToggle,
             colors = DatePickerDefaults.colors(
                 containerColor = colorResource(id = R.color.background_body),
                 disabledDayContentColor = colorResource(id = R.color.neutral_solid_disabled_color)
