@@ -257,6 +257,8 @@ fun DialogSampleScreen(
                 datePickerState = datePickerState,
                 confirmText = "OK",
                 dismissText = "Cancel",
+                titleText = "Custom Title Text",
+                headlineText = "Custom Headline Text",
                 onConfirm = {
                     val date =
                         datePickerState.selectedDateMillis ?: System.currentTimeMillis()
