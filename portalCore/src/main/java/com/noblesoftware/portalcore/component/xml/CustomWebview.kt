@@ -30,6 +30,7 @@ class CustomWebview(context: Context, attrs: AttributeSet?) : WebView(context, a
     var maxLines: Int? = null
     var useDefaultTableStyle: Boolean = false
     var webViewFontStyle: WebViewFontStyle? = null
+    var removeMarginOnParagraph: Boolean = true
     private val defaultTableStyle = "table,th,td {" +
             "    border: 1px solid #bbb;" +
             "    padding-top: 4px;" +
@@ -70,7 +71,7 @@ class CustomWebview(context: Context, attrs: AttributeSet?) : WebView(context, a
                         "${if (useDefaultTableStyle) defaultTableStyle else ""}" +
                         "${if (webViewFontStyle != null) webViewFontStyle?.toCSS() else ""}" +
                         "*{ webkit-user-select: none; user-select: none; }" +
-                        "p{ margin: 0 !important; padding: 0 !important; }" +
+                        (if (removeMarginOnParagraph) "p{ margin: 0 !important; padding: 0 !important; }" else "") +
                         "body{ margin: 0 !important; padding: 0 !important; }" +
                         "</style>" +
                         "<script type=\"text/x-mathjax-config\">" +
