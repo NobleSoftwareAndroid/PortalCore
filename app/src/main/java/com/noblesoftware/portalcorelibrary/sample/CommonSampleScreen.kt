@@ -1036,6 +1036,7 @@ fun CommonSampleScreen(
                         content = "<p><img src=\"https://dian-media-staging-jakarta.s3.ap-southeast-3.amazonaws.com/media/WsywigImages/2025/02/11/132438920_ynepvXN.jpg\" alt=\"\" width=\"198\" height=\"198\"> ini gambar</p>\n",
                         onWebViewCreated = { webView ->
                             webView.useDefaultTableStyle = true
+                            webView.removeMarginOnParagraph = false
                             webView.webViewFontStyle = WebViewFontStyle(size = 14)
                         }
                     )
