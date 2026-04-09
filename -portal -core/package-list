@@ -321,6 +321,7 @@ $dokka.location:com.noblesoftware.portalcore.component.xml/CustomWebview/maxLine
 $dokka.location:com.noblesoftware.portalcore.component.xml/CustomWebview/onTouchEvent/#android.view.MotionEvent?/PointingToDeclaration/-portal -core/com.noblesoftware.portalcore.component.xml/-custom-webview/on-touch-event.html
 $dokka.location:com.noblesoftware.portalcore.component.xml/CustomWebview/performClick/#/PointingToDeclaration/-portal -core/com.noblesoftware.portalcore.component.xml/-custom-webview/perform-click.html
 $dokka.location:com.noblesoftware.portalcore.component.xml/CustomWebview/preDefinedConfig/#/PointingToDeclaration/-portal -core/com.noblesoftware.portalcore.component.xml/-custom-webview/pre-defined-config.html
+$dokka.location:com.noblesoftware.portalcore.component.xml/CustomWebview/removeMarginOnParagraph/#/PointingToDeclaration/-portal -core/com.noblesoftware.portalcore.component.xml/-custom-webview/remove-margin-on-paragraph.html
 $dokka.location:com.noblesoftware.portalcore.component.xml/CustomWebview/text/#/PointingToDeclaration/-portal -core/com.noblesoftware.portalcore.component.xml/-custom-webview/text.html
 $dokka.location:com.noblesoftware.portalcore.component.xml/CustomWebview/touchEnable/#/PointingToDeclaration/-portal -core/com.noblesoftware.portalcore.component.xml/-custom-webview/touch-enable.html
 $dokka.location:com.noblesoftware.portalcore.component.xml/CustomWebview/useDefaultTableStyle/#/PointingToDeclaration/-portal -core/com.noblesoftware.portalcore.component.xml/-custom-webview/use-default-table-style.html
