@@ -2,7 +2,6 @@ package com.noblesoftware.portalcore.component.compose
 
 import android.view.ViewGroup
 import android.webkit.WebChromeClient
-import android.webkit.WebViewClient
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
@@ -30,7 +29,6 @@ fun WebViewComposable(
             settings.domStorageEnabled = true
             isVerticalScrollBarEnabled = false
             webChromeClient = WebChromeClient()
-            webViewClient = WebViewClient()
             if (zoomEnable) {
                 settings.builtInZoomControls = true
                 settings.displayZoomControls = false

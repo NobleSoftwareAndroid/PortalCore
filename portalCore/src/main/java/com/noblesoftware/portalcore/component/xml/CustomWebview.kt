@@ -3,6 +3,7 @@ package com.noblesoftware.portalcore.component.xml
 import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Color
+import android.os.Build
 import android.util.AttributeSet
 import android.util.TypedValue
 import android.view.MotionEvent
@@ -65,7 +66,7 @@ class CustomWebview(context: Context, attrs: AttributeSet?) : WebView(context, a
         set(value) {
             field = value
             loadDataWithBaseURL(
-                "about:blank",
+                "https://localhost/",
                 "<html><head>" +
                         "<style>" +
                         "${if (useDefaultTableStyle) defaultTableStyle else ""}" +
@@ -84,7 +85,7 @@ class CustomWebview(context: Context, attrs: AttributeSet?) : WebView(context, a
                         text?.toMathEqFormatted() +
                         "</div>" +
                         "</body>" +
-                        "</html>", "text/html", "utf-8", ""
+                        "</html>", "text/html", "utf-8", null
             )
         }
 
@@ -126,6 +127,13 @@ class CustomWebview(context: Context, attrs: AttributeSet?) : WebView(context, a
 
         settings.javaScriptEnabled = true
         settings.cacheMode = WebSettings.LOAD_DEFAULT
+        settings.domStorageEnabled = true
+        settings.mediaPlaybackRequiresUserGesture = false
+        settings.allowFileAccess = true
+        settings.allowContentAccess = true
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            settings.mixedContentMode = WebSettings.MIXED_CONTENT_ALWAYS_ALLOW
+        }
 
         // if (zoomEnable) {
         //     settings.builtInZoomControls = true
@@ -138,6 +146,18 @@ class CustomWebview(context: Context, attrs: AttributeSet?) : WebView(context, a
         webViewClient = object : WebViewClient() {
             override fun onPageFinished(view: WebView, url: String) {
                 view.loadUrl("javascript:MathJax.Hub.Queue(['Typeset',MathJax.Hub]);")
+            }
+
+            override fun shouldOverrideUrlLoading(
+                view: WebView?,
+                request: android.webkit.WebResourceRequest?
+            ): Boolean {
+                return false
+            }
+
+            @Deprecated("Deprecated in Java")
+            override fun shouldOverrideUrlLoading(view: WebView?, url: String?): Boolean {
+                return false
             }
         }
     }
