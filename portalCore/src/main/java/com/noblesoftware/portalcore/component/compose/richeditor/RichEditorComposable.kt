@@ -79,6 +79,10 @@ import okhttp3.MultipartBody
  * @param placeholder The placeholder text to display when the editor is empty.
  * @param minEditorHeight The minimum height of the editor in pixels.
  * @param contentPadding The padding around the content of the editor in pixels.
+ * @param isCount A boolean indicating whether to show the character count and validate against [maxLength].
+ * @param maxLength The maximum allowed number of characters.
+ * @param forceMaxLength A boolean indicating whether to strictly enforce the [maxLength] by preventing further input and trimming pasted text.
+ * @param simplify A boolean indicating whether to show a simplified version of the editor toolbar.
  * @param imageFormName The name to be used for the image file in the [MultipartBody.Part] when uploading.
  * @param maxImageSize The maximum allowed size for an uploaded image in megabytes (MB).
  * @param maxImageSizeError The error message to display when an image exceeds the maximum size.
@@ -102,6 +106,7 @@ fun RichEditorComposable(
     contentPadding: Int = 12,
     isCount: Boolean = false,
     maxLength: Int = Int.MAX_VALUE,
+    forceMaxLength: Boolean = false,
     simplify: Boolean = false,
     /**[simplify] if true it will only show B, I, and Bullets*/
     /** [imageFormName] MultipartBody image name */
@@ -168,6 +173,11 @@ fun RichEditorComposable(
             setPreventCopyOrCut(isAntiCheatEnable)
             setOnTextCopyOrCut { text ->
                 onTextCopyOrCut.invoke(text)
+            }
+            if (forceMaxLength) {
+                setMaxLength(maxLength)
+            } else {
+                setMaxLength(-1)
             }
         }
     }
@@ -499,6 +509,11 @@ fun RichEditorComposable(
                     update = { view ->
                         if (view.html != value) {
                             view.html = value
+                        }
+                        if (forceMaxLength) {
+                            view.setMaxLength(maxLength)
+                        } else {
+                            view.setMaxLength(-1)
                         }
                         update.invoke(view)
                     }

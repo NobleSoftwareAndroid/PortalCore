@@ -126,7 +126,8 @@ fun RichTextEditorSampleScreen(
                 onTextCopyOrCut = {},
                 simplify = true,
                 isCount = true,
-                maxLength = 10
+                maxLength = 10,
+                forceMaxLength = true,
             )
             DefaultSpacer()
             Text("Richtext in bottomsheet")
