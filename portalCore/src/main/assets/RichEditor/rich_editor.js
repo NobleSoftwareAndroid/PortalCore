@@ -29,6 +29,7 @@ RE.currentSelection = {
 RE.editor = document.getElementById('editor');
 RE.isPreventPaste = false
 RE.isPreventCopyOrCut = false
+RE.maxLength = -1;
 
 document.addEventListener("selectionchange", function() { RE.backuprange(); });
 
@@ -414,8 +415,29 @@ RE.removeFormat = function() {
     document.execCommand('removeFormat', false, null);
 }
 
+RE.isSpecialKey = function(e) {
+    var key = e.which || e.keyCode;
+    return (
+        key == 8 || // backspace
+        key == 46 || // delete
+        (key >= 37 && key <= 40) || // arrows
+        e.ctrlKey || e.metaKey
+    );
+}
+
 // Event Listeners
 RE.editor.addEventListener("input", RE.callback);
+RE.editor.addEventListener("keydown", function(e) {
+    if (RE.maxLength > 0) {
+        var currentLength = RE.getText().length;
+        if (currentLength >= RE.maxLength && !RE.isSpecialKey(e)) {
+            var selection = window.getSelection();
+            if (selection.toString().length == 0) {
+                e.preventDefault();
+            }
+        }
+    }
+});
 RE.editor.addEventListener("keyup", function(e) {
     var KEY_LEFT = 37, KEY_RIGHT = 39;
     if (e.which == KEY_LEFT || e.which == KEY_RIGHT) {
@@ -426,21 +448,27 @@ RE.editor.addEventListener("click", RE.enabledEditingItems);
 
 // Handle paste
 RE.editor.addEventListener("paste", function (e) {
-    if (RE.isPreventPaste == "true") {
-        var clipboardData, pastedData;
+    var clipboardData, pastedData;
+    clipboardData = e.clipboardData || window.clipboardData;
+    pastedData = clipboardData.getData('Text');
 
+    if (RE.isPreventPaste == "true") {
         // Stop data actually being pasted into div
         e.stopPropagation();
         e.preventDefault();
 
-        // Get pasted data via clipboard API
-        clipboardData = e.clipboardData || window.clipboardData;
-        pastedData = clipboardData.getData('Text');
-
-        console.log(pastedData)
-
         // callback paste
         RE.callbackPaste(pastedData)
+    } else if (RE.maxLength > 0) {
+        var currentLength = RE.getText().length;
+        var remaining = RE.maxLength - currentLength;
+        if (remaining <= 0) {
+            e.preventDefault();
+        } else if (pastedData.length > remaining) {
+            e.preventDefault();
+            var trimmed = pastedData.substring(0, remaining);
+            document.execCommand('insertText', false, trimmed);
+        }
     }
 });
 
@@ -481,4 +509,8 @@ RE.setPreventPaste = function(isPrevent) {
 
 RE.setPreventCopyOrCut = function(isPrevent) {
     RE.isPreventCopyOrCut = isPrevent;
+}
+
+RE.setMaxLength = function(size) {
+    RE.maxLength = Number(size);
 }

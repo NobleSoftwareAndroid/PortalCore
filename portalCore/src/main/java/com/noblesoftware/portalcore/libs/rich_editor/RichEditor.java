@@ -261,6 +261,10 @@ public class RichEditor extends WebView {
         exec("javascript:RE.setPreventCopyOrCut('" + isPrevent + "');");
     }
 
+    public void setMaxLength(int maxLength) {
+        exec("javascript:RE.setMaxLength('" + maxLength + "');");
+    }
+
     public void setEditorFontSize(int px) {
         exec("javascript:RE.setBaseFontSize('" + px + "px');");
     }
