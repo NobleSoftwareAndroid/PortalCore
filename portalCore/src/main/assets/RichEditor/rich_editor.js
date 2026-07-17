@@ -51,7 +51,11 @@ RE.setHtml = function(contents) {
 }
 
 RE.getHtml = function() {
-    return RE.editor.innerHTML;
+    var html = RE.editor.innerHTML;
+    if (html === '<br>' || html === '<div><br></div>') {
+        return "";
+    }
+    return html;
 }
 
 RE.getText = function() {
@@ -59,11 +63,7 @@ RE.getText = function() {
 }
 
 RE.getLength = function() {
-    var html = RE.editor.innerHTML;
-    if (html === '<br>' || html === '<div><br></div>') {
-        return 0;
-    }
-    return RE.calculateLogicalLength(html);
+    return RE.calculateLogicalLength(RE.getHtml());
 }
 
 RE.getSelectedLength = function() {
@@ -340,6 +340,10 @@ RE.insertHtmlValue =  function(htmlString) {
         selection.addRange(range);
     }
 
+    if (RE.maxLength > 0 && RE.getLength() > RE.maxLength) {
+        document.execCommand('undo', false, null);
+    }
+
     RE.focus();
     RE.callback();
 }
@@ -358,6 +362,11 @@ RE.insertHTML = function(html) {
     }
 
     document.execCommand('insertHTML', false, html);
+
+    if (RE.maxLength > 0 && RE.getLength() > RE.maxLength) {
+        document.execCommand('undo', false, null);
+    }
+
     RE.callback();
 }
 

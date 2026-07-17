@@ -1,0 +1,10 @@
+# Copied from issue description
+text = "qweiuhfefihewifhwe miwe hofiemwhfoi mhweoi hmewoi gmhewopi mhgoipew mhgoiw mheoig mhweoim ghewoipm hgopiewmh goipwemh oipgmhew oipgmhew ioghmewoi gmhewoi mghoeiw hgiuwe gniuewgn iuwemh iguhmew iuoghmew ioughmewi giweh guiew mhgiuewmn giuemwh iugmhwe iughm weiug hmwiuemg hiuwe mhgiuoewmg hoiugm hweioughm ewioughm iueorhmqg9u8wrehmg iuwrehgmiuwhemrbgiuym rtwuygn brewuygbm wyrtubm wyurtbm truwymtruymtyurm yu mbrwuym bfruym uyemyfugmew uygewmyufgmewifugewhifuyhweufbewuyfbwubfieywmbfuwebmfuemfuem ufmeufmheuhuhe fumh uehfmue mhumh uh uehmfuehufheu fmhue fmhu e mhu emhfu emhfumeh fumehufo eh,uohefumhefuheuf mh eufmhe ufmhe ufmheu mfheu mheui mheu mhu ehmu emhfuemh ufmheu mheume hu ehfuemh fiumhe fiumh efiuen hfiu efhiuefniuenfiefhiuehuhe fohef iuhmeifunheifunheiufhmneifu eifugeiugiefgui egi eungfiu ngefiunegfiuefgiu negfiuen fguief ngeufi ng eiufgeif umgegefiungm eifung efioung efioung efiug efiunng efiu jmfgewgfiebfiwyebw fybemwfefewfyum bew weufybmw efm w asufgju saygfuyasgm uimsag fiugnmasi ufmsiof hoiqw fhiuqwhm fiuywmqb fyubmqw,ifuybqw, q myq fyumbqw fyimbwqfyimbewfyubemwfuybemwmw yubmwe eerwydsydsyufbmdsyfubmdsuyfbmsyubfm yuwebmfyumwbefuymehwfyimgewyifu mgeuwym fgyeuwm gfyuwenmg fuyewgm fyimweh fimhewfheiwuykfmywnmuyfmwgeyufmwebfyweb bmew bew asiyufgmqwyumvfqw bfuymqw fyumhi qwiuym qhium wqbbwq imbfiyqw fw q\u003cbr\u003eqwfwqf\u003cbr\u003eqw\u003cbr\u003ef\u003cbr\u003eqwf\u003cbr\u003eqw\u003cbr\u003efwq\u003cbr\u003eg\u003cbr\u003eqwgqwgv mbwqdiuymvbwdquwymbdbqydm wqdwq\u003cbr\u003ewq\u003cbr\u003ef\u003cbr\u003eqw\u003cbr\u003ef qwfuqvnmfuymqwfuymbwqyufmuywq fuywnqgfyungqw mfuygmwq ifu"
+print(f"Literal length (raw string): {len(text)}")
+import ast
+# Try to decode the escaped characters if they are literally in the string
+try:
+    decoded = text.encode().decode('unicode-escape')
+    print(f"Decoded length: {len(decoded)}")
+except Exception as e:
+    print(f"Could not decode: {e}")
