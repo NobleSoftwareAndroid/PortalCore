@@ -109,6 +109,10 @@ fun String.htmlToString(keepSpacing: Boolean = false): String {
     return text
 }
 
+fun String.calculateLogicalLength(): Int {
+    return this.length
+}
+
 fun String.removeSubdomain(): String {
     val protocolEndIndex = this.indexOf("://")
 

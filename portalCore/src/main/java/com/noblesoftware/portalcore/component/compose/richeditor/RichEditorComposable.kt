@@ -56,6 +56,7 @@ import com.noblesoftware.portalcore.libs.rich_editor.RichEditor
 import com.noblesoftware.portalcore.model.SnackbarState
 import com.noblesoftware.portalcore.theme.LocalDimen
 import com.noblesoftware.portalcore.util.FileUtils
+import com.noblesoftware.portalcore.util.extension.calculateLogicalLength
 import com.noblesoftware.portalcore.util.extension.findActivity
 import com.noblesoftware.portalcore.util.extension.htmlToString
 import com.noblesoftware.portalcore.util.extension.isFalse
@@ -134,9 +135,7 @@ fun RichEditorComposable(
     val isKeyboardOpen = rememberKeyboardState()
     val isInputError = remember { mutableStateOf(false) }
     isInputError.value =
-        errorText != stringResource(id = R.string.empty_string) || (isCount && value.htmlToString(
-            true
-        ).length > maxLength)
+        errorText != stringResource(id = R.string.empty_string) || (isCount && value.calculateLogicalLength() > maxLength)
 
     val richEditorState = remember {
         mutableStateOf(state)
@@ -545,7 +544,7 @@ fun RichEditorComposable(
                         )
                         Text(
                             modifier = Modifier.padding(start = 5.dp, top = 1.dp),
-                            text = if (value.htmlToString(true).length > maxLength) stringResource(
+                            text = if (value.calculateLogicalLength() > maxLength) stringResource(
                                 R.string.max_length_chars,
                                 maxLength.toString()
                             ) else errorText,
@@ -560,9 +559,9 @@ fun RichEditorComposable(
                     DefaultSpacer(width = LocalDimen.current.regular)
                     Text(
                         modifier = Modifier.padding(end = 5.dp, top = 1.dp),
-                        text = "${value.htmlToString(true).length}/$maxLength",
+                        text = "${value.calculateLogicalLength()}/$maxLength",
                         style = MaterialTheme.typography.bodySmall.copy(
-                            colorResource(id = if (value.htmlToString(true).length > maxLength) R.color.danger_outlined_color else R.color.text_icon),
+                            colorResource(id = if (value.calculateLogicalLength() > maxLength) R.color.danger_outlined_color else R.color.text_icon),
                         )
                     )
                 }

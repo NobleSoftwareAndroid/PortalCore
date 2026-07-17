@@ -31,6 +31,7 @@ import com.noblesoftware.portalcore.component.xml.dynamic_bottom_sheet.DefaultDy
 import com.noblesoftware.portalcore.component.xml.dynamic_fullscreen_dialog.DefaultDynamicFragment.Companion.dismiss
 import com.noblesoftware.portalcore.theme.LocalDimen
 import com.noblesoftware.portalcore.util.extension.handleSafeScaffoldPadding
+import com.noblesoftware.portalcore.util.extension.loge
 import com.noblesoftware.portalcore.util.extension.toHtmlFormatMention
 import com.noblesoftware.portalcorelibrary.MainActivity
 
@@ -126,7 +127,7 @@ fun RichTextEditorSampleScreen(
                 onTextCopyOrCut = {},
                 simplify = true,
                 isCount = true,
-                maxLength = 10,
+                maxLength = 1500,
                 forceMaxLength = true,
             )
             DefaultSpacer()
