@@ -58,6 +58,31 @@ RE.getText = function() {
     return RE.editor.innerText;
 }
 
+RE.getLength = function() {
+    var html = RE.editor.innerHTML;
+    if (html === '<br>' || html === '<div><br></div>') {
+        return 0;
+    }
+    return RE.calculateLogicalLength(html);
+}
+
+RE.getSelectedLength = function() {
+    var selection = window.getSelection();
+    if (selection.rangeCount > 0) {
+        var range = selection.getRangeAt(0);
+        var contents = range.cloneContents();
+        var temp = document.createElement('div');
+        temp.appendChild(contents);
+        return RE.calculateLogicalLength(temp.innerHTML);
+    }
+    return 0;
+}
+
+RE.calculateLogicalLength = function(html) {
+    if (!html) return 0;
+    return html.length;
+}
+
 RE.setBaseTextColor = function(color) {
     RE.editor.style.color  = color;
 }
@@ -113,89 +138,103 @@ RE.redo = function() {
     document.execCommand('redo', false, null);
 }
 
+RE.exec = function(command, value = null) {
+    var oldHtml = RE.editor.innerHTML;
+    if (value) {
+        document.execCommand(command, false, value);
+    } else {
+        document.execCommand(command, false, null);
+    }
+    if (RE.maxLength > 0 && RE.getLength() > RE.maxLength) {
+        // If it exceeds, undo the last command
+        document.execCommand('undo', false, null);
+    }
+    RE.callback();
+}
+
 RE.setBold = function() {
-    document.execCommand('bold', false, null);
+    RE.exec('bold');
 }
 
 RE.setItalic = function() {
-    document.execCommand('italic', false, null);
+    RE.exec('italic');
 }
 
 RE.setSubscript = function() {
-    document.execCommand('subscript', false, null);
+    RE.exec('subscript');
 }
 
 RE.setSuperscript = function() {
-    document.execCommand('superscript', false, null);
+    RE.exec('superscript');
 }
 
 RE.setStrikeThrough = function() {
-    document.execCommand('strikeThrough', false, null);
+    RE.exec('strikeThrough');
 }
 
 RE.setUnderline = function() {
-    document.execCommand('underline', false, null);
+    RE.exec('underline');
 }
 
 RE.setBullets = function() {
-    document.execCommand('insertUnorderedList', false, null);
+    RE.exec('insertUnorderedList');
 }
 
 RE.setNumbers = function() {
-    document.execCommand('insertOrderedList', false, null);
+    RE.exec('insertOrderedList');
 }
 
 RE.setTextColor = function(color) {
     RE.restorerange();
     document.execCommand("styleWithCSS", null, true);
-    document.execCommand('foreColor', false, color);
+    RE.exec('foreColor', color);
     document.execCommand("styleWithCSS", null, false);
 }
 
 RE.setTextBackgroundColor = function(color) {
     RE.restorerange();
     document.execCommand("styleWithCSS", null, true);
-    document.execCommand('hiliteColor', false, color);
+    RE.exec('hiliteColor', color);
     document.execCommand("styleWithCSS", null, false);
 }
 
 RE.setFontSize = function(fontSize){
-    document.execCommand("fontSize", false, fontSize);
+    RE.exec("fontSize", fontSize);
 }
 
 RE.setFontTextSize = function(size) {
     RE.restorerange();
     document.execCommand("styleWithCSS", null, true);
-    document.execCommand('fontSize', false, (size/4) + 'px');
+    RE.exec('fontSize', (size/4) + 'px');
     document.execCommand("styleWithCSS", null, false);
 }
 
 RE.setHeading = function(heading) {
-    document.execCommand('formatBlock', false, '<h'+heading+'>');
+    RE.exec('formatBlock', '<h'+heading+'>');
 }
 
 RE.setIndent = function() {
-    document.execCommand('indent', false, null);
+    RE.exec('indent');
 }
 
 RE.setOutdent = function() {
-    document.execCommand('outdent', false, null);
+    RE.exec('outdent');
 }
 
 RE.setJustifyLeft = function() {
-    document.execCommand('justifyLeft', false, null);
+    RE.exec('justifyLeft');
 }
 
 RE.setJustifyCenter = function() {
-    document.execCommand('justifyCenter', false, null);
+    RE.exec('justifyCenter');
 }
 
 RE.setJustifyRight = function() {
-    document.execCommand('justifyRight', false, null);
+    RE.exec('justifyRight');
 }
 
 RE.setBlockquote = function() {
-    document.execCommand('formatBlock', false, '<blockquote>');
+    RE.exec('formatBlock', '<blockquote>');
 }
 
 RE.insertImage = function(url, alt) {
@@ -275,6 +314,16 @@ RE.insertYoutubeVideoWH = function(url, width, height) {
 RE.insertHtmlValue =  function(htmlString) {
     RE.restorerange();
 
+    if (RE.maxLength > 0) {
+        var insertedLength = RE.calculateLogicalLength(htmlString);
+
+        var currentLength = RE.getLength();
+        var selectedLength = RE.getSelectedLength();
+        if (currentLength - selectedLength + insertedLength > RE.maxLength) {
+            return;
+        }
+    }
+
     var selection = window.getSelection();
     if (selection.rangeCount > 0) {
         var range = selection.getRangeAt(0);
@@ -297,14 +346,26 @@ RE.insertHtmlValue =  function(htmlString) {
 
 RE.insertHTML = function(html) {
     RE.restorerange();
+
+    if (RE.maxLength > 0) {
+        var insertedLength = RE.calculateLogicalLength(html);
+
+        var currentLength = RE.getLength();
+        var selectedLength = RE.getSelectedLength();
+        if (currentLength - selectedLength + insertedLength > RE.maxLength) {
+            return;
+        }
+    }
+
     document.execCommand('insertHTML', false, html);
+    RE.callback();
 }
 
 RE.insertLink = function(url, title) {
     RE.restorerange();
     var sel = document.getSelection();
     if (sel.toString().length == 0) {
-        document.execCommand("insertHTML",false,"<a href='"+url+"'>"+title+"</a>");
+        RE.insertHTML("<a href='"+url+"'>"+title+"</a>");
     } else if (sel.rangeCount) {
        var el = document.createElement("a");
        el.setAttribute("href", url);
@@ -312,6 +373,9 @@ RE.insertLink = function(url, title) {
 
        var range = sel.getRangeAt(0).cloneRange();
        range.surroundContents(el);
+       if (RE.maxLength > 0 && RE.getLength() > RE.maxLength) {
+           document.execCommand('undo', false, null);
+       }
        sel.removeAllRanges();
        sel.addRange(range);
    }
@@ -320,7 +384,7 @@ RE.insertLink = function(url, title) {
 
 RE.setTodo = function(text) {
     var html = '<input type="checkbox" name="'+ text +'" value="'+ text +'"/> &nbsp;';
-    document.execCommand('insertHTML', false, html);
+    RE.insertHTML(html);
 }
 
 RE.prepareInsert = function() {
@@ -426,13 +490,32 @@ RE.isSpecialKey = function(e) {
 }
 
 // Event Listeners
-RE.editor.addEventListener("input", RE.callback);
+RE.editor.addEventListener("input", function(e) {
+    if (RE.maxLength > 0 && RE.getLength() > RE.maxLength) {
+        document.execCommand('undo', false, null);
+    }
+    RE.callback();
+});
+RE.editor.addEventListener("beforeinput", function(e) {
+    if (RE.maxLength > 0) {
+        if (e.inputType === 'insertText' || e.inputType === 'insertFromPaste') {
+            var inserted = e.data || (e.dataTransfer && e.dataTransfer.getData('text/plain')) || "";
+            var insertedLength = RE.calculateLogicalLength(inserted);
+            var currentLength = RE.getLength();
+            var selectedLength = RE.getSelectedLength();
+
+            if (currentLength - selectedLength + insertedLength > RE.maxLength) {
+                e.preventDefault();
+            }
+        }
+    }
+});
 RE.editor.addEventListener("keydown", function(e) {
     if (RE.maxLength > 0) {
-        var currentLength = RE.getText().length;
+        var currentLength = RE.getLength();
         if (currentLength >= RE.maxLength && !RE.isSpecialKey(e)) {
-            var selection = window.getSelection();
-            if (selection.toString().length == 0) {
+            var selectionLength = RE.getSelectedLength();
+            if (selectionLength == 0) {
                 e.preventDefault();
             }
         }
@@ -460,13 +543,26 @@ RE.editor.addEventListener("paste", function (e) {
         // callback paste
         RE.callbackPaste(pastedData)
     } else if (RE.maxLength > 0) {
-        var currentLength = RE.getText().length;
-        var remaining = RE.maxLength - currentLength;
+        var currentLength = RE.getLength();
+        var selectedLength = RE.getSelectedLength();
+        var remaining = RE.maxLength - (currentLength - selectedLength);
+        var pastedLogicalLength = RE.calculateLogicalLength(pastedData);
+
         if (remaining <= 0) {
             e.preventDefault();
-        } else if (pastedData.length > remaining) {
+        } else if (pastedLogicalLength > remaining) {
             e.preventDefault();
-            var trimmed = pastedData.substring(0, remaining);
+            var trimmed = "";
+            var currentLogical = 0;
+            for (var char of pastedData) {
+                var charLogical = RE.calculateLogicalLength(char);
+                if (currentLogical + charLogical <= remaining) {
+                    trimmed += char;
+                    currentLogical += charLogical;
+                } else {
+                    break;
+                }
+            }
             document.execCommand('insertText', false, trimmed);
         }
     }
