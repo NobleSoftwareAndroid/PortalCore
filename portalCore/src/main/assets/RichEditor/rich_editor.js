@@ -130,6 +130,10 @@ RE.setInputEnabled = function(inputEnabled) {
     RE.editor.contentEditable = String(inputEnabled);
 }
 
+RE.setInputMode = function(mode) {
+    RE.editor.setAttribute("inputmode", mode);
+}
+
 RE.undo = function() {
     document.execCommand('undo', false, null);
 }

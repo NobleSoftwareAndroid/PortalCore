@@ -6,6 +6,7 @@ import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
@@ -35,6 +36,8 @@ fun DefaultTextInputSearch(
     modifier: Modifier,
     value: String,
     placeholder: String = stringResource(id = R.string.empty_string),
+    showKeyboardOnFocus: Boolean = true,
+    focusRequester: FocusRequester? = null,
     onValueChange: (String) -> Unit,
     onValueClear: () -> Unit,
     onSearch: () -> Unit,
@@ -42,6 +45,8 @@ fun DefaultTextInputSearch(
     DefaultTextInput(
         modifier = modifier,
         placeholder = placeholder,
+        showKeyboardOnFocus = showKeyboardOnFocus,
+        focusRequester = focusRequester,
         inputType = KeyboardType.Text,
         imeAction = ImeAction.Search,
         leadingIcon = {

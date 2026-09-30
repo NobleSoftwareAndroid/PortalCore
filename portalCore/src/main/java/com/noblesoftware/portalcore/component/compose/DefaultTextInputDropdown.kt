@@ -51,6 +51,7 @@ fun DefaultTextInputDropdown(
     errorText: String = stringResource(id = R.string.empty_string),
     @DrawableRes icon: Int = R.drawable.ic_expand_more_filled,
     @ColorRes iconTint: Int = R.color.text_icon,
+    showKeyboardOnFocus: Boolean = true,
     leadingIcon: @Composable (() -> Unit)? = null,
     trailingIcon: @Composable (() -> Unit)? = {
         DefaultTextInputIcon(
@@ -76,6 +77,7 @@ fun DefaultTextInputDropdown(
             label = label,
             value = value,
             placeholder = placeholder,
+            showKeyboardOnFocus = showKeyboardOnFocus,
             inputType = KeyboardType.Text,
             leadingIcon = leadingIcon,
             trailingIcon = trailingIcon,

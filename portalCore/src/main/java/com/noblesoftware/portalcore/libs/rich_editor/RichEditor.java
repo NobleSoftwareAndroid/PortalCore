@@ -94,6 +94,7 @@ public class RichEditor extends WebView {
     private static final String CALLBACK_COPY_OR_CUT = "re-callback-copy-cut://";
     private static final String STATE_SCHEME = "re-state://";
     private boolean isReady = false;
+    private boolean mShowKeyboardOnFocus = true;
     private String mContents;
     private OnTextChangeListener mTextChangeListener;
     private OnTextPasteListener mTextPasteListener;
@@ -104,16 +105,33 @@ public class RichEditor extends WebView {
     @Override
     public void onWindowFocusChanged(boolean hasWindowFocus) {
         super.onWindowFocusChanged(hasWindowFocus);
-        if (hasWindowFocus) {
+        if (hasWindowFocus && mShowKeyboardOnFocus) {
             requestFocus();
             post(() -> {
-                InputMethodManager imm = null;
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    imm = getContext().getSystemService(InputMethodManager.class);
+                InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                if (imm != null) {
+                    imm.showSoftInput(this, 0);
                 }
-                imm.showSoftInput(this, 0);
             });
         }
+    }
+
+    @Override
+    public boolean onCheckIsTextEditor() {
+        return mShowKeyboardOnFocus && super.onCheckIsTextEditor();
+    }
+
+    public void setShowKeyboardOnFocus(boolean show) {
+        mShowKeyboardOnFocus = show;
+        exec("javascript:RE.setInputMode('" + (show ? "text" : "none") + "');");
+    }
+
+    @Override
+    public android.view.inputmethod.InputConnection onCreateInputConnection(android.view.inputmethod.EditorInfo outAttrs) {
+        if (!mShowKeyboardOnFocus) {
+            return null;
+        }
+        return super.onCreateInputConnection(outAttrs);
     }
 
     public RichEditor(Context context) {

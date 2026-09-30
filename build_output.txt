@@ -1,0 +1,92 @@
+Type-safe project accessors is an incubating feature.
+> Task :portalCore:preBuild UP-TO-DATE
+> Task :portalCore:preDebugBuild UP-TO-DATE
+> Task :portalCore:mergeDebugJniLibFolders UP-TO-DATE
+> Task :portalCore:mergeDebugNativeLibs NO-SOURCE
+> Task :portalCore:stripDebugDebugSymbols NO-SOURCE
+> Task :portalCore:copyDebugJniLibsProjectAndLocalJars UP-TO-DATE
+> Task :portalCore:dataBindingMergeDependencyArtifactsDebug UP-TO-DATE
+> Task :portalCore:generateDebugResValues UP-TO-DATE
+> Task :portalCore:generateDebugResources UP-TO-DATE
+> Task :portalCore:packageDebugResources UP-TO-DATE
+> Task :portalCore:parseDebugLocalResources UP-TO-DATE
+> Task :portalCore:dataBindingGenBaseClassesDebug UP-TO-DATE
+> Task :portalCore:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :portalCore:dataBindingTriggerDebug UP-TO-DATE
+> Task :portalCore:generateDebugBuildConfig UP-TO-DATE
+> Task :portalCore:generateDebugRFile UP-TO-DATE
+> Task :portalCore:extractDeepLinksForAarDebug UP-TO-DATE
+> Task :portalCore:mergeDebugShaders UP-TO-DATE
+> Task :portalCore:compileDebugShaders NO-SOURCE
+> Task :portalCore:generateDebugAssets UP-TO-DATE
+> Task :portalCore:mergeDebugAssets UP-TO-DATE
+> Task :portalCore:javaPreCompileDebug UP-TO-DATE
+> Task :portalCore:prepareDebugArtProfile UP-TO-DATE
+> Task :portalCore:prepareLintJarForPublish UP-TO-DATE
+> Task :portalCore:processDebugManifest UP-TO-DATE
+> Task :portalCore:writeDebugAarMetadata UP-TO-DATE
+> Task :portalCore:kspDebugKotlin
+
+> Task :portalCore:kaptGenerateStubsDebugKotlin
+w: Kapt currently doesn't support language version 2.0+. Falling back to 1.9.
+
+> Task :portalCore:kaptDebugKotlin
+warning: The following options were not recognized by any processor: '[dagger.hilt.internal.useAggregatingRootProcessor, kapt.kotlin.generated, dagger.fastInit, dagger.hilt.android.internal.disableAndroidSuperclassValidation, dagger.hilt.android.internal.projectType]'
+
+> Task :portalCore:compileDebugKotlin
+w: file:///Users/hafizhanbiya/AndroidStudioProjects/PortalCore/portalCore/src/main/java/com/noblesoftware/portalcore/component/compose/DefaultBottomSheet.kt:76:71 'fun properties(securePolicy: SecureFlagPolicy = ..., isFocusable: Boolean = ..., shouldDismissOnBackPress: Boolean = ...): ModalBottomSheetProperties' is deprecated. 'isFocusable' param is no longer used. Use value without this parameter.
+w: file:///Users/hafizhanbiya/AndroidStudioProjects/PortalCore/portalCore/src/main/java/com/noblesoftware/portalcore/component/compose/DefaultExpandableText.kt:111:5 'fun ClickableText(text: AnnotatedString, modifier: Modifier = ..., style: TextStyle = ..., softWrap: Boolean = ..., overflow: TextOverflow = ..., maxLines: Int = ..., onTextLayout: (TextLayoutResult) -> Unit = ..., onClick: (Int) -> Unit): Unit' is deprecated. Use Text or BasicText and pass an AnnotatedString that contains a LinkAnnotation.
+w: file:///Users/hafizhanbiya/AndroidStudioProjects/PortalCore/portalCore/src/main/java/com/noblesoftware/portalcore/component/compose/DefaultTextInput.kt:177:13 'val LocalTextInputService: ProvidableCompositionLocal<TextInputService?>' is deprecated. Use PlatformTextInputModifierNode instead.
+w: file:///Users/hafizhanbiya/AndroidStudioProjects/PortalCore/portalCore/src/main/java/com/noblesoftware/portalcore/component/compose/DefaultTextInput.kt:177:69 'val LocalTextInputService: ProvidableCompositionLocal<TextInputService?>' is deprecated. Use PlatformTextInputModifierNode instead.
+w: file:///Users/hafizhanbiya/AndroidStudioProjects/PortalCore/portalCore/src/main/java/com/noblesoftware/portalcore/component/compose/DefaultTextInputCurrency.kt:161:13 'val LocalTextInputService: ProvidableCompositionLocal<TextInputService?>' is deprecated. Use PlatformTextInputModifierNode instead.
+w: file:///Users/hafizhanbiya/AndroidStudioProjects/PortalCore/portalCore/src/main/java/com/noblesoftware/portalcore/component/compose/DefaultTextInputCurrency.kt:161:69 'val LocalTextInputService: ProvidableCompositionLocal<TextInputService?>' is deprecated. Use PlatformTextInputModifierNode instead.
+w: file:///Users/hafizhanbiya/AndroidStudioProjects/PortalCore/portalCore/src/main/java/com/noblesoftware/portalcore/component/xml/duration_picker_bottom_sheet/DurationPickerBottomSheetDialog.kt:356:20 'var statusBarColor: Int' is deprecated. Deprecated in Java.
+w: file:///Users/hafizhanbiya/AndroidStudioProjects/PortalCore/portalCore/src/main/java/com/noblesoftware/portalcore/component/xml/dynamic_bottom_sheet/DefaultDynamicBottomSheetDialog.kt:188:20 'var statusBarColor: Int' is deprecated. Deprecated in Java.
+w: file:///Users/hafizhanbiya/AndroidStudioProjects/PortalCore/portalCore/src/main/java/com/noblesoftware/portalcore/component/xml/dynamic_dialog/DefaultDynamicDialog.kt:86:20 'var statusBarColor: Int' is deprecated. Deprecated in Java.
+w: file:///Users/hafizhanbiya/AndroidStudioProjects/PortalCore/portalCore/src/main/java/com/noblesoftware/portalcore/component/xml/options_bottom_sheet/DefaultBottomSheetDialog.kt:277:20 'var statusBarColor: Int' is deprecated. Deprecated in Java.
+w: file:///Users/hafizhanbiya/AndroidStudioProjects/PortalCore/portalCore/src/main/java/com/noblesoftware/portalcore/component/xml/paginated_bottom_sheet/DefaultPaginatedBottomSheetDialog.kt:449:20 'var statusBarColor: Int' is deprecated. Deprecated in Java.
+w: file:///Users/hafizhanbiya/AndroidStudioProjects/PortalCore/portalCore/src/main/java/com/noblesoftware/portalcore/container/FragmentContainerActivity.kt:35:18 This declaration overrides a deprecated member but is not marked as deprecated itself. Please add the '@Deprecated' annotation or suppress the diagnostic.
+w: file:///Users/hafizhanbiya/AndroidStudioProjects/PortalCore/portalCore/src/main/java/com/noblesoftware/portalcore/container/FragmentContainerActivity.kt:40:28 'static fun getWindowInsetsController(p0: @NonNull() View!): @Nullable() WindowInsetsControllerCompat!' is deprecated. Deprecated in Java.
+w: file:///Users/hafizhanbiya/AndroidStudioProjects/PortalCore/portalCore/src/main/java/com/noblesoftware/portalcore/container/FragmentContainerActivity.kt:43:19 'fun onBackPressed(): Unit' is deprecated. This method has been deprecated in favor of using the
+      {@link OnBackPressedDispatcher} via {@link #getOnBackPressedDispatcher()}.
+      The OnBackPressedDispatcher controls how back button events are dispatched
+      to one or more {@link OnBackPressedCallback} objects.
+w: file:///Users/hafizhanbiya/AndroidStudioProjects/PortalCore/portalCore/src/main/java/com/noblesoftware/portalcore/theme/Theme.kt:32:25 'var statusBarColor: Int' is deprecated. Deprecated in Java.
+w: file:///Users/hafizhanbiya/AndroidStudioProjects/PortalCore/portalCore/src/main/java/com/noblesoftware/portalcore/theme/Theme.kt:34:21 'var navigationBarColor: Int' is deprecated. Deprecated in Java.
+w: file:///Users/hafizhanbiya/AndroidStudioProjects/PortalCore/portalCore/src/main/java/com/noblesoftware/portalcore/util/DateTimeHelper.kt:217:33 Java type mismatch: inferred type is 'kotlin.String?', but 'kotlin.String' was expected.
+w: file:///Users/hafizhanbiya/AndroidStudioProjects/PortalCore/portalCore/src/main/java/com/noblesoftware/portalcore/util/DateTimeHelper.kt:219:27 Java type mismatch: inferred type is 'java.util.Date?', but 'java.util.Date' was expected.
+w: file:///Users/hafizhanbiya/AndroidStudioProjects/PortalCore/portalCore/src/main/java/com/noblesoftware/portalcore/util/DateTimeHelper.kt:237:38 Java type mismatch: inferred type is 'kotlin.String?', but 'kotlin.String' was expected.
+w: file:///Users/hafizhanbiya/AndroidStudioProjects/PortalCore/portalCore/src/main/java/com/noblesoftware/portalcore/util/DateTimeHelper.kt:249:31 Java type mismatch: inferred type is 'java.util.Date?', but 'java.util.Date' was expected.
+w: file:///Users/hafizhanbiya/AndroidStudioProjects/PortalCore/portalCore/src/main/java/com/noblesoftware/portalcore/util/DateTimeHelper.kt:257:27 Java type mismatch: inferred type is 'java.util.Date?', but 'java.util.Date' was expected.
+w: file:///Users/hafizhanbiya/AndroidStudioProjects/PortalCore/portalCore/src/main/java/com/noblesoftware/portalcore/util/DateTimeHelper.kt:265:23 Java type mismatch: inferred type is 'kotlin.String?', but 'kotlin.String' was expected.
+w: file:///Users/hafizhanbiya/AndroidStudioProjects/PortalCore/portalCore/src/main/java/com/noblesoftware/portalcore/util/DateTimeHelper.kt:276:23 Java type mismatch: inferred type is 'kotlin.String?', but 'kotlin.String' was expected.
+w: file:///Users/hafizhanbiya/AndroidStudioProjects/PortalCore/portalCore/src/main/java/com/noblesoftware/portalcore/util/DateTimeHelper.kt:644:31 Java type mismatch: inferred type is 'java.util.Date?', but 'java.util.Date' was expected.
+w: file:///Users/hafizhanbiya/AndroidStudioProjects/PortalCore/portalCore/src/main/java/com/noblesoftware/portalcore/util/DateTimeHelper.kt:655:23 Java type mismatch: inferred type is 'kotlin.String?', but 'kotlin.String' was expected.
+w: file:///Users/hafizhanbiya/AndroidStudioProjects/PortalCore/portalCore/src/main/java/com/noblesoftware/portalcore/util/DateTimeHelper.kt:689:51 Java type mismatch: inferred type is 'java.util.Date?', but 'java.util.Date' was expected.
+w: file:///Users/hafizhanbiya/AndroidStudioProjects/PortalCore/portalCore/src/main/java/com/noblesoftware/portalcore/util/DateTimeHelper.kt:689:64 Java type mismatch: inferred type is 'java.util.Date?', but 'java.util.Date' was expected.
+w: file:///Users/hafizhanbiya/AndroidStudioProjects/PortalCore/portalCore/src/main/java/com/noblesoftware/portalcore/util/NetworkHelper.kt:29:23 'val activeNetworkInfo: NetworkInfo?' is deprecated. Deprecated in Java.
+w: file:///Users/hafizhanbiya/AndroidStudioProjects/PortalCore/portalCore/src/main/java/com/noblesoftware/portalcore/util/NetworkHelper.kt:29:55 'val activeNetworkInfo: NetworkInfo?' is deprecated. Deprecated in Java.
+w: file:///Users/hafizhanbiya/AndroidStudioProjects/PortalCore/portalCore/src/main/java/com/noblesoftware/portalcore/util/NetworkHelper.kt:29:74 'val isConnected: Boolean' is deprecated. Deprecated in Java.
+w: file:///Users/hafizhanbiya/AndroidStudioProjects/PortalCore/portalCore/src/main/java/com/noblesoftware/portalcore/util/extension/ExtFlow.kt:13:26 'val LocalLifecycleOwner: ProvidableCompositionLocal<LifecycleOwner>' is deprecated. Moved to lifecycle-runtime-compose library in androidx.lifecycle.compose package.
+w: file:///Users/hafizhanbiya/AndroidStudioProjects/PortalCore/portalCore/src/main/java/com/noblesoftware/portalcore/util/extension/ExtView.kt:136:16 'var navigationBarColor: Int' is deprecated. Deprecated in Java.
+w: file:///Users/hafizhanbiya/AndroidStudioProjects/PortalCore/portalCore/src/main/java/com/noblesoftware/portalcore/util/extension/ExtView.kt:140:20 'var statusBarColor: Int' is deprecated. Deprecated in Java.
+w: file:///Users/hafizhanbiya/AndroidStudioProjects/PortalCore/portalCore/src/main/java/com/noblesoftware/portalcore/util/extension/ExtView.kt:142:20 'var statusBarColor: Int' is deprecated. Deprecated in Java.
+
+> Task :portalCore:extractDebugAnnotations UP-TO-DATE
+
+> Task :portalCore:compileDebugJavaWithJavac
+Note: /Users/hafizhanbiya/AndroidStudioProjects/PortalCore/portalCore/src/main/java/com/noblesoftware/portalcore/libs/rich_editor/RichEditor.java uses or overrides a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+
+> Task :portalCore:transformDebugClassesWithAsm UP-TO-DATE
+> Task :portalCore:mergeDebugGeneratedProguardFiles UP-TO-DATE
+> Task :portalCore:mergeDebugConsumerProguardFiles UP-TO-DATE
+> Task :portalCore:processDebugJavaRes UP-TO-DATE
+> Task :portalCore:mergeDebugJavaResource UP-TO-DATE
+> Task :portalCore:syncDebugLibJars UP-TO-DATE
+> Task :portalCore:bundleDebugAar UP-TO-DATE
+> Task :portalCore:assembleDebug UP-TO-DATE
+[Incubating] Problems report is available at: file:///Users/hafizhanbiya/AndroidStudioProjects/PortalCore/build/reports/problems/problems-report.html
+
+BUILD SUCCESSFUL in 7s
+32 actionable tasks: 5 executed, 27 up-to-date

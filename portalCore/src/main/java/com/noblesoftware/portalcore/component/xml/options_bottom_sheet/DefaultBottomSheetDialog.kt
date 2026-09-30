@@ -82,6 +82,7 @@ open class DefaultBottomSheetDialog : BottomSheetDialogFragment() {
 
     /** if [isStatusBarTransparent] = true -> set this activity and PortalCoreTheme statusBar to transparent */
     private var isStatusBarTransparent: Boolean = false
+    private var showKeyboardOnFocus: Boolean = true
     private var searchHint = ""
     private var emptyState: @Composable () -> Unit = {}
     private var options: List<SelectOption> = listOf()
@@ -182,6 +183,7 @@ open class DefaultBottomSheetDialog : BottomSheetDialogFragment() {
                                         .fillMaxWidth()
                                         .padding(horizontal = LocalDimen.current.regular),
                                     value = state.keywords,
+                                    showKeyboardOnFocus = showKeyboardOnFocus,
                                     leadingIcon = {
                                         DefaultTextInputIcon(
                                             modifier = Modifier,
@@ -346,6 +348,7 @@ open class DefaultBottomSheetDialog : BottomSheetDialogFragment() {
             bottomSheetType: BottomSheetType,
             @StringRes title: Int = R.string.empty_string,
             searchHint: String = "",
+            showKeyboardOnFocus: Boolean = true,
             isResetEnable: Boolean = false,
             isStatusBarTransparent: Boolean = false,
             emptyState: @Composable () -> Unit = {
@@ -368,6 +371,7 @@ open class DefaultBottomSheetDialog : BottomSheetDialogFragment() {
                 this.title = title
                 this.isResetEnable = isResetEnable
                 this.isStatusBarTransparent = isStatusBarTransparent
+                this.showKeyboardOnFocus = showKeyboardOnFocus
                 this.searchHint = searchHint
                 this.emptyState = emptyState
                 this.options = options
