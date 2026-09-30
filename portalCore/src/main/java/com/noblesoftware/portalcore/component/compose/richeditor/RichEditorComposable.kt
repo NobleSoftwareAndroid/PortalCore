@@ -1,5 +1,6 @@
 package com.noblesoftware.portalcore.component.compose.richeditor
 
+import android.view.MotionEvent
 import android.view.ViewGroup
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.PickVisualMediaRequest
@@ -154,6 +155,14 @@ fun RichEditorComposable(
             setEditorHeight(minEditorHeight)
             isFocusable = true
             isFocusableInTouchMode = true
+            setOnTouchListener { v, event ->
+                if (event.action == MotionEvent.ACTION_DOWN) {
+                    if (!v.hasFocus()) {
+                        (v as RichEditor).focusEditor()
+                    }
+                }
+                false
+            }
             setOnFocusChangeListener { _, hasFocus ->
                 isFocused.value = hasFocus
             }
