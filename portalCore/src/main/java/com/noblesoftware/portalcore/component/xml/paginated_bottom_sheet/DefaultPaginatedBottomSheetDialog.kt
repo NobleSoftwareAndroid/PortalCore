@@ -97,6 +97,7 @@ open class DefaultPaginatedBottomSheetDialog : BottomSheetDialogFragment() {
 
     /** if [isStatusBarTransparent] = true -> set this activity and PortalCoreTheme statusBar to transparent */
     private var isStatusBarTransparent: Boolean = false
+    private var showKeyboardOnFocus: Boolean = true
     private var searchHint = ""
     private var searchValue = ""
     private var onSelected: (List<SelectOption>) -> Unit = {}
@@ -146,7 +147,7 @@ open class DefaultPaginatedBottomSheetDialog : BottomSheetDialogFragment() {
                 }
 
                 // handle autofocus search field on launch screen
-                LaunchedEffect(true) {
+                LaunchedEffect(Unit) {
                     delay(250)
                     focusRequester.requestFocus()
                 }
@@ -249,9 +250,10 @@ open class DefaultPaginatedBottomSheetDialog : BottomSheetDialogFragment() {
                                 DefaultTextInput(
                                     modifier = Modifier
                                         .fillMaxWidth()
-                                        .padding(horizontal = LocalDimen.current.regular)
-                                        .focusRequester(focusRequester),
+                                        .padding(horizontal = LocalDimen.current.regular),
+                                    focusRequester = focusRequester,
                                     value = state.keywords,
+                                    showKeyboardOnFocus = showKeyboardOnFocus,
                                     leadingIcon = {
                                         DefaultTextInputIcon(
                                             modifier = Modifier,
@@ -476,6 +478,7 @@ open class DefaultPaginatedBottomSheetDialog : BottomSheetDialogFragment() {
             @StringRes title: Int = R.string.empty_string,
             searchHint: String = "",
             searchValue: String = "",
+            showKeyboardOnFocus: Boolean = true,
             isResetEnable: Boolean = false,
             isStatusBarTransparent: Boolean = false,
             initialBottomSheetState: Int = BottomSheetBehavior.STATE_EXPANDED,
@@ -492,6 +495,7 @@ open class DefaultPaginatedBottomSheetDialog : BottomSheetDialogFragment() {
                 this.isResetEnable = isResetEnable
                 this.isStatusBarTransparent = isStatusBarTransparent
                 this.initialBottomSheetState = initialBottomSheetState
+                this.showKeyboardOnFocus = showKeyboardOnFocus
                 this.searchHint = searchHint
                 this.searchValue = searchValue
                 this.selectedItem = selectedItem

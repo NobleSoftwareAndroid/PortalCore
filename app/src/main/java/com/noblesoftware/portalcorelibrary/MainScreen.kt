@@ -6,20 +6,27 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.noblesoftware.portalcore.R
 import com.noblesoftware.portalcore.component.compose.ButtonVariant
 import com.noblesoftware.portalcore.component.compose.DefaultButton
 import com.noblesoftware.portalcore.component.compose.DefaultSpacer
+import com.noblesoftware.portalcore.component.compose.DefaultTextInput
 import com.noblesoftware.portalcore.component.compose.DefaultTopAppBar
 import com.noblesoftware.portalcore.component.compose.WebViewComposable
+import com.noblesoftware.portalcore.component.compose.richeditor.RichEditorComposable
 import com.noblesoftware.portalcore.model.WebViewFontStyle
 import com.noblesoftware.portalcore.theme.LocalDimen
 import com.noblesoftware.portalcore.util.extension.handleSafeScaffoldPadding
@@ -48,11 +55,37 @@ fun MainScreen(
                 .background(color = colorResource(id = R.color.background_body))
                 .fillMaxSize()
                 .padding(it)
+                .verticalScroll(rememberScrollState())
                 .padding(
                     horizontal = LocalDimen.current.regular,
                     vertical = LocalDimen.current.extraLarge
                 )
         ) {
+//            val text = remember { mutableStateOf("") }
+//            DefaultTextInput(
+//                label = "Coba Text",
+//                placeholder = "Please input text",
+//                required = true,
+//                inputType = KeyboardType.Text,
+//                value = text.value,
+//                showKeyboardOnFocus = false,
+//                onValueChange = { text.value = it })
+//            DefaultSpacer()
+//            RichEditorComposable(
+//                modifier = Modifier.fillMaxWidth(),
+//                value = "",
+//                imageFormName = "image",
+//                isImageEnabled = false,
+//                isAntiCheatEnable = false,
+//                onImageUpload = {},
+//                onImageRetrieve = { "" },
+//                onSnackbar = {},
+//                onTextChanged = {},
+//                onTextPaste = {},
+//                onTextCopyOrCut = {},
+//                showKeyboardOnFocus = false
+//            )
+            DefaultSpacer()
             DefaultButton(
                 modifier = Modifier.fillMaxWidth(),
                 text = "Common Components",

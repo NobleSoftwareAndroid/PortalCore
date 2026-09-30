@@ -23,10 +23,12 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
@@ -38,6 +40,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.platform.InterceptPlatformTextInput
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -52,6 +55,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import kotlinx.coroutines.awaitCancellation
 import com.noblesoftware.portalcore.R
 import com.noblesoftware.portalcore.theme.LocalDimen
 import com.noblesoftware.portalcore.theme.LocalShapes
@@ -82,6 +86,8 @@ import com.noblesoftware.portalcore.util.extension.isFalse
  * @param trailingIcon An optional icon (e.g., search icon) to display within the right input field.
  * @param errorText An optional error message to display below the input field.
  * @param helperText An optional helper text to provide additional context.
+ * @param showKeyboardOnFocus A boolean indicating whether the soft keyboard should be shown when the input field is focused.
+ * @param focusRequester An optional [FocusRequester] that can be used to request focus for the text input.
  * @param enabled A boolean indicating whether the input field is enabled (clickable).
  * @param onValueChange A lambda function to handle changes in the input value.
  * @param onFocusChange A lambda function to handle focus changes (e.g., when the input gains or loses focus).
@@ -92,6 +98,7 @@ import com.noblesoftware.portalcore.util.extension.isFalse
  * @since 2024
  */
 
+@OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun DefaultTextInputCurrency(
     modifier: Modifier = Modifier,
@@ -115,12 +122,15 @@ fun DefaultTextInputCurrency(
     trailingIcon: @Composable (() -> Unit)? = null,
     errorText: String = stringResource(id = R.string.empty_string),
     helperText: String = stringResource(id = R.string.empty_string),
+    showKeyboardOnFocus: Boolean = true,
+    focusRequester: FocusRequester? = null,
     enabled: Boolean = true,
     onValueChange: (String) -> Unit,
     onFocusChange: (Boolean) -> Unit = {}
 ) {
     val focusManager = LocalFocusManager.current
-    val focusRequester = FocusRequester()
+    val internalFocusRequester = remember { FocusRequester() }
+    val actualFocusRequester = focusRequester ?: internalFocusRequester
     val isFocused = remember { mutableStateOf(false) }
     val isInputError = remember { mutableStateOf(false) }
     isInputError.value = errorText != stringResource(id = R.string.empty_string)
@@ -150,190 +160,203 @@ fun DefaultTextInputCurrency(
                 }
             }
         }
-        BasicTextField(
-            modifier = modifier
-                .focusRequester(focusRequester)
-                .onFocusChanged {
-                    onFocusChange.invoke(it.isFocused)
-                    isFocused.value = it.isFocused
+        val textFieldBlock = @Composable {
+            BasicTextField(
+                modifier = modifier
+                    .focusRequester(actualFocusRequester)
+                    .onFocusChanged {
+                        onFocusChange.invoke(it.isFocused)
+                        isFocused.value = it.isFocused
+                    },
+                value = TextFieldValue(
+                    text = value,
+                    selection = TextRange(value.length)
+                ),
+                enabled = enabled,
+                singleLine = singleLine,
+                maxLines = if (minLines > 1 && maxLines == 1) minLines else maxLines,
+                minLines = minLines,
+                textStyle = MaterialTheme.typography.bodyMedium.copy(
+                    color = if (isInputError.value.isFalse()) colorResource(id = R.color.text_primary) else colorResource(
+                        id = R.color.danger_outlined_color
+                    )
+                ),
+                onValueChange = {
+                    if (it.text.length <= maxLength) {
+                        isInputError.value = false
+                        onValueChange(it.text)
+                    }
                 },
-            value = TextFieldValue(
-                text = value,
-                selection = TextRange(value.length)
-            ),
-            enabled = enabled,
-            singleLine = singleLine,
-            maxLines = if (minLines > 1 && maxLines == 1) minLines else maxLines,
-            minLines = minLines,
-            textStyle = MaterialTheme.typography.bodyMedium.copy(
-                color = if (isInputError.value.isFalse()) colorResource(id = R.color.text_primary) else colorResource(
-                    id = R.color.danger_outlined_color
-                )
-            ),
-            onValueChange = {
-                if (it.text.length <= maxLength) {
-                    isInputError.value = false
-                    onValueChange(it.text)
-                }
-            },
-            keyboardActions = keyboardActions ?: KeyboardActions(
-                onDone = { focusManager.clearFocus() },
-                onNext = { focusManager.moveFocus(FocusDirection.Down) },
-                onSearch = { focusManager.clearFocus() }
-            ),
-            keyboardOptions = KeyboardOptions(
-                keyboardType = inputType,
-                imeAction = imeAction,
-                capitalization = keyboardCapitalization
-            ),
-            visualTransformation = if (textTransform.value.isFalse()) VisualTransformation.None else PasswordVisualTransformation(),
-            cursorBrush = SolidColor(colorResource(id = R.color.text_primary)),
-            readOnly = readOnly,
-            decorationBox = { innerTextField ->
-                Box(
-                    Modifier
-                        .clip(shape)
-                        .then(
-                            if (minLines <= 1) {
-                                Modifier.height(height)
-                            } else {
-                                Modifier
-                            }
-                        )
-                        .background(
-                            if (isFocused.value) background.copy(alpha = .10f) else background.copy(
-                                alpha = .5f
-                            )
-                        )
-                        .then(
-                            if (isInputError.value.isFalse()) {
-                                Modifier.border(
-                                    width = 1.9.dp,
-                                    color = if (isFocused.value) colorResource(id = R.color.primary_outlined_active_bg) else Color.Transparent,
-                                    shape = RoundedCornerShape(10.dp)
-                                )
-                            } else if (enabled.isFalse()) {
-                                Modifier.border(
-                                    width = 1.9.dp,
-                                    color = Color.Transparent,
-                                    shape = RoundedCornerShape(10.dp)
-                                )
-                            } else {
-                                Modifier.border(
-                                    width = 1.9.dp,
-                                    color = if (isFocused.value) colorResource(id = R.color.danger_outlined_active_bg) else Color.Transparent,
-                                    shape = RoundedCornerShape(10.dp)
-                                )
-                            }
-                        )
-                ) {
-                    Row(
+                keyboardActions = keyboardActions ?: KeyboardActions(
+                    onDone = { focusManager.clearFocus() },
+                    onNext = { focusManager.moveFocus(FocusDirection.Down) },
+                    onSearch = { focusManager.clearFocus() }
+                ),
+                keyboardOptions = KeyboardOptions(
+                    keyboardType = inputType,
+                    imeAction = imeAction,
+                    capitalization = keyboardCapitalization,
+                    showKeyboardOnFocus = showKeyboardOnFocus
+                ),
+                visualTransformation = if (textTransform.value.isFalse()) VisualTransformation.None else PasswordVisualTransformation(),
+                cursorBrush = SolidColor(colorResource(id = R.color.text_primary)),
+                readOnly = readOnly,
+                decorationBox = { innerTextField ->
+                    Box(
                         Modifier
-                            .fillMaxSize()
-                            .padding(2.dp)
+                            .clip(shape)
+                            .then(
+                                if (minLines <= 1) {
+                                    Modifier.height(height)
+                                } else {
+                                    Modifier
+                                }
+                            )
+                            .background(
+                                if (isFocused.value) background.copy(alpha = .10f) else background.copy(
+                                    alpha = .5f
+                                )
+                            )
                             .then(
                                 if (isInputError.value.isFalse()) {
                                     Modifier.border(
-                                        width = 1.1.dp,
-                                        color = if (isFocused.value) colorResource(id = R.color.primary_solid_bg) else
-                                            if (enabled) colorResource(id = R.color.neutral_outlined_border) else colorResource(
-                                                id = R.color.neutral_outlined_disabled_border
-                                            ),
-                                        shape = LocalShapes.medium
+                                        width = 1.9.dp,
+                                        color = if (isFocused.value) colorResource(id = R.color.primary_outlined_active_bg) else Color.Transparent,
+                                        shape = RoundedCornerShape(10.dp)
                                     )
                                 } else if (enabled.isFalse()) {
                                     Modifier.border(
-                                        width = 1.1.dp,
-                                        color = colorResource(id = R.color.neutral_outlined_disabled_border),
-                                        shape = LocalShapes.medium
+                                        width = 1.9.dp,
+                                        color = Color.Transparent,
+                                        shape = RoundedCornerShape(10.dp)
                                     )
                                 } else {
                                     Modifier.border(
-                                        width = 1.1.dp,
-                                        color = if (isFocused.value) colorResource(id = R.color.danger_outlined_color) else colorResource(
-                                            id = R.color.danger_outlined_active_bg
-                                        ),
-                                        shape = LocalShapes.medium
+                                        width = 1.9.dp,
+                                        color = if (isFocused.value) colorResource(id = R.color.danger_outlined_active_bg) else Color.Transparent,
+                                        shape = RoundedCornerShape(10.dp)
                                     )
                                 }
-                            )
-                            .shadow(elevation = .8.dp, shape = LocalShapes.medium, clip = true)
-                            .background(
-                                if (enabled) colorResource(id = R.color.background_body) else colorResource(
-                                    id = R.color.primary_soft_disabled_bg
-                                )
                             )
                     ) {
-                        leadingIcon?.let {
-                            leadingIcon()
-                        }
-                        Box(
+                        Row(
                             Modifier
-                                .weight(1f)
-                                .align(alignment = Alignment.CenterVertically)
-                                .padding(
-                                    start = if (leadingIcon == null) 15.dp else 0.dp,
-                                    end = if (trailingIcon == null && minLines > 1) 15.dp else 0.dp,
-                                    top = if (minLines > 1) LocalDimen.current.regular else LocalDimen.current.zero,
-                                    bottom = if (minLines > 1) LocalDimen.current.regular else LocalDimen.current.zero,
+                                .fillMaxSize()
+                                .padding(2.dp)
+                                .then(
+                                    if (isInputError.value.isFalse()) {
+                                        Modifier.border(
+                                            width = 1.1.dp,
+                                            color = if (isFocused.value) colorResource(id = R.color.primary_solid_bg) else
+                                                if (enabled) colorResource(id = R.color.neutral_outlined_border) else colorResource(
+                                                    id = R.color.neutral_outlined_disabled_border
+                                                ),
+                                            shape = LocalShapes.medium
+                                        )
+                                    } else if (enabled.isFalse()) {
+                                        Modifier.border(
+                                            width = 1.1.dp,
+                                            color = colorResource(id = R.color.neutral_outlined_disabled_border),
+                                            shape = LocalShapes.medium
+                                        )
+                                    } else {
+                                        Modifier.border(
+                                            width = 1.1.dp,
+                                            color = if (isFocused.value) colorResource(id = R.color.danger_outlined_color) else colorResource(
+                                                id = R.color.danger_outlined_active_bg
+                                            ),
+                                            shape = LocalShapes.medium
+                                        )
+                                    }
+                                )
+                                .shadow(elevation = .8.dp, shape = LocalShapes.medium, clip = true)
+                                .background(
+                                    if (enabled) colorResource(id = R.color.background_body) else colorResource(
+                                        id = R.color.primary_soft_disabled_bg
+                                    )
                                 )
                         ) {
-                            if (value.isEmpty()) {
-                                Text(
-                                    modifier = Modifier,
-                                    text = placeholder,
-                                    color = colorResource(id = R.color.text_tertiary),
-                                    fontSize = 14.sp,
-                                    fontFamily = MaterialTheme.typography.bodyMedium.fontFamily,
-                                    maxLines = if (singleLine) 1 else Int.MAX_VALUE,
-                                    overflow = TextOverflow.Ellipsis
-                                )
+                            leadingIcon?.let {
+                                leadingIcon()
                             }
-                            innerTextField()
-                        }
-                        trailingIcon?.let {
-                            trailingIcon()
-                        }
-                        if (inputType == KeyboardType.Password) {
-                            IconButton(
-                                modifier = Modifier.align(Alignment.CenterVertically),
-                                onClick = {
-                                    textTransform.value = !textTransform.value
-                                }
+                            Box(
+                                Modifier
+                                    .weight(1f)
+                                    .align(alignment = Alignment.CenterVertically)
+                                    .padding(
+                                        start = if (leadingIcon == null) 15.dp else 0.dp,
+                                        end = if (trailingIcon == null && minLines > 1) 15.dp else 0.dp,
+                                        top = if (minLines > 1) LocalDimen.current.regular else LocalDimen.current.zero,
+                                        bottom = if (minLines > 1) LocalDimen.current.regular else LocalDimen.current.zero,
+                                    )
                             ) {
-                                AnimatedVisibility(
-                                    visible = textTransform.value,
-                                    enter = fadeIn(),
-                                    exit = fadeOut()
-                                ) {
-                                    Icon(
-                                        painter = painterResource(id = R.drawable.ic_eye_on),
-                                        contentDescription = "Show Password",
-                                        tint = if (value.isNotEmpty() || isFocused.value) colorResource(
-                                            id = R.color.text_secondary
-                                        ) else colorResource(id = R.color.neutral_plain_disabled_color)
+                                if (value.isEmpty()) {
+                                    Text(
+                                        modifier = Modifier,
+                                        text = placeholder,
+                                        color = colorResource(id = R.color.text_tertiary),
+                                        fontSize = 14.sp,
+                                        fontFamily = MaterialTheme.typography.bodyMedium.fontFamily,
+                                        maxLines = if (singleLine) 1 else Int.MAX_VALUE,
+                                        overflow = TextOverflow.Ellipsis
                                     )
                                 }
-
-                                AnimatedVisibility(
-                                    visible = !textTransform.value,
-                                    enter = fadeIn(),
-                                    exit = fadeOut()
+                                innerTextField()
+                            }
+                            trailingIcon?.let {
+                                trailingIcon()
+                            }
+                            if (inputType == KeyboardType.Password) {
+                                IconButton(
+                                    modifier = Modifier.align(Alignment.CenterVertically),
+                                    onClick = {
+                                        textTransform.value = !textTransform.value
+                                    }
                                 ) {
-                                    Icon(
-                                        painter = painterResource(id = R.drawable.ic_eye_off),
-                                        contentDescription = "Hide Password",
-                                        tint = if (value.isNotEmpty() || isFocused.value) colorResource(
-                                            id = R.color.text_secondary
-                                        ) else colorResource(id = R.color.neutral_plain_disabled_color)
-                                    )
+                                    AnimatedVisibility(
+                                        visible = textTransform.value,
+                                        enter = fadeIn(),
+                                        exit = fadeOut()
+                                    ) {
+                                        Icon(
+                                            painter = painterResource(id = R.drawable.ic_eye_on),
+                                            contentDescription = "Show Password",
+                                            tint = if (value.isNotEmpty() || isFocused.value) colorResource(
+                                                id = R.color.text_secondary
+                                            ) else colorResource(id = R.color.neutral_plain_disabled_color)
+                                        )
+                                    }
+
+                                    AnimatedVisibility(
+                                        visible = !textTransform.value,
+                                        enter = fadeIn(),
+                                        exit = fadeOut()
+                                    ) {
+                                        Icon(
+                                            painter = painterResource(id = R.drawable.ic_eye_off),
+                                            contentDescription = "Hide Password",
+                                            tint = if (value.isNotEmpty() || isFocused.value) colorResource(
+                                                id = R.color.text_secondary
+                                            ) else colorResource(id = R.color.neutral_plain_disabled_color)
+                                        )
+                                    }
                                 }
                             }
                         }
                     }
                 }
+            )
+        }
+
+        if (showKeyboardOnFocus) {
+            textFieldBlock()
+        } else {
+            InterceptPlatformTextInput(
+                interceptor = { _, _ -> awaitCancellation() }
+            ) {
+                textFieldBlock()
             }
-        )
+        }
         AnimatedVisibility(
             visible = isInputError.value,
             enter = slideInVertically() + fadeIn(),

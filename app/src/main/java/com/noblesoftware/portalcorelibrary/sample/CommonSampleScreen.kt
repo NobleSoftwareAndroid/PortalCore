@@ -1020,7 +1020,8 @@ fun CommonSampleScreen(
                         onSnackbar = {},
                         onTextChanged = {},
                         onTextPaste = {},
-                        onTextCopyOrCut = {}
+                        onTextCopyOrCut = {},
+                        showKeyboardOnFocus = false
                     )
                     DefaultSpacer(height = LocalDimen.current.extraLarge)
                 }

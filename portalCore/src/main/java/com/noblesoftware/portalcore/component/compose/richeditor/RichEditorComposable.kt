@@ -90,6 +90,7 @@ import okhttp3.MultipartBody
  * @param notSupportImageError The error message to display when an unsupported image type is selected.
  * @param isImageEnabled A boolean indicating whether the image insertion feature is enabled.
  * @param isAntiCheatEnable A boolean indicating whether anti-cheat features (preventing paste and copy/cut) are enabled.
+ * @param showKeyboardOnFocus A boolean indicating whether the soft keyboard should be shown when the editor is focused.
  * @param onImageUpload A lambda function that is invoked when an image is selected and ready for upload. It provides the [MultipartBody.Part] of the image.
  * @param onImageRetrieve A lambda function that is invoked to get the URL or path of an image that has been successfully uploaded and should be inserted into the editor.
  * @param onSnackbar A lambda function to display a snackbar message (e.g., for errors or success notifications).
@@ -118,6 +119,7 @@ fun RichEditorComposable(
     notSupportImageError: String = stringResource(R.string.file_not_supported),
     isImageEnabled: Boolean = true,
     isAntiCheatEnable: Boolean = false,
+    showKeyboardOnFocus: Boolean = true,
     onImageUpload: (MultipartBody.Part) -> Unit,
     onImageRetrieve: () -> String,
     onSnackbar: (SnackbarState) -> Unit,
@@ -134,6 +136,7 @@ fun RichEditorComposable(
     val activity = context.findActivity()
     val isKeyboardOpen = rememberKeyboardState()
     val isInputError = remember { mutableStateOf(false) }
+    val isFocused = remember { mutableStateOf(false) }
     isInputError.value =
         errorText != stringResource(id = R.string.empty_string) || (isCount && value.calculateLogicalLength() > maxLength)
 
@@ -150,6 +153,10 @@ fun RichEditorComposable(
             setPadding(contentPadding)
             setEditorHeight(minEditorHeight)
             isFocusable = true
+            isFocusableInTouchMode = true
+            setOnFocusChangeListener { _, hasFocus ->
+                isFocused.value = hasFocus
+            }
             isLongClickable = false
             setOnLongClickListener { true }
             setEditorFontColor(
@@ -173,6 +180,7 @@ fun RichEditorComposable(
             setOnTextCopyOrCut { text ->
                 onTextCopyOrCut.invoke(text)
             }
+            setShowKeyboardOnFocus(showKeyboardOnFocus)
             if (forceMaxLength) {
                 setMaxLength(maxLength)
             } else {
@@ -254,7 +262,7 @@ fun RichEditorComposable(
         Box(
             modifier = modifier
                 .then(
-                    if (isKeyboardOpen.value.isTrue()) {
+                    if (isKeyboardOpen.value.isTrue() || isFocused.value) {
                         Modifier
                             .border(
                                 width = 2.dp,
@@ -509,6 +517,7 @@ fun RichEditorComposable(
                         if (view.html != value) {
                             view.html = value
                         }
+                        view.setShowKeyboardOnFocus(showKeyboardOnFocus)
                         if (forceMaxLength) {
                             view.setMaxLength(maxLength)
                         } else {
