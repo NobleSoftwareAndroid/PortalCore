@@ -61,30 +61,29 @@ fun MainScreen(
                     vertical = LocalDimen.current.extraLarge
                 )
         ) {
-//            val text = remember { mutableStateOf("") }
-//            DefaultTextInput(
-//                label = "Coba Text",
-//                placeholder = "Please input text",
-//                required = true,
-//                inputType = KeyboardType.Text,
-//                value = text.value,
-//                showKeyboardOnFocus = false,
-//                onValueChange = { text.value = it })
-//            DefaultSpacer()
-//            RichEditorComposable(
-//                modifier = Modifier.fillMaxWidth(),
-//                value = "",
-//                imageFormName = "image",
-//                isImageEnabled = false,
-//                isAntiCheatEnable = false,
-//                onImageUpload = {},
-//                onImageRetrieve = { "" },
-//                onSnackbar = {},
-//                onTextChanged = {},
-//                onTextPaste = {},
-//                onTextCopyOrCut = {},
-//                showKeyboardOnFocus = false
-//            )
+            val text = remember { mutableStateOf("") }
+            DefaultTextInput(
+                label = "Coba Text",
+                placeholder = "Please input text",
+                required = true,
+                inputType = KeyboardType.Text,
+                value = text.value,
+                showKeyboardOnFocus = false,
+                onValueChange = { text.value = it })
+            DefaultSpacer()
+            RichEditorComposable(
+                modifier = Modifier.fillMaxWidth(),
+                value = "",
+                imageFormName = "image",
+                isImageEnabled = false,
+                isAntiCheatEnable = false,
+                onImageUpload = {},
+                onImageRetrieve = { "" },
+                onSnackbar = {},
+                onTextChanged = {},
+                onTextPaste = {},
+                onTextCopyOrCut = {},
+            )
             DefaultSpacer()
             DefaultButton(
                 modifier = Modifier.fillMaxWidth(),
