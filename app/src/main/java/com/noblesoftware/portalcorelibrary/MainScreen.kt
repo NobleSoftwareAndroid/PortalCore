@@ -25,6 +25,8 @@ import com.noblesoftware.portalcore.component.compose.DefaultButton
 import com.noblesoftware.portalcore.component.compose.DefaultSpacer
 import com.noblesoftware.portalcore.component.compose.DefaultTextInput
 import com.noblesoftware.portalcore.component.compose.DefaultTopAppBar
+import com.noblesoftware.portalcore.component.compose.keyboard.InAppKeyboardWrapper
+import com.noblesoftware.portalcore.component.compose.keyboard.connectToInAppKeyboard
 import com.noblesoftware.portalcore.component.compose.WebViewComposable
 import com.noblesoftware.portalcore.component.compose.richeditor.RichEditorComposable
 import com.noblesoftware.portalcore.model.WebViewFontStyle
@@ -40,37 +42,37 @@ fun MainScreen(
     LaunchedEffect(true) {
         view.setTransparentStatusBar(transparentStatusBar = false)
     }
-    Scaffold(
-        modifier = Modifier.handleSafeScaffoldPadding(),
-        topBar = {
-            DefaultTopAppBar(
-                modifier = Modifier,
-                title = "Portal Core Example",
-                navigator = navHostController
-            )
-        },
-    ) {
-        Column(
-            modifier = Modifier
-                .background(color = colorResource(id = R.color.background_body))
-                .fillMaxSize()
-                .padding(it)
-                .verticalScroll(rememberScrollState())
-                .padding(
-                    horizontal = LocalDimen.current.regular,
-                    vertical = LocalDimen.current.extraLarge
+    InAppKeyboardWrapper(isEnabled = false) {
+        Scaffold(
+            modifier = Modifier.handleSafeScaffoldPadding(),
+            topBar = {
+                DefaultTopAppBar(
+                    modifier = Modifier,
+                    title = "Portal Core Example",
+                    navigator = navHostController
                 )
+            },
         ) {
-            val text = remember { mutableStateOf("") }
-            DefaultTextInput(
-                label = "Coba Text",
-                placeholder = "Please input text",
-                required = true,
-                inputType = KeyboardType.Text,
-                value = text.value,
-                showKeyboardOnFocus = false,
-                onValueChange = { text.value = it })
-            DefaultSpacer()
+            Column(
+                modifier = Modifier
+                    .background(color = colorResource(id = R.color.background_body))
+                    .fillMaxSize()
+                    .padding(it)
+                    .verticalScroll(rememberScrollState())
+                    .padding(
+                        horizontal = LocalDimen.current.regular,
+                        vertical = LocalDimen.current.extraLarge
+                    )
+            ) {
+                val text = remember { mutableStateOf("") }
+                DefaultTextInput(
+                    label = "Coba Text",
+                    placeholder = "Please input text",
+                    required = true,
+                    inputType = KeyboardType.Text,
+                    value = text.value,
+                    onValueChange = { text.value = it })
+                DefaultSpacer()
             RichEditorComposable(
                 modifier = Modifier.fillMaxWidth(),
                 value = "",
@@ -142,4 +144,5 @@ fun MainScreen(
             }
         }
     }
+}
 }
