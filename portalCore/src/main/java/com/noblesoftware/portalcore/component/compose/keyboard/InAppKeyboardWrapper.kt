@@ -5,6 +5,7 @@ import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.slideInVertically
 import androidx.compose.animation.slideOutVertically
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
@@ -119,30 +120,33 @@ fun InAppKeyboardWrapper(
                 next.startInputMethod(request)
             }
         }) {
-            Box(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .pointerInput(isEnabled, keyboardState.isVisible) {
-                        if (isEnabled && keyboardState.isVisible) {
-                            awaitPointerEventScope {
-                                while (true) {
-                                    val event = awaitPointerEvent(PointerEventPass.Final)
-                                    if (event.type == PointerEventType.Press) {
-                                        val isAnyConsumed = event.changes.any { it.isConsumed }
-                                        if (!isAnyConsumed) {
-                                            keyboardState.isVisible = false
+            Column(
+                modifier = Modifier.fillMaxSize()
+            ) {
+                Box(
+                    modifier = Modifier
+                        .weight(1f)
+                        .pointerInput(isEnabled, keyboardState.isVisible) {
+                            if (isEnabled && keyboardState.isVisible) {
+                                awaitPointerEventScope {
+                                    while (true) {
+                                        val event = awaitPointerEvent(PointerEventPass.Final)
+                                        if (event.type == PointerEventType.Press) {
+                                            val isAnyConsumed = event.changes.any { it.isConsumed }
+                                            if (!isAnyConsumed) {
+                                                keyboardState.isVisible = false
+                                            }
                                         }
                                     }
                                 }
                             }
                         }
-                    }
-            ) {
-                content()
+                ) {
+                    content()
+                }
 
                 AnimatedVisibility(
                     visible = keyboardState.isEnabled && keyboardState.isVisible,
-                    modifier = Modifier.align(Alignment.BottomCenter),
                     enter = slideInVertically(initialOffsetY = { it }),
                     exit = slideOutVertically(targetOffsetY = { it })
                 ) {

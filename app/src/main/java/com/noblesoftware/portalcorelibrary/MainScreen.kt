@@ -71,6 +71,7 @@ fun MainScreen(
                     required = true,
                     inputType = KeyboardType.Text,
                     value = text.value,
+                    showKeyboardOnFocus = false,
                     onValueChange = { text.value = it })
                 DefaultSpacer()
             RichEditorComposable(
